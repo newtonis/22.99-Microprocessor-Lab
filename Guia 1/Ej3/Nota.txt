@@ -1,0 +1,13 @@
+El tiempo de acceso fue medido en 28.40 ns entre la señal roja (chip enable) y la señal verde (D0)
+
+bit menos significativo del data bus es el verde 
+chip enable es el rojo 
+el AS es el amarillo (se uso para trigger)
+
+Martu cambio el codigo 
+
+org 
+ldaa $c001 (donde estaba el dato $10) 
+jmp $2000
+
+para medir se busca una posicion de memoria par/impar con un dato que sea impar/par
