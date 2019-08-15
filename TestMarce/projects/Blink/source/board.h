@@ -22,7 +22,7 @@
 
 // On Board User LEDs
 #define PIN_LED_RED     // ???
-#define PIN_LED_GREEN   // ???
+#define PIN_LED_GREEN   PORTNUM2PIN(PE,26) // PTE26
 #define PIN_LED_BLUE    PORTNUM2PIN(PB,21) // PTB21
 
 #define LED_ACTIVE      LOW

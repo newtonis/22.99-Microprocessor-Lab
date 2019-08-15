@@ -821,20 +821,20 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_line    0x00000b71      0x1c7 ./SDK/CMSIS/system_MK64F12.o
  .debug_line    0x00000d38      0x1ec C:/Users/Marcelo/Documents/GitHub/LABO_DE_MICROS/TestMarce/projects/Blink/source/gpio.o
 
-.debug_str      0x00000000    0x77d71
- .debug_str     0x00000000     0x37fa ./source/App.o
-                               0x395d (size before relaxing)
- .debug_str     0x000037fa    0x739e1 ./SDK/startup/hardware.o
+.debug_str      0x00000000    0x77d83
+ .debug_str     0x00000000     0x380c ./source/App.o
+                               0x396f (size before relaxing)
+ .debug_str     0x0000380c    0x739e1 ./SDK/startup/hardware.o
                               0x77200 (size before relaxing)
- .debug_str     0x000771db       0x1b ./SDK/startup/main.o
+ .debug_str     0x000771ed       0x1b ./SDK/startup/main.o
                               0x76fd4 (size before relaxing)
- .debug_str     0x000771f6       0x36 ./SDK/startup/semihost_hardfault.o
+ .debug_str     0x00077208       0x36 ./SDK/startup/semihost_hardfault.o
                                0x2d3a (size before relaxing)
- .debug_str     0x0007722c      0x83a ./SDK/startup/startup_mk64f12.o
+ .debug_str     0x0007723e      0x83a ./SDK/startup/startup_mk64f12.o
                                0x35a8 (size before relaxing)
- .debug_str     0x00077a66       0x62 ./SDK/CMSIS/system_MK64F12.o
+ .debug_str     0x00077a78       0x62 ./SDK/CMSIS/system_MK64F12.o
                               0x7710f (size before relaxing)
- .debug_str     0x00077ac8      0x2a9 C:/Users/Marcelo/Documents/GitHub/LABO_DE_MICROS/TestMarce/projects/Blink/source/gpio.o
+ .debug_str     0x00077ada      0x2a9 C:/Users/Marcelo/Documents/GitHub/LABO_DE_MICROS/TestMarce/projects/Blink/source/gpio.o
                               0x772d6 (size before relaxing)
 
 .comment        0x00000000       0x7e
