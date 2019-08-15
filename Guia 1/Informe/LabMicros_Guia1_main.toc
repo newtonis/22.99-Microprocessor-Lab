@@ -1,1 +1,4 @@
 \select@language {spanish}
+\contentsline {section}{Ejercicio 1 - Diagrama de Tiempos}{2}{section*.2}
+\contentsline {section}{Ejercicio 2 - Mapa de memoria}{4}{section*.3}
+\contentsline {section}{Ejercicio 3 - Medici\IeC {\'o}n de tiempo de acceso}{5}{section*.4}

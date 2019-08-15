@@ -18,6 +18,7 @@
 \newpage
 
 \section*{Ejercicio 1 - Diagrama de Tiempos}
+\addcontentsline{toc}{section}{Ejercicio 1 - Diagrama de Tiempos}
 
 Se realizó el diagrama de tiempos correspondiente al siguiente código en assembler:
 
@@ -62,6 +63,7 @@ En este caso, se tomo la misma medición, con la diferencia que la señal roja s
 \newpage
 
 \section*{Ejercicio 2 - Mapa de memoria}
+\addcontentsline{toc}{section}{Ejercicio 2 - Mapa de memoria}
 
 Realizando un \textit{dump} de la posición de memoria \$A000 se obtuvieron los siguientes resultados en el terminal:
 
@@ -78,6 +80,8 @@ Del mapa de memoria resultante se puede observar que, en cada posición desde la
 \newpage
 
 \section*{Ejercicio 3 - Medición de tiempo de acceso}
+\addcontentsline{toc}{section}{Ejercicio 3 - Medición de tiempo de acceso}
+
 En este caso se buscó un método aproximado para medir el tiempo de acceso a la memoria FLASH. Para ello se utilizó una posición de memoria impar (\$C001) asegurándonos que tenga un valor par (\$10), de manera tal de poder observar la diferencia de tiempos entre las señales D0 del AS (address strobe) y el CE (chip enable) cuando cambian de estado. El código modificado para ello es el siguiente:
 
 \begin{lstlisting}
