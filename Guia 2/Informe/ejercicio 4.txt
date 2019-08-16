@@ -1,0 +1,29 @@
+le pusimos un delay a la funcion para esperar el tiempo que tarda uno en retirar el dedo del boton y evitar efecto rebote, para que el led solo cambie de estado una vez. Lo ideal consideramos que es usar una interrupción que estar chequeando todo el tiempo.
+
+Se agregan los siguientes defines:
+
+#define PIN_LED_GREEN   PORTNUM2PIN(PE,26) // PTE26
+#define PIN_SW3         PORTNUM2PIN(PA,4) // PTA4
+
+El código modificado es el siguiente:
+
+/* Función que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+    gpioMode(PIN_LED_GREEN, OUTPUT); // Configuro LED GREEN como salida
+    gpioMode(PIN_SW3, INPUT);        // COnfiguro SW3 como entrada
+}
+
+/* Función que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+	static int estado = HIGH;
+	int estado_viejo = estado;
+	estado = gpioRead(PIN_SW3);
+	if((estado_viejo == HIGH)&&(estado == LOW)){
+		delayLoop(360000UL); // Delay antirebote basico
+		gpioToggle(PIN_LED_GREEN);
+	}
+}
+
+El sw2 tiene la resistencia de pull up en el esquematico como DNP (do not populate). Es decir que no viene montada en el PCb, por lo que si en el programa no le pongo como INPUT_PULLUP naturalmente no va a andar.

@@ -1,0 +1,33 @@
+le agregamos a sw externo un capacitor.
+
+Defines:
+
+// Extern LED
+#define LED_YELLOW	PORTNUM2PIN(PB,23) // PTB23
+
+// Extern SW
+#define SW_EXT	PORTNUM2PIN(PC,9) // PTC9
+
+Codigo modificado:
+
+/* Función que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+    gpioMode(LED_YELLOW, OUTPUT);
+    gpioMode(SW_EXT, INPUT_PULLUP);
+    gpioWrite(LED_YELLOW, HIGH); // Para ver que ande
+}
+
+/* Función que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+	static int estado = HIGH;
+	int estado_viejo = estado;
+	estado = gpioRead(SW_EXT);
+	if((estado_viejo == HIGH)&&(estado == LOW)){
+		delayLoop(800000UL);
+		gpioToggle(LED_YELLOW);
+	}
+}
+
+Segunda parte: no se puede pq el PTA0 está conectado a una señal del programador, de manera que no es un pin accesible externo. 

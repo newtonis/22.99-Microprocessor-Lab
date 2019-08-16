@@ -33,14 +33,51 @@ static void delayLoop(uint32_t veces);
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-    gpioMode(PIN_LED_GREEN, OUTPUT);
+	gpioMode(PIN_SW3, INPUT);
+    gpioMode(LED_YELLOW, OUTPUT);
+    gpioMode(PIN_LED_RED, OUTPUT);
+    gpioWrite(LED_YELLOW, LOW);
+    gpioWrite(PIN_LED_RED, HIGH);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-    delayLoop(4*3600000UL);
-    gpioToggle(PIN_LED_GREEN);
+	static int timer = 0;
+	static int estado = HIGH;
+	static int baliza = LOW; // Inicialmente apagado
+	int estado_viejo = estado;
+	timer++;
+	estado = gpioRead(PIN_SW3);
+	if((estado_viejo == HIGH)&&(estado == LOW)){
+		if(baliza == LOW){
+			baliza = HIGH;
+		}else{
+			baliza = LOW;
+		}
+	}
+
+	delayLoop(144000UL); // 10ms
+
+	switch(baliza){
+	case LOW:
+		if(gpioRead(PIN_LED_RED) == LOW){
+		    gpioWrite(LED_YELLOW, LOW);
+		    gpioWrite(PIN_LED_RED, HIGH);
+		}
+		break;
+	case HIGH:
+		if(timer % 100 == 0){
+			gpioToggle(LED_YELLOW);
+		}
+		if(gpioRead(PIN_LED_RED) == HIGH){
+			gpioWrite(PIN_LED_RED, LOW);
+		}
+		break;
+	default:
+		// Nada
+		break;
+	}
 }
 
 
