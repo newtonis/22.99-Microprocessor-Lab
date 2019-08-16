@@ -17,7 +17,8 @@
 \tableofcontents
 \newpage
 
-\section*{Ejercicio 1}
+\section*{Ejercicio 1 - Documentación}
+\addcontentsline{toc}{section}{Ejercicio 1 - Documentación}
 
 \begin{itemize}
 \item ¿En cuál número de pin del MCU se encuentra el puerto PTA12?
@@ -64,7 +65,8 @@ En el datasheet del MCU, la sección 1.4 ``Voltage and current operating ratings
 
 \newpage
 
-\section*{Ejercicio 2}
+\section*{Ejercicio 2 - toolchain Kinetis}
+\addcontentsline{toc}{section}{Ejercicio 2 - toolchain Kinetis}
 
 Con el nivel de optimización original (None - O0), el código funciona normalmente. Con la opción Disassembly se puede obtener el fragmento de código de la función App\_run:
 
@@ -93,7 +95,8 @@ En el cual se observa que el compilador procesa la función delayloop correctame
 
 \newpage
 
-\section*{Ejercicio 3}
+\section*{Ejercicio 3 - Blink editado}
+\addcontentsline{toc}{section}{Ejercicio 3 - Blink editado}
 
 Para utilizar el LED verde del RGB, se modificó el define correspondiente a dicho puerto, en board.h:
 
@@ -119,5 +122,141 @@ void App_Run (void)
 \end{lstlisting}
 
 El valor en delayloop se modificó por prueba y error, dado que es un while que incrementa una variable, y para conocer el tiempo que demora se midió el del código de blink con el osciloscopio, que era delayloop(4000000UL). La forma más adecuada de implementar un retardo en el cambio de estado de un pin sería utilizando un timer.
+
+\newpage
+
+\section*{Ejercicio 4 - Pul2Switch}
+\addcontentsline{toc}{section}{Ejercicio 4 - Pul2Switch}
+
+Se le agregó un delay a la función para esperar el tiempo que tarda uno en retirar el dedo del botón y evitar efecto rebote, para que el led solo cambie de estado una vez al presionar. Consideramos que lo ideal es usar una interrupción para detectar cuando se presiona el pulsador que estar revisando todo el tiempo.
+En board.h se agregó:
+
+\begin{lstlisting}
+#define PIN_LED_GREEN   PORTNUM2PIN(PE,26) // PTE26
+#define PIN_SW3         PORTNUM2PIN(PA,4) // PTA4
+\end{lstlisting}
+
+En App.c se modificaron las funciones App\_Init y App\_Run:
+
+\begin{lstlisting}
+/* Funcion que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+    gpioMode(PIN_LED_GREEN, OUTPUT); // Configuro LED GREEN como salida
+    gpioMode(PIN_SW3, INPUT);        // COnfiguro SW3 como entrada
+}
+
+/* Funcion que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+	static int estado = HIGH;
+	int estado_viejo = estado;
+	estado = gpioRead(PIN_SW3);
+	if((estado_viejo == HIGH)&&(estado == LOW)){
+		delayLoop(360000UL); // Delay antirebote basico
+		gpioToggle(PIN_LED_GREEN);
+	}
+}
+\end{lstlisting}
+
+En el caso donde se utiliza SW2, en el esquemático de la placa la resistencia de pull-up figura como DNP (do not populate). Es decir, que no viene montada en el PCb, por lo que si en el programa no se configura como INPUT\_PULLUP no va a funcionar.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7 \textwidth]
+	{../Imagenes/SW2_DNP.png}
+	\caption{Esquemático del SW2 interno}
+	\label{fig:ej1}
+\end{figure}
+
+El código modificado para estos fines se muestra a continuación.
+
+En board.h:
+
+\begin{lstlisting}
+#define PIN_LED_GREEN   PORTNUM2PIN(PE,26) // PTE26
+#define PIN_SW2         PORTNUM2PIN(PC,6) // PTC6
+\end{lstlisting}
+
+En App.c se modificaron las funciones App\_Init y App\_Run:
+
+\begin{lstlisting}
+/* Funcion que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+    gpioMode(PIN_LED_GREEN, OUTPUT); // Configuro LED GREEN como salida
+    gpioMode(PIN_SW2, INPUT_PULLUP); // COnfiguro SW2 como entrada con pull-up interno
+}
+
+/* Funcion que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+	static int estado = HIGH;
+	int estado_viejo = estado;
+	estado = gpioRead(PIN_SW2);
+	if((estado_viejo == HIGH)&&(estado == LOW)){
+		delayLoop(360000UL); // Delay antirebote basico
+		gpioToggle(PIN_LED_GREEN);
+	}
+}
+\end{lstlisting}
+
+\newpage
+
+\section*{Ejercicio 5 - Interfaz externa}
+\addcontentsline{toc}{section}{Ejercicio 5 - Interfaz externa}
+
+Se conectaron en un protoboard un pulsador al pin PTC9 y un LED amarillo al pin PTB23. El código modificado se muestra a continuación.
+
+En board.h:
+
+\begin{lstlisting}
+// Extern LED
+#define LED_YELLOW	PORTNUM2PIN(PB,23) // PTB23
+
+// Extern SW
+#define SW_EXT	PORTNUM2PIN(PC,9) // PTC9
+\end{lstlisting}
+
+Se modificó además en App.c:
+
+\begin{lstlisting}
+/* Funcion que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+    gpioMode(LED_YELLOW, OUTPUT);
+    gpioMode(SW_EXT, INPUT_PULLUP);
+    gpioWrite(LED_YELLOW, HIGH); // Para ver que ande
+}
+
+/* Funcion que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+	static int estado = HIGH;
+	int estado_viejo = estado;
+	estado = gpioRead(SW_EXT);
+	if((estado_viejo == HIGH)&&(estado == LOW)){
+		delayLoop(800000UL);
+		gpioToggle(LED_YELLOW);
+	}
+}
+\end{lstlisting}
+
+La segunda conexión sugerida no se puede efectuar en la placa de evaluación, dado que el pin PTA0 es utilizado por una señal del circuito programador de la placa.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8 \textwidth]
+	{../Imagenes/PTA0.png}
+	\caption{Conexionado interno del PTA0}
+	\label{fig:ej1}
+\end{figure}
+
+\newpage
+
+\section*{Ejercicio 6 - Baliza}
+\addcontentsline{toc}{section}{Ejercicio 6 - Baliza}
+
+
 
 \end{document}

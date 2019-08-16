@@ -27,3 +27,28 @@ void App_Run (void)
 }
 
 El sw2 tiene la resistencia de pull up en el esquematico como DNP (do not populate). Es decir que no viene montada en el PCb, por lo que si en el programa no le pongo como INPUT_PULLUP naturalmente no va a andar.
+
+Defines:
+#define PIN_LED_GREEN   PORTNUM2PIN(PE,26) // PTE26
+#define PIN_SW2         PORTNUM2PIN(PC,6) // PTC6
+
+
+Codigo:
+/* Función que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+    gpioMode(PIN_LED_GREEN, OUTPUT); // Configuro LED GREEN como salida
+    gpioMode(PIN_SW2, INPUT_PULLUP); // COnfiguro SW2 como entrada con pull-up interno
+}
+
+/* Función que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+	static int estado = HIGH;
+	int estado_viejo = estado;
+	estado = gpioRead(PIN_SW2);
+	if((estado_viejo == HIGH)&&(estado == LOW)){
+		delayLoop(360000UL); // Delay antirebote basico
+		gpioToggle(PIN_LED_GREEN);
+	}
+}

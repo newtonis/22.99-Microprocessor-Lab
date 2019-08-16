@@ -57,7 +57,7 @@ void App_Run (void)
 		}
 	}
 
-	delayLoop(144000UL); // 10ms
+	delayLoop(143000UL); // 10ms
 
 	switch(baliza){
 	case LOW:
