@@ -50,7 +50,7 @@ void App_Run (void)
 		}
 		break;
 	case HIGH:
-		if(timer % 100 == 0){
+		if(timer % 100 == 0){ // Cada 1 segundo debido al delayloop
 			gpioToggle(LED_YELLOW);
 		}
 		if(gpioRead(PIN_LED_RED) == HIGH){

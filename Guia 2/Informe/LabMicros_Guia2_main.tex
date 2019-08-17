@@ -121,14 +121,14 @@ void App_Run (void)
 }
 \end{lstlisting}
 
-El valor en delayloop se modificó por prueba y error, dado que es un while que incrementa una variable, y para conocer el tiempo que demora se midió el del código de blink con el osciloscopio, que era delayloop(4000000UL). La forma más adecuada de implementar un retardo en el cambio de estado de un pin sería utilizando un timer.
+El valor en delayloop se modificó por regla de 3, dado que es un while que incrementa una variable, y para conocer el tiempo que demora se midió el del código de blink con el osciloscopio, que era delayloop(4000000UL). La forma más adecuada de implementar un retardo en el cambio de estado de un pin sería utilizando un timer.
 
 \newpage
 
 \section*{Ejercicio 4 - Pul2Switch}
 \addcontentsline{toc}{section}{Ejercicio 4 - Pul2Switch}
 
-Se le agregó un delay a la función para esperar el tiempo que tarda uno en retirar el dedo del botón y evitar efecto rebote, para que el led solo cambie de estado una vez al presionar. Consideramos que lo ideal es usar una interrupción para detectar cuando se presiona el pulsador que estar revisando todo el tiempo.
+Se le agregó un delay a la función para esperar el tiempo que tarda uno en retirar el dedo del botón y evitar efecto rebote, para que el LED solo cambie de estado una vez al presionar. Consideramos que lo ideal es usar una interrupción para detectar cuando se presiona el pulsador que estar revisando todo el tiempo.
 En board.h se agregó:
 
 \begin{lstlisting}
@@ -159,7 +159,7 @@ void App_Run (void)
 }
 \end{lstlisting}
 
-En el caso donde se utiliza SW2, en el esquemático de la placa la resistencia de pull-up figura como DNP (do not populate). Es decir, que no viene montada en el PCb, por lo que si en el programa no se configura como INPUT\_PULLUP no va a funcionar.
+En el caso donde se utiliza SW2, en el esquemático de la placa la resistencia de pull-up figura como DNP (do not populate). Es decir, que no viene montada en el PCB, por lo que si en el programa no se configura como INPUT\_PULLUP no va a funcionar.
 
 \begin{figure}[ht]
 	\centering
@@ -242,7 +242,7 @@ void App_Run (void)
 }
 \end{lstlisting}
 
-La segunda conexión sugerida no se puede efectuar en la placa de evaluación, dado que el pin PTA0 es utilizado por una señal del circuito programador de la placa.
+La segunda conexión sugerida no se puede efectuar en la placa de evaluación, dado que el pin PTA0 es utilizado por una señal del debugger de la placa.
 
 \begin{figure}[ht]
 	\centering
@@ -257,6 +257,73 @@ La segunda conexión sugerida no se puede efectuar en la placa de evaluación, d
 \section*{Ejercicio 6 - Baliza}
 \addcontentsline{toc}{section}{Ejercicio 6 - Baliza}
 
+Para leer el estado del SW3 periódicamente sin utilizar interrupciones, se colocó un delay de 10ms. Si se presionó, se habilita la baliza, y como el delay es de 10ms, en cada centena de la variable timer (que se incrementa por ciclo de 10ms en forma unitaria) se cambia el estado del LED de la baliza. Nuevamente, el valor de delayloop se calculó mediante regla de 3.
+Modificando los defines en board.h:
 
+\begin{lstlisting}
+// On Board User LEDs
+#define PIN_LED_RED     PORTNUM2PIN(PB,22) // PTB22
+
+// On Board User Switches
+#define PIN_SW3         PORTNUM2PIN(PA,4) // PTA4
+
+// Extern LED
+#define LED_YELLOW	PORTNUM2PIN(PB,23) // PTB23
+\end{lstlisting}
+
+Finalmente, en App.c:
+
+\begin{lstlisting}
+
+/* Funcion que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+	gpioMode(PIN_SW3, INPUT);
+    gpioMode(LED_YELLOW, OUTPUT);
+    gpioMode(PIN_LED_RED, OUTPUT);
+    gpioWrite(LED_YELLOW, LOW);
+    gpioWrite(PIN_LED_RED, HIGH);
+}
+
+/* Funcion que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+	static int timer = 0;
+	static int estado = HIGH;
+	static int baliza = LOW; // Inicialmente apagado
+	int estado_viejo = estado;
+	timer++; // Cada 10ms
+	estado = gpioRead(PIN_SW3);
+	if((estado_viejo == HIGH)&&(estado == LOW)){
+		if(baliza == LOW){
+			baliza = HIGH;
+		}else{
+			baliza = LOW;
+		}
+	}
+
+	delayLoop(143000UL); // 10ms de pausa
+
+	switch(baliza){
+	case LOW:
+		if(gpioRead(PIN_LED_RED) == LOW){
+		    gpioWrite(LED_YELLOW, LOW);
+		    gpioWrite(PIN_LED_RED, HIGH);
+		}
+		break;
+	case HIGH:
+		if(timer % 100 == 0){ // Cada 1 segundo debido al delayloop
+			gpioToggle(LED_YELLOW);
+		}
+		if(gpioRead(PIN_LED_RED) == HIGH){
+			gpioWrite(PIN_LED_RED, LOW);
+		}
+		break;
+	default:
+		// Nada
+		break;
+	}
+}
+\end{lstlisting}
 
 \end{document}
