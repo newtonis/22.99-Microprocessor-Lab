@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210) (preloaded format=pdflatex 2018.4.3)  17 AUG 2019 20:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210) (preloaded format=pdflatex 2018.4.3)  18 AUG 2019 00:15
 entering extended mode
 **./LabMicros_Guia2_main.tex
 (LabMicros_Guia2_main.tex
@@ -1530,15 +1530,46 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 329.
  [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 329.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 329.
+<../Imagenes/baliza.png, id=251, 766.36313pt x 528.47438pt>
+File: ../Imagenes/baliza.png Graphic file (type png)
+
+<use ../Imagenes/baliza.png>
+Package pdftex.def Info: ../Imagenes/baliza.png used on input line 335.
+(pdftex.def)             Requested size: 328.6279pt x 226.61864pt.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 339.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 339.
+ [8 <../Imagenes/baliza.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 339.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 339.
 
 (LabMicros_Guia2_main.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 329.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 329.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 339.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 339.
 Package rerunfilecheck Info: File `LabMicros_Guia2_main.out' has not changed.
 (rerunfilecheck)             Checksum: C3D22EC538B64234FA796AFF1D5EF2A7;384.
 
@@ -1548,13 +1579,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 329.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 339.
  ) 
 Here is how much of TeX's memory you used:
- 19980 strings out of 493333
- 355975 string characters out of 3136603
- 561864 words of memory out of 3000000
- 22939 multiletter control sequences out of 15000+200000
+ 19987 strings out of 493333
+ 356106 string characters out of 3136603
+ 561862 words of memory out of 3000000
+ 22943 multiletter control sequences out of 15000+200000
  16646 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,7n,67p,470b,1278s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1569,9 +1600,9 @@ s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x
 86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86
 )/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/M
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on LabMicros_Guia2_main.pdf (8 pages, 350867 bytes).
+Output written on LabMicros_Guia2_main.pdf (9 pages, 368613 bytes).
 PDF statistics:
- 326 PDF objects out of 1000 (max. 8388607)
- 181 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 332 PDF objects out of 1000 (max. 8388607)
+ 183 named destinations out of 1000 (max. 500000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

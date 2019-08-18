@@ -41,7 +41,7 @@ En el datasheet del MCU, la sección 5.2 ``Unused analog interfaces'' tabla 57, 
 \begin{itemize}
 \item ¿Cuántos pines del puerto PTE se encuentran efectivamente disponibles en este modelo de MCU?
 \end{itemize}
-En la guía de usuario del kit Freedom, sección 16 ``Input/output connectors'' se muestran los pintes accesibles en la placa de evaluación. Los pines disponibles de uso externo del puerto PTE son el PTE24, PTE25 y el PTE26.
+En la guía de usuario del kit Freedom, sección 16 ``Input/output connectors'' se muestran los pines accesibles en la placa de evaluación. Los pines disponibles de uso externo del puerto PTE son el PTE24, PTE25 y el PTE26.
 
 \begin{itemize}
 \item ¿Cuál es el rango de valores de tensión para detectar un 0 y un 1 lógico en un pin I/O? ¿Se puede enviar 5V a un pin?
@@ -325,5 +325,15 @@ void App_Run (void)
 	}
 }
 \end{lstlisting}
+
+\newpage
+Se tomó una captura del osciloscopio de la señal de salida cuando la baliza está activada, donde se observa que efectivamente la frecuencia es de 0.5Hz.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7 \textwidth]
+	{../Imagenes/baliza.png}
+	\caption{Señal de salida con baliza activada}
+\end{figure}
 
 \end{document}
