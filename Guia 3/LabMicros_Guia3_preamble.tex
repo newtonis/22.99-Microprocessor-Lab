@@ -1,0 +1,68 @@
+\usepackage[utf8]{inputenc}
+% caracteres utf8 (tildes, enie) sin tener que usar comandos
+
+\usepackage[spanish, es-tabla, es-nodecimaldot]{babel} 
+% texto automatico en espaniol
+% "tabla" en vez de "cuadro"
+% no reemplaza puntos decimales por comas
+
+%% NO AGREGAR PAQUETES ANTES DE ESTO, ES IMPORTANTE QUE BABEL ESTE PRIMERO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PAQUETES EXTRA %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{subfiles}
+
+\usepackage{amsmath} % PAQUETES DE MATEMATICA
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+\usepackage{steinmetz} % comando \phase{}
+\usepackage{units} % permite usar nicefrac
+\usepackage{graphicx} % importar imagenes
+\usepackage{float} % posicion H para floats
+\usepackage[colorinlistoftodos]{todonotes}
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry} 
+% margenes correctos en subarchivos
+
+\setlength{\parindent}{10pt}			%cuanta sangria al principio de un parrafo
+\usepackage{indentfirst}				%pone sangria al primer parrafo de una seccion
+
+\usepackage{listings}
+
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NO AGREGAR PAQUETES DESPUES DE ESTO, ES IMPORTANTE QUE HYPERREF ESTE ULTIMO
+\usepackage[hidelinks]{hyperref} % hipervinculos sin cajitas rojas
+

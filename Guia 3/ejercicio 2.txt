@@ -1,0 +1,2 @@
+En el MK64F12.h se encuentra el Port_Type. Es una estructura que se utiliza para acceder facilmente a la zona de memoria donde se encuentran los registros de cada puerto (PCR, GPCLR, etc). 
+Como es una representación fiel a la memoria, la sección marcada como reserved indica una zona de la memoria donde no se debe acceder (separa algunos de los registros). 

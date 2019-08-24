@@ -1,0 +1,18 @@
+ - ¿Cuál es la dirección absoluta donde se encuentra el registro PCR del pin PTA12?
+
+En el reference manual, sección 11.5 memory map and register definition, el port control register (PCR) para el pin PTA12 esta en la dirección $4004 9030. 
+
+ - ¿Cuál bit del registro PCR corresponde al Interrupt Status Flag?
+
+De los 32 bits [31:0], el bit 24 es el interrupt status flag, de la página 289 del reference manual. 
+Cuando esta en 0 es que no se detectó evento de interrupcion.
+Cuando está en 1 If the pin is configured to generate a DMA request, then the
+corresponding flag will be cleared automatically at the completion of the requested DMA transfer.
+Otherwise, the flag remains set until a logic 1 is written to the flag. If the pin is configured for a level
+sensitive interrupt and the pin remains asserted, then the flag is set again immediately after it is
+cleared. 
+ 
+ - Luego del reset los pines del puerto B: ¿cómo tienen configurada su dirección (entrada o salida)? ¿y cómo tienen configurado el slew-rate (activado o no)? ¿y cómo tienen configurado el pull (desactivado, activado pullup o activado pulldown)?
+
+Luego del reset, los pines del puerto B están configurados como entrada, y es igual para todos los pines.
+Para las otras opciones, en la seccion 10.2.2 se especifica para cada puerto como estan configuradas luego de un reset. Para el puerto B, el slew rate queda deshabilitado, el pull enable deshabilitado y el pull select en pull down.
