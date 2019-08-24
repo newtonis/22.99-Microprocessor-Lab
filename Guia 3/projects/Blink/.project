@@ -24,11 +24,4 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>source/gpio.c</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Guia%203/projects/Blink/source/gpio.c</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
