@@ -1,5 +1,7 @@
 #include "gpio.h"
 
+#define SIM_BASE_MASKS {SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK, SIM_SCGC5_PORTC_MASK, SIM_SCGC5_PORTD_MASK, SIM_SCGC5_PORTE_MASK };
+
 static GPIO_Type* gpioPtrs[] = GPIO_BASE_PTRS;
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
 static uint32_t simMasks[] = SIM_BASE_MASKS;

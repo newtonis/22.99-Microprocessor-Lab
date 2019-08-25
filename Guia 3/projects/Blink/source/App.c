@@ -34,14 +34,14 @@ static void delayLoop(uint32_t veces);
 void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
-    gpioWrite(PIN_LED_BLUE, LOW);
+    gpioWrite(PIN_LED_BLUE, HIGH);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
     delayLoop(4000000UL);
-    //gpioToggle(PIN_LED_BLUE);
+    gpioToggle(PIN_LED_BLUE);
 }
 
 
