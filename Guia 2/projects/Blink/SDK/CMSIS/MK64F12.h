@@ -10630,6 +10630,8 @@ typedef struct {
 /** Array initializer of SIM peripheral base pointers */
 #define SIM_BASE_PTRS                            { SIM }
 
+#define SIM_BASE_MASKS							{ SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK , SIM_SCGC5_PORTC_MASK , SIM_SCGC5_PORTD_MASK , SIM_SCGC5_PORTE_MASK }
+
 /*!
  * @}
  */ /* end of group SIM_Peripheral_Access_Layer */

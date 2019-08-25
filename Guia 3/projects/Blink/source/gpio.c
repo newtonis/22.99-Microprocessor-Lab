@@ -2,18 +2,18 @@
 
 static GPIO_Type* gpioPtrs[] = GPIO_BASE_PTRS;
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
+static uint32_t simMasks[] = SIM_BASE_MASKS;
 static SIM_Type* sim_ptr = SIM;
-
 
 /* * @brief Configures the specified pin to behave either as an input or an output
  * @param pin the pin whose mode you wish to set (according PORTNUM2PIN)
  * @param mode INPUT, OUTPUT, INPUT_PULLUP or INPUT_PULLDOWN.
  */
 void gpioMode (pin_t pin, uint8_t mode){
-	sim_ptr->SCGC5 |= SIM_SCGC5_PORTB_MASK; //activo clock gating para B
 
+	sim_ptr->SCGC5 |= simMasks[PIN2PORT(pin)]; //activo clock gating para B
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
-	GPIO_Type *gpio_port = gpioPtrs[PIN2PORT(pin)];
+	GPIO_Type *gpio = gpioPtrs[PIN2PORT(pin)];
 
 	uint32_t num = PIN2NUM(pin); // num es el numero de pin
 
@@ -25,18 +25,18 @@ void gpioMode (pin_t pin, uint8_t mode){
 
 	switch(mode){
 		case INPUT:
-			gpio_port->PDDR &= ~ (1<<num); // seteamos el pin como input
+			gpio->PDDR &= ~ (1<<num); // seteamos el pin como input
 			break;
 		case OUTPUT:
-			gpio_port->PDDR |= 1<<num;// seteamos el pin como output
+			gpio->PDDR |= 1<<num;// seteamos el pin como output
 			break;
 		case INPUT_PULLUP:
-			gpio_port->PDDR &= ~ (1<<num); // seteamos el pin como input
+			gpio->PDDR &= ~ (1<<num); // seteamos el pin como input
 			port->PCR[num] |= HIGH<<1; //PULL ENABLE en 1
 			port->PCR[num] |= HIGH<<0; //PULL SELECT en 1 (PULLUP)
 			break;
 		case INPUT_PULLDOWN:
-			gpio_port->PDDR &= ~ (1<<num); // seteamos el pin como input
+			gpio->PDDR &= ~ (1<<num); // seteamos el pin como input
 			port->PCR[num] |= HIGH<<1; //PULL ENABLE en 1
 			port->PCR[num] &= ~(HIGH); //PULL SELECT en 0 (PULLDOWN)
 			break;
@@ -51,12 +51,12 @@ void gpioMode (pin_t pin, uint8_t mode){
  */
 void gpioWrite (pin_t pin, bool value){
 	uint32_t port_name = PIN2PORT(pin);
-	uint32_t port_num = PIN2NUM(pin);
+	uint32_t num = PIN2NUM(pin);
 	GPIO_Type *gpio = gpioPtrs[port_name];
 	if(value == HIGH){
-		gpio->PDOR |= (1<<port_num);
+		gpio->PDOR |= (1<<num);
 	}else{
-		gpio->PDOR &= ~ (1<<port_num);
+		gpio->PDOR &= ~ (1<<num);
 	}
 }
 
@@ -65,10 +65,13 @@ void gpioWrite (pin_t pin, bool value){
  * @param pin the pin to toggle (according PORTNUM2PIN)
  */
 void gpioToggle (pin_t pin){
-	if (gpioRead(pin) == LOW){
-		gpioWrite(pin,HIGH);
+	uint32_t port_name = PIN2PORT(pin);
+	uint32_t num = PIN2NUM(pin);
+	GPIO_Type *gpio = gpioPtrs[port_name];
+	if( (gpio->PTOR & (1<<num) ) == 1<<num){ //si esta prendido el toggle
+		gpio->PTOR &= ~ (1<<num); //lo apagamos
 	}else{
-		gpioWrite(pin,LOW);
+		gpio->PTOR |= (1<<num);
 	}
 }
 
@@ -79,9 +82,9 @@ void gpioToggle (pin_t pin){
  */
 bool gpioRead (pin_t pin){
 	uint32_t port_name = PIN2PORT(pin);
-	uint32_t port_num = PIN2NUM(pin);
+	uint32_t num = PIN2NUM(pin);
 	GPIO_Type *gpio = gpioPtrs[port_name];
-	return ( (1<<port_num) & gpio->PDOR ) == 1<<port_num ;
+	return ( (1<<num) & gpio->PDOR ) == 1<<num ;
 }
 
 
