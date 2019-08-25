@@ -49,7 +49,14 @@ void gpioMode (pin_t pin, uint8_t mode){
  * @param val Desired value (HIGH or LOW)
  */
 void gpioWrite (pin_t pin, bool value){
-
+	uint32_t port_name = PIN2PORT(pin);
+	uint32_t port_num = PIN2NUM(pin);
+	GPIO_Type *gpio = gpioPtrs[port_name];
+	if(value == HIGH){
+		gpio->PDOR |= (1<<port_num);
+	}else{
+		gpio->PDOR &= ~ (1<<port_num);
+	}
 }
 
 /**
