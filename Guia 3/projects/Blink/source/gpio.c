@@ -86,7 +86,7 @@ bool gpioRead (pin_t pin){
 	uint32_t port_name = PIN2PORT(pin);
 	uint32_t num = PIN2NUM(pin);
 	GPIO_Type *gpio = gpioPtrs[port_name];
-	return ( (1<<num) & gpio->PDOR ) == 1<<num ;
+	return ( (1<<num) & gpio->PDIR ) == 1<<num ;
 }
 
 
