@@ -21,6 +21,9 @@
 
 // Ports
 enum { PA, PB, PC, PD, PE };
+enum {  INTERRUPT_RISING_EDGE = 0b1001,
+		INTERRUPT_FALLING_EDGE = 0b1010
+		};
 
 // Convert port and number into pin ID
 // Ex: PTB5  -> PORTNUM2PIN(PB,5)  -> 0x25
@@ -93,6 +96,12 @@ bool gpioRead (pin_t pin);
  * @brief Clears the port ISF flag.
  */
 void PORT_ClearInterruptFlag (pin_t pin);
+
+/**
+ * @brief sets the configuration of IRQC.
+ */
+
+void gpioIRQC(pin_t pin, uint32_t interrupt);
 
 /*******************************************************************************
  ******************************************************************************/

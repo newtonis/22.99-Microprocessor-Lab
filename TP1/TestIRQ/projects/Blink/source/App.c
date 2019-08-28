@@ -15,7 +15,6 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -40,13 +39,20 @@ void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
     gpioMode(PIN_SW3, INPUT);
+    gpioIRQC(PIN_SW3, INTERRUPT_RISING_EDGE);
+
+    uint32_t ans = PORT_PCR_IRQC(INTERRUPT_RISING_EDGE);
+    //PORT_Type *port = portPtrs[0];
+	//bool aux = (port->PCR[4] & (1<<24)) == (1<<24);
+	//PORTA_IRQHandler()
+    NVIC_EnableIRQ(PORTA_IRQn);
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	PORT_Type *port = portPtrs[PA];
-	bool aux = (port->PCR[4]& (1<<24)) == (1<<24);
+
 	// Loop
 }
 

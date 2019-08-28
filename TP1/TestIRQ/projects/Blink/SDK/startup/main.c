@@ -9,14 +9,16 @@
 void App_Init (void);
 void App_Run (void);
 
+static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
+
 
 int main (void)
 {
+
     hw_Init();
     hw_DisableInterrupts();
-    App_Init(); /* Program-specific setup */
+    App_Init(); /* Program-specific setup */ //
     hw_EnableInterrupts();
-    NVIC_EnableIRQ(PORTA_IRQn);
 
     __FOREVER__
         App_Run(); /* Program-specific loop  */
