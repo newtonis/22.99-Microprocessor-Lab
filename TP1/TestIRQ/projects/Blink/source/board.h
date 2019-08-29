@@ -27,14 +27,30 @@
 
 #define LED_ACTIVE      LOW
 
-
 // On Board User Switches
-#define PIN_SW2         // ???
+#define PIN_SW2         PORTNUM2PIN(PC,6) // PTC6
 #define PIN_SW3			PORTNUM2PIN(PA,4) // PTA4
 
 #define SW_ACTIVE       // ???
 #define SW_INPUT_TYPE   // ???
 
+// Display Segments
+#define SEG_A	PORTNUM2PIN(PC,5)
+#define SEG_B	PORTNUM2PIN(PC,7)
+#define SEG_C	PORTNUM2PIN(PC,0)
+#define SEG_D	PORTNUM2PIN(PC,9)
+#define SEG_E	PORTNUM2PIN(PC,8)
+#define SEG_F	PORTNUM2PIN(PC,1)
+#define SEG_G	PORTNUM2PIN(PB,19)
+#define SEG_DP	PORTNUM2PIN(PB,18)
+
+// Display Selector
+#define	SEL0	PORTNUM2PIN(PC,17)
+#define SEL1	PORTNUM2PIN(PC,16)
+
+// Status LED's
+#define STAT0	PORTNUM2PIN(PA,1)
+#define STAT1	PORTNUM2PIN(PB,9)
 
 /*******************************************************************************
  ******************************************************************************/

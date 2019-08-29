@@ -19,8 +19,10 @@ void gpioMode (pin_t pin, uint8_t mode){
 	uint32_t num = PIN2NUM(pin); // num es el numero de pin
 
 	// connect to gpio (hay un PCR por pin)
-
+	port->PCR[num] = 0x00;
 	port->PCR[num] |= PORT_PCR_MUX(1);
+	//port->PCR[num] |= PORT_PCR_DSE(1);
+	port->PCR[num] |= PORT_PCR_IRQC(0);
 	// PCR solo -> uint32_t array[32]
 	// PCR[num] -> uint32_t
 
@@ -104,6 +106,5 @@ void PORT_ClearInterruptFlag (pin_t pin){
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
 	port->PCR[PIN2NUM(pin)] |= PORT_PCR_ISF_MASK;
 }
-
 /*******************************************************************************
  ******************************************************************************/
