@@ -9,6 +9,7 @@ static SIM_Type* sim_ptr = SIM;
  * @param pin the pin whose mode you wish to set (according PORTNUM2PIN)
  * @param mode INPUT, OUTPUT, INPUT_PULLUP or INPUT_PULLDOWN.
  */
+
 void gpioMode (pin_t pin, uint8_t mode){
 
 	sim_ptr->SCGC5 |= simMasks[PIN2PORT(pin)]; //activo clock gating para B
@@ -18,7 +19,7 @@ void gpioMode (pin_t pin, uint8_t mode){
 	uint32_t num = PIN2NUM(pin); // num es el numero de pin
 
 	// connect to gpio (hay un PCR por pin)
-	port->PCR[num] = 0x0;
+
 	port->PCR[num] |= PORT_PCR_MUX(1);
 	port->PCR[num] |= PORT_PCR_DSE(1);
 	port->PCR[num] |= PORT_PCR_IRQC(0);
@@ -95,6 +96,7 @@ void gpioEnableInterrupts(pin_t pin){
 */
 void gpioIRQC(pin_t pin, uint32_t interrupt){
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
+	port->PCR[PIN2NUM(pin)] &= ~PORT_PCR_IRQC_MASK;
 	port->PCR[PIN2NUM(pin)] |= PORT_PCR_IRQC(interrupt);
 }
 
