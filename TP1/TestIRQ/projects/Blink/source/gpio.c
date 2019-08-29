@@ -12,7 +12,7 @@ static SIM_Type* sim_ptr = SIM;
 
 void gpioMode (pin_t pin, uint8_t mode){
 
-	sim_ptr->SCGC5 |= simMasks[PIN2PORT(pin)]; //activo clock gating para B
+	sim_ptr->SCGC5 |= simMasks[PIN2PORT(pin)]; // activo clock gating
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
 	GPIO_Type *gpio = gpioPtrs[PIN2PORT(pin)];
 
@@ -21,8 +21,8 @@ void gpioMode (pin_t pin, uint8_t mode){
 	// connect to gpio (hay un PCR por pin)
 
 	port->PCR[num] |= PORT_PCR_MUX(1);
-	port->PCR[num] |= PORT_PCR_DSE(1);
-	port->PCR[num] |= PORT_PCR_IRQC(0);
+	// PCR solo -> uint32_t array[32]
+	// PCR[num] -> uint32_t
 
 	switch(mode){
 		case INPUT:

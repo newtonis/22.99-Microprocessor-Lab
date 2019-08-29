@@ -41,11 +41,11 @@ void App_Init (void)
     gpioMode(PIN_SW3, INPUT);
     gpioIRQC(PIN_SW3, INTERRUPT_RISING_EDGE);
 
-    uint32_t ans = PORT_PCR_IRQC(INTERRUPT_RISING_EDGE);
-    //PORT_Type *port = portPtrs[0];
-	//bool aux = (port->PCR[4] & (1<<24)) == (1<<24);
-	//PORTA_IRQHandler()
+    //PORTA_IRQHandler();
+    //PORTB_IRQHandler();
+
     NVIC_EnableIRQ(PORTA_IRQn);
+
 
 }
 

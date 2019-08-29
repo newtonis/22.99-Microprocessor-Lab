@@ -9,9 +9,6 @@
 void App_Init (void);
 void App_Run (void);
 
-static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
-
-
 int main (void)
 {
 
