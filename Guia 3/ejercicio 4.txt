@@ -1,0 +1,2 @@
+El tiempo que tarda en la interrupción es muy pequeño, ya que la ISR lo unico que hace es togglear dos pines, por eso no se puede medir en el osciloscopio.
+Hay foto del programa blink andando.

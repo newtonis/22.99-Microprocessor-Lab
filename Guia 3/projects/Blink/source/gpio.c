@@ -1,29 +1,30 @@
 #include "gpio.h"
 
-#define SIM_BASE_MASKS {SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK, SIM_SCGC5_PORTC_MASK, SIM_SCGC5_PORTD_MASK, SIM_SCGC5_PORTE_MASK };
-
 static GPIO_Type* gpioPtrs[] = GPIO_BASE_PTRS;
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
-static uint32_t simMasks[] = SIM_BASE_MASKS;
+static uint32_t simMasks[] = {SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK, SIM_SCGC5_PORTC_MASK, SIM_SCGC5_PORTD_MASK, SIM_SCGC5_PORTE_MASK };
 static SIM_Type* sim_ptr = SIM;
 
 /* * @brief Configures the specified pin to behave either as an input or an output
  * @param pin the pin whose mode you wish to set (according PORTNUM2PIN)
  * @param mode INPUT, OUTPUT, INPUT_PULLUP or INPUT_PULLDOWN.
  */
+
 void gpioMode (pin_t pin, uint8_t mode){
 
-	sim_ptr->SCGC5 |= simMasks[PIN2PORT(pin)]; //activo clock gating para B
+	sim_ptr->SCGC5 |= simMasks[PIN2PORT(pin)]; // activo clock gating
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
 	GPIO_Type *gpio = gpioPtrs[PIN2PORT(pin)];
 
 	uint32_t num = PIN2NUM(pin); // num es el numero de pin
 
 	// connect to gpio (hay un PCR por pin)
-	port->PCR[num] = 0x0;
+	port->PCR[num] = 0x00;
 	port->PCR[num] |= PORT_PCR_MUX(1);
-	port->PCR[num] |= PORT_PCR_DSE(1);
+	//port->PCR[num] |= PORT_PCR_DSE(1);
 	port->PCR[num] |= PORT_PCR_IRQC(0);
+	// PCR solo -> uint32_t array[32]
+	// PCR[num] -> uint32_t
 
 	switch(mode){
 		case INPUT:
@@ -88,7 +89,22 @@ bool gpioRead (pin_t pin){
 	GPIO_Type *gpio = gpioPtrs[port_name];
 	return ( (1<<num) & gpio->PDIR ) == 1<<num ;
 }
+/*
+void gpioEnableInterrupts(pin_t pin){
+	PORT_Type *port = portPtrs[PIN2PORT(pin)];
+	port->PCR[PIN2NUM(pin)] |= (1<<24);
+	bool aux = (port->PCR[PIN2NUM(pin)] & (1<<24)) == (1<<24);
+}
+*/
+void gpioIRQC(pin_t pin, uint32_t interrupt){
+	PORT_Type *port = portPtrs[PIN2PORT(pin)];
+	port->PCR[PIN2NUM(pin)] &= ~PORT_PCR_IRQC_MASK;
+	port->PCR[PIN2NUM(pin)] |= PORT_PCR_IRQC(interrupt);
+}
 
-
+void PORT_ClearInterruptFlag (pin_t pin){
+	PORT_Type *port = portPtrs[PIN2PORT(pin)];
+	port->PCR[PIN2NUM(pin)] |= PORT_PCR_ISF_MASK;
+}
 /*******************************************************************************
  ******************************************************************************/

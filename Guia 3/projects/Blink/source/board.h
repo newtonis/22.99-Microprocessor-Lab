@@ -31,6 +31,8 @@
 // On Board User Switches
 #define PIN_SW2         // ???
 #define PIN_SW3			PORTNUM2PIN(PA,4) // PTA4
+#define PIN_CONTROL 	PORTNUM2PIN(PB,23) //PTB23
+#define PIN_TP			PORTNUM2PIN(PA,2)//PTA2
 
 #define SW_ACTIVE       // ???
 #define SW_INPUT_TYPE   // ???
