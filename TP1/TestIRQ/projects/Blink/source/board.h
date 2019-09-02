@@ -53,9 +53,9 @@
 #define STAT1	PORTNUM2PIN(PB,9)
 
 // Encoder Pins
-#define RCHA	PORTNUM2PIN(PC,3)
+#define RSwitch	PORTNUM2PIN(PC,3)
 #define RCHB	PORTNUM2PIN(PC,2)
-#define RSwitch	PORTNUM2PIN(PA,2)
+#define RCHA	PORTNUM2PIN(PA,2)
 
 /*******************************************************************************
  ******************************************************************************/

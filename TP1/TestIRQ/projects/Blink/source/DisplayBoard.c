@@ -16,14 +16,19 @@ static int disp_vector[DISP_LEN] = DISP_TEST;
 static int id_vector[ID_WORD_LEN] = ID_TEST;
 static int pin_vector[PIN_WORD_LEN] = PIN_TEST;
 
-static int shift_counter = 0;
+static int load_menu = 0;
+static int flash_counter = 0;
+static int cursor_flash = 0;	// Para ver donde estoy modificando
+static int vector_cont = 0;
+static int pin_pointer = 0;
 static int dsp = 1;
-static int n_dsp = 4;
 
 /*******************************************************************************
-                        LOCAL FUNCTION DEFINITIONS
+                        LOCAL FUNCTION DECLARATIONS
  ******************************************************************************/
+void Disp7Seg_Write(int sym);
 
+bool Disp7Seg_Select(int disp);
 
 /*******************************************************************************
                         LOCAL FUNCTION DEFINITIONS
@@ -43,6 +48,7 @@ void DispBoard_Init(void){
 	Disp7Seg_Select(1); // Default choice
 	Disp7Seg_Write(8);
 	Disp7Seg_Write(DP);
+	Status_Write(1);
 }
 
 void Disp7Seg_Write(int sym){
@@ -62,7 +68,7 @@ void Disp7Seg_Write(int sym){
 		break;
 	case I_CHAR:
 		gpioWrite(segments[0], LOW);
-		gpioWrite(segments[1], HIGH);
+		gpioWrite(segments[1], LOW);
 		gpioWrite(segments[2], HIGH);
 		gpioWrite(segments[3], LOW);
 		gpioWrite(segments[4], LOW);
@@ -81,13 +87,13 @@ void Disp7Seg_Write(int sym){
 		gpioWrite(segments[7], LOW);
 		break;
 	case N_CHAR:
-		gpioWrite(segments[0], HIGH);
-		gpioWrite(segments[1], HIGH);
+		gpioWrite(segments[0], LOW);
+		gpioWrite(segments[1], LOW);
 		gpioWrite(segments[2], HIGH);
 		gpioWrite(segments[3], LOW);
 		gpioWrite(segments[4], HIGH);
-		gpioWrite(segments[5], HIGH);
-		gpioWrite(segments[6], LOW);
+		gpioWrite(segments[5], LOW);
+		gpioWrite(segments[6], HIGH);
 		gpioWrite(segments[7], LOW);
 		break;
 	case GUION:
@@ -256,59 +262,151 @@ void Status_Write(int code){
 }
 
 void DispShowID(int id[ID_LEN]){
-	static int id_counter = 0;
 
 	for(int k = 0; k < ID_LEN; k++){
 		id_vector[k+3] = id[k];
 	}
 
-	if(shift_counter == SHIFT_TIME){
-		shift_counter = 0;
-	    for(int i = 0; i < DISP_LEN-1; i++)
-	    {
-	        disp_vector[i]=disp_vector[i+1];
-	    }
+	if(!load_menu){
+		for(int k = 0; k < DISP_LEN; k++){
+			disp_vector[k] = id_vector[k];
+		}
+		load_menu = 1;
+		vector_cont = 4;
+		Status_Write(1);
+	}
 
-	    if(id_counter == ID_WORD_LEN){
-	    	disp_vector[DISP_LEN-1] = ESPACIO;
-	    	id_counter = 0;
-	    }else{
-		    disp_vector[DISP_LEN-1] = id_vector[id_counter];
-		    id_counter++;
-	    }
+	if(!(flash_counter%FLASH_TIME)){
+		cursor_flash++;
 	}
 
 	Disp7Seg_Select(dsp);
-	Disp7Seg_Write(disp_vector[dsp-1]);
-
-	// Dibujo el punto a la mitad del ID
-	if((id_counter >= (ID_WORD_LEN-DISP_LEN))&&(id_counter <= ID_WORD_LEN)){
-		if(n_dsp == (id_counter-(ID_WORD_LEN-DISP_LEN-1))){
-			Disp7Seg_Write(DP);
+	disp_vector[3] = id_vector[3+pin_pointer]; // Es el que se modifica en tiempo real
+	if(dsp == DISP_LEN){
+		if(cursor_flash % 2){
+			Disp7Seg_Write(ESPACIO);
+		}else{
+			Disp7Seg_Write(disp_vector[dsp-1]);
 		}
+	}else{
+		Disp7Seg_Write(disp_vector[dsp-1]);
 	}
 
 	dsp++;
-	n_dsp--;
 	if(dsp == END_LINE){
 		dsp = 1;
-		n_dsp = 4;
 	}
 
-	shift_counter++;
+	flash_counter++;
+
 }
 
 void DispShowPIN(int pin[PIN_LEN]){
-	for(int k = 0; k < DISP_LEN; k++){
-		disp_vector[k] = pin_vector[k];
+
+	for(int i = 0; i < PIN_LEN; i++){
+		pin_vector[i+3] = pin[i];
+	}
+/*
+	if(shift_counter == SHIFT_TIME){
+		shift_counter = 0;
+
+	    if(word_pos != 0){
+		    for(int i = 0; i < DISP_LEN-1; i++)
+		    {
+		        disp_vector[i]=disp_vector[i+1];
+		    }
+		    disp_vector[DISP_LEN-1] = pin_vector[vector_cont];
+		    vector_cont++;
+		    word_pos--;
+		    if(word_pos == 0){
+		    	pin_pointer = 0;
+		    }
+	    }
+	}
+*/
+	if(!load_menu){
+		for(int k = 0; k < DISP_LEN; k++){
+			disp_vector[k] = pin_vector[k];
+		}
+		load_menu = 1;
+		vector_cont = 4;
+		Status_Write(2);
 	}
 
+	if(!(flash_counter%FLASH_TIME)){
+		cursor_flash++;
+	}
+
+
 	Disp7Seg_Select(dsp);
-	Disp7Seg_Write(disp_vector[dsp-1]);
+	disp_vector[3] = pin_vector[3+pin_pointer]; // Es el que se modifica en tiempo real
+	if(dsp == DISP_LEN){
+		if(cursor_flash % 2){
+			Disp7Seg_Write(ESPACIO);
+		}else{
+			Disp7Seg_Write(disp_vector[dsp-1]);
+		}
+	}else{
+		Disp7Seg_Write(disp_vector[dsp-1]);
+	}
+
 	dsp++;
 	if(dsp == END_LINE){
 		dsp = 1;
 	}
+
+	flash_counter++;
+}
+
+void DispShiftMsj(int menu_case){
+
+	switch(menu_case){
+	case PIN_MENU:
+	    if(vector_cont == PIN_WORD_LEN){
+	    	vector_cont = DISP_LEN;
+	    	pin_pointer = 0;
+	    	for(int k = 0; k < DISP_LEN; k++){
+	    		disp_vector[k] = pin_vector[k];
+	    	}
+	    }else{
+	        for(int i = 0; i < DISP_LEN-1; i++)
+	        {
+	            disp_vector[i]=disp_vector[i+1];
+	        }
+	        disp_vector[DISP_LEN-1] = pin_vector[vector_cont];
+	        vector_cont++;
+	        pin_pointer++;
+	    }
+		break;
+	case ID_MENU:
+	    if(vector_cont == ID_WORD_LEN){
+	    	vector_cont = DISP_LEN;
+	    	pin_pointer = 0;
+	    	for(int k = 0; k < DISP_LEN; k++){
+	    		disp_vector[k] = id_vector[k];
+	    	}
+	    }else{
+	        for(int i = 0; i < DISP_LEN-1; i++)
+	        {
+	            disp_vector[i]=disp_vector[i+1];
+	        }
+	        disp_vector[DISP_LEN-1] = id_vector[vector_cont];
+	        vector_cont++;
+	        pin_pointer++;
+	    }
+		break;
+	}
+
+}
+
+void DispClear(void){
+	for(int i = 0; i < 4; i++){
+		disp_vector[i] = ESPACIO;
+	}
+}
+
+int DispGetCursor(void){
+	return pin_pointer;
 }
 
 /*******************************************************************************

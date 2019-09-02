@@ -18,13 +18,16 @@
 #define DISP_LEN		4
 
 #define ID_WORD_LEN		11
-#define PIN_WORD_LEN	9
+#define PIN_WORD_LEN	8
+
+#define PIN_MENU		1
+#define ID_MENU			2
 
 #define END_LINE		DISP_LEN+1
 #define DISP_TEST		{8, 8, 8, 8}
-#define ID_TEST			{I_CHAR, D_CHAR, GUION, 8, 8, 8, 8, 8, 8, 8, 8}
-#define PIN_TEST		{P_CHAR, I_CHAR, N_CHAR, GUION, GUION, GUION, GUION, GUION, GUION}
-#define SHIFT_TIME		75
+#define ID_TEST			{I_CHAR, D_CHAR, ESPACIO, 8, 8, 8, 8, 8, 8, 8, 8}
+#define PIN_TEST		{P_CHAR, I_CHAR, N_CHAR, 0, 0, 0, 0, 0}
+#define FLASH_TIME		40
 
 /***** CHARACTER defines ******************************************************/
 #define ESPACIO	-1
@@ -34,18 +37,21 @@
 #define D_CHAR	100
 #define P_CHAR	112
 #define	N_CHAR	110
+
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 void DispBoard_Init(void);
 
-void Disp7Seg_Write(int sym);
-
-bool Disp7Seg_Select(int disp);
-
 void DispShowID(int id[ID_LEN]);
 
 void DispShowPIN(int pin[PIN_LEN]);
+
+void DispShiftMsj(int menu_case);
+
+int DispGetCursor(void);
+
+void DispClear(void);
 
 void Status_Write(int code);
 
