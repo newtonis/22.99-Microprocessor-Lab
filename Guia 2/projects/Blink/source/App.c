@@ -33,6 +33,7 @@ static void delayLoop(uint32_t veces);
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
+	gpioMode(PIN_TP, OUTPUT);
     gpioMode(PIN_LED_BLUE, OUTPUT);
 }
 
