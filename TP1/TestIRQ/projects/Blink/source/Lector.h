@@ -8,8 +8,9 @@
 #ifndef LECTOR_H_
 #define LECTOR_H_
 
-#include "board.h"
+
 #include <stddef.h>
+#include <stdbool.h>
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -20,7 +21,7 @@
 #define BITSXNUM 5
 #define SS 0b01011 // Start Sentinel ';'
 #define FS 0b01101 //Field separator '='
-#define ES 0b11111 //End sentinel '?'
+#define END_SENTINEL 0b11111 //End sentinel '?'
 #define PARITY_BIT_MASK_EVEN 0b00010000
 #define PARITY_BIT_MASK_ODD 0b00001111
 
@@ -31,12 +32,11 @@
 
 
 int * get_ID (void); //Devuelve NULL si no terminó de leer
+
 void get_Data (bool my_data);
+
 void set_Enable(bool status);
 
-
-
-
-
+void Lector_Init(void);
 
 #endif /* LECTOR_H_ */

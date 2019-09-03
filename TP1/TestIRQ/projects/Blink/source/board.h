@@ -57,6 +57,11 @@
 #define RCHB	PORTNUM2PIN(PC,2)
 #define RCHA	PORTNUM2PIN(PA,2)
 
+//Lector Pins
+#define EN		PORTNUM2PIN(PC,7)
+#define DATA 	PORTNUM2PIN(PC,5)
+#define CLK 	PORTNUM2PIN(PC,9)
+
 /*******************************************************************************
  ******************************************************************************/
 

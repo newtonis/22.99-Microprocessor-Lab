@@ -11,6 +11,8 @@
 #include "timer.h"
 #include "DisplayBoard.h"
 #include "Encoder.h"
+#include "Lector.h"
+
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -43,6 +45,9 @@ __ISR__ PORTA_IRQHandler (void){
 }
 
 */
+
+
+
 void modify_PIN(int pin_array[], int motion){
 	switch(motion){
 	case RIGHT:
@@ -97,6 +102,8 @@ void App_Init (void)
 
     DispBoard_Init();
     DispClear();
+    Lector_Init();
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */

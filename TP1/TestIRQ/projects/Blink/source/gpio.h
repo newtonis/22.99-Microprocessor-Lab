@@ -22,7 +22,8 @@
 // Ports
 enum { PA, PB, PC, PD, PE };
 enum {  INTERRUPT_RISING_EDGE = 0b1001,
-		INTERRUPT_FALLING_EDGE = 0b1010
+		INTERRUPT_FALLING_EDGE = 0b1010,
+		INTERRUPT_BOTH_EDGES = 0b1011
 		};
 
 // Convert port and number into pin ID

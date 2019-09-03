@@ -1,4 +1,6 @@
 #include "Lector.h"
+#include "board.h"
+
 
 
 static int ID_num [ID_LENGTH];
@@ -14,7 +16,35 @@ void clear_ID (void);
 bool Check_LRC (void);
 
 
+__ISR__ PORTC_IRQHandler (void){
 
+	if( ((PORTC -> PCR[ PIN2NUM(EN)]) & (PORT_PCR_ISF_MASK)) == (PORT_PCR_ISF_MASK))
+	{
+		set_Enable(gpioRead(EN));
+		PORT_ClearInterruptFlag(EN);
+
+
+	}
+	else if (((PORTC -> PCR[ PIN2NUM(CLK)]) & (PORT_PCR_ISF_MASK)) ==PORT_PCR_ISF_MASK)
+	{
+		get_Data(gpioRead(DATA));
+		PORT_ClearInterruptFlag(CLK);
+	}
+
+}
+
+
+void Lector_Init(void)
+{
+	gpioMode(EN, INPUT);
+	gpioMode(DATA, INPUT);
+	gpioMode(CLK, INPUT);
+
+	gpioIRQC(EN, INTERRUPT_BOTH_EDGES);
+	gpioIRQC(CLK, INTERRUPT_FALLING_EDGE);
+
+	NVIC_EnableIRQ(PORTC_IRQn);
+}
 
 int * get_ID (void)
 {
@@ -95,7 +125,7 @@ void get_Data (bool my_data)
 				else
 				{
 					data[count] = word;
-					if (data[count-1] == ES ) // BUSCA END SENTINEL
+					if (data[count-1] == END_SENTINEL ) // BUSCA END SENTINEL
 					{
 						lrc = data[count];
 						end = HIGH;
@@ -124,8 +154,5 @@ void set_Enable(bool status)
 		word = 0;
 		clear_ID();
 	}
-	else
-	{
-		gpioWrite(PIN_LED_BLUE, HIGH);
-	}
+
 }
