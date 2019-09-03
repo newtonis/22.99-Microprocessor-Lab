@@ -12,7 +12,6 @@
  ******************************************************************************/
 
 #include <stdbool.h>
-#include "hardware.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -38,7 +37,7 @@
  * @param funcallback Function to be call every SysTick
  * @return Initialization and registration succeed
  */
-bool SysTick_Init (void);
+bool SysTick_Init (void (*funcallback)(void));
 
 
 /*******************************************************************************

@@ -8,89 +8,95 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 
-#include "board.h"
-#include "gpio.h"
-#include "SysTick.h"
+#include "timer.h"
 #include "DisplayBoard.h"
 #include "Encoder.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-static int test_num[ID_LEN] = {1, 2, 3, 4, 5, 6, 7, 8};
+//static int test_num[ID_LEN] = {1, 2, 3, 4, 5, 6, 7, 8};
 static int test_pin[PIN_LEN] = {1, 2, 3, 4, 5};
-static int rswitch_count_chk = 0;
+static tim_id_t timerDisp;
+static tim_id_t timerEncCH;
+static tim_id_t timerEncSwitch;
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
+void displayHandler(void);
+
+void encoderCH_Handler(void);
+
+void enconderSwitch_Handler(void);
+
+void modify_PIN(int pin_array[], int motion);
+
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-
+/*
 __ISR__ PORTA_IRQHandler (void){
 	PORT_ClearInterruptFlag(RCHA);
 
 }
 
-__ISR__ PORTC_IRQHandler (void){
-	PORT_ClearInterruptFlag(RCHB);
+*/
+void modify_PIN(int pin_array[], int motion){
+	switch(motion){
+	case RIGHT:
+		if(pin_array[DispGetCursor()] == 9){
+			pin_array[DispGetCursor()] = 0;
+		}else{
+			pin_array[DispGetCursor()]++;
+		}
+		break;
+	case LEFT:
+		if(pin_array[DispGetCursor()] == 0){
+			pin_array[DispGetCursor()] = 9;
+		}else{
+			pin_array[DispGetCursor()]--;
+		}
+		break;
+	}
+}
+
+void displayHandler (void){
+	DispShowPIN(test_pin);
 
 }
 
-__ISR__ SysTick_Handler (void){
-	DispShowPIN(test_pin);
+void encoderCH_Handler(void){
 
-	rswitch_count_chk++;
-	if(!(rswitch_count_chk % 25)){
-		if(!gpioRead(RSwitch)){
-			gpioToggle(PIN_LED_BLUE);
-			DispShiftMsj(PIN_MENU);
-		}
-	}
+	encoderReadMotion(test_pin, modify_PIN);
 
-	if(!(rswitch_count_chk % 2)){
-		if(EncGetFlag() == NONE){
-			if(!gpioRead(RCHA)){
-				if(test_pin[DispGetCursor()] == 0){
-					test_pin[DispGetCursor()] = 9;
-				}else{
-					test_pin[DispGetCursor()]--;
-				}
-				EncSetFlag(LEFT);
-			}else if(!(gpioRead(RCHB))){
-				if(test_pin[DispGetCursor()] == 9){
-					test_pin[DispGetCursor()] = 0;
-				}else{
-					test_pin[DispGetCursor()]++;
-				}
-				EncSetFlag(RIGHT);
-			}
-		}else{
-			if(gpioRead(RCHA) && gpioRead(RCHB)){
-				EncSetFlag(NONE);
-			}
-		}
+}
 
-	}
+void enconderSwitch_Handler(void){
+
+	encoderReadSwitch(PIN_MENU, DispShiftMsj);
+
 }
 
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-    gpioMode(PIN_LED_BLUE, OUTPUT);
+    encoderInit();
 
-    gpioMode(RCHA, INPUT);
-    gpioMode(RCHB, INPUT);
-    gpioMode(RSwitch, INPUT);
+    timerInit();
 
-    NVIC_EnableIRQ(SysTick_IRQn);
-    SysTick_Init();
+    timerDisp = timerGetId();
+    timerStart(timerDisp, TIMER_MS2TICKS(20), TIM_MODE_PERIODIC, displayHandler);
+
+    timerEncCH = timerGetId();
+    timerStart(timerEncCH, TIMER_MS2TICKS(40), TIM_MODE_PERIODIC, encoderCH_Handler);
+
+    timerEncSwitch = timerGetId();
+    timerStart(timerEncSwitch, TIMER_MS2TICKS(500), TIM_MODE_PERIODIC, enconderSwitch_Handler);
 
     DispBoard_Init();
     DispClear();
-    EncClearFlag();
 }
 
 /* Función que se llama constantemente en un ciclo infinito */

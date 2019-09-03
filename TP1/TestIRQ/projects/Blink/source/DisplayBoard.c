@@ -5,6 +5,7 @@
  *      Author: Marcelo
  */
 #include "DisplayBoard.h"
+#include "board.h"
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -405,7 +406,7 @@ void DispClear(void){
 	}
 }
 
-int DispGetCursor(void){
+disp_cursor_t DispGetCursor(void){
 	return pin_pointer;
 }
 

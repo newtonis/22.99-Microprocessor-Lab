@@ -7,7 +7,9 @@
 #ifndef DISPLAYBOARD_H_
 #define DISPLAYBOARD_H_
 
-#include "board.h"
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -27,7 +29,7 @@
 #define DISP_TEST		{8, 8, 8, 8}
 #define ID_TEST			{I_CHAR, D_CHAR, ESPACIO, 8, 8, 8, 8, 8, 8, 8, 8}
 #define PIN_TEST		{P_CHAR, I_CHAR, N_CHAR, 0, 0, 0, 0, 0}
-#define FLASH_TIME		40
+#define FLASH_TIME		20
 
 /***** CHARACTER defines ******************************************************/
 #define ESPACIO	-1
@@ -37,6 +39,8 @@
 #define D_CHAR	100
 #define P_CHAR	112
 #define	N_CHAR	110
+
+typedef uint8_t disp_cursor_t;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -49,7 +53,7 @@ void DispShowPIN(int pin[PIN_LEN]);
 
 void DispShiftMsj(int menu_case);
 
-int DispGetCursor(void);
+disp_cursor_t DispGetCursor(void);
 
 void DispClear(void);
 
