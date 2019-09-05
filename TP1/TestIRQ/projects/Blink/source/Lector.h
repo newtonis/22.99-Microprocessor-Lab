@@ -8,7 +8,6 @@
 #ifndef LECTOR_H_
 #define LECTOR_H_
 
-
 #include <stddef.h>
 #include <stdbool.h>
 
@@ -30,13 +29,17 @@
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
+/**
+ * @brief Reads the first ID_LENGHT numbers of the card.
+ * @return pointer to int array if the data to send is ready or NULL if it isn't or there is an error.
+ */
+int * get_ID (void);
 
-int * get_ID (void); //Devuelve NULL si no terminó de leer
 
 void get_Data (bool my_data);
-
 void set_Enable(bool status);
-
-void Lector_Init(void);
+void isr_enable (void);
+void isr_clk (void);
+void lectorInit (void);
 
 #endif /* LECTOR_H_ */

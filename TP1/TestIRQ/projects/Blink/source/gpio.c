@@ -4,11 +4,26 @@ static GPIO_Type* gpioPtrs[] = GPIO_BASE_PTRS;
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
 static uint32_t simMasks[] = {SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK, SIM_SCGC5_PORTC_MASK, SIM_SCGC5_PORTD_MASK, SIM_SCGC5_PORTE_MASK };
 static SIM_Type* sim_ptr = SIM;
+static pinIrqFun_t isr_Matrix [5][32];
+
 
 /* * @brief Configures the specified pin to behave either as an input or an output
  * @param pin the pin whose mode you wish to set (according PORTNUM2PIN)
  * @param mode INPUT, OUTPUT, INPUT_PULLUP or INPUT_PULLDOWN.
  */
+
+
+
+__ISR__ PORTD_IRQHandler (void){
+
+	uint8_t i = 0;
+	while ( !((PORTD -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	{
+		i++;
+	}
+
+	isr_Matrix[PD][i]();
+}
 
 void gpioMode (pin_t pin, uint8_t mode){
 
@@ -96,11 +111,18 @@ void gpioEnableInterrupts(pin_t pin){
 	bool aux = (port->PCR[PIN2NUM(pin)] & (1<<24)) == (1<<24);
 }
 */
-void gpioIRQC(pin_t pin, uint32_t interrupt){
+
+
+bool gpioIRQ(pin_t pin, uint8_t irqMode, pinIrqFun_t irqFun){
+
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
 	port->PCR[PIN2NUM(pin)] &= ~PORT_PCR_IRQC_MASK;
-	port->PCR[PIN2NUM(pin)] |= PORT_PCR_IRQC(interrupt);
+	port->PCR[PIN2NUM(pin)] |= PORT_PCR_IRQC(irqMode+8);
+	isr_Matrix[PIN2PORT(pin)][PIN2NUM(pin)] = irqFun;
+
+	return true;
 }
+
 
 void PORT_ClearInterruptFlag (pin_t pin){
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];

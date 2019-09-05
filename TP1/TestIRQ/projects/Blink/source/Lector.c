@@ -2,48 +2,30 @@
 #include "board.h"
 
 
-
 static int ID_num [ID_LENGTH];
 static uint8_t data [DATA_LENGTH];
 static bool Enable = LOW;
 static uint8_t count = 0;
 static uint8_t bits = 0;
 static uint8_t lrc = 0;
-uint8_t word = 0;
-bool end = LOW;
+static uint8_t word = 0;
+static bool end = LOW;
+
+
 bool parity (uint8_t lrc);
 void clear_ID (void);
 bool Check_LRC (void);
 
 
-__ISR__ PORTD_IRQHandler (void){
-
-	if( ((PORTD -> PCR[ PIN2NUM(EN)]) & (PORT_PCR_ISF_MASK)) == (PORT_PCR_ISF_MASK))
-	{
-		set_Enable(gpioRead(EN));
-		PORT_ClearInterruptFlag(EN);
-
-
-	}
-	else if (((PORTD -> PCR[ PIN2NUM(CLK)]) & (PORT_PCR_ISF_MASK)) ==PORT_PCR_ISF_MASK)
-	{
-		get_Data(gpioRead(DATA));
-		PORT_ClearInterruptFlag(CLK);
-	}
-
-}
-
-
-void Lector_Init(void)
+void isr_enable (void)
 {
-	gpioMode(EN, INPUT);
-	gpioMode(DATA, INPUT);
-	gpioMode(CLK, INPUT);
-
-	gpioIRQC(EN, INTERRUPT_BOTH_EDGES);
-	gpioIRQC(CLK, INTERRUPT_FALLING_EDGE);
-
-	NVIC_EnableIRQ(PORTD_IRQn);
+	set_Enable(gpioRead(EN));
+	PORT_ClearInterruptFlag(EN);
+}
+void isr_clk (void)
+{
+	get_Data(gpioRead(DATA));
+	PORT_ClearInterruptFlag(CLK);
 }
 
 int * get_ID (void)
@@ -54,6 +36,9 @@ int * get_ID (void)
 		{
 			ID_num[i] = (data[i+1] & PARITY_BIT_MASK_ODD); //le saco el bit de paridad
 		}
+
+		//gpioWrite(PIN_LED_BLUE, LOW);
+
 		return &ID_num[0];
 	}
 	else
@@ -67,6 +52,26 @@ void clear_ID (void)
 		{
 			ID_num[i] = 0;
 		}
+}
+
+
+void lectorInit (void)
+{
+	 gpioMode(PIN_LED_BLUE, OUTPUT);
+
+	 gpioWrite(PIN_LED_BLUE, HIGH);
+
+	 gpioMode(EN, INPUT);
+	 gpioMode(DATA, INPUT);
+	 gpioMode(CLK, INPUT);
+
+	 gpioIRQ(EN, GPIO_IRQ_MODE_BOTH_EDGES, isr_enable);
+	 gpioIRQ(CLK, GPIO_IRQ_MODE_FALLING_EDGE, isr_clk);
+
+
+
+
+	 NVIC_EnableIRQ(PORTD_IRQn);
 }
 
 
@@ -154,5 +159,10 @@ void set_Enable(bool status)
 		word = 0;
 		clear_ID();
 	}
-
+	/*
+	else
+	{
+		gpioWrite(PIN_LED_BLUE, HIGH);
+	}
+	*/
 }

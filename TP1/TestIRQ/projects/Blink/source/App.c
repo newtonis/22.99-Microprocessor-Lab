@@ -102,7 +102,7 @@ void App_Init (void)
 
     DispBoard_Init();
     DispClear();
-    Lector_Init();
+    lectorInit();
 
 }
 
