@@ -379,7 +379,7 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./SDK/startup/startup_mk64f12.o
  .data          0x0000000000000000        0x0 ./SDK/startup/startup_mk64f12.o
  .bss           0x0000000000000000        0x0 ./SDK/startup/startup_mk64f12.o
- .text.PORTC_IRQHandler
+ .text.PORTD_IRQHandler
                 0x0000000000000000        0x8 ./SDK/startup/startup_mk64f12.o
  .debug_macro   0x0000000000000000      0xa9c ./SDK/startup/startup_mk64f12.o
  .group         0x0000000000000000        0xc ./SDK/CMSIS/system_MK64F12.o
@@ -640,9 +640,9 @@ END GROUP
                 0x00000000000012c4                EncGetFlag
  .text.__NVIC_EnableIRQ
                 0x00000000000012dc       0x3c ./source/Lector.o
- .text.PORTC_IRQHandler
+ .text.PORTD_IRQHandler
                 0x0000000000001318       0x64 ./source/Lector.o
-                0x0000000000001318                PORTC_IRQHandler
+                0x0000000000001318                PORTD_IRQHandler
  .text.clear_ID
                 0x000000000000137c       0x34 ./source/Lector.o
                 0x000000000000137c                clear_ID
@@ -908,9 +908,9 @@ END GROUP
  .text.PORTB_IRQHandler
                 0x0000000000002088        0x8 ./SDK/startup/startup_mk64f12.o
                 0x0000000000002088                PORTB_IRQHandler
- .text.PORTD_IRQHandler
+ .text.PORTC_IRQHandler
                 0x0000000000002090        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002090                PORTD_IRQHandler
+                0x0000000000002090                PORTC_IRQHandler
  .text.PORTE_IRQHandler
                 0x0000000000002098        0x8 ./SDK/startup/startup_mk64f12.o
                 0x0000000000002098                PORTE_IRQHandler

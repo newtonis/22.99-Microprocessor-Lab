@@ -1,4 +1,5 @@
 #include "Lector.h"
+#include "board.h"
 
 
 static int ID_num [ID_LENGTH];
@@ -7,14 +8,25 @@ static bool Enable = LOW;
 static uint8_t count = 0;
 static uint8_t bits = 0;
 static uint8_t lrc = 0;
-uint8_t word = 0;
-bool end = LOW;
+static uint8_t word = 0;
+static bool end = LOW;
+
+
 bool parity (uint8_t lrc);
 void clear_ID (void);
 bool Check_LRC (void);
 
 
-
+void isr_enable (void)
+{
+	set_Enable(gpioRead(EN));
+	PORT_ClearInterruptFlag(EN);
+}
+void isr_clk (void)
+{
+	get_Data(gpioRead(DATA));
+	PORT_ClearInterruptFlag(CLK);
+}
 
 int * get_ID (void)
 {
@@ -24,6 +36,9 @@ int * get_ID (void)
 		{
 			ID_num[i] = (data[i+1] & PARITY_BIT_MASK_ODD); //le saco el bit de paridad
 		}
+
+		gpioWrite(PIN_LED_BLUE, LOW);
+
 		return &ID_num[0];
 	}
 	else
@@ -37,6 +52,26 @@ void clear_ID (void)
 		{
 			ID_num[i] = 0;
 		}
+}
+
+
+void lectorInit (void)
+{
+	 gpioMode(PIN_LED_BLUE, OUTPUT);
+
+	 gpioWrite(PIN_LED_BLUE, HIGH);
+
+	 gpioMode(EN, INPUT);
+	 gpioMode(DATA, INPUT);
+	 gpioMode(CLK, INPUT);
+
+	 gpioIRQ(EN, GPIO_IRQ_MODE_BOTH_EDGES, isr_enable);
+	 gpioIRQ(CLK, GPIO_IRQ_MODE_FALLING_EDGE, isr_clk);
+
+
+
+
+	 NVIC_EnableIRQ(PORTD_IRQn);
 }
 
 
@@ -95,7 +130,7 @@ void get_Data (bool my_data)
 				else
 				{
 					data[count] = word;
-					if (data[count-1] == ES ) // BUSCA END SENTINEL
+					if (data[count-1] == END_SENTINEL ) // BUSCA END SENTINEL
 					{
 						lrc = data[count];
 						end = HIGH;
@@ -124,8 +159,10 @@ void set_Enable(bool status)
 		word = 0;
 		clear_ID();
 	}
+	/*
 	else
 	{
 		gpioWrite(PIN_LED_BLUE, HIGH);
 	}
+	*/
 }

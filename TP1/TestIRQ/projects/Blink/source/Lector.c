@@ -16,16 +16,16 @@ void clear_ID (void);
 bool Check_LRC (void);
 
 
-__ISR__ PORTC_IRQHandler (void){
+__ISR__ PORTD_IRQHandler (void){
 
-	if( ((PORTC -> PCR[ PIN2NUM(EN)]) & (PORT_PCR_ISF_MASK)) == (PORT_PCR_ISF_MASK))
+	if( ((PORTD -> PCR[ PIN2NUM(EN)]) & (PORT_PCR_ISF_MASK)) == (PORT_PCR_ISF_MASK))
 	{
 		set_Enable(gpioRead(EN));
 		PORT_ClearInterruptFlag(EN);
 
 
 	}
-	else if (((PORTC -> PCR[ PIN2NUM(CLK)]) & (PORT_PCR_ISF_MASK)) ==PORT_PCR_ISF_MASK)
+	else if (((PORTD -> PCR[ PIN2NUM(CLK)]) & (PORT_PCR_ISF_MASK)) ==PORT_PCR_ISF_MASK)
 	{
 		get_Data(gpioRead(DATA));
 		PORT_ClearInterruptFlag(CLK);
@@ -43,7 +43,7 @@ void Lector_Init(void)
 	gpioIRQC(EN, INTERRUPT_BOTH_EDGES);
 	gpioIRQC(CLK, INTERRUPT_FALLING_EDGE);
 
-	NVIC_EnableIRQ(PORTC_IRQn);
+	NVIC_EnableIRQ(PORTD_IRQn);
 }
 
 int * get_ID (void)
