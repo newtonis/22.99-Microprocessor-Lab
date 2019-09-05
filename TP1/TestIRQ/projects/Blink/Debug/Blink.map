@@ -181,7 +181,7 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./source/Lector.o
  .data          0x0000000000000000        0x0 ./source/Lector.o
  .bss           0x0000000000000000        0x0 ./source/Lector.o
- .text.get_ID   0x0000000000000000       0x74 ./source/Lector.o
+ .text.get_ID   0x0000000000000000       0x6c ./source/Lector.o
  .text.Check_LRC
                 0x0000000000000000       0x74 ./source/Lector.o
  .text.parity   0x0000000000000000       0x4e ./source/Lector.o
@@ -1325,19 +1325,19 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_macro   0x00000000000128e0       0x29 ./SDK/startup/startup_mk64f12.o
  .debug_macro   0x0000000000012909       0x80 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_line     0x0000000000000000     0x3464
+.debug_line     0x0000000000000000     0x3463
  .debug_line    0x0000000000000000      0x479 ./source/App.o
  .debug_line    0x0000000000000479      0xb2b ./source/DisplayBoard.o
  .debug_line    0x0000000000000fa4      0x50c ./source/Encoder.o
- .debug_line    0x00000000000014b0      0x444 ./source/Lector.o
- .debug_line    0x00000000000018f4      0x235 ./source/SysTick.o
- .debug_line    0x0000000000001b29      0x370 ./source/gpio.o
- .debug_line    0x0000000000001e99      0x4bb ./source/timer.o
- .debug_line    0x0000000000002354      0x2aa ./SDK/startup/hardware.o
- .debug_line    0x00000000000025fe      0x1bf ./SDK/startup/main.o
- .debug_line    0x00000000000027bd       0x5f ./SDK/startup/semihost_hardfault.o
- .debug_line    0x000000000000281c      0x914 ./SDK/startup/startup_mk64f12.o
- .debug_line    0x0000000000003130      0x334 ./SDK/CMSIS/system_MK64F12.o
+ .debug_line    0x00000000000014b0      0x443 ./source/Lector.o
+ .debug_line    0x00000000000018f3      0x235 ./source/SysTick.o
+ .debug_line    0x0000000000001b28      0x370 ./source/gpio.o
+ .debug_line    0x0000000000001e98      0x4bb ./source/timer.o
+ .debug_line    0x0000000000002353      0x2aa ./SDK/startup/hardware.o
+ .debug_line    0x00000000000025fd      0x1bf ./SDK/startup/main.o
+ .debug_line    0x00000000000027bc       0x5f ./SDK/startup/semihost_hardfault.o
+ .debug_line    0x000000000000281b      0x914 ./SDK/startup/startup_mk64f12.o
+ .debug_line    0x000000000000312f      0x334 ./SDK/CMSIS/system_MK64F12.o
 
 .debug_str      0x0000000000000000    0x7bd4b
  .debug_str     0x0000000000000000     0x6d16 ./source/App.o
