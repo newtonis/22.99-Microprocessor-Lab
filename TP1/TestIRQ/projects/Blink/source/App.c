@@ -234,13 +234,13 @@ void App_Run (void)
 
 	switch(fsm){
 	case ID_STAGE:
-		if(get_Enable()){
+		//if(get_Enable()){
 			aux_id = lector_get_PAN();
-			clear_Chk();
+			//clear_Chk();
 			for(int k = 0; k < ID_LEN; k++){
 				id_vector[k+3] = aux_id[k];
 			}
-		}
+		//}
 		break;
 	case PIN_STAGE:
 		// Se modifica solo con el encoder
