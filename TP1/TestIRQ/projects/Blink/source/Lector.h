@@ -33,16 +33,15 @@
  * @brief Reads the first ID_LENGHT numbers of the card.
  * @return pointer to int array if the data to send is ready or NULL if it isn't or there is an error.
  */
-int * get_ID (void);
+int * lector_get_ID (void);
 
 
-void get_Data (bool my_data);
-void set_Enable(bool status);
 bool get_Enable(void);
 void clear_Chk(void);
-void isr_enable (void);
-void isr_clk (void);
-void clear_ID (void);
+
+/**
+ * @brief initialize the lector
+ */
 void lectorInit (void);
 
 #endif /* LECTOR_H_ */

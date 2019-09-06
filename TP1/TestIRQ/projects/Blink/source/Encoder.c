@@ -43,25 +43,28 @@ void encoderInit(void){
     gpioMode(RSwitch, INPUT);
 }
 
-void encoderReadMotion(encCH_callback_t callback){
+enc_flag_t encoderReadMotion(void){
 	if(EncGetFlag() == NONE){
 		if(!gpioRead(RCHA)){
 			EncSetFlag(LEFT);
-			callback(LEFT);
+			return LEFT;
 		}else if(!(gpioRead(RCHB))){
 			EncSetFlag(RIGHT);
-			callback(RIGHT);
+			return RIGHT;
 		}
 	}else{
 		if(gpioRead(RCHA) && gpioRead(RCHB)){
 			EncSetFlag(NONE);
+			return NONE;
 		}
 	}
 }
 
-void encoderReadSwitch(int menu_type, encRSw_callback_t callback){
+bool encoderReadSwitch(void){
 	if(!gpioRead(RSwitch)){
-		callback(menu_type);
+		return 1;
+	}else{
+		return 0;
 	}
 }
 

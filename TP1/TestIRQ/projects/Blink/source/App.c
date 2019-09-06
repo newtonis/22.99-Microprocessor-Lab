@@ -19,9 +19,19 @@
  ******************************************************************************/
 enum{ID_STAGE, PIN_STAGE, BRIGHT_EDIT, CHECKOUT, ERROR}; // FSM estados
 
+#define ID_TEST			{I_CHAR, D_CHAR, ESPACIO, 1, 2, 3, 4, 5, 6, 7, 8}
+#define PIN_TEST		{P_CHAR, I_CHAR, N_CHAR, 1, 2, 3, 4, 5}
+#define CHECKOUT_TXT	{A_CHAR, C_CHAR, C_CHAR, E_CHAR, S_CHAR, O_CHAR}
+
+static int id_vector[ID_WORD_LEN] = ID_TEST;
+static int pin_vector[PIN_WORD_LEN] = PIN_TEST;
+static int bright_vector[BRIGHT_LEN] = {L_CHAR, U_CHAR, 1, 0};
+//static int checkout_vector[CHECKOUT_LEN] = CHECKOUT_TXT;
+
 static user_t users[1] = {{.id = {4, 5, 1, 7, 6, 6, 0, 1}, .pin = {1, 1, 1, 1, 1}}};
+
 static int default_id[ID_LEN] = {1, 2, 3, 4, 5, 6, 7, 8};
-static int *aux_vec;
+static int *aux_id;
 
 static int fsm = ID_STAGE;
 
@@ -54,12 +64,20 @@ void closeDoor(void);
 void modifyNumberCode(int motion){
 	int *numCode;
 
-	numCode = aux_vec;
+	if(fsm == ID_STAGE){
+		numCode = id_vector+3;
+	}else if(PIN_STAGE){
+		numCode = pin_vector+3;
+	}
+
 
 	if(DispModType() == NUM_TYPE){
 
 		if(fsm == BRIGHT_EDIT){
-			DispChangeBright(motion);
+			disp_bright_t aux_bright;
+			aux_bright = DispChangeBright(motion);
+			bright_vector[2] = aux_bright/10;
+			bright_vector[3] = aux_bright%10;
 		}else{
 			switch(motion){
 			case RIGHT:
@@ -87,6 +105,7 @@ void modifyNumberCode(int motion){
 			}else{
 				fsm--;
 			}
+			DispClear();
 			break;
 		case RIGHT:
 			if(fsm == BRIGHT_EDIT){
@@ -94,9 +113,9 @@ void modifyNumberCode(int motion){
 			}else{
 				fsm++;
 			}
+			DispClear();
 			break;
 		}
-		DispClear();
 	}
 
 }
@@ -105,13 +124,16 @@ void displayHandler (void){
 
 	switch(fsm){
 	case ID_STAGE:
-		DispShowMsj(aux_vec, ID_LEN);
+		DispShowMsj(id_vector, ID_LEN, 2);
 		break;
 	case PIN_STAGE:
-		DispShowMsj(aux_vec, PIN_LEN);
+		DispShowMsj(pin_vector, PIN_LEN, 3);
 		break;
 	case BRIGHT_EDIT:
-		DispShowMsj(NULL, BRIGHT_LEN);
+		DispShowMsj(bright_vector, BRIGHT_LEN, 2);
+		break;
+	case CHECKOUT:
+		DispShowMsj(NULL, CHECKOUT_LEN, 0);
 		break;
 	}
 
@@ -120,22 +142,17 @@ void displayHandler (void){
 void encoderCH_Handler(void){
 
 	if(fsm <= BRIGHT_EDIT){
-		encoderReadMotion(modifyNumberCode);
+		modifyNumberCode(encoderReadMotion());
 	}
 
 }
 
 void enconderSwitch_Handler(void){
 
-	switch(fsm){
-	case ID_STAGE:
-		encoderReadSwitch(ID_MENU, DispShiftMsj);
-		break;
-	case PIN_STAGE:
-		encoderReadSwitch(PIN_MENU, DispShiftMsj);
-		break;
-	case BRIGHT_EDIT:
-		encoderReadSwitch(BRIGHT_MENU, DispShiftMsj);
+	if(encoderReadSwitch()){
+		if(fsm <= BRIGHT_EDIT){
+			DispShiftMsj();
+		}
 	}
 
 }
@@ -146,7 +163,7 @@ void readSwitchInterface(void){
 
 		switch(fsm){
 		case ID_STAGE:
-			while((users[0].id[k] == aux_vec[k])&&(k < ID_LEN)){
+			while((users[0].id[k] == aux_id[k])&&(k < ID_LEN)){
 				k++;
 			}
 			if(k == ID_LEN){
@@ -155,13 +172,13 @@ void readSwitchInterface(void){
 			}
 			break;
 		case PIN_STAGE:
-			while((users[0].pin[k] == aux_vec[k])&&(k < PIN_LEN)){
+			while((users[0].pin[k] == pin_vector[k+3])&&(k < PIN_LEN)){
 				k++;
 			}
 			if(k == PIN_LEN){
 				fsm = CHECKOUT;
 				RGBIndicator(GREEN_INDICATOR);
-				timerStart(timerPestillo, TIMER_MS2TICKS(5000), TIM_MODE_SINGLESHOT, closeDoor);
+				timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, closeDoor);
 				DispClear();
 			}
 			break;
@@ -178,12 +195,14 @@ void readSwitchInterface(void){
 void closeDoor(void){
 	RGBIndicator(BLUE_INDICATOR);
 	fsm = ID_STAGE;
+	DispClear();
 }
 
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-	aux_vec = default_id; // Asignacion de ID por default, no puede apuntar a cualquier lado
+	aux_id = default_id; // Asignacion de ID y PIN por default
+
 	PortInit();
 
     encoderInit();
@@ -216,8 +235,11 @@ void App_Run (void)
 	switch(fsm){
 	case ID_STAGE:
 		if(get_Enable()){
-			aux_vec = get_ID();
+			aux_id = lector_get_ID();
 			clear_Chk();
+			for(int k = 0; k < ID_LEN; k++){
+				id_vector[k+3] = aux_id[k];
+			}
 		}
 		break;
 	case PIN_STAGE:

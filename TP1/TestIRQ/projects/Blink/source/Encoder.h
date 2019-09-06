@@ -22,16 +22,14 @@
 #define ENTER	0
 
 typedef uint8_t enc_flag_t;
-typedef void (*encCH_callback_t)(int side_motion);
-typedef void (*encRSw_callback_t)(int menu);
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 void encoderInit(void);
 
-void encoderReadMotion(encCH_callback_t callback);
+enc_flag_t encoderReadMotion(void);
 
-void encoderReadSwitch(int menu_type, encRSw_callback_t callback);
+bool encoderReadSwitch(void);
 
 #endif /* ENCODER_H_ */

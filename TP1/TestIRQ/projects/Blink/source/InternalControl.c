@@ -37,12 +37,10 @@ void PortInit(void){
 
 void isr_swOK(void){
 	OK_sw = 1;
-	PORT_ClearInterruptFlag(PIN_SW2);
 }
 
 void isr_swCANCEL(void){
 	CANCEL_sw = 1;
-	PORT_ClearInterruptFlag(PIN_SW3);
 }
 
 bool PortGetOK_Status(void){

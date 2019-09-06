@@ -23,6 +23,7 @@ __ISR__ PORTD_IRQHandler (void){
 	}
 
 	isr_Matrix[PD][i]();
+	PORT_ClearInterruptFlag(PORTNUM2PIN(PD,i));
 }
 
 __ISR__ PORTA_IRQHandler (void){
@@ -34,6 +35,7 @@ __ISR__ PORTA_IRQHandler (void){
 	}
 
 	isr_Matrix[PA][i]();
+	PORT_ClearInterruptFlag(PORTNUM2PIN(PA,i));
 }
 
 __ISR__ PORTC_IRQHandler (void){
@@ -45,6 +47,7 @@ __ISR__ PORTC_IRQHandler (void){
 	}
 
 	isr_Matrix[PC][i]();
+	PORT_ClearInterruptFlag(PORTNUM2PIN(PC,i));
 }
 
 void gpioMode (pin_t pin, uint8_t mode){

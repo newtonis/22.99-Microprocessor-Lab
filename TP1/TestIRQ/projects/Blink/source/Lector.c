@@ -3,7 +3,7 @@
 
 
 static int ID_num [ID_LENGTH];
-static uint8_t data [DATA_LENGTH];
+static int data [DATA_LENGTH];
 static bool Enable = LOW;
 
 static bool chkEnable = 0;
@@ -15,8 +15,13 @@ static uint8_t word = 0;
 static bool end = LOW;
 
 
-bool parity (uint8_t lrc);
-bool Check_LRC (void);
+static bool parity (uint8_t lrc);
+static bool Check_LRC (void);
+static void get_Data (bool my_data);
+static void set_Enable(bool status);
+static void isr_enable (void);
+static void isr_clk (void);
+static void clear_ID (void);
 
 
 void isr_enable (void)
@@ -28,15 +33,13 @@ void isr_enable (void)
 	}
 
 	set_Enable(gpioRead(EN));
-	PORT_ClearInterruptFlag(EN);
 }
 void isr_clk (void)
 {
 	get_Data(gpioRead(DATA));
-	PORT_ClearInterruptFlag(CLK);
 }
 
-int * get_ID (void)
+int * lector_get_ID (void)
 {
 	if ((Enable == LOW) && (end == HIGH) && (Check_LRC())) //esta bien
 	{
