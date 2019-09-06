@@ -1,9 +1,8 @@
 #include "Lector.h"
 #include "board.h"
 
-
-static int ID_num [ID_LENGTH];
-static int data [DATA_LENGTH];
+static int pan [PAN_MAX_L];
+static uint8_t data [DATA_LENGTH];
 static bool Enable = LOW;
 
 static bool chkEnable = 0;
@@ -21,7 +20,7 @@ static void get_Data (bool my_data);
 static void set_Enable(bool status);
 static void isr_enable (void);
 static void isr_clk (void);
-static void clear_ID (void);
+static void clear_PAN (void);
 
 
 void isr_enable (void)
@@ -39,29 +38,30 @@ void isr_clk (void)
 	get_Data(gpioRead(DATA));
 }
 
-int * lector_get_ID (void)
+int * lector_get_PAN (void)
 {
 	if ((Enable == LOW) && (end == HIGH) && (Check_LRC())) //esta bien
 	{
-		for (int i = 0; i < (ID_LENGTH); i++)
+		int i = 0;
+		while ((data[i+1] != FS) && (i < PAN_MAX_L))
 		{
-			ID_num[i] = (data[i+1] & PARITY_BIT_MASK_ODD); //le saco el bit de paridad
+			pan[i] = (data[i+1] & PARITY_BIT_MASK_ODD); //le saco el bit de paridad
+			i++;
 		}
 
-		//gpioWrite(PIN_LED_BLUE, LOW);
-
-		return &ID_num[0];
+		return &pan[0];
 	}
 	else
 	{
 		return NULL;
 	}
 }
-void clear_ID (void)
+
+void clear_PAN (void)
 {
-	for (int i = 0; i < ID_LENGTH ; i++)
+	for (int i = 0; i < PAN_MAX_L ; i++)
 		{
-			ID_num[i] = 0;
+			pan[i] = 0;
 		}
 }
 
@@ -168,14 +168,9 @@ void set_Enable(bool status)
 		bits = 0;
 		end = 0;
 		word = 0;
-		clear_ID();
+		clear_PAN();
 	}
-	/*
-	else
-	{
-		gpioWrite(PIN_LED_BLUE, HIGH);
-	}
-	*/
+
 }
 
 bool get_Enable(void){

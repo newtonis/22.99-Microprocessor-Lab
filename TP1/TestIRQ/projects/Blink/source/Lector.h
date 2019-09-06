@@ -15,7 +15,7 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-#define ID_LENGTH 8
+#define PAN_MAX_L 19
 #define DATA_LENGTH 40
 #define BITSXNUM 5
 #define SS 0b01011 // Start Sentinel ';'
@@ -33,7 +33,7 @@
  * @brief Reads the first ID_LENGHT numbers of the card.
  * @return pointer to int array if the data to send is ready or NULL if it isn't or there is an error.
  */
-int * lector_get_ID (void);
+int * lector_get_PAN (void);
 
 
 bool get_Enable(void);
