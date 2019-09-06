@@ -5,6 +5,9 @@
 static int ID_num [ID_LENGTH];
 static uint8_t data [DATA_LENGTH];
 static bool Enable = LOW;
+
+static bool chkEnable = 0;
+
 static uint8_t count = 0;
 static uint8_t bits = 0;
 static uint8_t lrc = 0;
@@ -13,12 +16,17 @@ static bool end = LOW;
 
 
 bool parity (uint8_t lrc);
-void clear_ID (void);
 bool Check_LRC (void);
 
 
 void isr_enable (void)
 {
+	if(Enable){
+		chkEnable = 1;
+	}else{
+		chkEnable = 0;
+	}
+
 	set_Enable(gpioRead(EN));
 	PORT_ClearInterruptFlag(EN);
 }
@@ -165,4 +173,12 @@ void set_Enable(bool status)
 		gpioWrite(PIN_LED_BLUE, HIGH);
 	}
 	*/
+}
+
+bool get_Enable(void){
+	return chkEnable;
+}
+
+void clear_Chk(void){
+	chkEnable = 0;
 }

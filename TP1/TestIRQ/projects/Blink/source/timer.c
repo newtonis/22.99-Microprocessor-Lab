@@ -10,7 +10,7 @@
 
 #include "timer.h"
 #include "SysTick.h"
-
+#include "board.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -167,12 +167,19 @@ static void timer_isr(void)
     // 2) update state
 	for(int k = TIMER_ID_INTERNAL+1; k < timers_cant; k++){
 		if(timers[k].running){
+
 			timers[k].cnt--;
 			if(timerExpired(k)){
 				timers[k].callback();
 				timers[k].cnt = timers[k].period;
 				timers[k].expired = 0;
+				if(timers[k].mode == TIM_MODE_PERIODIC){
+					// Sigue corriendo
+				}else if(timers[k].mode == TIM_MODE_SINGLESHOT){
+					timerStop(k);
+				}
 			}
+
 		}
 	}
 }

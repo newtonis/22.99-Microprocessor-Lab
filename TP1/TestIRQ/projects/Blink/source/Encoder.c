@@ -41,19 +41,16 @@ void encoderInit(void){
     gpioMode(RCHA, INPUT);
     gpioMode(RCHB, INPUT);
     gpioMode(RSwitch, INPUT);
-
-    // El LED es de prueba
-    gpioMode(PIN_LED_BLUE, OUTPUT);
 }
 
-void encoderReadMotion(int pin_array[], encCH_callback_t callback){
+void encoderReadMotion(encCH_callback_t callback){
 	if(EncGetFlag() == NONE){
 		if(!gpioRead(RCHA)){
 			EncSetFlag(LEFT);
-			callback(pin_array, LEFT);
+			callback(LEFT);
 		}else if(!(gpioRead(RCHB))){
 			EncSetFlag(RIGHT);
-			callback(pin_array, RIGHT);
+			callback(RIGHT);
 		}
 	}else{
 		if(gpioRead(RCHA) && gpioRead(RCHB)){
@@ -64,7 +61,6 @@ void encoderReadMotion(int pin_array[], encCH_callback_t callback){
 
 void encoderReadSwitch(int menu_type, encRSw_callback_t callback){
 	if(!gpioRead(RSwitch)){
-		gpioToggle(PIN_LED_BLUE);
 		callback(menu_type);
 	}
 }

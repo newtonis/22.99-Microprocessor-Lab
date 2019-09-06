@@ -25,6 +25,28 @@ __ISR__ PORTD_IRQHandler (void){
 	isr_Matrix[PD][i]();
 }
 
+__ISR__ PORTA_IRQHandler (void){
+
+	uint8_t i = 0;
+	while ( !((PORTA -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	{
+		i++;
+	}
+
+	isr_Matrix[PA][i]();
+}
+
+__ISR__ PORTC_IRQHandler (void){
+
+	uint8_t i = 0;
+	while ( !((PORTC -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	{
+		i++;
+	}
+
+	isr_Matrix[PC][i]();
+}
+
 void gpioMode (pin_t pin, uint8_t mode){
 
 	sim_ptr->SCGC5 |= simMasks[PIN2PORT(pin)]; // activo clock gating

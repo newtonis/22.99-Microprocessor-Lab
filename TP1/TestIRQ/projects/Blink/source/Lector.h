@@ -38,8 +38,11 @@ int * get_ID (void);
 
 void get_Data (bool my_data);
 void set_Enable(bool status);
+bool get_Enable(void);
+void clear_Chk(void);
 void isr_enable (void);
 void isr_clk (void);
+void clear_ID (void);
 void lectorInit (void);
 
 #endif /* LECTOR_H_ */
