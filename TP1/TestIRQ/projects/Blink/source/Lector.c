@@ -38,9 +38,18 @@ void isr_clk (void)
 	get_Data(gpioRead(DATA));
 }
 
+bool newReadAvailable() //agregue esta funcion
+{
+	if ((Enable == LOW) && (end == HIGH)) // si esta bien
+	{
+		return true;
+	}
+	return false;
+}
+
 int * lector_get_PAN (void)
 {
-	if ((Enable == LOW) && (end == HIGH) && (Check_LRC())) //esta bien
+	if ((Enable == LOW) && (end == HIGH)) //esta bien y aca saque el checkLRC
 	{
 		int i = 0;
 		while ((data[i+1] != FS) && (i < PAN_MAX_L))
@@ -48,7 +57,7 @@ int * lector_get_PAN (void)
 			pan[i] = (data[i+1] & PARITY_BIT_MASK_ODD); //le saco el bit de paridad
 			i++;
 		}
-
+		end = LOW;
 		return &pan[0];
 	}
 	else
@@ -144,7 +153,8 @@ void get_Data (bool my_data)
 					if (data[count-1] == END_SENTINEL ) // BUSCA END SENTINEL
 					{
 						lrc = data[count];
-						end = HIGH;
+						if(Check_LRC()) //agregue un if aca
+							end = HIGH;
 					}
 					if (end == LOW)
 					{

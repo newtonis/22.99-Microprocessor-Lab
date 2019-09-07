@@ -274,9 +274,9 @@ void App_Run (void)
 {
 	switch(fsm){
 	case ID_STAGE:
-		if(get_Enable()){
+		if(get_Enable()){ //probar con if(newReadAvailable())
 			aux_id = lector_get_PAN();
-			clear_Chk();
+			clear_Chk(); //sin esta linea
 			for(int k = 0; k < ID_LEN; k++){ // Me quedo solo con la parte que me interesa del PAN
 				id_txt.array[k+3] = aux_id[k];
 			}

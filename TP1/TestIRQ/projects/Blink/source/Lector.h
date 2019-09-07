@@ -30,14 +30,21 @@
  ******************************************************************************/
 
 /**
- * @brief Reads the first ID_LENGHT numbers of the card.
+ * @brief Reads the PAN of the card.
  * @return pointer to int array if the data to send is ready or NULL if it isn't or there is an error.
  */
 int * lector_get_PAN (void);
 
 
-bool get_Enable(void);
-void clear_Chk(void);
+bool get_Enable(void); // NO SE TIENE QUE USAR
+void clear_Chk(void); // NO SE TIENE QUE USAR
+
+
+/**
+ * @brief Tells when a new card read is ready.
+ * @return TRUE if there is a new card read and FALSE if not
+ */
+bool newReadAvailable();
 
 /**
  * @brief initialize the lector
