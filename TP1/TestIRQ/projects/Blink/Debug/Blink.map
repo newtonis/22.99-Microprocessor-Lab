@@ -638,7 +638,7 @@ END GROUP
                 0x0000000014001000                __top_FLEX_RAM = 0x14001000
                 0x0000000014001000                __top_RAM3 = 0x14001000
 
-.text           0x0000000000000000     0x3248
+.text           0x0000000000000000     0x3250
  FILL mask 0xff
                 0x0000000000000000                __vectors_start__ = ABSOLUTE (.)
  *(SORT_BY_ALIGNMENT(.isr_vector))
@@ -648,13 +648,13 @@ END GROUP
                 0x0000000000000198                . = ALIGN (0x4)
                 0x0000000000000198                __section_table_start = .
                 0x0000000000000198                __data_section_table = .
-                0x0000000000000198        0x4 LONG 0x3248 LOADADDR (.data)
+                0x0000000000000198        0x4 LONG 0x3250 LOADADDR (.data)
                 0x000000000000019c        0x4 LONG 0x20000000 ADDR (.data)
                 0x00000000000001a0        0x4 LONG 0x3c8 SIZEOF (.data)
-                0x00000000000001a4        0x4 LONG 0x3248 LOADADDR (.data_RAM2)
+                0x00000000000001a4        0x4 LONG 0x3250 LOADADDR (.data_RAM2)
                 0x00000000000001a8        0x4 LONG 0x1fff0000 ADDR (.data_RAM2)
                 0x00000000000001ac        0x4 LONG 0x0 SIZEOF (.data_RAM2)
-                0x00000000000001b0        0x4 LONG 0x3248 LOADADDR (.data_RAM3)
+                0x00000000000001b0        0x4 LONG 0x3250 LOADADDR (.data_RAM3)
                 0x00000000000001b4        0x4 LONG 0x14000000 ADDR (.data_RAM3)
                 0x00000000000001b8        0x4 LONG 0x0 SIZEOF (.data_RAM3)
                 0x00000000000001bc                __data_section_table_end = .
@@ -901,395 +901,395 @@ END GROUP
  .text.Check_LRC
                 0x0000000000002080       0x74 ./source/Lector.o
  .text.get_Data
-                0x00000000000020f4      0x114 ./source/Lector.o
+                0x00000000000020f4      0x11c ./source/Lector.o
  .text.set_Enable
-                0x0000000000002208       0x68 ./source/Lector.o
+                0x0000000000002210       0x68 ./source/Lector.o
  .text.__NVIC_EnableIRQ
-                0x0000000000002270       0x3c ./source/SysTick.o
+                0x0000000000002278       0x3c ./source/SysTick.o
  .text.SysTick_Init
-                0x00000000000022ac       0x4c ./source/SysTick.o
-                0x00000000000022ac                SysTick_Init
+                0x00000000000022b4       0x4c ./source/SysTick.o
+                0x00000000000022b4                SysTick_Init
  .text.SysTick_Handler
-                0x00000000000022f8       0x24 ./source/SysTick.o
-                0x00000000000022f8                SysTick_Handler
+                0x0000000000002300       0x24 ./source/SysTick.o
+                0x0000000000002300                SysTick_Handler
  .text.initUser
-                0x000000000000231c       0x5c ./source/Users.o
-                0x000000000000231c                initUser
+                0x0000000000002324       0x5c ./source/Users.o
+                0x0000000000002324                initUser
  .text.validateID
-                0x0000000000002378       0x70 ./source/Users.o
-                0x0000000000002378                validateID
+                0x0000000000002380       0x70 ./source/Users.o
+                0x0000000000002380                validateID
  .text.validatePIN
-                0x00000000000023e8       0x3c ./source/Users.o
-                0x00000000000023e8                validatePIN
+                0x00000000000023f0       0x3c ./source/Users.o
+                0x00000000000023f0                validatePIN
  .text.validateUser
-                0x0000000000002424       0x94 ./source/Users.o
-                0x0000000000002424                validateUser
+                0x000000000000242c       0x94 ./source/Users.o
+                0x000000000000242c                validateUser
  .text.PORTD_IRQHandler
-                0x00000000000024b8       0x64 ./source/gpio.o
-                0x00000000000024b8                PORTD_IRQHandler
+                0x00000000000024c0       0x64 ./source/gpio.o
+                0x00000000000024c0                PORTD_IRQHandler
  .text.PORTA_IRQHandler
-                0x000000000000251c       0x5c ./source/gpio.o
-                0x000000000000251c                PORTA_IRQHandler
+                0x0000000000002524       0x5c ./source/gpio.o
+                0x0000000000002524                PORTA_IRQHandler
  .text.PORTC_IRQHandler
-                0x0000000000002578       0x64 ./source/gpio.o
-                0x0000000000002578                PORTC_IRQHandler
+                0x0000000000002580       0x64 ./source/gpio.o
+                0x0000000000002580                PORTC_IRQHandler
  .text.gpioMode
-                0x00000000000025dc      0x174 ./source/gpio.o
-                0x00000000000025dc                gpioMode
+                0x00000000000025e4      0x174 ./source/gpio.o
+                0x00000000000025e4                gpioMode
  .text.gpioWrite
-                0x0000000000002750       0x6c ./source/gpio.o
-                0x0000000000002750                gpioWrite
+                0x0000000000002758       0x6c ./source/gpio.o
+                0x0000000000002758                gpioWrite
  .text.gpioRead
-                0x00000000000027bc       0x5c ./source/gpio.o
-                0x00000000000027bc                gpioRead
- .text.gpioIRQ  0x0000000000002818       0x94 ./source/gpio.o
-                0x0000000000002818                gpioIRQ
+                0x00000000000027c4       0x5c ./source/gpio.o
+                0x00000000000027c4                gpioRead
+ .text.gpioIRQ  0x0000000000002820       0x94 ./source/gpio.o
+                0x0000000000002820                gpioIRQ
  .text.PORT_ClearInterruptFlag
-                0x00000000000028ac       0x48 ./source/gpio.o
-                0x00000000000028ac                PORT_ClearInterruptFlag
+                0x00000000000028b4       0x48 ./source/gpio.o
+                0x00000000000028b4                PORT_ClearInterruptFlag
  .text.timerInit
-                0x00000000000028f4       0x28 ./source/timer.o
-                0x00000000000028f4                timerInit
+                0x00000000000028fc       0x28 ./source/timer.o
+                0x00000000000028fc                timerInit
  .text.timerGetId
-                0x000000000000291c       0x2c ./source/timer.o
-                0x000000000000291c                timerGetId
+                0x0000000000002924       0x2c ./source/timer.o
+                0x0000000000002924                timerGetId
  .text.timerStart
-                0x0000000000002948       0xa4 ./source/timer.o
-                0x0000000000002948                timerStart
+                0x0000000000002950       0xa4 ./source/timer.o
+                0x0000000000002950                timerStart
  .text.timerStop
-                0x00000000000029ec       0x30 ./source/timer.o
-                0x00000000000029ec                timerStop
+                0x00000000000029f4       0x30 ./source/timer.o
+                0x00000000000029f4                timerStop
  .text.timerExpired
-                0x0000000000002a1c       0x44 ./source/timer.o
-                0x0000000000002a1c                timerExpired
+                0x0000000000002a24       0x44 ./source/timer.o
+                0x0000000000002a24                timerExpired
  .text.timer_isr
-                0x0000000000002a60       0xdc ./source/timer.o
- .text.hw_Init  0x0000000000002b3c      0x10c ./SDK/startup/hardware.o
-                0x0000000000002b3c                hw_Init
+                0x0000000000002a68       0xdc ./source/timer.o
+ .text.hw_Init  0x0000000000002b44      0x10c ./SDK/startup/hardware.o
+                0x0000000000002b44                hw_Init
  .text.hw_EnableInterrupts
-                0x0000000000002c48       0x30 ./SDK/startup/hardware.o
-                0x0000000000002c48                hw_EnableInterrupts
+                0x0000000000002c50       0x30 ./SDK/startup/hardware.o
+                0x0000000000002c50                hw_EnableInterrupts
  .text.hw_DisableInterrupts
-                0x0000000000002c78       0x20 ./SDK/startup/hardware.o
-                0x0000000000002c78                hw_DisableInterrupts
+                0x0000000000002c80       0x20 ./SDK/startup/hardware.o
+                0x0000000000002c80                hw_DisableInterrupts
  .text.SystemInit
-                0x0000000000002c98       0x3c ./SDK/CMSIS/system_MK64F12.o
-                0x0000000000002c98                SystemInit
+                0x0000000000002ca0       0x3c ./SDK/CMSIS/system_MK64F12.o
+                0x0000000000002ca0                SystemInit
  .text.encoderReadMotion
-                0x0000000000002cd4       0x6e ./source/Encoder.o
-                0x0000000000002cd4                encoderReadMotion
+                0x0000000000002cdc       0x6e ./source/Encoder.o
+                0x0000000000002cdc                encoderReadMotion
  .text.encoderReadSwitch
-                0x0000000000002d42       0x20 ./source/Encoder.o
-                0x0000000000002d42                encoderReadSwitch
+                0x0000000000002d4a       0x20 ./source/Encoder.o
+                0x0000000000002d4a                encoderReadSwitch
  .text.RGBIndicator
-                0x0000000000002d62       0x70 ./source/InternalControl.o
-                0x0000000000002d62                RGBIndicator
- .text.isr_clk  0x0000000000002dd2       0x16 ./source/Lector.o
- .text.parity   0x0000000000002de8       0x4e ./source/Lector.o
- .text.main     0x0000000000002e36       0x1a ./SDK/startup/main.o
-                0x0000000000002e36                main
+                0x0000000000002d6a       0x70 ./source/InternalControl.o
+                0x0000000000002d6a                RGBIndicator
+ .text.isr_clk  0x0000000000002dda       0x16 ./source/Lector.o
+ .text.parity   0x0000000000002df0       0x4e ./source/Lector.o
+ .text.main     0x0000000000002e3e       0x1a ./SDK/startup/main.o
+                0x0000000000002e3e                main
  .text.HardFault_Handler
-                0x0000000000002e50       0x2c ./SDK/startup/semihost_hardfault.o
-                0x0000000000002e50                HardFault_Handler
+                0x0000000000002e58       0x2c ./SDK/startup/semihost_hardfault.o
+                0x0000000000002e58                HardFault_Handler
  .text.DMA0_IRQHandler
-                0x0000000000002e7c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002e7c                DMA0_IRQHandler
- .text.DMA1_IRQHandler
                 0x0000000000002e84        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002e84                DMA1_IRQHandler
- .text.DMA2_IRQHandler
+                0x0000000000002e84                DMA0_IRQHandler
+ .text.DMA1_IRQHandler
                 0x0000000000002e8c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002e8c                DMA2_IRQHandler
- .text.DMA3_IRQHandler
+                0x0000000000002e8c                DMA1_IRQHandler
+ .text.DMA2_IRQHandler
                 0x0000000000002e94        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002e94                DMA3_IRQHandler
- .text.DMA4_IRQHandler
+                0x0000000000002e94                DMA2_IRQHandler
+ .text.DMA3_IRQHandler
                 0x0000000000002e9c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002e9c                DMA4_IRQHandler
- .text.DMA5_IRQHandler
+                0x0000000000002e9c                DMA3_IRQHandler
+ .text.DMA4_IRQHandler
                 0x0000000000002ea4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002ea4                DMA5_IRQHandler
- .text.DMA6_IRQHandler
+                0x0000000000002ea4                DMA4_IRQHandler
+ .text.DMA5_IRQHandler
                 0x0000000000002eac        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002eac                DMA6_IRQHandler
- .text.DMA7_IRQHandler
+                0x0000000000002eac                DMA5_IRQHandler
+ .text.DMA6_IRQHandler
                 0x0000000000002eb4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002eb4                DMA7_IRQHandler
- .text.DMA8_IRQHandler
+                0x0000000000002eb4                DMA6_IRQHandler
+ .text.DMA7_IRQHandler
                 0x0000000000002ebc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002ebc                DMA8_IRQHandler
- .text.DMA9_IRQHandler
+                0x0000000000002ebc                DMA7_IRQHandler
+ .text.DMA8_IRQHandler
                 0x0000000000002ec4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002ec4                DMA9_IRQHandler
- .text.DMA10_IRQHandler
+                0x0000000000002ec4                DMA8_IRQHandler
+ .text.DMA9_IRQHandler
                 0x0000000000002ecc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002ecc                DMA10_IRQHandler
- .text.DMA11_IRQHandler
+                0x0000000000002ecc                DMA9_IRQHandler
+ .text.DMA10_IRQHandler
                 0x0000000000002ed4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002ed4                DMA11_IRQHandler
- .text.DMA12_IRQHandler
+                0x0000000000002ed4                DMA10_IRQHandler
+ .text.DMA11_IRQHandler
                 0x0000000000002edc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002edc                DMA12_IRQHandler
- .text.DMA13_IRQHandler
+                0x0000000000002edc                DMA11_IRQHandler
+ .text.DMA12_IRQHandler
                 0x0000000000002ee4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002ee4                DMA13_IRQHandler
- .text.DMA14_IRQHandler
+                0x0000000000002ee4                DMA12_IRQHandler
+ .text.DMA13_IRQHandler
                 0x0000000000002eec        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002eec                DMA14_IRQHandler
- .text.DMA15_IRQHandler
+                0x0000000000002eec                DMA13_IRQHandler
+ .text.DMA14_IRQHandler
                 0x0000000000002ef4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002ef4                DMA15_IRQHandler
- .text.DMA_Error_IRQHandler
+                0x0000000000002ef4                DMA14_IRQHandler
+ .text.DMA15_IRQHandler
                 0x0000000000002efc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002efc                DMA_Error_IRQHandler
- .text.MCM_IRQHandler
+                0x0000000000002efc                DMA15_IRQHandler
+ .text.DMA_Error_IRQHandler
                 0x0000000000002f04        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f04                MCM_IRQHandler
- .text.FTFE_IRQHandler
+                0x0000000000002f04                DMA_Error_IRQHandler
+ .text.MCM_IRQHandler
                 0x0000000000002f0c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f0c                FTFE_IRQHandler
- .text.Read_Collision_IRQHandler
+                0x0000000000002f0c                MCM_IRQHandler
+ .text.FTFE_IRQHandler
                 0x0000000000002f14        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f14                Read_Collision_IRQHandler
- .text.LVD_LVW_IRQHandler
+                0x0000000000002f14                FTFE_IRQHandler
+ .text.Read_Collision_IRQHandler
                 0x0000000000002f1c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f1c                LVD_LVW_IRQHandler
- .text.LLWU_IRQHandler
+                0x0000000000002f1c                Read_Collision_IRQHandler
+ .text.LVD_LVW_IRQHandler
                 0x0000000000002f24        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f24                LLWU_IRQHandler
- .text.WDOG_EWM_IRQHandler
+                0x0000000000002f24                LVD_LVW_IRQHandler
+ .text.LLWU_IRQHandler
                 0x0000000000002f2c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f2c                WDOG_EWM_IRQHandler
- .text.RNG_IRQHandler
+                0x0000000000002f2c                LLWU_IRQHandler
+ .text.WDOG_EWM_IRQHandler
                 0x0000000000002f34        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f34                RNG_IRQHandler
- .text.I2C0_IRQHandler
+                0x0000000000002f34                WDOG_EWM_IRQHandler
+ .text.RNG_IRQHandler
                 0x0000000000002f3c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f3c                I2C0_IRQHandler
- .text.I2C1_IRQHandler
+                0x0000000000002f3c                RNG_IRQHandler
+ .text.I2C0_IRQHandler
                 0x0000000000002f44        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f44                I2C1_IRQHandler
- .text.SPI0_IRQHandler
+                0x0000000000002f44                I2C0_IRQHandler
+ .text.I2C1_IRQHandler
                 0x0000000000002f4c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f4c                SPI0_IRQHandler
- .text.SPI1_IRQHandler
+                0x0000000000002f4c                I2C1_IRQHandler
+ .text.SPI0_IRQHandler
                 0x0000000000002f54        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f54                SPI1_IRQHandler
- .text.I2S0_Tx_IRQHandler
+                0x0000000000002f54                SPI0_IRQHandler
+ .text.SPI1_IRQHandler
                 0x0000000000002f5c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f5c                I2S0_Tx_IRQHandler
- .text.I2S0_Rx_IRQHandler
+                0x0000000000002f5c                SPI1_IRQHandler
+ .text.I2S0_Tx_IRQHandler
                 0x0000000000002f64        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f64                I2S0_Rx_IRQHandler
- .text.UART0_LON_IRQHandler
+                0x0000000000002f64                I2S0_Tx_IRQHandler
+ .text.I2S0_Rx_IRQHandler
                 0x0000000000002f6c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f6c                UART0_LON_IRQHandler
- .text.UART0_RX_TX_IRQHandler
+                0x0000000000002f6c                I2S0_Rx_IRQHandler
+ .text.UART0_LON_IRQHandler
                 0x0000000000002f74        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f74                UART0_RX_TX_IRQHandler
- .text.UART0_ERR_IRQHandler
+                0x0000000000002f74                UART0_LON_IRQHandler
+ .text.UART0_RX_TX_IRQHandler
                 0x0000000000002f7c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f7c                UART0_ERR_IRQHandler
- .text.UART1_RX_TX_IRQHandler
+                0x0000000000002f7c                UART0_RX_TX_IRQHandler
+ .text.UART0_ERR_IRQHandler
                 0x0000000000002f84        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f84                UART1_RX_TX_IRQHandler
- .text.UART1_ERR_IRQHandler
+                0x0000000000002f84                UART0_ERR_IRQHandler
+ .text.UART1_RX_TX_IRQHandler
                 0x0000000000002f8c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f8c                UART1_ERR_IRQHandler
- .text.UART2_RX_TX_IRQHandler
+                0x0000000000002f8c                UART1_RX_TX_IRQHandler
+ .text.UART1_ERR_IRQHandler
                 0x0000000000002f94        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f94                UART2_RX_TX_IRQHandler
- .text.UART2_ERR_IRQHandler
+                0x0000000000002f94                UART1_ERR_IRQHandler
+ .text.UART2_RX_TX_IRQHandler
                 0x0000000000002f9c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002f9c                UART2_ERR_IRQHandler
- .text.UART3_RX_TX_IRQHandler
+                0x0000000000002f9c                UART2_RX_TX_IRQHandler
+ .text.UART2_ERR_IRQHandler
                 0x0000000000002fa4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fa4                UART3_RX_TX_IRQHandler
- .text.UART3_ERR_IRQHandler
+                0x0000000000002fa4                UART2_ERR_IRQHandler
+ .text.UART3_RX_TX_IRQHandler
                 0x0000000000002fac        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fac                UART3_ERR_IRQHandler
- .text.ADC0_IRQHandler
+                0x0000000000002fac                UART3_RX_TX_IRQHandler
+ .text.UART3_ERR_IRQHandler
                 0x0000000000002fb4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fb4                ADC0_IRQHandler
- .text.CMP0_IRQHandler
+                0x0000000000002fb4                UART3_ERR_IRQHandler
+ .text.ADC0_IRQHandler
                 0x0000000000002fbc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fbc                CMP0_IRQHandler
- .text.CMP1_IRQHandler
+                0x0000000000002fbc                ADC0_IRQHandler
+ .text.CMP0_IRQHandler
                 0x0000000000002fc4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fc4                CMP1_IRQHandler
- .text.FTM0_IRQHandler
+                0x0000000000002fc4                CMP0_IRQHandler
+ .text.CMP1_IRQHandler
                 0x0000000000002fcc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fcc                FTM0_IRQHandler
- .text.FTM1_IRQHandler
+                0x0000000000002fcc                CMP1_IRQHandler
+ .text.FTM0_IRQHandler
                 0x0000000000002fd4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fd4                FTM1_IRQHandler
- .text.FTM2_IRQHandler
+                0x0000000000002fd4                FTM0_IRQHandler
+ .text.FTM1_IRQHandler
                 0x0000000000002fdc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fdc                FTM2_IRQHandler
- .text.CMT_IRQHandler
+                0x0000000000002fdc                FTM1_IRQHandler
+ .text.FTM2_IRQHandler
                 0x0000000000002fe4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fe4                CMT_IRQHandler
- .text.RTC_IRQHandler
+                0x0000000000002fe4                FTM2_IRQHandler
+ .text.CMT_IRQHandler
                 0x0000000000002fec        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002fec                RTC_IRQHandler
- .text.RTC_Seconds_IRQHandler
+                0x0000000000002fec                CMT_IRQHandler
+ .text.RTC_IRQHandler
                 0x0000000000002ff4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002ff4                RTC_Seconds_IRQHandler
- .text.PIT0_IRQHandler
+                0x0000000000002ff4                RTC_IRQHandler
+ .text.RTC_Seconds_IRQHandler
                 0x0000000000002ffc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002ffc                PIT0_IRQHandler
- .text.PIT1_IRQHandler
+                0x0000000000002ffc                RTC_Seconds_IRQHandler
+ .text.PIT0_IRQHandler
                 0x0000000000003004        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003004                PIT1_IRQHandler
- .text.PIT2_IRQHandler
+                0x0000000000003004                PIT0_IRQHandler
+ .text.PIT1_IRQHandler
                 0x000000000000300c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000300c                PIT2_IRQHandler
- .text.PIT3_IRQHandler
+                0x000000000000300c                PIT1_IRQHandler
+ .text.PIT2_IRQHandler
                 0x0000000000003014        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003014                PIT3_IRQHandler
- .text.PDB0_IRQHandler
+                0x0000000000003014                PIT2_IRQHandler
+ .text.PIT3_IRQHandler
                 0x000000000000301c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000301c                PDB0_IRQHandler
- .text.USB0_IRQHandler
+                0x000000000000301c                PIT3_IRQHandler
+ .text.PDB0_IRQHandler
                 0x0000000000003024        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003024                USB0_IRQHandler
- .text.USBDCD_IRQHandler
+                0x0000000000003024                PDB0_IRQHandler
+ .text.USB0_IRQHandler
                 0x000000000000302c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000302c                USBDCD_IRQHandler
- .text.Reserved71_IRQHandler
+                0x000000000000302c                USB0_IRQHandler
+ .text.USBDCD_IRQHandler
                 0x0000000000003034        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003034                Reserved71_IRQHandler
- .text.DAC0_IRQHandler
+                0x0000000000003034                USBDCD_IRQHandler
+ .text.Reserved71_IRQHandler
                 0x000000000000303c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000303c                DAC0_IRQHandler
- .text.MCG_IRQHandler
+                0x000000000000303c                Reserved71_IRQHandler
+ .text.DAC0_IRQHandler
                 0x0000000000003044        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003044                MCG_IRQHandler
- .text.LPTMR0_IRQHandler
+                0x0000000000003044                DAC0_IRQHandler
+ .text.MCG_IRQHandler
                 0x000000000000304c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000304c                LPTMR0_IRQHandler
- .text.PORTB_IRQHandler
+                0x000000000000304c                MCG_IRQHandler
+ .text.LPTMR0_IRQHandler
                 0x0000000000003054        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003054                PORTB_IRQHandler
- .text.PORTE_IRQHandler
+                0x0000000000003054                LPTMR0_IRQHandler
+ .text.PORTB_IRQHandler
                 0x000000000000305c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000305c                PORTE_IRQHandler
- .text.SWI_IRQHandler
+                0x000000000000305c                PORTB_IRQHandler
+ .text.PORTE_IRQHandler
                 0x0000000000003064        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003064                SWI_IRQHandler
- .text.SPI2_IRQHandler
+                0x0000000000003064                PORTE_IRQHandler
+ .text.SWI_IRQHandler
                 0x000000000000306c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000306c                SPI2_IRQHandler
- .text.UART4_RX_TX_IRQHandler
+                0x000000000000306c                SWI_IRQHandler
+ .text.SPI2_IRQHandler
                 0x0000000000003074        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003074                UART4_RX_TX_IRQHandler
- .text.UART4_ERR_IRQHandler
+                0x0000000000003074                SPI2_IRQHandler
+ .text.UART4_RX_TX_IRQHandler
                 0x000000000000307c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000307c                UART4_ERR_IRQHandler
- .text.UART5_RX_TX_IRQHandler
+                0x000000000000307c                UART4_RX_TX_IRQHandler
+ .text.UART4_ERR_IRQHandler
                 0x0000000000003084        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003084                UART5_RX_TX_IRQHandler
- .text.UART5_ERR_IRQHandler
+                0x0000000000003084                UART4_ERR_IRQHandler
+ .text.UART5_RX_TX_IRQHandler
                 0x000000000000308c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000308c                UART5_ERR_IRQHandler
- .text.CMP2_IRQHandler
+                0x000000000000308c                UART5_RX_TX_IRQHandler
+ .text.UART5_ERR_IRQHandler
                 0x0000000000003094        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003094                CMP2_IRQHandler
- .text.FTM3_IRQHandler
+                0x0000000000003094                UART5_ERR_IRQHandler
+ .text.CMP2_IRQHandler
                 0x000000000000309c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000309c                FTM3_IRQHandler
- .text.DAC1_IRQHandler
+                0x000000000000309c                CMP2_IRQHandler
+ .text.FTM3_IRQHandler
                 0x00000000000030a4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030a4                DAC1_IRQHandler
- .text.ADC1_IRQHandler
+                0x00000000000030a4                FTM3_IRQHandler
+ .text.DAC1_IRQHandler
                 0x00000000000030ac        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030ac                ADC1_IRQHandler
- .text.I2C2_IRQHandler
+                0x00000000000030ac                DAC1_IRQHandler
+ .text.ADC1_IRQHandler
                 0x00000000000030b4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030b4                I2C2_IRQHandler
- .text.CAN0_ORed_Message_buffer_IRQHandler
+                0x00000000000030b4                ADC1_IRQHandler
+ .text.I2C2_IRQHandler
                 0x00000000000030bc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030bc                CAN0_ORed_Message_buffer_IRQHandler
- .text.CAN0_Bus_Off_IRQHandler
+                0x00000000000030bc                I2C2_IRQHandler
+ .text.CAN0_ORed_Message_buffer_IRQHandler
                 0x00000000000030c4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030c4                CAN0_Bus_Off_IRQHandler
- .text.CAN0_Error_IRQHandler
+                0x00000000000030c4                CAN0_ORed_Message_buffer_IRQHandler
+ .text.CAN0_Bus_Off_IRQHandler
                 0x00000000000030cc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030cc                CAN0_Error_IRQHandler
- .text.CAN0_Tx_Warning_IRQHandler
+                0x00000000000030cc                CAN0_Bus_Off_IRQHandler
+ .text.CAN0_Error_IRQHandler
                 0x00000000000030d4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030d4                CAN0_Tx_Warning_IRQHandler
- .text.CAN0_Rx_Warning_IRQHandler
+                0x00000000000030d4                CAN0_Error_IRQHandler
+ .text.CAN0_Tx_Warning_IRQHandler
                 0x00000000000030dc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030dc                CAN0_Rx_Warning_IRQHandler
- .text.CAN0_Wake_Up_IRQHandler
+                0x00000000000030dc                CAN0_Tx_Warning_IRQHandler
+ .text.CAN0_Rx_Warning_IRQHandler
                 0x00000000000030e4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030e4                CAN0_Wake_Up_IRQHandler
- .text.SDHC_IRQHandler
+                0x00000000000030e4                CAN0_Rx_Warning_IRQHandler
+ .text.CAN0_Wake_Up_IRQHandler
                 0x00000000000030ec        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030ec                SDHC_IRQHandler
- .text.ENET_1588_Timer_IRQHandler
+                0x00000000000030ec                CAN0_Wake_Up_IRQHandler
+ .text.SDHC_IRQHandler
                 0x00000000000030f4        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030f4                ENET_1588_Timer_IRQHandler
- .text.ENET_Transmit_IRQHandler
+                0x00000000000030f4                SDHC_IRQHandler
+ .text.ENET_1588_Timer_IRQHandler
                 0x00000000000030fc        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000030fc                ENET_Transmit_IRQHandler
- .text.ENET_Receive_IRQHandler
+                0x00000000000030fc                ENET_1588_Timer_IRQHandler
+ .text.ENET_Transmit_IRQHandler
                 0x0000000000003104        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000003104                ENET_Receive_IRQHandler
- .text.ENET_Error_IRQHandler
+                0x0000000000003104                ENET_Transmit_IRQHandler
+ .text.ENET_Receive_IRQHandler
                 0x000000000000310c        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000310c                ENET_Error_IRQHandler
+                0x000000000000310c                ENET_Receive_IRQHandler
+ .text.ENET_Error_IRQHandler
+                0x0000000000003114        0x8 ./SDK/startup/startup_mk64f12.o
+                0x0000000000003114                ENET_Error_IRQHandler
  .text.SystemInitHook
-                0x0000000000003114        0xe ./SDK/CMSIS/system_MK64F12.o
-                0x0000000000003114                SystemInitHook
- .text.memcpy   0x0000000000003122        0x4 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(memcpy.o)
-                0x0000000000003122                memcpy
- .text.memcmp   0x0000000000003126       0x44 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(memcmp.o)
-                0x0000000000003126                memcmp
+                0x000000000000311c        0xe ./SDK/CMSIS/system_MK64F12.o
+                0x000000000000311c                SystemInitHook
+ .text.memcpy   0x000000000000312a        0x4 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(memcpy.o)
+                0x000000000000312a                memcpy
+ .text.memcmp   0x000000000000312e       0x44 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(memcmp.o)
+                0x000000000000312e                memcmp
  .text.__aeabi_memcpy
-                0x000000000000316a       0x34 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(memcpy.o)
-                0x000000000000316a                __aeabi_memcpy
-                0x0000000000003174                __aeabi_memcpy4
-                0x0000000000003174                __aeabi_memcpy8
+                0x0000000000003172       0x34 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(memcpy.o)
+                0x0000000000003172                __aeabi_memcpy
+                0x000000000000317c                __aeabi_memcpy4
+                0x000000000000317c                __aeabi_memcpy8
  *(SORT_BY_ALIGNMENT(.rodata) SORT_BY_ALIGNMENT(.rodata.*) SORT_BY_ALIGNMENT(.constdata) SORT_BY_ALIGNMENT(.constdata.*))
- *fill*         0x000000000000319e        0x2 ff
- .rodata        0x00000000000031a0       0x6c ./source/App.o
- .rodata        0x000000000000320c       0x38 ./source/Users.o
-                0x0000000000003248                . = ALIGN (0x8)
- *fill*         0x0000000000003244        0x4 ff
+ *fill*         0x00000000000031a6        0x2 ff
+ .rodata        0x00000000000031a8       0x6c ./source/App.o
+ .rodata        0x0000000000003214       0x38 ./source/Users.o
+                0x0000000000003250                . = ALIGN (0x8)
+ *fill*         0x000000000000324c        0x4 ff
 
-.glue_7         0x0000000000003248        0x0
- .glue_7        0x0000000000003248        0x0 linker stubs
+.glue_7         0x0000000000003250        0x0
+ .glue_7        0x0000000000003250        0x0 linker stubs
 
-.glue_7t        0x0000000000003248        0x0
- .glue_7t       0x0000000000003248        0x0 linker stubs
+.glue_7t        0x0000000000003250        0x0
+ .glue_7t       0x0000000000003250        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000003248        0x0
- .vfp11_veneer  0x0000000000003248        0x0 linker stubs
+.vfp11_veneer   0x0000000000003250        0x0
+ .vfp11_veneer  0x0000000000003250        0x0 linker stubs
 
-.v4_bx          0x0000000000003248        0x0
- .v4_bx         0x0000000000003248        0x0 linker stubs
+.v4_bx          0x0000000000003250        0x0
+ .v4_bx         0x0000000000003250        0x0 linker stubs
 
-.iplt           0x0000000000003248        0x0
- .iplt          0x0000000000003248        0x0 ./source/App.o
+.iplt           0x0000000000003250        0x0
+ .iplt          0x0000000000003250        0x0 ./source/App.o
 
-.rel.dyn        0x0000000000003248        0x0
- .rel.iplt      0x0000000000003248        0x0 ./source/App.o
+.rel.dyn        0x0000000000003250        0x0
+ .rel.iplt      0x0000000000003250        0x0 ./source/App.o
 
 .ARM.extab
  *(SORT_BY_ALIGNMENT(.ARM.extab*) SORT_BY_ALIGNMENT(.gnu.linkonce.armextab.*))
-                0x0000000000003248                __exidx_start = .
+                0x0000000000003250                __exidx_start = .
 
 .ARM.exidx
  *(SORT_BY_ALIGNMENT(.ARM.exidx*) SORT_BY_ALIGNMENT(.gnu.linkonce.armexidx.*))
-                0x0000000000003248                __exidx_end = .
-                0x0000000000003248                _etext = .
+                0x0000000000003250                __exidx_end = .
+                0x0000000000003250                _etext = .
 
 .m_usb_data
  *(SORT_BY_ALIGNMENT(m_usb_bdt))
 
-.data_RAM2      0x000000001fff0000        0x0 load address 0x0000000000003248
+.data_RAM2      0x000000001fff0000        0x0 load address 0x0000000000003250
  FILL mask 0xff
                 [!provide]                        PROVIDE (__start_data_RAM2 = .)
  *(SORT_BY_ALIGNMENT(.ramfunc.$RAM2))
@@ -1301,7 +1301,7 @@ END GROUP
                 0x000000001fff0000                . = ALIGN (0x8)
                 [!provide]                        PROVIDE (__end_data_RAM2 = .)
 
-.data_RAM3      0x0000000014000000        0x0 load address 0x0000000000003248
+.data_RAM3      0x0000000014000000        0x0 load address 0x0000000000003250
  FILL mask 0xff
                 [!provide]                        PROVIDE (__start_data_RAM3 = .)
  *(SORT_BY_ALIGNMENT(.ramfunc.$RAM3))
@@ -1320,7 +1320,7 @@ END GROUP
                 0x0000000020000000                . = ALIGN (0x8)
                 0x0000000020000000                _end_uninit_RESERVED = .
 
-.data           0x0000000020000000      0x3c8 load address 0x0000000000003248
+.data           0x0000000020000000      0x3c8 load address 0x0000000000003250
  FILL mask 0xff
                 0x0000000020000000                _data = .
  *(SORT_BY_ALIGNMENT(vtable))
@@ -1364,7 +1364,7 @@ END GROUP
  *fill*         0x00000000200003c5        0x3 ff
                 0x00000000200003c8                _edata = .
 
-.igot.plt       0x00000000200003c8        0x0 load address 0x0000000000003610
+.igot.plt       0x00000000200003c8        0x0 load address 0x0000000000003618
  .igot.plt      0x00000000200003c8        0x0 ./source/App.o
 
 .bss_RAM2       0x000000001fff0000        0x0
@@ -1505,8 +1505,8 @@ END GROUP
                 0x000000002002f000                . = ALIGN (0x8)
                 0x0000000020030000                _vStackTop = (. + _StackSize)
                 0x0000000000000000                _image_start = LOADADDR (.text)
-                0x0000000000003610                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x0000000000003610                _image_size = (_image_end - _image_start)
+                0x0000000000003618                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x0000000000003618                _image_size = (_image_end - _image_start)
 OUTPUT(Blink.axf elf32-littlearm)
 
 .debug_info     0x0000000000000000     0x76aa
@@ -1652,21 +1652,21 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_macro   0x0000000000012df7       0x29 ./SDK/startup/startup_mk64f12.o
  .debug_macro   0x0000000000012e20       0x80 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_line     0x0000000000000000     0x4446
+.debug_line     0x0000000000000000     0x4449
  .debug_line    0x0000000000000000      0x699 ./source/App.o
  .debug_line    0x0000000000000699      0xc2a ./source/DisplayBoard.o
  .debug_line    0x00000000000012c3      0x5ae ./source/Encoder.o
  .debug_line    0x0000000000001871      0x5db ./source/InternalControl.o
- .debug_line    0x0000000000001e4c      0x45e ./source/Lector.o
- .debug_line    0x00000000000022aa      0x235 ./source/SysTick.o
- .debug_line    0x00000000000024df      0x4da ./source/Users.o
- .debug_line    0x00000000000029b9      0x3df ./source/gpio.o
- .debug_line    0x0000000000002d98      0x59e ./source/timer.o
- .debug_line    0x0000000000003336      0x2aa ./SDK/startup/hardware.o
- .debug_line    0x00000000000035e0      0x1bf ./SDK/startup/main.o
- .debug_line    0x000000000000379f       0x5f ./SDK/startup/semihost_hardfault.o
- .debug_line    0x00000000000037fe      0x914 ./SDK/startup/startup_mk64f12.o
- .debug_line    0x0000000000004112      0x334 ./SDK/CMSIS/system_MK64F12.o
+ .debug_line    0x0000000000001e4c      0x461 ./source/Lector.o
+ .debug_line    0x00000000000022ad      0x235 ./source/SysTick.o
+ .debug_line    0x00000000000024e2      0x4da ./source/Users.o
+ .debug_line    0x00000000000029bc      0x3df ./source/gpio.o
+ .debug_line    0x0000000000002d9b      0x59e ./source/timer.o
+ .debug_line    0x0000000000003339      0x2aa ./SDK/startup/hardware.o
+ .debug_line    0x00000000000035e3      0x1bf ./SDK/startup/main.o
+ .debug_line    0x00000000000037a2       0x5f ./SDK/startup/semihost_hardfault.o
+ .debug_line    0x0000000000003801      0x914 ./SDK/startup/startup_mk64f12.o
+ .debug_line    0x0000000000004115      0x334 ./SDK/CMSIS/system_MK64F12.o
 
 .debug_str      0x0000000000000000    0x7c43a
  .debug_str     0x0000000000000000     0x7158 ./source/App.o

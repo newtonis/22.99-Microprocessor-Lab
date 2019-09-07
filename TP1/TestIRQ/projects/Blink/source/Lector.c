@@ -156,7 +156,10 @@ void get_Data (bool my_data)
 					{
 						lrc = data[count];
 						if(Check_LRC()) //agregue un if aca
+						{
+							end = HIGH;
 							callback();//end = HIGH; puse callback aca
+						}
 					}
 					if (end == LOW)
 					{
