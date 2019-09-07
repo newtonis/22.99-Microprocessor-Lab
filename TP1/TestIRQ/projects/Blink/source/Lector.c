@@ -60,7 +60,7 @@ int * lector_get_PAN (void)
 			pan[i] = (data[i+1] & PARITY_BIT_MASK_ODD); //le saco el bit de paridad
 			i++;
 		}
-		end = LOW;
+		//end = LOW;
 		return &pan[0];
 	//}
 	//else
@@ -178,7 +178,7 @@ void set_Enable(bool status)
 	{
 		count = 0;
 		bits = 0;
-		end = 0;
+		end = LOW;
 		word = 0;
 		clear_PAN();
 	}
