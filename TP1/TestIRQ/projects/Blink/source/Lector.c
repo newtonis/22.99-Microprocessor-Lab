@@ -4,6 +4,7 @@
 static int pan [PAN_MAX_L];
 static uint8_t data [DATA_LENGTH];
 static bool Enable = LOW;
+static void (*callback)();
 
 static bool chkEnable = 0;
 
@@ -38,6 +39,7 @@ void isr_clk (void)
 	get_Data(gpioRead(DATA));
 }
 
+/*
 bool newReadAvailable() //agregue esta funcion
 {
 	if ((Enable == LOW) && (end == HIGH)) // si esta bien
@@ -46,11 +48,12 @@ bool newReadAvailable() //agregue esta funcion
 	}
 	return false;
 }
+*/
 
 int * lector_get_PAN (void)
 {
-	if ((Enable == LOW) && (end == HIGH)) //esta bien y aca saque el checkLRC
-	{
+	//if ((Enable == LOW) && (end == HIGH)) //esta bien y aca saque el checkLRC
+	//{
 		int i = 0;
 		while ((data[i+1] != FS) && (i < PAN_MAX_L))
 		{
@@ -59,11 +62,11 @@ int * lector_get_PAN (void)
 		}
 		end = LOW;
 		return &pan[0];
-	}
-	else
-	{
-		return NULL;
-	}
+	//}
+	//else
+	//{
+	//	return NULL;
+	//}
 }
 
 void clear_PAN (void)
@@ -75,7 +78,7 @@ void clear_PAN (void)
 }
 
 
-void lectorInit (void)
+void lectorInit (void (*funcallback)(void))
 {
 	 gpioMode(PIN_LED_BLUE, OUTPUT);
 
@@ -88,10 +91,9 @@ void lectorInit (void)
 	 gpioIRQ(EN, GPIO_IRQ_MODE_BOTH_EDGES, isr_enable);
 	 gpioIRQ(CLK, GPIO_IRQ_MODE_FALLING_EDGE, isr_clk);
 
-
-
-
 	 NVIC_EnableIRQ(PORTD_IRQn);
+
+	 callback = funcallback;
 }
 
 
@@ -154,7 +156,7 @@ void get_Data (bool my_data)
 					{
 						lrc = data[count];
 						if(Check_LRC()) //agregue un if aca
-							end = HIGH;
+							callback();//end = HIGH; puse callback aca
 					}
 					if (end == LOW)
 					{

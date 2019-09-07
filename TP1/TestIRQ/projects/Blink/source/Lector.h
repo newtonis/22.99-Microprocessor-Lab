@@ -44,11 +44,12 @@ void clear_Chk(void); // NO SE TIENE QUE USAR
  * @brief Tells when a new card read is ready.
  * @return TRUE if there is a new card read and FALSE if not
  */
-bool newReadAvailable();
+//bool newReadAvailable();
 
 /**
+ * @recieves callback to call when there is a new card read.
  * @brief initialize the lector
  */
-void lectorInit (void);
+void lectorInit (void (*funcallback)(void));
 
 #endif /* LECTOR_H_ */
