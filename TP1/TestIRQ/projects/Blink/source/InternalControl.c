@@ -7,9 +7,16 @@
 
 #include "InternalControl.h"
 #include "board.h"
+#include "timer.h"
 
 static bool OK_sw = 0;
 static bool CANCEL_sw = 0;
+
+static int internal_sw_event = 0;
+
+static tim_id_t timerSw;
+
+static void (*callback)();
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -17,8 +24,17 @@ static bool CANCEL_sw = 0;
 
 void isr_swOK(void);
 void isr_swCANCEL(void);
+void readSwitchInterface(void);
+bool PortGetOK_Status(void);
+void PortClearOK_Status(void);
+bool PortGetCANCEL_Status(void);
+void PortClearCANCEL_Status(void);
 
-void PortInit(void){
+/*******************************************************************************
+                        LOCAL FUNCTION DEFINITIONS
+ ******************************************************************************/
+
+void internalControlInit(void (*funcallback)(void)){
     gpioMode(PIN_SW2, INPUT_PULLUP);
     gpioMode(PIN_SW3, INPUT);
 
@@ -31,6 +47,11 @@ void PortInit(void){
     gpioMode(PIN_LED_RED, OUTPUT);
     gpioMode(PIN_LED_BLUE, OUTPUT);
     gpioMode(PIN_LED_GREEN, OUTPUT);
+
+    callback = funcallback;
+
+    timerSw = timerGetId();
+    timerStart(timerSw, TIMER_MS2TICKS(100), TIM_MODE_PERIODIC, readSwitchInterface);
 
     RGBIndicator(BLUE_INDICATOR);
 }
@@ -56,6 +77,29 @@ bool PortGetCANCEL_Status(void){
 
 void PortClearCANCEL_Status(void){
 	CANCEL_sw = 0;
+}
+
+void readSwitchInterface(void){
+	if(PortGetOK_Status()){
+		internal_sw_event = OK_EVENT;
+		callback();
+		PortClearOK_Status();
+	}else if(PortGetCANCEL_Status()){
+		internal_sw_event = CANCEL_EVENT;
+		callback();
+		PortClearCANCEL_Status();
+	}
+}
+
+int internalControlGetEvent(void){
+	if(internal_sw_event == OK_EVENT){
+		internal_sw_event = NONE;
+		return OK_EVENT;
+	}else if(internal_sw_event == CANCEL_EVENT){
+		internal_sw_event = NONE;
+		return CANCEL_EVENT;
+	}
+	return NONE;
 }
 
 void RGBIndicator(int led_color){

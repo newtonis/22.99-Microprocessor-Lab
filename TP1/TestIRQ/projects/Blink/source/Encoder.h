@@ -19,17 +19,15 @@
 
 #define RIGHT	1
 #define LEFT	2
-#define ENTER	0
+#define ENTER	3
 
 typedef uint8_t enc_flag_t;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
-void encoderInit(void);
+void encoderInit(void (*funcallback)(void));
 
-enc_flag_t encoderReadMotion(void);
-
-bool encoderReadSwitch(void);
+enc_flag_t encoderMotionGetEvent(void);
 
 #endif /* ENCODER_H_ */

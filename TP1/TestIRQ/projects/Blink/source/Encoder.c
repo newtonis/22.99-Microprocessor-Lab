@@ -5,6 +5,7 @@
  *      Author: Marcelo
  */
 #include "Encoder.h"
+#include "timer.h"
 #include "board.h"
 
 /*******************************************************************************
@@ -12,6 +13,12 @@
  ******************************************************************************/
 static int channel_flag = NONE;
 
+static tim_id_t timerEncCH;
+static tim_id_t timerEncSwitch;
+
+static int motion_event = NONE;
+
+static void (*callback)();
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
@@ -21,26 +28,61 @@ void EncClearFlag(void);
 
 enc_flag_t EncGetFlag(void);
 
+void encoderCH_Handler(void);
+
+void enconderSwitch_Handler(void);
+
+enc_flag_t encoderReadMotion(void);
+
+bool encoderReadSwitch(void);
 /*******************************************************************************
                         LOCAL FUNCTION DEFINITIONS
  ******************************************************************************/
 
-void EncSetFlag(int flag){
-	channel_flag = flag;
-}
-
-void EncClearFlag(void){
-	channel_flag = NONE;
-}
-
-enc_flag_t EncGetFlag(void){
-	return channel_flag;
-}
-
-void encoderInit(void){
+void encoderInit(void (*funcallback)(void)){
     gpioMode(RCHA, INPUT);
     gpioMode(RCHB, INPUT);
     gpioMode(RSwitch, INPUT);
+
+    callback = funcallback;
+
+    timerEncCH = timerGetId();
+    timerStart(timerEncCH, TIMER_MS2TICKS(40), TIM_MODE_PERIODIC, encoderCH_Handler);
+
+    timerEncSwitch = timerGetId();
+    timerStart(timerEncSwitch, TIMER_MS2TICKS(500), TIM_MODE_PERIODIC, enconderSwitch_Handler);
+}
+
+void encoderCH_Handler(void){
+
+	motion_event = encoderReadMotion();
+	if(motion_event){
+		callback();
+	}
+}
+
+void enconderSwitch_Handler(void){
+
+	if(encoderReadSwitch()){
+		motion_event = ENTER;
+		callback();
+	}
+
+}
+
+enc_flag_t encoderMotionGetEvent(void){
+
+	if(motion_event == LEFT){
+		motion_event = NONE;
+		return LEFT;
+	}else if(motion_event == RIGHT){
+		motion_event = NONE;
+		return RIGHT;
+	}else if(motion_event == ENTER){
+		motion_event = NONE;
+		return ENTER;
+	}
+	return NONE;
 }
 
 enc_flag_t encoderReadMotion(void){
@@ -58,6 +100,7 @@ enc_flag_t encoderReadMotion(void){
 			return NONE;
 		}
 	}
+	return NONE;
 }
 
 bool encoderReadSwitch(void){
@@ -66,6 +109,18 @@ bool encoderReadSwitch(void){
 	}else{
 		return 0;
 	}
+}
+
+void EncSetFlag(int flag){
+	channel_flag = flag;
+}
+
+void EncClearFlag(void){
+	channel_flag = NONE;
+}
+
+enc_flag_t EncGetFlag(void){
+	return channel_flag;
 }
 
 /*******************************************************************************

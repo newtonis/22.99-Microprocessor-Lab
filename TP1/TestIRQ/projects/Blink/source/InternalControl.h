@@ -18,20 +18,16 @@
 
 enum{RED_INDICATOR, BLUE_INDICATOR, GREEN_INDICATOR};
 
-typedef struct {
-    int	id[8];
-    int pin[5];
-} user_t;
+#define NONE			0
+#define OK_EVENT		1
+#define CANCEL_EVENT	2
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-void PortInit(void);
-bool PortGetOK_Status(void);
-void PortClearOK_Status(void);
-bool PortGetCANCEL_Status(void);
-void PortClearCANCEL_Status(void);
+void internalControlInit(void (*funcallback)(void));
+int internalControlGetEvent(void);
 void RGBIndicator(int led_color);
 
 #endif /* INTERNALCONTROL_H_ */

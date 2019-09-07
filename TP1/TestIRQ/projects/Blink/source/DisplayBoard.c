@@ -24,7 +24,7 @@ static int bright_time = 0;
 static int vector_cont = 0;
 static int actual_len = 0;
 static int actual_prefix = 0;
-static bool roll_end = 0;
+static int actual_sufix = 0;
 
 static bool shift_hab = 0;
 static int pin_pointer = 0;
@@ -102,20 +102,24 @@ void Status_Write(int code){
 }
 
 
-void DispShowMsj(int *msj_arr, int len, int prefix_len){
+void DispShowMsj(disp_msj_t msj){
 
 	if(!load_menu){ // Se hace la primera vez solamente por nuevo mensaje
 		for(int k = 0; k < DISP_LEN; k++){
-			disp_vector[k] = msj_arr[k];
-			vector_cont = 0;
-			actual_len = len;
-			actual_prefix = prefix_len;
+			disp_vector[k] = msj.array[k];
+		}
+		vector_cont = 0;
+		actual_len = msj.len;
+		actual_prefix = msj.prefix_len;
+		actual_sufix = msj.sufix_len;
+		if((actual_prefix == 0)&&(actual_sufix == 0)){ // Roll Condition
+			actual_len-=DISP_LEN;
 		}
 		load_menu = 1;
 	}
 
 	for(int i = 0; i < DISP_LEN; i++){
-		disp_vector[i] = msj_arr[i+pin_pointer];
+		disp_vector[i] = msj.array[i+pin_pointer];
 	}
 
 	if(!(flash_counter%FLASH_TIME)){
@@ -128,29 +132,44 @@ void DispShowMsj(int *msj_arr, int len, int prefix_len){
 	// Aca vendria la parte mistica del brillo
 	if(bright_time <= brightness){
 
-		if(vector_cont == 0){ // Parpadeo para cambio de menu
-			if(dsp <= prefix_len){
-				if(cursor_flash % 2){
-					Disp7Seg_Write(ESPACIO);
-				}else{
-					Disp7Seg_Write(disp_vector[dsp-1]);
-				}
-			}else{
-				Disp7Seg_Write(disp_vector[dsp-1]);
-			}
-		}else{ // Parpadeo para cambio de numero
+		if((actual_prefix == 0)&&(actual_sufix == 0)){ // Roll Message Mode
 
-			if(dsp == DISP_LEN){
-				if(cursor_flash % 2){
-					Disp7Seg_Write(ESPACIO);
+			if(!(flash_counter%SHIFT_TIME)){
+				DispShiftMsj();
+			}
+			Disp7Seg_Write(disp_vector[dsp-1]);
+
+		}else{ // Classic Menu Mode
+
+			if(vector_cont == 0){ // Parpadeo para cambio de menu
+
+				if(dsp <= actual_prefix){
+					if(cursor_flash % 2){
+						Disp7Seg_Write(ESPACIO);
+					}else{
+						Disp7Seg_Write(disp_vector[dsp-1]);
+					}
 				}else{
 					Disp7Seg_Write(disp_vector[dsp-1]);
 				}
-			}else{
-				Disp7Seg_Write(disp_vector[dsp-1]);
+
+			}else{ // Parpadeo para cambio de numero
+
+				if(dsp >= 1+DISP_LEN-actual_sufix){
+					if(cursor_flash % 2){
+						Disp7Seg_Write(ESPACIO);
+					}else{
+						Disp7Seg_Write(disp_vector[dsp-1]);
+					}
+				}else{
+					Disp7Seg_Write(disp_vector[dsp-1]);
+				}
+
 			}
 
 		}
+
+
 
 	}else{
 		Disp7Seg_Write(ESPACIO);
@@ -191,9 +210,9 @@ void DispClear(void){
 	for(int i = 0; i < 4; i++){
 		disp_vector[i] = ESPACIO;
 	}
+	shift_hab = 0;
 	load_menu = 0;
 	pin_pointer = 0;
-	roll_end = 0;
 }
 
 disp_cursor_t DispGetCursor(void){
@@ -222,11 +241,7 @@ disp_bright_t DispChangeBright(int move_dir){
 		// Nada por defecto
 		break;
 	}
-	return brightness;
-}
-
-bool DispCheckRollMsj(void){
-	return roll_end;
+	return brightness/2;
 }
 
 void Disp7Seg_Write(int sym){
@@ -271,6 +286,16 @@ void Disp7Seg_Write(int sym){
 		gpioWrite(segments[3], HIGH);
 		gpioWrite(segments[4], LOW);
 		gpioWrite(segments[5], HIGH);
+		gpioWrite(segments[6], HIGH);
+		gpioWrite(segments[7], LOW);
+		break;
+	case R_CHAR:
+		gpioWrite(segments[0], LOW);
+		gpioWrite(segments[1], LOW);
+		gpioWrite(segments[2], LOW);
+		gpioWrite(segments[3], LOW);
+		gpioWrite(segments[4], HIGH);
+		gpioWrite(segments[5], LOW);
 		gpioWrite(segments[6], HIGH);
 		gpioWrite(segments[7], LOW);
 		break;

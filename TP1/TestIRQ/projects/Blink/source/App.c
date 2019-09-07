@@ -7,28 +7,50 @@
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
-
 #include "timer.h"
 #include "DisplayBoard.h"
 #include "Encoder.h"
 #include "Lector.h"
 #include "InternalControl.h"
+#include "Users.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-enum{ID_STAGE, PIN_STAGE, BRIGHT_EDIT, CHECKOUT, ERROR}; // FSM estados
+enum{ID_STAGE, PIN_STAGE, BRIGHT_EDIT, CHECKOUT_STAGE, ERROR_STAGE}; // FSM estados
+
+#define ID_LEN			8
+#define PIN_LEN			5
+#define BRIGHT_LEN		1
+
+#define ID_WORD_LEN		11
+#define PIN_WORD_LEN	8
+#define BRIGHT_WORD_LEN 4
+
+#define PIN_MENU		1
+#define ID_MENU			2
+#define BRIGHT_MENU		3
 
 #define ID_TEST			{I_CHAR, D_CHAR, ESPACIO, 1, 2, 3, 4, 5, 6, 7, 8}
 #define PIN_TEST		{P_CHAR, I_CHAR, N_CHAR, 1, 2, 3, 4, 5}
-#define CHECKOUT_TXT	{A_CHAR, C_CHAR, C_CHAR, E_CHAR, S_CHAR, O_CHAR}
+#define HIDE_PIN_TEST	{P_CHAR, I_CHAR, N_CHAR, GUION, GUION, GUION, GUION, GUION}
+#define CHECKOUT_OK_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, A_CHAR, C_CHAR, C_CHAR, E_CHAR, S_CHAR, O_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
+#define CHECKOUT_ERR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, C_CHAR, O_CHAR, D_CHAR, E_CHAR, ESPACIO, E_CHAR, R_CHAR, R_CHAR, O_CHAR, R_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 
-static int id_vector[ID_WORD_LEN] = ID_TEST;
-static int pin_vector[PIN_WORD_LEN] = PIN_TEST;
-static int bright_vector[BRIGHT_LEN] = {L_CHAR, U_CHAR, 1, 0};
-//static int checkout_vector[CHECKOUT_LEN] = CHECKOUT_TXT;
+static disp_msj_t id_txt = {ID_TEST, ID_LEN, 2, 1};
 
-static user_t users[1] = {{.id = {4, 5, 1, 7, 6, 6, 0, 1}, .pin = {1, 1, 1, 1, 1}}};
+static disp_msj_t pin_txt = {PIN_TEST, PIN_LEN, 3, 1};
+static disp_msj_t pin_toDisp = {HIDE_PIN_TEST, PIN_LEN, 3, 1}; // Para enviar este con los caracteres ocultos
+
+#define BRIGHT_UNIT		3
+#define BRIGHT_DEC		2
+static disp_msj_t bright_txt = {{L_CHAR, U_CHAR, 1, 0}, BRIGHT_LEN, 2, 2};
+
+static int checkoutOK_vec[] = CHECKOUT_OK_TXT;
+static disp_msj_t checkoutOK_txt = {CHECKOUT_OK_TXT, SIZEOFARR(checkoutOK_vec), 0, 0};
+
+static int checkoutERROR_vec[] = CHECKOUT_ERR_TXT;
+static disp_msj_t checkoutERROR_txt = {CHECKOUT_ERR_TXT, SIZEOFARR(checkoutERROR_vec), 0, 0};
 
 static int default_id[ID_LEN] = {1, 2, 3, 4, 5, 6, 7, 8};
 static int *aux_id;
@@ -36,24 +58,26 @@ static int *aux_id;
 static int fsm = ID_STAGE;
 
 static tim_id_t timerDisp;
-static tim_id_t timerSw;
-static tim_id_t timerEncCH;
-static tim_id_t timerEncSwitch;
+static tim_id_t timerError;
 static tim_id_t timerPestillo;
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 void displayHandler(void);
 
-void encoderCH_Handler(void);
+void encoderHandler(void);
 
-void enconderSwitch_Handler(void);
-
-void readSwitchInterface(void);
+void internarHandler(void);
 
 void modifyNumberCode(int motion);
 
+void update_hidePIN(void);
+
+void clearUserInfo(void);
+
 void closeDoor(void);
+
+void accessDenied(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -61,13 +85,35 @@ void closeDoor(void);
  *******************************************************************************
  ******************************************************************************/
 
+void clearUserInfo(void){
+	int aux[] = ID_TEST;
+	for(int k = 0; k < ID_WORD_LEN; k++){
+		id_txt.array[k] = aux[k];
+	}
+	int aux2[] = PIN_TEST;
+	for(int k = 0; k < PIN_WORD_LEN; k++){
+		pin_txt.array[k] = aux2[k];
+	}
+}
+
+void update_hidePIN(void){
+	int aux[] = HIDE_PIN_TEST;
+	for(int k = 0; k < PIN_WORD_LEN; k++){
+		pin_toDisp.array[k] = aux[k];
+	}
+
+	if(DispModType() == NUM_TYPE){
+		pin_toDisp.array[DispGetCursor()+3] = pin_txt.array[DispGetCursor()+3];
+	}
+}
+
 void modifyNumberCode(int motion){
 	int *numCode;
 
 	if(fsm == ID_STAGE){
-		numCode = id_vector+3;
+		numCode = (id_txt.array)+3;
 	}else if(PIN_STAGE){
-		numCode = pin_vector+3;
+		numCode = (pin_txt.array)+3;
 	}
 
 
@@ -76,8 +122,8 @@ void modifyNumberCode(int motion){
 		if(fsm == BRIGHT_EDIT){
 			disp_bright_t aux_bright;
 			aux_bright = DispChangeBright(motion);
-			bright_vector[2] = aux_bright/10;
-			bright_vector[3] = aux_bright%10;
+			bright_txt.array[BRIGHT_DEC] = aux_bright/10;
+			bright_txt.array[BRIGHT_UNIT] = aux_bright%10;
 		}else{
 			switch(motion){
 			case RIGHT:
@@ -124,71 +170,59 @@ void displayHandler (void){
 
 	switch(fsm){
 	case ID_STAGE:
-		DispShowMsj(id_vector, ID_LEN, 2);
+		DispShowMsj(id_txt);
 		break;
 	case PIN_STAGE:
-		DispShowMsj(pin_vector, PIN_LEN, 3);
+		update_hidePIN();
+		DispShowMsj(pin_toDisp);
 		break;
 	case BRIGHT_EDIT:
-		DispShowMsj(bright_vector, BRIGHT_LEN, 2);
+		DispShowMsj(bright_txt);
 		break;
-	case CHECKOUT:
-		DispShowMsj(NULL, CHECKOUT_LEN, 0);
+	case CHECKOUT_STAGE:
+		DispShowMsj(checkoutOK_txt);
+		break;
+	case ERROR_STAGE:
+		DispShowMsj(checkoutERROR_txt);
 		break;
 	}
 
 }
 
-void encoderCH_Handler(void){
-
+void encoderHandler(void){
 	if(fsm <= BRIGHT_EDIT){
-		modifyNumberCode(encoderReadMotion());
-	}
-
-}
-
-void enconderSwitch_Handler(void){
-
-	if(encoderReadSwitch()){
-		if(fsm <= BRIGHT_EDIT){
+		int event = encoderMotionGetEvent();
+		switch(event){
+		case LEFT:
+			modifyNumberCode(event);
+			break;
+		case RIGHT:
+			modifyNumberCode(event);
+			break;
+		case ENTER:
 			DispShiftMsj();
+			break;
 		}
 	}
-
 }
 
-void readSwitchInterface(void){
-	if(PortGetOK_Status()){
-		int k = 0;
-
-		switch(fsm){
-		case ID_STAGE:
-			while((users[0].id[k] == aux_id[k])&&(k < ID_LEN)){
-				k++;
-			}
-			if(k == ID_LEN){
-				fsm = PIN_STAGE;
-				DispClear();
-			}
-			break;
-		case PIN_STAGE:
-			while((users[0].pin[k] == pin_vector[k+3])&&(k < PIN_LEN)){
-				k++;
-			}
-			if(k == PIN_LEN){
-				fsm = CHECKOUT;
-				RGBIndicator(GREEN_INDICATOR);
-				timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, closeDoor);
-				DispClear();
-			}
-			break;
+void internarHandler(void){
+	switch(internalControlGetEvent()){
+	case OK_EVENT:
+		if(validateUser((id_txt.array)+3, (pin_txt.array)+3)){
+			fsm = CHECKOUT_STAGE;
+			DispClear();
+			timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, closeDoor);
+			RGBIndicator(GREEN_INDICATOR);
+		}else{
+			fsm = ERROR_STAGE;
+			DispClear();
+			timerStart(timerError, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, accessDenied);
+			RGBIndicator(RED_INDICATOR);
 		}
-
-		PortClearOK_Status();
-	}else if(PortGetCANCEL_Status()){
-		DispClear();
-		fsm = ID_STAGE;
-		PortClearCANCEL_Status();
+		break;
+	case CANCEL_EVENT:
+		break;
 	}
 }
 
@@ -196,60 +230,69 @@ void closeDoor(void){
 	RGBIndicator(BLUE_INDICATOR);
 	fsm = ID_STAGE;
 	DispClear();
+	clearUserInfo();
+}
+
+void accessDenied(void){
+	RGBIndicator(BLUE_INDICATOR);
+	fsm = ID_STAGE;
+	DispClear();
+	clearUserInfo();
 }
 
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-	aux_id = default_id; // Asignacion de ID y PIN por default
+	aux_id = default_id; // Asignacion de ID por default
 
-	PortInit();
-
-    encoderInit();
+	initUser();
 
     timerInit();
+
+	internalControlInit(internarHandler);
+
+    encoderInit(encoderHandler);
 
     timerDisp = timerGetId();
     timerStart(timerDisp, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, displayHandler);
 
-    timerEncCH = timerGetId();
-    timerStart(timerEncCH, TIMER_MS2TICKS(40), TIM_MODE_PERIODIC, encoderCH_Handler);
-
-    timerSw = timerGetId();
-    timerStart(timerSw, TIMER_MS2TICKS(100), TIM_MODE_PERIODIC, readSwitchInterface);
-
-    timerEncSwitch = timerGetId();
-    timerStart(timerEncSwitch, TIMER_MS2TICKS(500), TIM_MODE_PERIODIC, enconderSwitch_Handler);
-
     timerPestillo = timerGetId(); // Lo disparo cuando se pueda abrir
 
+    timerError = timerGetId(); // Lo dispador cuando no es valido el usuario
+
     DispBoard_Init();
+
     DispClear();
+
     lectorInit();
+
+    RGBIndicator(BLUE_INDICATOR);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-
 	switch(fsm){
 	case ID_STAGE:
-		//if(get_Enable()){
+		if(get_Enable()){
 			aux_id = lector_get_PAN();
-			//clear_Chk();
-			for(int k = 0; k < ID_LEN; k++){
-				id_vector[k+3] = aux_id[k];
+			clear_Chk();
+			for(int k = 0; k < ID_LEN; k++){ // Me quedo solo con la parte que me interesa del PAN
+				id_txt.array[k+3] = aux_id[k];
 			}
-		//}
+		}
 		break;
 	case PIN_STAGE:
 		// Se modifica solo con el encoder
+
 		break;
 	case BRIGHT_EDIT:
+		// Tambien se modifica solo con el encoder
+
 		break;
-	case CHECKOUT:
+	case CHECKOUT_STAGE:
 		break;
-	case ERROR:
+	case ERROR_STAGE:
 		break;
 	}
 

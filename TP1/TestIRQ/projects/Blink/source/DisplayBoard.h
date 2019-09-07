@@ -16,20 +16,7 @@
  ******************************************************************************/
 #define SIZEOFARR(a)	sizeof(a)/sizeof(a[0])
 
-#define ID_LEN			8
-#define PIN_LEN			5
-#define WORD_LEN		3
-
 #define DISP_LEN		4
-
-#define ID_WORD_LEN		11
-#define PIN_WORD_LEN	8
-#define BRIGHT_LEN		4
-#define CHECKOUT_LEN	6 // ACCESO
-
-#define PIN_MENU		1
-#define ID_MENU			2
-#define BRIGHT_MENU		3
 
 #define MENU_TYPE		0
 #define NUM_TYPE		1
@@ -48,26 +35,35 @@
 #define DP		-3
 #define A_CHAR	97
 #define C_CHAR	99
+#define D_CHAR	100
 #define E_CHAR	101
 #define I_CHAR	105
-#define D_CHAR	100
 #define L_CHAR	108
+#define	N_CHAR	110
 #define O_CHAR	111
 #define P_CHAR	112
+#define R_CHAR	114
 #define S_CHAR	115
 #define U_CHAR	117
-#define	N_CHAR	110
+
 
 typedef uint8_t disp_cursor_t;
-typedef	bool disp_task_t;
 typedef uint8_t disp_bright_t;
+typedef	bool disp_task_t;
+
+typedef struct {
+	int                 array[30];
+	int                 len;
+    int                 prefix_len;
+    int					sufix_len;
+} disp_msj_t;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 void DispBoard_Init(void);
 
-void DispShowMsj(int *msj_arr, int len, int prefix_len);
+void DispShowMsj(disp_msj_t msj);
 
 void DispShiftMsj(void);
 
@@ -78,13 +74,10 @@ disp_task_t DispModType(void);
 disp_bright_t DispChangeBright(int move_dir);
 
 /**
- * @brief Limpia los numeros del display dejandolo vacio. Debe llarmarse
- * siempre que se cambie de menu.
+ * @brief Clears display text, must call always when menu changes
 
  */
 void DispClear(void);
-
-bool DispCheckRollMsj(void);
 
 void Status_Write(int code);
 
