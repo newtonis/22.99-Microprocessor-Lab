@@ -188,10 +188,4 @@ void set_Enable(bool status)
 
 }
 
-bool get_Enable(void){
-	return chkEnable;
-}
 
-void clear_Chk(void){
-	chkEnable = 0;
-}

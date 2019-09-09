@@ -35,17 +35,6 @@
  */
 int * lector_get_PAN (void);
 
-
-bool get_Enable(void); // NO SE TIENE QUE USAR
-void clear_Chk(void); // NO SE TIENE QUE USAR
-
-
-/**
- * @brief Tells when a new card read is ready.
- * @return TRUE if there is a new card read and FALSE if not
- */
-//bool newReadAvailable();
-
 /**
  * @recieves callback to call when there is a new card read.
  * @brief initialize the lector

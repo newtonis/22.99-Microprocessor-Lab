@@ -15,11 +15,11 @@ static user_t users [MAX_USERS];
 
 
 bool validatePIN(int * pin, int ind);
-int validateID(int * id);
+int validateIDint(int * id); // me devuelve el indice del ID en mi arreglo
 
 bool unblockUser (int * id)
 {
-	int id_idx = validateID(id);
+	int id_idx = validateIDint(id);
 	if (id_idx != ERROR)
 	{
 		users[id_idx].blocked = false;
@@ -27,6 +27,8 @@ bool unblockUser (int * id)
 	}
 	return false;
 }
+
+
 void initUser(void)
 {
 	user_t admin = { {4, 5, 1, 7, 6, 6, 0, 1}, {1, 1, 1, 1, 1},  true, false, 0};
@@ -37,7 +39,7 @@ void initUser(void)
 bool addUser(int * id, int * pin)
 {
 
-	if((index_ == MAX_USERS) && (validateID(pin) == false))
+	if((index_ == MAX_USERS) && (validateID(pin) == true)) // si alcance mi numero maximo de usuarios o si el id ya existe
 	{
 		return false;
 	}
@@ -57,9 +59,15 @@ bool addUser(int * id, int * pin)
 	}
 }
 
+bool validateID(int * id)
+{
+	if(validateIDint(id)!= ERROR)
+		return true;
+	else
+		return false;
+}
 
-
-int validateID(int * id)
+int validateIDint(int * id)
 {
 	int i = 0;
 	while (i < index_)
@@ -118,7 +126,7 @@ bool validateUser(int * id, int * pin)
 
 bool changePin(int * id, int * newPin)
 {
-	int id_idx = validateID(id);
+	int id_idx = validateIDint(id);
 	if (id_idx != ERROR)
 	{
 		memcpy(users[id_idx].pin, newPin, PIN_L);
@@ -129,7 +137,7 @@ bool changePin(int * id, int * newPin)
 
 bool blockUser(int * id)
 {
-	int id_idx = validateID(id);
+	int id_idx = validateIDint(id);
 	if (id_idx != ERROR)
 	{
 		users[id_idx].blocked = true;
