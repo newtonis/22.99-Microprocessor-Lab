@@ -17,7 +17,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-enum{ID_STAGE, PIN_STAGE, BRIGHT_EDIT, CHECKOUT_STAGE, ERROR_STAGE}; // FSM estados
+enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE}; // FSM estados
 enum{NOT_IDLE, IDLE};
 
 #define ID_LEN			8
@@ -167,7 +167,7 @@ void modifyNumberCode(int motion){
 		case LEFT:
 			if(fsm == ID_STAGE){
 				fsm = BRIGHT_EDIT;
-			}else{
+			}else if(fsm != PIN_STAGE){
 				fsm--;
 			}
 			DispClear();
@@ -175,7 +175,7 @@ void modifyNumberCode(int motion){
 		case RIGHT:
 			if(fsm == BRIGHT_EDIT){
 				fsm = ID_STAGE;
-			}else{
+			}else if(fsm != PIN_STAGE){
 				fsm++;
 			}
 			DispClear();
@@ -226,7 +226,7 @@ void displayHandler (void){
 }
 
 void encoderHandler(void){
-	if(fsm <= BRIGHT_EDIT){
+	if(fsm <= PIN_STAGE){
 		idle_cnt = 0;
 		int event = encoderMotionGetEvent();
 		switch(event){
@@ -257,21 +257,29 @@ void lectorHandler(void){
 void internarHandler(void){
 	switch(internalControlGetEvent()){
 	case OK_EVENT:
-		if(validateUser((id_txt.array)+3, (pin_txt.array)+3)){
-			fsm = CHECKOUT_STAGE;
+
+		if(fsm == ID_STAGE){ // Aca habria que validar el ID solo, despues pasa a PIN
+			fsm = PIN_STAGE;
 			DispClear();
-			timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, closeDoor);
-			RGBIndicator(GREEN_INDICATOR);
-		}else{
-			fsm = ERROR_STAGE;
-			DispClear();
-			timerStart(timerError, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, accessDenied);
-			RGBIndicator(RED_INDICATOR);
+		}else if(fsm == PIN_STAGE){
+			if(validateUser((id_txt.array)+3, (pin_txt.array)+3)){
+				fsm = CHECKOUT_STAGE;
+				DispClear();
+				timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, closeDoor);
+				RGBIndicator(GREEN_INDICATOR);
+			}else{
+				fsm = ERROR_STAGE;
+				DispClear();
+				timerStart(timerError, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, accessDenied);
+				RGBIndicator(RED_INDICATOR);
+			}
 		}
+
 		break;
 	case CANCEL_EVENT:
 		fsm = ID_STAGE;
 		clearUserInfo();
+		DispClear();
 		break;
 	}
 }
