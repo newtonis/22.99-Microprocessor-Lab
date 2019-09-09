@@ -18,6 +18,7 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 enum{ID_STAGE, PIN_STAGE, BRIGHT_EDIT, CHECKOUT_STAGE, ERROR_STAGE}; // FSM estados
+enum{NOT_IDLE, IDLE};
 
 #define ID_LEN			8
 #define PIN_LEN			5
@@ -55,9 +56,13 @@ static disp_msj_t checkoutERROR_txt = {CHECKOUT_ERR_TXT, SIZEOFARR(checkoutERROR
 static int default_id[ID_LEN] = {1, 2, 3, 4, 5, 6, 7, 8};
 static int *aux_id;
 
+
+static int idle_cnt = 0;
 static int fsm = ID_STAGE;
+static bool idle_fsm = 0;
 
 static tim_id_t timerDisp;
+static tim_id_t timerIdle;
 static tim_id_t timerError;
 static tim_id_t timerPestillo;
 /*******************************************************************************
@@ -66,6 +71,8 @@ static tim_id_t timerPestillo;
 void displayHandler(void);
 
 void encoderHandler(void);
+
+void idleHandler(void);
 
 void internarHandler(void);
 
@@ -178,6 +185,23 @@ void modifyNumberCode(int motion){
 
 }
 
+void idleHandler(void){
+	switch(idle_fsm){
+	case IDLE:
+		clearUserInfo();
+		fsm = ID_STAGE;
+		idle_fsm = !idle_fsm;
+		break;
+	case NOT_IDLE:
+		idle_cnt++;
+		if(idle_cnt == 30){
+			idle_fsm = IDLE;
+		}
+		break;
+	}
+
+}
+
 void displayHandler (void){
 
 	switch(fsm){
@@ -203,6 +227,7 @@ void displayHandler (void){
 
 void encoderHandler(void){
 	if(fsm <= BRIGHT_EDIT){
+		idle_cnt = 0;
 		int event = encoderMotionGetEvent();
 		switch(event){
 		case LEFT:
@@ -221,9 +246,8 @@ void encoderHandler(void){
 
 void lectorHandler(void){
 	if(fsm == ID_STAGE){
-		//if(get_Enable()){ //probar con if(newReadAvailable())
+		idle_cnt = 0;
 		aux_id = lector_get_PAN();
-		//clear_Chk(); //sin esta linea
 		for(int k = 0; k < ID_LEN; k++){ // Me quedo solo con la parte que me interesa del PAN
 			id_txt.array[k+3] = aux_id[k];
 		}
@@ -281,6 +305,10 @@ void App_Init (void)
 
     timerDisp = timerGetId();
     timerStart(timerDisp, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, displayHandler);
+
+    timerIdle = timerGetId();
+    timerStart(timerIdle, TIMER_MS2TICKS(3000), TIM_MODE_PERIODIC, idleHandler);
+
 
     timerPestillo = timerGetId(); // Lo disparo cuando se pueda abrir
 

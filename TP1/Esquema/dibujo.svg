@@ -100,8 +100,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="360.15881"
-     inkscape:cy="989.43001"
+     inkscape:cx="405.97285"
+     inkscape:cy="1005.4851"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -139,7 +139,7 @@
            height="40.658642"
            x="255.82114"
            y="156.81386" /></flowRegion><flowPara
-         id="flowPara22"></flowPara></flowRoot>    <rect
+         id="flowPara22" /></flowRoot>    <rect
        style="opacity:1;fill:#ffffff;fill-opacity:0.71482891;stroke:#ff5400;stroke-width:0.26499999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
        id="rect24"
        width="20.312483"
@@ -281,7 +281,7 @@
          x="97.28611"
          y="80.164055"
          style="stroke-width:0.26458332"
-         id="tspan2098">(Con switch)</tspan></text>
+         id="tspan2098">(Con switch) (CON PWM)</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot1663"
@@ -292,7 +292,7 @@
            height="23.738585"
            x="208.09143"
            y="234.85251" /></flowRegion><flowPara
-         id="flowPara1669"></flowPara></flowRoot>    <rect
+         id="flowPara1669" /></flowRoot>    <rect
        style="opacity:1;fill:#ffffff;fill-opacity:0.71482891;stroke:#ff5400;stroke-width:0.26499999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
        id="rect24-6"
        width="20.312483"
