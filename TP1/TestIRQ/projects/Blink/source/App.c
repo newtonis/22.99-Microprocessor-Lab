@@ -31,7 +31,7 @@ enum{ID_STAGE, PIN_STAGE, BRIGHT_EDIT, CHECKOUT_STAGE, ERROR_STAGE}; // FSM esta
 #define ID_MENU			2
 #define BRIGHT_MENU		3
 
-#define ID_TEST			{I_CHAR, D_CHAR, ESPACIO, 1, 2, 3, 4, 5, 6, 7, 8}
+#define ID_TEST			{I_CHAR, D_CHAR, ESPACIO, GUION, GUION, GUION, GUION, GUION, GUION, GUION, GUION}
 #define PIN_TEST		{P_CHAR, I_CHAR, N_CHAR, 1, 2, 3, 4, 5}
 #define HIDE_PIN_TEST	{P_CHAR, I_CHAR, N_CHAR, GUION, GUION, GUION, GUION, GUION}
 #define CHECKOUT_OK_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, A_CHAR, C_CHAR, C_CHAR, E_CHAR, S_CHAR, O_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
@@ -127,18 +127,30 @@ void modifyNumberCode(int motion){
 		}else{
 			switch(motion){
 			case RIGHT:
-				if(numCode[DispGetCursor()] == 9){
+
+				if(numCode[DispGetCursor()] == GUION){ // Aplica mas que nada para el ID reseteado
 					numCode[DispGetCursor()] = 0;
 				}else{
-					numCode[DispGetCursor()]++;
+					if(numCode[DispGetCursor()] == 9){
+						numCode[DispGetCursor()] = 0;
+					}else{
+						numCode[DispGetCursor()]++;
+					}
 				}
+
 				break;
 			case LEFT:
-				if(numCode[DispGetCursor()] == 0){
+
+				if(numCode[DispGetCursor()] == GUION){
 					numCode[DispGetCursor()] = 9;
 				}else{
-					numCode[DispGetCursor()]--;
+					if(numCode[DispGetCursor()] == 0){
+						numCode[DispGetCursor()] = 9;
+					}else{
+						numCode[DispGetCursor()]--;
+					}
 				}
+
 				break;
 			}
 		}
@@ -234,6 +246,8 @@ void internarHandler(void){
 		}
 		break;
 	case CANCEL_EVENT:
+		fsm = ID_STAGE;
+		clearUserInfo();
 		break;
 	}
 }
