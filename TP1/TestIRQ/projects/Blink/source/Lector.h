@@ -37,7 +37,9 @@ int * lector_get_PAN (void);
 
 /**
  * @recieves callback to call when there is a new card read.
- * @brief initialize the lector
+ * @brief initialize the lector.
+ * IMPORTANT: board.h must include the definition of ports:
+ * LECTOR_EN, LECTOR_CLK and LECTOR_DATA
  */
 void lectorInit (void (*funcallback)(void));
 

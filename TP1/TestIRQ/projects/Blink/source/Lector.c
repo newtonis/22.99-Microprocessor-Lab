@@ -32,11 +32,11 @@ void isr_enable (void)
 		chkEnable = 0;
 	}
 
-	set_Enable(gpioRead(EN));
+	set_Enable(gpioRead(LECTOR_EN));
 }
 void isr_clk (void)
 {
-	get_Data(gpioRead(DATA));
+	get_Data(gpioRead(LECTOR_DATA));
 }
 
 /*
@@ -84,12 +84,12 @@ void lectorInit (void (*funcallback)(void))
 
 	 gpioWrite(PIN_LED_BLUE, HIGH);
 
-	 gpioMode(EN, INPUT);
-	 gpioMode(DATA, INPUT);
-	 gpioMode(CLK, INPUT);
+	 gpioMode(LECTOR_EN, INPUT);
+	 gpioMode(LECTOR_DATA, INPUT);
+	 gpioMode(LECTOR_CLK, INPUT);
 
-	 gpioIRQ(EN, GPIO_IRQ_MODE_BOTH_EDGES, isr_enable);
-	 gpioIRQ(CLK, GPIO_IRQ_MODE_FALLING_EDGE, isr_clk);
+	 gpioIRQ(LECTOR_EN, GPIO_IRQ_MODE_BOTH_EDGES, isr_enable);
+	 gpioIRQ(LECTOR_CLK, GPIO_IRQ_MODE_FALLING_EDGE, isr_clk);
 
 	 NVIC_EnableIRQ(PORTD_IRQn);
 

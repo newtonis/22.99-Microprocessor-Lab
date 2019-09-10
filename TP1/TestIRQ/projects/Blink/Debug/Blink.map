@@ -1672,34 +1672,34 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_line    0x0000000000003899      0x914 ./SDK/startup/startup_mk64f12.o
  .debug_line    0x00000000000041ad      0x334 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_str      0x0000000000000000    0x7c484
+.debug_str      0x0000000000000000    0x7c499
  .debug_str     0x0000000000000000     0x71a9 ./source/App.o
                                        0x73ef (size before relaxing)
- .debug_str     0x00000000000071a9    0x73c41 ./source/DisplayBoard.o
-                                      0x7aa00 (size before relaxing)
- .debug_str     0x000000000007adea       0xf1 ./source/Encoder.o
-                                      0x7a89b (size before relaxing)
- .debug_str     0x000000000007aedb      0x694 ./source/InternalControl.o
-                                      0x7aec0 (size before relaxing)
- .debug_str     0x000000000007b56f       0xae ./source/Lector.o
-                                      0x77e19 (size before relaxing)
- .debug_str     0x000000000007b61d       0x93 ./source/SysTick.o
+ .debug_str     0x00000000000071a9    0x73c56 ./source/DisplayBoard.o
+                                      0x7aa15 (size before relaxing)
+ .debug_str     0x000000000007adff       0xf1 ./source/Encoder.o
+                                      0x7a8b0 (size before relaxing)
+ .debug_str     0x000000000007aef0      0x694 ./source/InternalControl.o
+                                      0x7aed5 (size before relaxing)
+ .debug_str     0x000000000007b584       0xae ./source/Lector.o
+                                      0x77e2e (size before relaxing)
+ .debug_str     0x000000000007b632       0x93 ./source/SysTick.o
                                       0x7769b (size before relaxing)
- .debug_str     0x000000000007b6b0       0xcf ./source/Users.o
+ .debug_str     0x000000000007b6c5       0xcf ./source/Users.o
                                        0x6c1d (size before relaxing)
- .debug_str     0x000000000007b77f      0x202 ./source/gpio.o
+ .debug_str     0x000000000007b794      0x202 ./source/gpio.o
                                       0x77348 (size before relaxing)
- .debug_str     0x000000000007b981       0xe1 ./source/timer.o
-                                      0x7a894 (size before relaxing)
- .debug_str     0x000000000007ba62      0x178 ./SDK/startup/hardware.o
+ .debug_str     0x000000000007b996       0xe1 ./source/timer.o
+                                      0x7a8a9 (size before relaxing)
+ .debug_str     0x000000000007ba77      0x178 ./SDK/startup/hardware.o
                                       0x772d9 (size before relaxing)
- .debug_str     0x000000000007bbda       0x1b ./SDK/startup/main.o
+ .debug_str     0x000000000007bbef       0x1b ./SDK/startup/main.o
                                       0x770ad (size before relaxing)
- .debug_str     0x000000000007bbf5       0x36 ./SDK/startup/semihost_hardfault.o
+ .debug_str     0x000000000007bc0a       0x36 ./SDK/startup/semihost_hardfault.o
                                        0x2e13 (size before relaxing)
- .debug_str     0x000000000007bc2b      0x7f7 ./SDK/startup/startup_mk64f12.o
+ .debug_str     0x000000000007bc40      0x7f7 ./SDK/startup/startup_mk64f12.o
                                        0x3681 (size before relaxing)
- .debug_str     0x000000000007c422       0x62 ./SDK/CMSIS/system_MK64F12.o
+ .debug_str     0x000000000007c437       0x62 ./SDK/CMSIS/system_MK64F12.o
                                       0x771e8 (size before relaxing)
 
 .comment        0x0000000000000000       0x75

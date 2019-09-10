@@ -60,9 +60,9 @@
 #define RCHA	PORTNUM2PIN(PA,2)
 
 //Lector Pins
-#define EN		PORTNUM2PIN(PD,1)
-#define DATA 	PORTNUM2PIN(PD,2)
-#define CLK 	PORTNUM2PIN(PD,3)
+#define LECTOR_EN		PORTNUM2PIN(PD,1)
+#define LECTOR_DATA 	PORTNUM2PIN(PD,2)
+#define LECTOR_CLK 		PORTNUM2PIN(PD,3)
 
 /*******************************************************************************
  ******************************************************************************/
