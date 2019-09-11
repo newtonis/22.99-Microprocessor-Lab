@@ -17,7 +17,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE}; // FSM estados
+enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE, ID_ERROR_STAGE}; // FSM estados
 enum{NOT_IDLE, IDLE};
 
 #define ID_LEN			8
@@ -37,6 +37,7 @@ enum{NOT_IDLE, IDLE};
 #define HIDE_PIN_TEST	{P_CHAR, I_CHAR, N_CHAR, GUION, GUION, GUION, GUION, GUION}
 #define CHECKOUT_OK_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, A_CHAR, C_CHAR, C_CHAR, E_CHAR, S_CHAR, O_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 #define CHECKOUT_ERR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, C_CHAR, O_CHAR, D_CHAR, E_CHAR, ESPACIO, E_CHAR, R_CHAR, R_CHAR, O_CHAR, R_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
+#define ID_ERROR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, N_CHAR, O_CHAR, ESPACIO, S_CHAR, U_CHAR, C_CHAR, H_CHAR, ESPACIO, I_CHAR, D_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 
 static disp_msj_t id_txt = {ID_TEST, ID_LEN, 2, 1};
 
@@ -52,6 +53,9 @@ static disp_msj_t checkoutOK_txt = {CHECKOUT_OK_TXT, SIZEOFARR(checkoutOK_vec), 
 
 static int checkoutERROR_vec[] = CHECKOUT_ERR_TXT;
 static disp_msj_t checkoutERROR_txt = {CHECKOUT_ERR_TXT, SIZEOFARR(checkoutERROR_vec), 0, 0};
+
+static int idError_vec[] = ID_ERROR_TXT;
+static disp_msj_t idError_txt = {ID_ERROR_TXT, SIZEOFARR(idError_vec), 0, 0};
 
 static int default_id[ID_LEN] = {1, 2, 3, 4, 5, 6, 7, 8};
 static int *aux_id;
@@ -221,6 +225,9 @@ void displayHandler (void){
 	case ERROR_STAGE:
 		DispShowMsj(checkoutERROR_txt);
 		break;
+	case ID_ERROR_STAGE:
+		DispShowMsj(idError_txt);
+		break;
 	}
 
 }
@@ -258,9 +265,18 @@ void internarHandler(void){
 	switch(internalControlGetEvent()){
 	case OK_EVENT:
 
-		if(fsm == ID_STAGE){ // Aca habria que validar el ID solo, despues pasa a PIN
-			fsm = PIN_STAGE;
-			DispClear();
+		if(fsm == ID_STAGE){
+
+			if(validateID((id_txt.array)+3)){
+				fsm = PIN_STAGE;
+				DispClear();
+			}else{
+				fsm = ID_ERROR_STAGE;
+				timerStart(timerError, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, accessDenied);
+				RGBIndicator(RED_INDICATOR);
+				DispClear();
+			}
+
 		}else if(fsm == PIN_STAGE){
 			if(validateUser((id_txt.array)+3, (pin_txt.array)+3)){
 				fsm = CHECKOUT_STAGE;
@@ -317,7 +333,6 @@ void App_Init (void)
     timerIdle = timerGetId();
     timerStart(timerIdle, TIMER_MS2TICKS(3000), TIM_MODE_PERIODIC, idleHandler);
 
-
     timerPestillo = timerGetId(); // Lo disparo cuando se pueda abrir
 
     timerError = timerGetId(); // Lo dispador cuando no es valido el usuario
@@ -336,18 +351,27 @@ void App_Run (void)
 {
 	switch(fsm){
 	case ID_STAGE:
+		if(LedStatus_GetState() != 1){
+			LedStatus_Write(1);
+		}
 		break;
 	case PIN_STAGE:
 		// Se modifica solo con el encoder
-
+		if(LedStatus_GetState() != 2){
+			LedStatus_Write(2);
+		}
 		break;
 	case BRIGHT_EDIT:
 		// Tambien se modifica solo con el encoder
-
 		break;
 	case CHECKOUT_STAGE:
+		if(LedStatus_GetState() != 3){
+			LedStatus_Write(3);
+		}
 		break;
 	case ERROR_STAGE:
+		break;
+	case ID_ERROR_STAGE:
 		break;
 	}
 

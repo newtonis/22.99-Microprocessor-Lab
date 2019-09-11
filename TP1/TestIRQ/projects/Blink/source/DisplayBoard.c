@@ -30,6 +30,7 @@ static bool shift_hab = 0;
 static int pin_pointer = 0;
 static int dsp = 1;
 
+static int ledStatus = 1;
 /*******************************************************************************
                         LOCAL FUNCTION DECLARATIONS
  ******************************************************************************/
@@ -55,7 +56,7 @@ void DispBoard_Init(void){
 	Disp7Seg_Select(1); // Default choice
 	Disp7Seg_Write(8);
 	Disp7Seg_Write(DP);
-	Status_Write(1);
+	LedStatus_Write(1);
 }
 
 
@@ -82,25 +83,31 @@ bool Disp7Seg_Select(int disp){
 	}
 }
 
-void Status_Write(int code){
+void LedStatus_Write(int code){
 	switch(code){
 	case 1:
 		gpioWrite(status_leds[0], HIGH);
 		gpioWrite(status_leds[1], LOW);
+		ledStatus = 1;
 		break;
 	case 2:
 		gpioWrite(status_leds[0], LOW);
 		gpioWrite(status_leds[1], HIGH);
+		ledStatus = 2;
 		break;
 	case 3:
 		gpioWrite(status_leds[0], HIGH);
 		gpioWrite(status_leds[1], HIGH);
+		ledStatus = 3;
 		break;
 	default:
 		break;
 	}
 }
 
+int LedStatus_GetState(void){
+	return ledStatus;
+}
 
 void DispShowMsj(disp_msj_t msj){
 
@@ -274,6 +281,16 @@ void Disp7Seg_Write(int sym){
 		gpioWrite(segments[1], LOW);
 		gpioWrite(segments[2], LOW);
 		gpioWrite(segments[3], HIGH);
+		gpioWrite(segments[4], HIGH);
+		gpioWrite(segments[5], HIGH);
+		gpioWrite(segments[6], HIGH);
+		gpioWrite(segments[7], LOW);
+		break;
+	case H_CHAR:
+		gpioWrite(segments[0], LOW);
+		gpioWrite(segments[1], LOW);
+		gpioWrite(segments[2], HIGH);
+		gpioWrite(segments[3], LOW);
 		gpioWrite(segments[4], HIGH);
 		gpioWrite(segments[5], HIGH);
 		gpioWrite(segments[6], HIGH);

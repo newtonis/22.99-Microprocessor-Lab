@@ -99,7 +99,7 @@ bool validatePIN(int * pin, int ind)
 
 bool validateUser(int * id, int * pin)
 {
-	int id_idx = validateID(id);
+	int id_idx = validateIDint(id);
 	if (id_idx != ERROR) // si el id exite
 	{
 		if(validatePIN(pin, id_idx))// si el pin esta bien

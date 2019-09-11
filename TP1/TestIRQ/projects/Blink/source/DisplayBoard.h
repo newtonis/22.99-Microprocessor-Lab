@@ -37,6 +37,7 @@
 #define C_CHAR	99
 #define D_CHAR	100
 #define E_CHAR	101
+#define H_CHAR	104
 #define I_CHAR	105
 #define L_CHAR	108
 #define	N_CHAR	110
@@ -79,7 +80,9 @@ disp_bright_t DispChangeBright(int move_dir);
  */
 void DispClear(void);
 
-void Status_Write(int code);
+void LedStatus_Write(int code);
+
+int LedStatus_GetState(void);
 
 #endif /* DISPLAYBOARD_H_ */
 
