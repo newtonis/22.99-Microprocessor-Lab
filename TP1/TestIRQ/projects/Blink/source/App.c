@@ -17,16 +17,26 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE, ID_ERROR_STAGE}; // FSM estados
+enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE, ID_ERROR_STAGE, USER_MENU}; // FSM estados
+
+enum{MAIN_MENU, OPT_SEL, PIN_CHANGER};
+enum{OPEN_DOOR = 1, PIN_MODIFY};
+enum{NEW_PIN_MSJ, NEW_PIN_MENU, CONF_PIN_MSJ, CONF_PIN_MENU, PIN_OK_CHANGED, PIN_NO_CHANGED};
+static int user_fsm = MAIN_MENU;
+static int pin_change_fsm = NEW_PIN_MSJ;
+
+
 enum{NOT_IDLE, IDLE};
 
 #define ID_LEN			8
 #define PIN_LEN			5
 #define BRIGHT_LEN		1
+#define SEL_LEN			1
+
+#define OPTIONS			2
 
 #define ID_WORD_LEN		11
 #define PIN_WORD_LEN	8
-#define BRIGHT_WORD_LEN 4
 
 #define PIN_MENU		1
 #define ID_MENU			2
@@ -38,12 +48,18 @@ enum{NOT_IDLE, IDLE};
 #define CHECKOUT_OK_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, A_CHAR, C_CHAR, C_CHAR, E_CHAR, S_CHAR, O_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 #define CHECKOUT_ERR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, C_CHAR, O_CHAR, D_CHAR, E_CHAR, ESPACIO, E_CHAR, R_CHAR, R_CHAR, O_CHAR, R_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 #define ID_ERROR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, N_CHAR, O_CHAR, ESPACIO, S_CHAR, U_CHAR, C_CHAR, H_CHAR, ESPACIO, I_CHAR, D_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
-#define HELLO_TXT		{ESPACIO, ESPACIO, ESPACIO, ESPACIO, H_CHAR, E_CHAR, L_CHAR, L_CHAR, O_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
+
+#define HELLO_TXT		{GUION, GUION, U_CHAR, S_CHAR, E_CHAR, R_CHAR, ESPACIO, O_CHAR, P_CHAR, S_CHAR, GUION, GUION, 1, ESPACIO, O_CHAR, P_CHAR, E_CHAR, N_CHAR, GUION, 2, ESPACIO, N_CHAR, E_CHAR, U_CHAR, ESPACIO, P_CHAR, I_CHAR, N_CHAR, GUION, GUION}
+#define SEL_TXT			{S_CHAR, E_CHAR, L_CHAR, 1}
+#define NEW_PIN_TXT		{ESPACIO, ESPACIO, ESPACIO, ESPACIO, C_CHAR, H_CHAR, O_CHAR, O_CHAR, S_CHAR, E_CHAR, ESPACIO, N_CHAR, E_CHAR, U_CHAR, ESPACIO, P_CHAR, I_CHAR, N_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
+#define CONF_PIN_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, C_CHAR, O_CHAR, N_CHAR, F_CHAR, I_CHAR, R_CHAR, N_CHAR, ESPACIO, N_CHAR, E_CHAR, U_CHAR, ESPACIO, P_CHAR, I_CHAR, N_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
+#define MODF_OK_TXT		{ESPACIO, ESPACIO, ESPACIO, ESPACIO, P_CHAR, I_CHAR, N_CHAR, ESPACIO, C_CHAR, H_CHAR, A_CHAR, N_CHAR, G_CHAR, E_CHAR, D_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 
 static disp_msj_t id_txt = {ID_TEST, ID_LEN, 2, 1};
 
 static disp_msj_t pin_txt = {PIN_TEST, PIN_LEN, 3, 1};
 static disp_msj_t pin_toDisp = {HIDE_PIN_TEST, PIN_LEN, 3, 1}; // Para enviar este con los caracteres ocultos
+static int aux_pin[PIN_LEN] = {0, 0, 0, 0, 0};
 
 #define BRIGHT_UNIT		3
 #define BRIGHT_DEC		2
@@ -60,6 +76,17 @@ static disp_msj_t idError_txt = {ID_ERROR_TXT, SIZEOFARR(idError_vec), 0, 0};
 
 static int hello_vec[] = HELLO_TXT;
 static disp_msj_t hello_txt = {HELLO_TXT, SIZEOFARR(hello_vec), 0, 0};
+
+static disp_msj_t sel_txt = {SEL_TXT, SEL_LEN, 3, 1};
+
+static int new_pin_vec[] = NEW_PIN_TXT;
+static disp_msj_t new_pin_txt = {NEW_PIN_TXT, SIZEOFARR(new_pin_vec), 0, 0};
+
+static int conf_pin_vec[] = CONF_PIN_TXT;
+static disp_msj_t conf_pin_txt = {CONF_PIN_TXT, SIZEOFARR(conf_pin_vec), 0, 0};
+
+static int modf_ok_vec[] = MODF_OK_TXT;
+static disp_msj_t modf_ok_txt = {MODF_OK_TXT, SIZEOFARR(modf_ok_vec), 0, 0};
 
 static int default_id[ID_LEN] = {1, 2, 3, 4, 5, 6, 7, 8};
 static int *aux_id;
@@ -90,6 +117,10 @@ void update_hidePIN(void);
 
 void clearUserInfo(void);
 
+void clearPINInfo(void);
+
+void pinFsmUpdate(void);
+
 void closeDoor(void);
 
 void accessDenied(void);
@@ -111,6 +142,30 @@ void clearUserInfo(void){
 	}
 }
 
+void clearPINInfo(void){
+	int aux2[] = PIN_TEST;
+	for(int k = 0; k < PIN_WORD_LEN; k++){
+		pin_txt.array[k] = aux2[k];
+	}
+}
+
+void pinFsmUpdate(void){
+	if(pin_change_fsm == PIN_NO_CHANGED){
+		pin_change_fsm = NEW_PIN_MSJ;
+		user_fsm = MAIN_MENU;
+		clearUserInfo();
+		fsm = ID_STAGE;
+		DispClear();
+	}else if(pin_change_fsm == PIN_OK_CHANGED){
+		pin_change_fsm = NEW_PIN_MSJ;
+		user_fsm = MAIN_MENU;
+		DispClear();
+	}else{
+		pin_change_fsm++;
+		DispClear();
+	}
+}
+
 void update_hidePIN(void){
 	int aux[] = HIDE_PIN_TEST;
 	for(int k = 0; k < PIN_WORD_LEN; k++){
@@ -127,8 +182,12 @@ void modifyNumberCode(int motion){
 
 	if(fsm == ID_STAGE){
 		numCode = (id_txt.array)+3;
-	}else if(PIN_STAGE){
+	}else if((fsm == PIN_STAGE)||(pin_change_fsm == NEW_PIN_MENU)||(pin_change_fsm == CONF_PIN_MENU)){
 		numCode = (pin_txt.array)+3;
+	}else if(fsm == USER_MENU){
+		if(user_fsm == OPT_SEL){
+			numCode = (sel_txt.array)+3;
+		}
 	}
 
 
@@ -153,6 +212,12 @@ void modifyNumberCode(int motion){
 					}
 				}
 
+				if(user_fsm == OPT_SEL){
+					if(numCode[DispGetCursor()] > OPTIONS){
+						numCode[DispGetCursor()] = 1;
+					}
+				}
+
 				break;
 			case LEFT:
 
@@ -166,6 +231,12 @@ void modifyNumberCode(int motion){
 					}
 				}
 
+				if(user_fsm == OPT_SEL){
+					if(numCode[DispGetCursor()] < 1){
+						numCode[DispGetCursor()] = OPTIONS;
+					}
+				}
+
 				break;
 			}
 		}
@@ -175,16 +246,30 @@ void modifyNumberCode(int motion){
 		case LEFT:
 			if(fsm == ID_STAGE){
 				fsm = BRIGHT_EDIT;
-			}else if(fsm != PIN_STAGE){
-				fsm--;
+			}else if(fsm == BRIGHT_EDIT){
+				fsm = ID_STAGE;
+
+			}else if(fsm == USER_MENU){
+				if(user_fsm == MAIN_MENU){
+					user_fsm = OPT_SEL;
+				}else if(user_fsm == OPT_SEL){
+					user_fsm = MAIN_MENU;
+				}
 			}
 			DispClear();
 			break;
 		case RIGHT:
-			if(fsm == BRIGHT_EDIT){
+			if(fsm == ID_STAGE){
+				fsm = BRIGHT_EDIT;
+			}else if(fsm == BRIGHT_EDIT){
 				fsm = ID_STAGE;
-			}else if(fsm != PIN_STAGE){
-				fsm++;
+
+			}else if(fsm == USER_MENU){
+				if(user_fsm == MAIN_MENU){
+					user_fsm = OPT_SEL;
+				}else if(user_fsm == OPT_SEL){
+					user_fsm = MAIN_MENU;
+				}
 			}
 			DispClear();
 			break;
@@ -232,12 +317,50 @@ void displayHandler (void){
 	case ID_ERROR_STAGE:
 		DispShowMsj(idError_txt);
 		break;
+	case USER_MENU:
+
+		switch(user_fsm){
+		case MAIN_MENU:
+			DispShowMsj(hello_txt);
+			break;
+		case OPT_SEL:
+			DispShowMsj(sel_txt);
+			break;
+		case PIN_CHANGER:
+
+			switch(pin_change_fsm){
+			case NEW_PIN_MSJ:
+				DispShowMsj(new_pin_txt);
+				break;
+			case NEW_PIN_MENU:
+				update_hidePIN();
+				DispShowMsj(pin_toDisp);
+				break;
+			case CONF_PIN_MSJ:
+				DispShowMsj(conf_pin_txt);
+				break;
+			case CONF_PIN_MENU:
+				update_hidePIN();
+				DispShowMsj(pin_toDisp);
+				break;
+			case PIN_OK_CHANGED:
+				DispShowMsj(modf_ok_txt);
+				break;
+			case PIN_NO_CHANGED:
+				DispShowMsj(checkoutERROR_txt);
+				break;
+			}
+
+			break;
+		}
+
+		break;
 	}
 
 }
 
 void encoderHandler(void){
-	if(fsm <= PIN_STAGE){
+	if((fsm <= PIN_STAGE)||(fsm == USER_MENU)){
 		idle_cnt = 0;
 		int event = encoderMotionGetEvent();
 		switch(event){
@@ -266,6 +389,8 @@ void lectorHandler(void){
 }
 
 void internarHandler(void){
+	bool pin_match = 1;
+
 	switch(internalControlGetEvent()){
 	case OK_EVENT:
 
@@ -283,15 +408,61 @@ void internarHandler(void){
 
 		}else if(fsm == PIN_STAGE){
 			if(validateUser((id_txt.array)+3, (pin_txt.array)+3)){
-				fsm = CHECKOUT_STAGE;
+				fsm = USER_MENU;
 				DispClear();
-				timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, closeDoor);
-				RGBIndicator(GREEN_INDICATOR);
 			}else{
 				fsm = ERROR_STAGE;
 				DispClear();
 				timerStart(timerError, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, accessDenied);
 				RGBIndicator(RED_INDICATOR);
+			}
+		}else if(fsm == USER_MENU){
+			if(user_fsm == OPT_SEL){
+				switch(sel_txt.array[3]){
+				case OPEN_DOOR:
+					fsm = CHECKOUT_STAGE;
+					user_fsm = MAIN_MENU;
+					DispClear();
+					timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, closeDoor);
+					RGBIndicator(GREEN_INDICATOR);
+					break;
+				case PIN_MODIFY:
+					user_fsm = PIN_CHANGER;
+					pin_change_fsm = NEW_PIN_MSJ;
+					timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, pinFsmUpdate);
+					DispClear();
+					break;
+				}
+			}else if(user_fsm == PIN_CHANGER){
+				switch(pin_change_fsm){
+				case NEW_PIN_MENU:
+					for(int k = 0; k < PIN_LEN; k++){
+						aux_pin[k] = pin_txt.array[k+3]; // Autosave
+					}
+					clearPINInfo();
+					pinFsmUpdate();
+					timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, pinFsmUpdate);
+					DispClear();
+					break;
+				case CONF_PIN_MENU:
+
+					for(int k = 0; k < PIN_LEN; k++){
+						if(pin_txt.array[k+3] != aux_pin[k]){
+							pin_match = 0;
+						}
+					}
+					if(pin_match){
+						changePin((id_txt.array)+3, aux_pin);
+						pinFsmUpdate();
+						timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, pinFsmUpdate);
+						DispClear();
+					}else{
+						pin_change_fsm = PIN_NO_CHANGED;
+						timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, pinFsmUpdate);
+						DispClear();
+					}
+					break;
+				}
 			}
 		}
 

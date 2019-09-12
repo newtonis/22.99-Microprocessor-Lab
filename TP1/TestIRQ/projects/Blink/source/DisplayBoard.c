@@ -227,6 +227,9 @@ disp_cursor_t DispGetCursor(void){
 }
 
 disp_task_t DispModType(void){
+	if((actual_prefix == 0)&&(actual_sufix == 0)){
+		return MENU_TYPE;
+	}
 	return shift_hab;
 }
 
@@ -282,6 +285,26 @@ void Disp7Seg_Write(int sym){
 		gpioWrite(segments[2], LOW);
 		gpioWrite(segments[3], HIGH);
 		gpioWrite(segments[4], HIGH);
+		gpioWrite(segments[5], HIGH);
+		gpioWrite(segments[6], HIGH);
+		gpioWrite(segments[7], LOW);
+		break;
+	case F_CHAR:
+		gpioWrite(segments[0], HIGH);
+		gpioWrite(segments[1], LOW);
+		gpioWrite(segments[2], LOW);
+		gpioWrite(segments[3], LOW);
+		gpioWrite(segments[4], HIGH);
+		gpioWrite(segments[5], HIGH);
+		gpioWrite(segments[6], HIGH);
+		gpioWrite(segments[7], LOW);
+		break;
+	case G_CHAR:
+		gpioWrite(segments[0], HIGH);
+		gpioWrite(segments[1], HIGH);
+		gpioWrite(segments[2], HIGH);
+		gpioWrite(segments[3], HIGH);
+		gpioWrite(segments[4], LOW);
 		gpioWrite(segments[5], HIGH);
 		gpioWrite(segments[6], HIGH);
 		gpioWrite(segments[7], LOW);

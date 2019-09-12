@@ -37,6 +37,8 @@
 #define C_CHAR	99
 #define D_CHAR	100
 #define E_CHAR	101
+#define F_CHAR	102
+#define G_CHAR	103
 #define H_CHAR	104
 #define I_CHAR	105
 #define L_CHAR	108
@@ -53,7 +55,7 @@ typedef uint8_t disp_bright_t;
 typedef	bool disp_task_t;
 
 typedef struct {
-	int                 array[30];
+	int                 array[50];
 	int                 len;
     int                 prefix_len;
     int					sufix_len;
