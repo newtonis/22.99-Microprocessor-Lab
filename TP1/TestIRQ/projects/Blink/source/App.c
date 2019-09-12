@@ -38,6 +38,7 @@ enum{NOT_IDLE, IDLE};
 #define CHECKOUT_OK_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, A_CHAR, C_CHAR, C_CHAR, E_CHAR, S_CHAR, O_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 #define CHECKOUT_ERR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, C_CHAR, O_CHAR, D_CHAR, E_CHAR, ESPACIO, E_CHAR, R_CHAR, R_CHAR, O_CHAR, R_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 #define ID_ERROR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, N_CHAR, O_CHAR, ESPACIO, S_CHAR, U_CHAR, C_CHAR, H_CHAR, ESPACIO, I_CHAR, D_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
+#define HELLO_TXT		{ESPACIO, ESPACIO, ESPACIO, ESPACIO, H_CHAR, E_CHAR, L_CHAR, L_CHAR, O_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 
 static disp_msj_t id_txt = {ID_TEST, ID_LEN, 2, 1};
 
@@ -56,6 +57,9 @@ static disp_msj_t checkoutERROR_txt = {CHECKOUT_ERR_TXT, SIZEOFARR(checkoutERROR
 
 static int idError_vec[] = ID_ERROR_TXT;
 static disp_msj_t idError_txt = {ID_ERROR_TXT, SIZEOFARR(idError_vec), 0, 0};
+
+static int hello_vec[] = HELLO_TXT;
+static disp_msj_t hello_txt = {HELLO_TXT, SIZEOFARR(hello_vec), 0, 0};
 
 static int default_id[ID_LEN] = {1, 2, 3, 4, 5, 6, 7, 8};
 static int *aux_id;
