@@ -6,7 +6,6 @@ static uint8_t data [DATA_LENGTH];
 static bool Enable = LOW;
 static void (*callback)();
 
-static bool chkEnable = 0;
 
 static uint8_t count = 0;
 static uint8_t bits = 0;
@@ -17,7 +16,7 @@ static bool end = LOW;
 
 static bool parity (uint8_t lrc);
 static bool Check_LRC (void);
-static void get_Data (bool my_data);
+static void get_Data ();
 static void set_Enable(bool status);
 static void isr_enable (void);
 static void isr_clk (void);
@@ -26,17 +25,11 @@ static void clear_PAN (void);
 
 void isr_enable (void)
 {
-	if(Enable){
-		chkEnable = 1;
-	}else{
-		chkEnable = 0;
-	}
-
 	set_Enable(gpioRead(LECTOR_EN));
 }
 void isr_clk (void)
 {
-	get_Data(gpioRead(LECTOR_DATA));
+	get_Data();
 }
 
 /*
@@ -131,8 +124,9 @@ bool parity (uint8_t num)
 	return par;
 }
 
-void get_Data (bool my_data)
+void get_Data ()
 {
+	bool my_data = gpioRead(LECTOR_DATA);
 	if(Enable == HIGH) //CUANDO EL ENABLE ESTA PRENDIDO LEE SI NO NO
 	{
 		if (my_data == 0)
@@ -159,11 +153,15 @@ void get_Data (bool my_data)
 						{
 							end = HIGH;
 							callback();//end = HIGH; puse callback aca
+							clear_PAN();
 						}
 					}
 					if (end == LOW)
 					{
+						if (count < DATA_LENGTH-1)
+						{
 						count++;
+						}
 						bits = 0;
 						word = 0;
 					}
@@ -184,8 +182,8 @@ void set_Enable(bool status)
 		end = LOW;
 		word = 0;
 		clear_PAN();
-	}
 
+	}
 }
 
 

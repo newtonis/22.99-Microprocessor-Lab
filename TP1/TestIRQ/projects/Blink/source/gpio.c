@@ -38,6 +38,31 @@ __ISR__ PORTA_IRQHandler (void){
 	PORT_ClearInterruptFlag(PORTNUM2PIN(PA,i));
 }
 
+__ISR__ PORTB_IRQHandler (void){
+
+	uint8_t i = 0;
+	while ( !((PORTB -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	{
+		i++;
+	}
+
+	isr_Matrix[PB][i]();
+	PORT_ClearInterruptFlag(PORTNUM2PIN(PB,i));
+}
+
+__ISR__ PORTE_IRQHandler (void){
+
+	uint8_t i = 0;
+	while ( !((PORTE -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	{
+		i++;
+	}
+
+	isr_Matrix[PE][i]();
+	PORT_ClearInterruptFlag(PORTNUM2PIN(PE,i));
+}
+
+
 __ISR__ PORTC_IRQHandler (void){
 
 	uint8_t i = 0;
