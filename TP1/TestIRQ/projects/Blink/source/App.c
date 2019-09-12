@@ -18,7 +18,7 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE, ID_ERROR_STAGE}; // FSM estados
-enum{NOT_IDLE, IDLE};
+enum{NOT_IDLE, IDLE}; // IDLE estados
 
 #define ID_LEN			8
 #define PIN_LEN			5
@@ -26,11 +26,9 @@ enum{NOT_IDLE, IDLE};
 
 #define ID_WORD_LEN		11
 #define PIN_WORD_LEN	8
-#define BRIGHT_WORD_LEN 4
 
 #define PIN_MENU		1
 #define ID_MENU			2
-#define BRIGHT_MENU		3
 
 #define ID_TEST			{I_CHAR, D_CHAR, ESPACIO, GUION, GUION, GUION, GUION, GUION, GUION, GUION, GUION}
 #define PIN_TEST		{P_CHAR, I_CHAR, N_CHAR, 1, 2, 3, 4, 5}
@@ -59,7 +57,6 @@ static disp_msj_t idError_txt = {ID_ERROR_TXT, SIZEOFARR(idError_vec), 0, 0};
 
 static int default_id[ID_LEN] = {1, 2, 3, 4, 5, 6, 7, 8};
 static int *aux_id;
-
 
 static int idle_cnt = 0;
 static int fsm = ID_STAGE;
