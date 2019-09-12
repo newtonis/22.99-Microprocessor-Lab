@@ -10,6 +10,16 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
+#define DISP_LEN		4
+
+#define END_LINE		DISP_LEN+1
+#define DISP_TEST		{8, 8, 8, 8}
+#define FLASH_TIME		160
+#define SHIFT_TIME		500
+
+#define MIN_BRIGHT		2
+#define MAX_BRIGHT		20
+
 static int segments[] = {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G, SEG_DP};
 static int disp_selector[] = {SEL0, SEL1};
 static int status_leds[] = {STAT0, STAT1};
@@ -134,9 +144,8 @@ void DispShowMsj(disp_msj_t msj){
 	}
 
 	Disp7Seg_Select(dsp);
-	// HASTA ACA ESTARIA ///////////////////////////
 
-	// Aca vendria la parte mistica del brillo
+
 	if(bright_time <= brightness){
 
 		if((actual_prefix == 0)&&(actual_sufix == 0)){ // Roll Message Mode

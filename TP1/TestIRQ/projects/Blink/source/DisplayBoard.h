@@ -16,18 +16,8 @@
  ******************************************************************************/
 #define SIZEOFARR(a)	sizeof(a)/sizeof(a[0])
 
-#define DISP_LEN		4
-
 #define MENU_TYPE		0
 #define NUM_TYPE		1
-
-#define END_LINE		DISP_LEN+1
-#define DISP_TEST		{8, 8, 8, 8}
-#define FLASH_TIME		160
-#define SHIFT_TIME		500
-
-#define MIN_BRIGHT		2
-#define MAX_BRIGHT		20
 
 /***** CHARACTER defines ******************************************************/
 #define ESPACIO	-1
@@ -62,26 +52,58 @@ typedef struct {
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
+
+/**
+ * @brief initializes display board
+ */
 void DispBoard_Init(void);
 
+/**
+ * @brief shows the message msj, must be called externally every 20ms
+ * @param message to show according to structure parameters
+ */
 void DispShowMsj(disp_msj_t msj);
 
+/**
+ * @brief shifts the actual message shown one step to the left
+ */
 void DispShiftMsj(void);
 
+/**
+ * @brief getter for the actual display cursor
+ * @return pointer position referred to the numbers to modify -1
+ * Example: third PIN number -> returns 2
+ */
 disp_cursor_t DispGetCursor(void);
 
+/**
+ * @brief getter for information of the actual modifier
+ * @return 0 = MENU_TYPE is menu switching mode, 1 = NUM_TYPE number modify mode
+ */
 disp_task_t DispModType(void);
 
+/**
+ * @brief changes display brightness
+ * @param RIGHT or LEFT
+ * @return resulting bright in scale of 1 to 10, in steps of 1.
+ */
 disp_bright_t DispChangeBright(int move_dir);
 
 /**
- * @brief Clears display text, must call always when menu changes
-
+ * @brief clears display text, must call always when menu changes.
  */
 void DispClear(void);
 
+/**
+ * @brief sets the active led on the display board
+ * @param the number of the led to activate (1, 2 or 3).
+ */
 void LedStatus_Write(int code);
 
+/**
+ * @brief getter for the actual display board led status
+ * @return 1, 2 or 3 for the corresponding leds in the board.
+ */
 int LedStatus_GetState(void);
 
 #endif /* DISPLAYBOARD_H_ */
