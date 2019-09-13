@@ -29,6 +29,9 @@ enum { PA, PB, PC, PD, PE };
 #define PORTNUM2PIN(p,n)    (((p)<<5) + (n))
 #define PIN2PORT(p)         (((p)>>5) & 0x07)
 #define PIN2NUM(p)          ((p) & 0x1F)
+#define PORTS_CNT			5
+#define PINS_CNT			32
+
 
 
 // Modes

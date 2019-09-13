@@ -4,7 +4,7 @@ static GPIO_Type* gpioPtrs[] = GPIO_BASE_PTRS;
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
 static uint32_t simMasks[] = {SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK, SIM_SCGC5_PORTC_MASK, SIM_SCGC5_PORTD_MASK, SIM_SCGC5_PORTE_MASK };
 static SIM_Type* sim_ptr = SIM;
-static pinIrqFun_t isr_Matrix [5][32];
+static pinIrqFun_t isr_Matrix [PORTS_CNT][PINS_CNT];
 
 
 /* * @brief Configures the specified pin to behave either as an input or an output
@@ -17,7 +17,7 @@ static pinIrqFun_t isr_Matrix [5][32];
 __ISR__ PORTD_IRQHandler (void){
 
 	uint8_t i = 0;
-	while ( !((PORTD -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	while ( !((PORTD -> ISFR) & (1<<i)) && (i < PINS_CNT)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
 	{
 		i++;
 	}
@@ -29,7 +29,7 @@ __ISR__ PORTD_IRQHandler (void){
 __ISR__ PORTA_IRQHandler (void){
 
 	uint8_t i = 0;
-	while ( !((PORTA -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	while ( !((PORTA -> ISFR) & (1<<i)) && (i < PINS_CNT)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
 	{
 		i++;
 	}
@@ -41,7 +41,7 @@ __ISR__ PORTA_IRQHandler (void){
 __ISR__ PORTB_IRQHandler (void){
 
 	uint8_t i = 0;
-	while ( !((PORTB -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	while ( !((PORTB -> ISFR) & (1<<i)) && (i < PINS_CNT)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
 	{
 		i++;
 	}
@@ -53,7 +53,7 @@ __ISR__ PORTB_IRQHandler (void){
 __ISR__ PORTE_IRQHandler (void){
 
 	uint8_t i = 0;
-	while ( !((PORTE -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	while ( !((PORTE -> ISFR) & (1<<i)) && (i < PINS_CNT)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
 	{
 		i++;
 	}
@@ -66,7 +66,7 @@ __ISR__ PORTE_IRQHandler (void){
 __ISR__ PORTC_IRQHandler (void){
 
 	uint8_t i = 0;
-	while ( !((PORTC -> ISFR) & (1<<i)) && (i < 32)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
+	while ( !((PORTC -> ISFR) & (1<<i)) && (i < PINS_CNT)) //atiende primero a la interrupcion que viene de un pin con numero mas bajo
 	{
 		i++;
 	}
