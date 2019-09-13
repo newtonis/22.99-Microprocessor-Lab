@@ -29,7 +29,9 @@ void isr_enable (void)
 }
 void isr_clk (void)
 {
+	//gpioWrite(TEST_PIN, HIGH);
 	get_Data();
+	//gpioWrite(TEST_PIN, LOW);
 }
 
 /*
@@ -88,6 +90,8 @@ void lectorInit (void (*funcallback)(void))
 	 NVIC_EnableIRQ(PORTD_IRQn);
 
 	 callback = funcallback;
+
+	 //gpioMode(TEST_PIN, OUTPUT);
 }
 
 
@@ -162,6 +166,10 @@ void get_Data ()
 						if (count < DATA_LENGTH-1)
 						{
 						count++;
+						}
+						else
+						{
+							count = 0;
 						}
 						bits = 0;
 						word = 0;
