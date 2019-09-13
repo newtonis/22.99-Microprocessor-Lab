@@ -67,6 +67,7 @@ void DispBoard_Init(void){
 	Disp7Seg_Write(8);
 	Disp7Seg_Write(DP);
 	LedStatus_Write(1);
+
 }
 
 
@@ -203,6 +204,7 @@ void DispShowMsj(disp_msj_t msj){
 	}
 
 	flash_counter++;
+
 }
 
 void DispShiftMsj(void){

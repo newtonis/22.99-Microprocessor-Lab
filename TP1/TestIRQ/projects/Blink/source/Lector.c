@@ -60,6 +60,7 @@ int * lector_get_PAN (void)
 	//{
 	//	return NULL;
 	//}
+
 }
 
 void clear_PAN (void)

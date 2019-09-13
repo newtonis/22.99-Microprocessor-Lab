@@ -77,7 +77,7 @@ void timerInit(void)
     static bool yaInit = false;
     if (yaInit)
         return;
-    
+
     SysTick_Init(timer_isr); // init peripheral
     
     yaInit = true;
