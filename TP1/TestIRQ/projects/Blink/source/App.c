@@ -23,6 +23,7 @@ enum{NOT_IDLE, IDLE}; // IDLE estados
 #define ID_LEN			8
 #define PIN_LEN			5
 #define BRIGHT_LEN		1
+#define TEXT_TAB		3
 
 #define ID_WORD_LEN		11
 #define PIN_WORD_LEN	8
@@ -111,7 +112,7 @@ void update_hidePIN(void){
 	}
 
 	if(DispModType() == NUM_TYPE){
-		pin_toDisp.array[DispGetCursor()+3] = pin_txt.array[DispGetCursor()+3];
+		pin_toDisp.array[DispGetCursor()+TEXT_TAB] = pin_txt.array[DispGetCursor()+TEXT_TAB];
 	}
 }
 
@@ -119,9 +120,9 @@ void modifyNumberCode(int motion){
 	int *numCode;
 
 	if(fsm == ID_STAGE){
-		numCode = (id_txt.array)+3;
+		numCode = (id_txt.array)+TEXT_TAB;
 	}else if(PIN_STAGE){
-		numCode = (pin_txt.array)+3;
+		numCode = (pin_txt.array)+TEXT_TAB;
 	}
 
 
@@ -253,7 +254,7 @@ void lectorHandler(void){
 		idle_cnt = 0;
 		aux_id = lector_get_PAN();
 		for(int k = 0; k < ID_LEN; k++){ // Me quedo solo con la parte que me interesa del PAN
-			id_txt.array[k+3] = aux_id[k];
+			id_txt.array[k+TEXT_TAB] = aux_id[k];
 		}
 	}
 }
@@ -264,7 +265,7 @@ void internarHandler(void){
 
 		if(fsm == ID_STAGE){
 
-			if(validateID((id_txt.array)+3)){
+			if(validateID((id_txt.array)+TEXT_TAB)){
 				fsm = PIN_STAGE;
 				DispClear();
 			}else{
@@ -275,7 +276,7 @@ void internarHandler(void){
 			}
 
 		}else if(fsm == PIN_STAGE){
-			if(validateUser((id_txt.array)+3, (pin_txt.array)+3)){
+			if(validateUser((id_txt.array)+TEXT_TAB, (pin_txt.array)+TEXT_TAB)){
 				fsm = CHECKOUT_STAGE;
 				DispClear();
 				timerStart(timerPestillo, TIMER_MS2TICKS(15000), TIM_MODE_SINGLESHOT, closeDoor);
@@ -367,8 +368,10 @@ void App_Run (void)
 		}
 		break;
 	case ERROR_STAGE:
+		// Error en el PIN ingresado
 		break;
 	case ID_ERROR_STAGE:
+		// La ID ingresada no existe
 		break;
 	}
 
