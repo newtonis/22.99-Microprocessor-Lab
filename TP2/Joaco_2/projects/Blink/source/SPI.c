@@ -53,34 +53,36 @@ void SPIMode(pin_t pin, uint8_t mode){
 	}
 }
 
-void setBaudRate(int mode){
-	//baudrate
-	//y prescaler
-
+void setMasterBaudRate(int SPI_n,int mode){
+	SPIPtrs[SPI_n]->CTAR[1] &= ~ SPI_CTAR_BR_MASK;
+	SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_BR(mode);
 }
-/*
-void setClockPolarity(int SPI_n, bool pol){
+
+void setMasterBaudRatePrescaler(int SPI_n,int mode){
+	SPIPtrs[SPI_n]->CTAR[1] &= ~ SPI_CTAR_PBR_MASK;
+	SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_PBR(mode);
+}
+
+void setMasterClockPolarity(int SPI_n, bool pol){
 	if (pol == ENABLE){
-		SPIPtrs[SPI_n]->CTAR |= SPI_CTAR_CPOL(ENABLE);
+		SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_CPOL(ENABLE);
 	}else{
-		SPIPtrs[SPI_n]->CTAR &= ~SPI_CTAR_CPOL_SHIFT;
+		SPIPtrs[SPI_n]->CTAR[1] &= ~SPI_CTAR_CPOL_SHIFT;
 	}
 }
 
 
-void setClockPhase(int SPI_n, bool pha){
+void setMasterClockPhase(int SPI_n, bool pha){
 	if (pha == ENABLE){
-		SPIPtrs[SPI_n]->CTAR |= SPI_CTAR_CPHA(ENABLE);
+		SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_CPHA(ENABLE);
 	}else{
-		SPIPtrs[SPI_n]->CTAR &= ~SPI_CTAR_CPHA_SHIFT;
+		SPIPtrs[SPI_n]->CTAR[1] &= ~SPI_CTAR_CPHA_SHIFT;
 	}
 }
-*/
 
 void setMasterMode(int SPI_n){
-	SPI_Type * spi_aux = SPIPtrs[0]->MCR;
-	SPIPtrs[0]->MCR |= SPI_MCR_MSTR(MASTER);
-	SPIPtrs[0]->MCR |= SPI_MCR_MSTR(MASTER);
+	//SPI_Type * spi_aux = SPIPtrs[SPI_n];
+	SPIPtrs[SPI_n]->MCR |= SPI_MCR_MSTR(MASTER);
 }
 
 void setSlaveMode(int SPI_n){
