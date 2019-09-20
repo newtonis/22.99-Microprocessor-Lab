@@ -15,16 +15,20 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "hardware.h"
+#include "board.h"
+//#include "hardware.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-
-
+//#define PIN2PORT(p)         (((p)>>5) & 0x07)
+//#define LOW     0
+//#define HIGH    1
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
+
+typedef uint8_t pin_t;
 enum{DISABLE,ENABLE};
 enum{PULL_DOWN,PULL_UP,DISABLE_PULL};
 enum{SPI_0,SPI_1,SPI_2};

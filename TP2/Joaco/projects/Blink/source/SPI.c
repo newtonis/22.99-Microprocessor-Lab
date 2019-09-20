@@ -28,8 +28,6 @@ void SPIClockGatingEnable(int SPI_n){
 			sim_ptr->SCGC3 |= SIM_SCGC3_SPI2(ENABLE);
 			break;
 	}
-	sim_ptr->SCGC5 |= simMasks[PIN2PORT(pin)]; // activo clock gating
-
 }
 
 
