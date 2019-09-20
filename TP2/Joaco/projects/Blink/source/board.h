@@ -25,6 +25,7 @@
 #define PIN_LED_GREEN   PORTNUM2PIN(PE,26) // PTE26
 #define PIN_LED_BLUE    PORTNUM2PIN(PB,21) // PTB21
 
+
 #define TEST_PIN		PORTNUM2PIN(PE,24)
 
 #define LED_ACTIVE      LOW
@@ -32,6 +33,12 @@
 // On Board User Switches
 #define PIN_SW2         PORTNUM2PIN(PC,6) // PTC6
 #define PIN_SW3			PORTNUM2PIN(PA,4) // PTA4
+
+// SPI
+#define PIN_SCK    PORTNUM2PIN(PD,1) // PTD1
+#define PIN_MOSI    PORTNUM2PIN(PD,2) // PTD2
+#define PIN_MISO    PORTNUM2PIN(PD,3) // PTD3
+
 
 #define SW_ACTIVE       // ???
 #define SW_INPUT_TYPE   // ???
@@ -59,10 +66,6 @@
 #define RCHB	PORTNUM2PIN(PC,2)
 #define RCHA	PORTNUM2PIN(PA,2)
 
-//Lector Pins
-#define LECTOR_EN		PORTNUM2PIN(PD,1)
-#define LECTOR_DATA 	PORTNUM2PIN(PD,2)
-#define LECTOR_CLK 		PORTNUM2PIN(PD,3)
 
 /*******************************************************************************
  ******************************************************************************/

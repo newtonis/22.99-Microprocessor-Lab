@@ -76,6 +76,7 @@ void clear_PAN (void)
 
 void lectorInit (void (*funcallback)(void))
 {
+	/*
 	 gpioMode(PIN_LED_BLUE, OUTPUT);
 
 	 gpioWrite(PIN_LED_BLUE, HIGH);
@@ -92,6 +93,7 @@ void lectorInit (void (*funcallback)(void))
 	 callback = funcallback;
 
 	 //gpioMode(TEST_PIN, OUTPUT);
+	  * */
 }
 
 

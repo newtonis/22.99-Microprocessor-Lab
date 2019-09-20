@@ -10,6 +10,7 @@
 #include "timer.h"
 #include "InternalControl.h"
 #include "Users.h"
+#include "SPImanager.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -71,6 +72,9 @@ void internarHandler(void){
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
+
+
+	SPI_Initialize();
 	internalControlInit(internarHandler);
 /*
 	initUser();
