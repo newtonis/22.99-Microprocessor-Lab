@@ -315,13 +315,13 @@ void accessDenied(void){
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-	internalControlInit(internarHandler);
-/*	aux_id = default_id; // Asignacion de ID por default
+	aux_id = default_id; // Asignacion de ID por default
 
 	initUser();
 
     timerInit();
 
+	internalControlInit(internarHandler);
 
     encoderInit(encoderHandler);
 
@@ -342,14 +342,11 @@ void App_Init (void)
     lectorInit(lectorHandler);
 
     RGBIndicator(BLUE_INDICATOR);
-    */
-	RGBIndicator(BLUE_INDICATOR);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-/*
 	switch(fsm){
 	case ID_STAGE:
 		if(LedStatus_GetState() != 1){
@@ -377,7 +374,6 @@ void App_Run (void)
 		// La ID ingresada no existe
 		break;
 	}
-	*/
 
 }
 

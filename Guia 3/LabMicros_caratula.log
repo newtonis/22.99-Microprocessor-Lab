@@ -1,0 +1,410 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.25)  3 SEP 2019 18:49
+entering extended mode
+**./LabMicros_caratula.tex
+(LabMicros_caratula.tex
+LaTeX2e <2018-12-01>
+
+! LaTeX Error: Environment titlepage undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \begin{titlepage}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 \center
+           
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 3--3
+[] 
+ []
+
+! Undefined control sequence.
+<recently read> \LARGE 
+                       
+l.4 ...{Instituto Tecnol\'ogico de Buenos Aires}}}
+                                                  \\[1.5cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
+(Font)              using `OT1/cmr/bx/n' instead on input line 4.
+
+
+Overfull \hbox (192.28786pt too wide) in paragraph at lines 4--4
+ [] 
+ []
+
+! Undefined control sequence.
+<recently read> \Large 
+                       
+l.5 ...rge 22.99 Laboratorio de Microprocesadores}
+                                                  \\[0.5cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (25.3053pt too wide) in paragraph at lines 5--5
+ []\OT1/cmr/m/sc/10 22.99 
+ []
+
+
+Overfull \hbox (22.54431pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 Lab- 
+ []
+
+
+Overfull \hbox (10.13327pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 o- 
+ []
+
+
+Overfull \hbox (15.93326pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 ra- 
+ []
+
+
+Overfull \hbox (16.04434pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 to- 
+ []
+
+
+Overfull \hbox (15.39993pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 rio 
+ []
+
+
+Overfull \hbox (11.82217pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 de 
+ []
+
+
+Overfull \hbox (16.68872pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 Mi- 
+ []
+
+
+Overfull \hbox (21.84431pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 cro- 
+ []
+
+
+Overfull \hbox (32.9998pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 proce- 
+ []
+
+
+Overfull \hbox (39.48874pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/m/sc/10 sadores 
+ []
+
+! Undefined control sequence.
+l.9 { \Huge
+            \bfseries Guía de Ejercicios N$^{\circ}$3: Puertos I/O e Interr...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 9.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 9.
+
+Overfull \hbox (24.21512pt too wide) in paragraph at lines 9--9
+ []\OT1/cmr/bx/n/10 Gua 
+ []
+
+
+Overfull \hbox (11.65967pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 de 
+ []
+
+
+Overfull \hbox (24.9096pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 Ejer- 
+ []
+
+
+Overfull \hbox (12.13882pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 ci- 
+ []
+
+
+Overfull \hbox (18.59155pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 cios 
+ []
+
+
+Overfull \hbox (22.54158pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 N$[]$3: 
+ []
+
+
+Overfull \hbox (28.09015pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 Puer- 
+ []
+
+
+Overfull \hbox (14.75824pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 tos 
+ []
+
+
+Overfull \hbox (18.7499pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 I/O 
+ []
+
+
+Overfull \hbox (5.27081pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 e 
+ []
+
+
+Overfull \hbox (14.58325pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 In- 
+ []
+
+
+Overfull \hbox (18.31242pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 ter- 
+ []
+
+
+Overfull \hbox (21.34712pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 rup- 
+ []
+
+
+Overfull \hbox (30.25122pt too wide) in paragraph at lines 9--9
+ \OT1/cmr/bx/n/10 ciones 
+ []
+
+! Undefined control sequence.
+l.13 {\large
+            
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (27.03038pt too wide) in paragraph at lines 15--15
+ []\OT1/cmr/m/it/10 Grupo 
+ []
+
+
+Overfull \hbox (6.46664pt too wide) in paragraph at lines 15--15
+ \OT1/cmr/m/it/10 2 
+ []
+
+Missing character: There is no , in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 7 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no J in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no q in font nullfont!
+Missing character: There is no u in font nullfont!
+LaTeX Font Info:    Try loading font information for +cmr on input line 20.
+LaTeX Font Info:    No file cmr.fd. on input line 20.
+
+LaTeX Font Warning: Font shape `/cmr/m/n' undefined
+(Font)              using `/cmr/m/n' instead on input line 20.
+
+! Corrupted NFSS tables.
+wrong@fontshape ...message {Corrupted NFSS tables}
+                                                  error@fontshape else let f...
+l.20 \textsc{Mestanza}, Joaqu\'i
+                                n Mat\'ias  & 58288 \\
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+
+LaTeX Font Warning: Font shape `/cmr/m/n' undefined
+(Font)              using `OT1/cmr/m/n' instead on input line 20.
+
+Missing character: There is no n in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no S in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 9 in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no D in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+
+Overfull \hbox (59.26643pt too wide) in paragraph at lines 18--24
+ [][] 
+ []
+
+
+Overfull \hbox (45.6816pt too wide) in paragraph at lines 27--27
+ []\OT1/cmr/m/it/10 Profesores 
+ []
+
+Missing character: There is no , in font nullfont!
+Missing character: There is no D in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+
+Overfull \hbox (35.77759pt too wide) in paragraph at lines 29--29
+ []\OT1/cmr/m/sc/10 Jacoby 
+ []
+
+
+Overfull \hbox (4.44444pt too wide) in paragraph at lines 29--29
+ \/cmr/m/n/10 e 
+ []
+
+Missing character: There is no , in font nullfont!
+Missing character: There is no N in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+
+Overfull \hbox (47.98859pt too wide) in paragraph at lines 30--30
+ []\OT1/cmr/m/sc/10 Magliola 
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 30--30
+ \/cmr/m/n/10 a 
+ []
+
+Missing character: There is no P in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 9 in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 9 in font nullfont!
+
+! LaTeX Error: \begin{document} ended by \end{titlepage}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44 \end{titlepage}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+)
+! Emergency stop.
+<*> ./LabMicros_caratula.tex
+                            
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 33 strings out of 492946
+ 453 string characters out of 3135527
+ 58652 words of memory out of 3000000
+ 4026 multiletter control sequences out of 15000+200000
+ 4595 words of font info for 17 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 18i,7n,16p,158b,233s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

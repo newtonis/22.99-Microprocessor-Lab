@@ -816,21 +816,21 @@ OUTPUT(Pul2Switch.axf elf32-littlearm)
  .debug_line    0x0000067c      0x6d8 ./SDK/startup/startup_mk64f12.o
  .debug_line    0x00000d54      0x1c7 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_str      0x00000000    0x77bd7
- .debug_str     0x00000000     0x3884 ./source/App.o
-                               0x39e7 (size before relaxing)
- .debug_str     0x00003884    0x73827 ./source/gpio.o
-                              0x770f7 (size before relaxing)
- .debug_str     0x000770ab      0x23f ./SDK/startup/hardware.o
-                              0x77205 (size before relaxing)
- .debug_str     0x000772ea       0x1b ./SDK/startup/main.o
-                              0x76fd9 (size before relaxing)
- .debug_str     0x00077305       0x36 ./SDK/startup/semihost_hardfault.o
-                               0x2d3f (size before relaxing)
- .debug_str     0x0007733b      0x83a ./SDK/startup/startup_mk64f12.o
-                               0x35ad (size before relaxing)
- .debug_str     0x00077b75       0x62 ./SDK/CMSIS/system_MK64F12.o
-                              0x77114 (size before relaxing)
+.debug_str      0x00000000    0x77bc4
+ .debug_str     0x00000000     0x3871 ./source/App.o
+                               0x39d4 (size before relaxing)
+ .debug_str     0x00003871    0x73827 ./source/gpio.o
+                              0x770e4 (size before relaxing)
+ .debug_str     0x00077098      0x23f ./SDK/startup/hardware.o
+                              0x771f2 (size before relaxing)
+ .debug_str     0x000772d7       0x1b ./SDK/startup/main.o
+                              0x76fc6 (size before relaxing)
+ .debug_str     0x000772f2       0x36 ./SDK/startup/semihost_hardfault.o
+                               0x2d2c (size before relaxing)
+ .debug_str     0x00077328      0x83a ./SDK/startup/startup_mk64f12.o
+                               0x359a (size before relaxing)
+ .debug_str     0x00077b62       0x62 ./SDK/CMSIS/system_MK64F12.o
+                              0x77101 (size before relaxing)
 
 .comment        0x00000000       0x7e
  .comment       0x00000000       0x7e ./source/App.o
