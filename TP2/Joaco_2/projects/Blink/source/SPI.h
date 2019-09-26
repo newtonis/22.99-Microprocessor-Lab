@@ -29,10 +29,10 @@
  ******************************************************************************/
 
 typedef uint8_t pin_t;
+enum{SLAVE,MASTER};
 enum{DISABLE,ENABLE};
 enum{PULL_DOWN,PULL_UP,DISABLE_PULL};
 enum{SPI_0,SPI_1,SPI_2};
-enum{SLAVE,MASTER};
 enum{SPI_CONFIG,RESERVED_0,RESERVED_1,RESERVED_2};
 /*******************************************************************************
  * VARIABLE PROTOTYPES WITH GLOBAL SCOPE

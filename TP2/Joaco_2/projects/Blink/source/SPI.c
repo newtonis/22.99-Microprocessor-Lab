@@ -9,7 +9,6 @@
 
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
 static SPI_Type* SPIPtrs[] = SPI_BASE_PTRS;
-static uint32_t simMasks[] = {SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK, SIM_SCGC5_PORTC_MASK, SIM_SCGC5_PORTD_MASK, SIM_SCGC5_PORTE_MASK };
 static SIM_Type* sim_ptr = SIM;
 
 //static SPI_Type* SPI_IRQSPtrs[] = SPI_IRQS;
@@ -31,12 +30,11 @@ void SPIClockGatingEnable(int SPI_n){
 }
 
 
-void SPIMode(pin_t pin, uint8_t mode){
+void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt){
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
 	uint32_t num = PIN2NUM(pin); // num es el numero de pin
-	// connect to gpio (hay un PCR por pin)
 	port->PCR[num] = 0x00;
-	port->PCR[num] |= PORT_PCR_MUX(2); // ENABLE SPI
+	port->PCR[num] |= PORT_PCR_MUX(mux_alt); // ENABLE SPI
 	port->PCR[num] |= PORT_PCR_IRQC(0);
 	switch(mode){
 		case PULL_UP:
@@ -53,40 +51,39 @@ void SPIMode(pin_t pin, uint8_t mode){
 	}
 }
 
-void setMasterBaudRate(int SPI_n,int mode){
-	SPIPtrs[SPI_n]->CTAR[1] &= ~ SPI_CTAR_BR_MASK;
-	SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_BR(mode);
+void setMasterBaudRate(int SPI_n,int mode, bool whichCTAR){
+	SPIPtrs[SPI_n]->CTAR[whichCTAR] &= ~ SPI_CTAR_BR_MASK;
+	SPIPtrs[SPI_n]->CTAR[whichCTAR] |= SPI_CTAR_BR(mode);
 }
 
-void setMasterBaudRatePrescaler(int SPI_n,int mode){
-	SPIPtrs[SPI_n]->CTAR[1] &= ~ SPI_CTAR_PBR_MASK;
-	SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_PBR(mode);
+void setMasterBaudRatePrescaler(int SPI_n,int mode, bool whichCTAR){
+	SPIPtrs[SPI_n]->CTAR[whichCTAR] &= ~ SPI_CTAR_PBR_MASK;
+	SPIPtrs[SPI_n]->CTAR[whichCTAR] |= SPI_CTAR_PBR(mode);
 }
 
-void setMasterClockPolarity(int SPI_n, bool pol){
+void setMasterClockPolarity(int SPI_n, bool pol, bool whichCTAR){
 	if (pol == ENABLE){
-		SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_CPOL(ENABLE);
+		SPIPtrs[SPI_n]->CTAR[whichCTAR] |= SPI_CTAR_CPOL(ENABLE);
 	}else{
-		SPIPtrs[SPI_n]->CTAR[1] &= ~SPI_CTAR_CPOL_SHIFT;
+		SPIPtrs[SPI_n]->CTAR[whichCTAR] &= ~SPI_CTAR_CPOL_SHIFT;
 	}
 }
 
 
-void setMasterClockPhase(int SPI_n, bool pha){
+void setMasterClockPhase(int SPI_n, bool pha, bool whichCTAR){
 	if (pha == ENABLE){
-		SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_CPHA(ENABLE);
+		SPIPtrs[SPI_n]->CTAR[whichCTAR] |= SPI_CTAR_CPHA(ENABLE);
 	}else{
-		SPIPtrs[SPI_n]->CTAR[1] &= ~SPI_CTAR_CPHA_SHIFT;
+		SPIPtrs[SPI_n]->CTAR[whichCTAR] &= ~SPI_CTAR_CPHA_SHIFT;
 	}
 }
 
-void setMasterMode(int SPI_n){
-	//SPI_Type * spi_aux = SPIPtrs[SPI_n];
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_MSTR(MASTER);
-}
-
-void setSlaveMode(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_MSTR_SHIFT;
+void setMode(int SPI_n, bool mode){
+	if(mode == MASTER){
+		SPIPtrs[SPI_n]->MCR |= SPI_MCR_MSTR(MASTER);
+	}else{
+		SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_MSTR_SHIFT;
+	}
 }
 
 bool getMode(int SPI_n){
@@ -192,4 +189,12 @@ void HALTStopTransfers(int SPI_n){
 
 void HALTStartTransfers(int SPI_n){
 	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_HALT_SHIFT;
+}
+
+void setPCSActiveHigh(int SPI_n){
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_PCSIS_MASK;
+}
+
+void setPCSActiveLow(int SPI_n){
+	SPIPtrs[SPI_n]->MCR |=  SPI_MCR_PCSIS_MASK;
 }
