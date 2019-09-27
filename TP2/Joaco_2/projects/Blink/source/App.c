@@ -9,7 +9,7 @@
  ******************************************************************************/
 #include "timer.h"
 #include "InternalControl.h"
-#include "SPImanager.h"
+#include "SPI.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -36,8 +36,7 @@ enum{NOT_IDLE, IDLE}; // IDLE estados
 
 static int fsm = ID_STAGE;
 
-static tim_id_t timerError;
-static tim_id_t timerPestillo;
+
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
@@ -75,30 +74,14 @@ void App_Init (void)
 
 	SPI_Initialize();
 	internalControlInit(internarHandler);
-/*
-	initUser();
-
-    timerInit();
-
-    timerDisp = timerGetId();
-    timerStart(timerDisp, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, displayHandler);
-
-    timerIdle = timerGetId();
-    timerStart(timerIdle, TIMER_MS2TICKS(3000), TIM_MODE_PERIODIC, idleHandler);
-
-    timerPestillo = timerGetId(); // Lo disparo cuando se pueda abrir
-
-    timerError = timerGetId(); // Lo dispador cuando no es valido el usuario
-
-
-    */
 	RGBIndicator(BLUE_INDICATOR);
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-
+	testSPI(SPI_0);
 }
 
 
