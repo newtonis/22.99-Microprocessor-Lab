@@ -17,14 +17,18 @@ void masterConfig(spi_master_config_t * master_cfg){
 	master_cfg->SCKE = false;
 	master_cfg->MTFE = false;
 	master_cfg->ROOE = false;
-	master_cfg->SMPL_PT = 0b00;
+	master_cfg->SMPL_PT = 0;
 	master_cfg->DIS_RXF = false;
 	master_cfg->DIS_TXF = false;
+	master_cfg->MDIS = 0; // con 0 habilito el modulo
 
 	master_cfg->CTAR_FMSZ = 8;
 	master_cfg->CTAR_CPOL = 0;
 	master_cfg->CTAR_CPHA = 0;
 	master_cfg->CTAR_LSBFE = 0;
+
+	master_cfg->CTAR_BR = 15;
+	master_cfg->CTAR_BRPRESC = 3;
 }
 
 void masterInitiliaze(uint8_t SPI_n){
@@ -34,13 +38,6 @@ void masterInitiliaze(uint8_t SPI_n){
 	spi_master_config_t master_config;
 	masterConfig(&master_config);
 
-	//int aux = PORTNUM2PIN(PA,4);
-	/*
-	SPIMode(93, DISABLE_PULL, SPI_alternative );
-	SPIMode(94, DISABLE_PULL, SPI_alternative );
-	SPIMode(95, DISABLE_PULL, SPI_alternative );
-	SPIMode(96, DISABLE_PULL, SPI_alternative );
-	*/
 	SPIMode(PIN_PCS0, DISABLE_PULL, SPI_alternative );
 	SPIMode(PIN_SCK_MASTER, DISABLE_PULL, SPI_alternative );
 	SPIMode(PIN_MOSI_MASTER, DISABLE_PULL, SPI_alternative );
@@ -51,12 +48,20 @@ void masterInitiliaze(uint8_t SPI_n){
 	setSPIConfig(SPI_n, SPI_CONFIG);
 
 
-	moduleEnable(SPI_n);
+	SPI_Type* base = SPIPtrs[SPI_n];
+	uint32_t temp = 0;
+
+	//moduleEnable(SPI_n);
+
+
 	HALTStopTransfers(SPI_n);
 
 
-	SPI_Type* base = SPIPtrs[SPI_n];
-	uint32_t temp = 0;
+	base->MCR &=~ SPI_MCR_MDIS_MASK;
+	base->MCR |= SPI_MCR_MDIS(master_config.MDIS);
+
+	base->MCR &=~ SPI_MCR_MSTR_MASK;
+	base->MCR |= SPI_MCR_MSTR(1);
 
 	temp = base->MCR & (~(  SPI_MCR_CONT_SCKE_MASK |
 							SPI_MCR_MTFE_MASK |
@@ -73,8 +78,11 @@ void masterInitiliaze(uint8_t SPI_n){
 	                SPI_MCR_DIS_TXF(master_config.DIS_TXF) |
 					SPI_MCR_DIS_RXF(master_config.DIS_RXF);
 
-	setMasterBaudRate(SPI_n, 0b1111, master_config.whichCTAR);
-	setMasterBaudRatePrescaler(SPI_n, 0b11, master_config.whichCTAR);
+	base->CTAR[master_config.whichCTAR] &= ~SPI_CTAR_BR_MASK;
+	base->CTAR[master_config.whichCTAR] |= SPI_CTAR_BR(master_config.CTAR_BR);
+
+	base->CTAR[master_config.whichCTAR] &= ~SPI_CTAR_PBR_MASK;
+	base->CTAR[master_config.whichCTAR] |= SPI_CTAR_PBR(master_config.CTAR_BRPRESC);
 
 	temp = base->CTAR[master_config.whichCTAR] & ~(  SPI_CTAR_FMSZ_MASK |
 									 	 	 	 	 SPI_CTAR_CPOL_MASK |
@@ -97,7 +105,7 @@ void masterInitiliaze(uint8_t SPI_n){
 	    *
 	    *
 	    * */
-	// setDummyData
+	// dumdata
 	HALTStartTransfers(SPI_n);
 }
 
@@ -146,46 +154,25 @@ void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt){
 
 void testSPI(uint8_t SPI_n){
 
-	static int i = 0;
-	int threshold = 100;
-	if(i < threshold){
-		uint16_t data = 0x00;
-		spi_command command;
-		command.isPcsContinuous = true;
-		command.isEndOfQueue = false;
-		command.whichPcs = Pcs0;
-		command.whichCtar = 0;
-		command.clearTransferCount = 0;
-		MasterWriteCommandDataBlocking(SPI_n, data);
-		//MasterWriteDataBlocking(SPI_n, &command, data);
+	uint16_t data = 0xF0F0;
+	spi_command command;
+	command.isPcsContinuous = true;
+	command.isEndOfQueue = false;
+	command.whichPcs = Pcs0;
+	command.whichCtar = 0;
+	command.clearTransferCount = 0;
+	//MasterWriteCommandDataBlocking(SPI_n, data);
+	MasterWriteDataBlocking(SPI_n, &command, data);
 
-	}else{
-		uint16_t data = 0xFF;
-		spi_command command;
+	data = 0xAA;
+	command.isPcsContinuous = true;
+	command.isEndOfQueue = false;
+	command.whichPcs = Pcs0;
+	command.whichCtar = 0;
+	command.clearTransferCount = 0;
+	//MasterWriteCommandDataBlocking(SPI_n, data);
+	MasterWriteDataBlocking(SPI_n, &command, data);
 
-		command.isPcsContinuous = true;
-		command.isEndOfQueue = false;
-		command.whichPcs = Pcs0;
-		command.whichCtar = 0;
-		command.clearTransferCount = 0;
-
-		MasterWriteCommandDataBlocking(SPI_n, data);
-		//MasterWriteDataBlocking(SPI_n, &command, data);
-		if(i == threshold*2){
-			i = -1 ;
-		}
-	}
-	i++;
-}
-
-void setMasterBaudRate(uint8_t SPI_n,int mode, bool whichCTAR){
-	SPIPtrs[SPI_n]->CTAR[whichCTAR] &= ~ SPI_CTAR_BR_MASK;
-	SPIPtrs[SPI_n]->CTAR[whichCTAR] |= SPI_CTAR_BR(mode);
-}
-
-void setMasterBaudRatePrescaler(uint8_t SPI_n,int mode, bool whichCTAR){
-	SPIPtrs[SPI_n]->CTAR[whichCTAR] &= ~ SPI_CTAR_PBR_MASK;
-	SPIPtrs[SPI_n]->CTAR[whichCTAR] |= SPI_CTAR_PBR(mode);
 }
 
 
@@ -193,12 +180,12 @@ void setMode(uint8_t SPI_n, bool mode){
 	if(mode == MASTER){
 		SPIPtrs[SPI_n]->MCR |= SPI_MCR_MSTR(MASTER);
 	}else{
-		SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_MSTR_SHIFT;
+		SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_MSTR_MASK;
 	}
 }
 
 bool getMode(uint8_t SPI_n){
-	return (SPIPtrs[SPI_n]->MCR & SPI_MCR_MSTR_SHIFT) == (SPI_MCR_MSTR_SHIFT);
+	return (SPIPtrs[SPI_n]->MCR & SPI_MCR_MSTR_MASK) == (SPI_MCR_MSTR_MASK);
 }
 
 
@@ -207,20 +194,12 @@ void setSPIConfig(uint8_t SPI_n, int SPI_config){
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_DCONF(SPI_config);
 }
 
-void moduleDisable(uint8_t SPI_n){ // power saving
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_MDIS(ENABLE);
-}
-
-void moduleEnable(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~  SPI_MCR_MDIS_SHIFT;
-}
-
 void disableTxFIFO(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_DIS_TXF(ENABLE);
 }
 
 void enableTxFIFO(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DIS_TXF_SHIFT;
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DIS_TXF_MASK;
 }
 
 void disableRxFIFO(uint8_t SPI_n){
@@ -228,7 +207,7 @@ void disableRxFIFO(uint8_t SPI_n){
 }
 
 void enableRxFIFO(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DIS_RXF_SHIFT;
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DIS_RXF_MASK;
 }
 
 void clearTxFIFO(uint8_t SPI_n){ //flush
@@ -236,7 +215,7 @@ void clearTxFIFO(uint8_t SPI_n){ //flush
 }
 
 void dontClearTxFIFO(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_TXF_SHIFT;
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_TXF_MASK;
 }
 
 void clearRxFIFO(uint8_t SPI_n){  //flush
@@ -244,7 +223,7 @@ void clearRxFIFO(uint8_t SPI_n){  //flush
 }
 
 void dontClearRxFIFO(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_RXF_SHIFT;
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_RXF_MASK;
 }
 
 void HALTStopTransfers(uint8_t SPI_n){
@@ -252,7 +231,7 @@ void HALTStopTransfers(uint8_t SPI_n){
 }
 
 void HALTStartTransfers(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_HALT_SHIFT;
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_HALT_MASK;
 }
 
 void setPCSActiveHigh(uint8_t SPI_n){
@@ -271,7 +250,7 @@ void clearTxCompleteFlag(uint8_t SPI_n){
 }
 
 void clearTxFifoFillRequestFlag(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->SR |= SPI_SR_TFFF_SHIFT;
+	SPIPtrs[SPI_n]->SR |= SPI_SR_TFFF_MASK;
 }
 
 void defCommand(spi_command* command){
@@ -287,20 +266,23 @@ void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data)
 	/* First, clear Transmit Complete Flag (TCF) */
 	clearTxCompleteFlag(SPI_n);
 
-	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_SHIFT))
+	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_MASK))
     {
     	clearTxFifoFillRequestFlag(SPI_n);
     }
 
-	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->isPcsContinuous) | SPI_PUSHR_CTAS(command->whichCtar) |
-                  SPI_PUSHR_PCS(command->whichPcs) | SPI_PUSHR_EOQ(command->isEndOfQueue) |
-                  SPI_PUSHR_CTCNT(command->clearTransferCount) | SPI_PUSHR_TXDATA(data);
+	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->isPcsContinuous);
+	SPIPtrs[SPI_n]->PUSHR |= SPI_PUSHR_PCS(command->whichPcs);
+	SPIPtrs[SPI_n]->PUSHR |=  SPI_PUSHR_CTAS(command->whichCtar) | SPI_PUSHR_EOQ(command->isEndOfQueue) |
+                  SPI_PUSHR_CTCNT(command->clearTransferCount);
+
+	SPIPtrs[SPI_n]->PUSHR |= SPI_PUSHR_TXDATA(data);
 
 
     clearTxFifoFillRequestFlag(SPI_n);
 
     /* Wait till TCF sets */
-    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_SHIFT))
+    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_MASK))
     {
     }
 }
@@ -311,22 +293,21 @@ void MasterWriteCommandDataBlocking(uint8_t SPI_n, uint32_t data)
 {
 
 	clearTxCompleteFlag(SPI_n);
-	/*
-	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_SHIFT))
+
+	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_MASK))
 
     {
     	clearTxFifoFillRequestFlag(SPI_n);
     }
-    */
 
 	SPIPtrs[SPI_n]->PUSHR = data;
 
     clearTxFifoFillRequestFlag(SPI_n);
 
     /* Wait till TCF sets */
-    //while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_SHIFT))
-    //{
-    //}
+    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_MASK))
+    {
+    }
 }
 
 /*

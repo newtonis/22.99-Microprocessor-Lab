@@ -65,11 +65,16 @@ typedef struct{
 	uint8_t SMPL_PT;
 	bool DIS_TXF;
 	bool DIS_RXF;
+	bool MDIS;
+
 
 	uint8_t CTAR_FMSZ;
 	bool CTAR_CPOL;
 	bool CTAR_CPHA;
 	bool CTAR_LSBFE;
+	uint8_t CTAR_BR;
+	uint8_t CTAR_BRPRESC;
+
 } spi_master_config_t;
 
 
@@ -112,19 +117,12 @@ void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt);
 
 void testSPI(uint8_t SPI_n);
 
-void setMasterBaudRate(uint8_t SPI_n,int mode, bool whichCTAR);
-
-void setMasterBaudRatePrescaler(uint8_t SPI_n,int mode, bool whichCTAR);
-
 void setMode(uint8_t SPI_n, bool mode);
 
 bool getMode(uint8_t SPI_n);
 
 void setSPIConfig(uint8_t SPI_n, int SPI_config);
 
-void moduleDisable(uint8_t SPI_n);
-
-void moduleEnable(uint8_t SPI_n);
 
 void disableTxFIFO(uint8_t SPI_n);
 
