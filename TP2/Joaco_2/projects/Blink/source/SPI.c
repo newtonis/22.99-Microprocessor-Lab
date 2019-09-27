@@ -106,6 +106,7 @@ void masterInitiliaze(uint8_t SPI_n){
 	    *
 	    * */
 	// dumdata
+	setPCSActiveLow(SPI_n);
 	HALTStartTransfers(SPI_n);
 }
 
@@ -154,9 +155,9 @@ void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt){
 
 void testSPI(uint8_t SPI_n){
 
-	uint16_t data = 0xF0F0;
+	uint16_t data = 0xAA;
 	spi_command command;
-	command.isPcsContinuous = true;
+	command.isPcsContinuous = false;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
@@ -164,14 +165,24 @@ void testSPI(uint8_t SPI_n){
 	//MasterWriteCommandDataBlocking(SPI_n, data);
 	MasterWriteDataBlocking(SPI_n, &command, data);
 
-	data = 0xAA;
-	command.isPcsContinuous = true;
+	data = 0x0F;
+	command.isPcsContinuous = false;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
 	command.clearTransferCount = 0;
 	//MasterWriteCommandDataBlocking(SPI_n, data);
 	MasterWriteDataBlocking(SPI_n, &command, data);
+
+	data = 0x55;
+	command.isPcsContinuous = false;
+	command.isEndOfQueue = false;
+	command.whichPcs = Pcs0;
+	command.whichCtar = 0;
+	command.clearTransferCount = 0;
+	//MasterWriteCommandDataBlocking(SPI_n, data);
+	MasterWriteDataBlocking(SPI_n, &command, data);
+	int a = 5;
 
 }
 
@@ -271,12 +282,12 @@ void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data)
     	clearTxFifoFillRequestFlag(SPI_n);
     }
 
-	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->isPcsContinuous);
-	SPIPtrs[SPI_n]->PUSHR |= SPI_PUSHR_PCS(command->whichPcs);
-	SPIPtrs[SPI_n]->PUSHR |=  SPI_PUSHR_CTAS(command->whichCtar) | SPI_PUSHR_EOQ(command->isEndOfQueue) |
-                  SPI_PUSHR_CTCNT(command->clearTransferCount);
-
-	SPIPtrs[SPI_n]->PUSHR |= SPI_PUSHR_TXDATA(data);
+	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->isPcsContinuous) |
+							SPI_PUSHR_PCS(command->whichPcs)|
+							SPI_PUSHR_CTAS(command->whichCtar)  |
+							SPI_PUSHR_EOQ(command->isEndOfQueue) |
+							SPI_PUSHR_CTCNT(command->clearTransferCount) |
+							SPI_PUSHR_TXDATA(data);
 
 
     clearTxFifoFillRequestFlag(SPI_n);

@@ -85,11 +85,8 @@ void App_Init (void)
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	static bool called = 0;
-	if(called ==0) {
+
 		testSPI(SPI_0);
-		called = 1;
-	}
 }
 
 
