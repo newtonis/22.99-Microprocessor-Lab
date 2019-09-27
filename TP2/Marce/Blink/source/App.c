@@ -23,9 +23,9 @@
  ******************************************************************************/
 
 static void delayLoop(uint32_t veces);
-
 static roll_t rolido = 0;
 static pitching_t cabeceo = 0;
+static orientation_t orientacion = 0;
 
 /*******************************************************************************
  *******************************************************************************
@@ -44,6 +44,7 @@ void App_Run (void)
 {
     rolido = Position_GetRoll();
     cabeceo = Position_GetPitch();
+    orientacion = Position_GetOrientation();
     delayLoop(4000000UL);
     gpioToggle(PIN_LED_BLUE);
 }
