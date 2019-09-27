@@ -12,9 +12,9 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-typedef int8_t roll_t;			// Rolido
-typedef	int8_t pitching_t;		// Cabeceo
-typedef int8_t orientation_t;	// Orientacion
+typedef int16_t roll_t;			// Rolido
+typedef	int16_t pitching_t;		// Cabeceo
+typedef int16_t orientation_t;	// Orientacion
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
