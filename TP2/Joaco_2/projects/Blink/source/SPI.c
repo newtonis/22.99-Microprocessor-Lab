@@ -34,11 +34,18 @@ void masterInitiliaze(uint8_t SPI_n){
 	spi_master_config_t master_config;
 	masterConfig(&master_config);
 
-
+	//int aux = PORTNUM2PIN(PA,4);
+	/*
 	SPIMode(93, DISABLE_PULL, SPI_alternative );
 	SPIMode(94, DISABLE_PULL, SPI_alternative );
 	SPIMode(95, DISABLE_PULL, SPI_alternative );
 	SPIMode(96, DISABLE_PULL, SPI_alternative );
+	*/
+	SPIMode(PIN_PCS0, DISABLE_PULL, SPI_alternative );
+	SPIMode(PIN_SCK_MASTER, DISABLE_PULL, SPI_alternative );
+	SPIMode(PIN_MOSI_MASTER, DISABLE_PULL, SPI_alternative );
+	SPIMode(PIN_MISO_MASTER, DISABLE_PULL, SPI_alternative );
+
 
 	SPIClockGatingEnable(SPI_n);
 	setSPIConfig(SPI_n, SPI_CONFIG);
@@ -97,7 +104,7 @@ void masterInitiliaze(uint8_t SPI_n){
 void SPI_Initialize(void){
 
 	masterInitiliaze(SPI_0);
-
+	//spiEnableInterrupts(SPI_0, SPI_RSER_TFFF_RE_MASK);
 }
 
 void SPIClockGatingEnable(uint8_t SPI_n){
@@ -140,18 +147,33 @@ void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt){
 void testSPI(uint8_t SPI_n){
 
 	static int i = 0;
-	if(i % 2){
-		uint16_t data = 0xAA;
+	int threshold = 100;
+	if(i < threshold){
+		uint16_t data = 0x00;
 		spi_command command;
-		defCommand(&command);
-		MasterWriteDataBlocking(SPI_n, &command, data);
+		command.isPcsContinuous = true;
+		command.isEndOfQueue = false;
+		command.whichPcs = Pcs0;
+		command.whichCtar = 0;
+		command.clearTransferCount = 0;
+		MasterWriteCommandDataBlocking(SPI_n, data);
+		//MasterWriteDataBlocking(SPI_n, &command, data);
 
 	}else{
 		uint16_t data = 0xFF;
 		spi_command command;
-		defCommand(&command);
-		MasterWriteDataBlocking(SPI_n, &command, data);
 
+		command.isPcsContinuous = true;
+		command.isEndOfQueue = false;
+		command.whichPcs = Pcs0;
+		command.whichCtar = 0;
+		command.clearTransferCount = 0;
+
+		MasterWriteCommandDataBlocking(SPI_n, data);
+		//MasterWriteDataBlocking(SPI_n, &command, data);
+		if(i == threshold*2){
+			i = -1 ;
+		}
 	}
 	i++;
 }
@@ -244,13 +266,12 @@ void setPCSActiveLow(uint8_t SPI_n){
 
 
 
-
 void clearTxCompleteFlag(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->SR |= SPI_SR_TCF(1);
 }
 
 void clearTxFifoFillRequestFlag(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->SR |= SPI_SR_TFFF(1);
+	SPIPtrs[SPI_n]->SR |= SPI_SR_TFFF_SHIFT;
 }
 
 void defCommand(spi_command* command){
@@ -261,302 +282,93 @@ void defCommand(spi_command* command){
 	command->clearTransferCount = false;
 }
 
-void setCommandAttributes(spi_command * command, bool isPcsContinous,bool whichCtar,bool whichPcs, bool isEndOfQueue, bool clearTransferCount){
-	command->isPcsContinuous = isPcsContinous;
-	command->whichCtar = 0;
-	command->whichPcs = 0;
-	command->isEndOfQueue = false;
-	command->clearTransferCount = false;
-}
-
 void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data)
 {
-	SPI_Type * base = SPIPtrs[SPI_n];
-    /* First, clear Transmit Complete Flag (TCF) */
-	void clearTxCompleteFlag(uint8_t SPI_n);
-	//bool = kDSPI_TxFifoFillRequestFlag =SPI_SR_TFFF_SHIFT
-	//   while (!(DSPI_GetStatusFlags(base) & kDSPI_TxFifoFillRequestFlag))
-    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_SHIFT))
+	/* First, clear Transmit Complete Flag (TCF) */
+	clearTxCompleteFlag(SPI_n);
+
+	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_SHIFT))
     {
-    	clearTxFifoFillRequestFlag(SPI_0);
+    	clearTxFifoFillRequestFlag(SPI_n);
     }
 
-    base->PUSHR = SPI_PUSHR_CONT(command->isPcsContinuous) | SPI_PUSHR_CTAS(command->whichCtar) |
+	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->isPcsContinuous) | SPI_PUSHR_CTAS(command->whichCtar) |
                   SPI_PUSHR_PCS(command->whichPcs) | SPI_PUSHR_EOQ(command->isEndOfQueue) |
                   SPI_PUSHR_CTCNT(command->clearTransferCount) | SPI_PUSHR_TXDATA(data);
 
 
-    //DSPI_ClearStatusFlags(base, kDSPI_TxFifoFillRequestFlag);
-    void clearTxFifoFillRequestFlag(uint8_t SPI_n);
-
+    clearTxFifoFillRequestFlag(SPI_n);
 
     /* Wait till TCF sets */
-    //while (!(DSPI_GetStatusFlags(base) & kDSPI_TxCompleteFlag))
     while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_SHIFT))
     {
     }
 }
 
 
-/*
 
-status_t DSPI_MasterTransferBlocking(SPI_Type *base, dspi_transfer_t *transfer)
+void MasterWriteCommandDataBlocking(uint8_t SPI_n, uint32_t data)
 {
-    uint16_t wordToSend = 0;
-    uint16_t wordReceived = 0;
-    uint8_t dummyData = 0xAA; // DUMMY DATA!!
-    uint8_t bitsPerFrame;
 
-    uint32_t command;
-    uint32_t lastCommand;
+	clearTxCompleteFlag(SPI_n);
+	/*
+	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_SHIFT))
 
-    uint8_t *txData;
-    uint8_t *rxData;
-    uint32_t remainingSendByteCount;
-    uint32_t remainingReceiveByteCount;
-
-    uint32_t fifoSize;
-    dspi_command_data_config_t commandStruct;
-
-    // If the transfer count is zero, then return immediately.
-    if (transfer->dataSize == 0)
     {
-        return kStatus_InvalidArgument;
+    	clearTxFifoFillRequestFlag(SPI_n);
     }
+    */
 
-    HALTStopTransfers(SPI_n);
-    //DSPI_StopTransfer(base);
-    DSPI_DisableInterrupts(base, kDSPI_AllInterruptEnable);
-    DSPI_FlushFifo(base, true, true);
-    DSPI_ClearStatusFlags(base, kDSPI_AllStatusFlag);
+	SPIPtrs[SPI_n]->PUSHR = data;
 
-    //Calculate the command and lastCommand
-    commandStruct.whichPcs =
-        (dspi_which_pcs_t)(1U << ((transfer->configFlags & DSPI_MASTER_PCS_MASK) >> DSPI_MASTER_PCS_SHIFT));
-    commandStruct.isEndOfQueue = false;
-    commandStruct.clearTransferCount = false;
-    commandStruct.whichCtar =
-        (dspi_ctar_selection_t)((transfer->configFlags & DSPI_MASTER_CTAR_MASK) >> DSPI_MASTER_CTAR_SHIFT);
-    commandStruct.isPcsContinuous = (bool)(transfer->configFlags & kDSPI_MasterPcsContinuous);
+    clearTxFifoFillRequestFlag(SPI_n);
 
-    command = DSPI_MasterGetFormattedCommand(&(commandStruct));
-
-    commandStruct.isEndOfQueue = true;
-    commandStruct.isPcsContinuous = (bool)(transfer->configFlags & kDSPI_MasterActiveAfterTransfer);
-    lastCommand = DSPI_MasterGetFormattedCommand(&(commandStruct));
-
-    //Calculate the bitsPerFrame//
-    bitsPerFrame = ((base->CTAR[commandStruct.whichCtar] & SPI_CTAR_FMSZ_MASK) >> SPI_CTAR_FMSZ_SHIFT) + 1;
-
-    txData = transfer->txData;
-    rxData = transfer->rxData;
-    remainingSendByteCount = transfer->dataSize;
-    remainingReceiveByteCount = transfer->dataSize;
-
-    if ((base->MCR & SPI_MCR_DIS_RXF_MASK) || (base->MCR & SPI_MCR_DIS_TXF_MASK))
-    {
-        fifoSize = 1;
-    }
-    else
-    {
-        fifoSize = FSL_FEATURE_DSPI_FIFO_SIZEn(base);
-    }
-
-    DSPI_StartTransfer(base);
-
-    if (bitsPerFrame <= 8)
-    {
-        while (remainingSendByteCount > 0)
-        {
-            if (remainingSendByteCount == 1)
-            {
-                while (!(DSPI_GetStatusFlags(base) & kDSPI_TxFifoFillRequestFlag))
-                {
-                    DSPI_ClearStatusFlags(base, kDSPI_TxFifoFillRequestFlag);
-                }
-
-                if (txData != NULL)
-                {
-                    base->PUSHR = (*txData) | (lastCommand);
-                    txData++;
-                }
-                else
-                {
-                    base->PUSHR = (lastCommand) | (dummyData);
-                }
-                DSPI_ClearStatusFlags(base, kDSPI_TxFifoFillRequestFlag);
-                remainingSendByteCount--;
-
-                while (remainingReceiveByteCount > 0)
-                {
-                    if (DSPI_GetStatusFlags(base) & kDSPI_RxFifoDrainRequestFlag)
-                    {
-                        if (rxData != NULL)
-                        {
-                            // Read data from POPR//
-                            *(rxData) = DSPI_ReadData(base);
-                            rxData++;
-                        }
-                        else
-                        {
-                            DSPI_ReadData(base);
-                        }
-                        remainingReceiveByteCount--;
-
-                        DSPI_ClearStatusFlags(base, kDSPI_RxFifoDrainRequestFlag);
-                    }
-                }
-            }
-            else
-            {
-                //Wait until Tx Fifo is not full
-                while (!(DSPI_GetStatusFlags(base) & kDSPI_TxFifoFillRequestFlag))
-                {
-                    DSPI_ClearStatusFlags(base, kDSPI_TxFifoFillRequestFlag);
-                }
-                if (txData != NULL)
-                {
-                    base->PUSHR = command | (uint16_t)(*txData);
-                    txData++;
-                }
-                else
-                {
-                    base->PUSHR = command | dummyData;
-                }
-                remainingSendByteCount--;
-
-                DSPI_ClearStatusFlags(base, kDSPI_TxFifoFillRequestFlag);
-
-                while ((remainingReceiveByteCount - remainingSendByteCount) >= fifoSize)
-                {
-                    if (DSPI_GetStatusFlags(base) & kDSPI_RxFifoDrainRequestFlag)
-                    {
-                        if (rxData != NULL)
-                        {
-                            *(rxData) = DSPI_ReadData(base);
-                            rxData++;
-                        }
-                        else
-                        {
-                            DSPI_ReadData(base);
-                        }
-                        remainingReceiveByteCount--;
-
-                        DSPI_ClearStatusFlags(base, kDSPI_RxFifoDrainRequestFlag);
-                    }
-                }
-            }
-        }
-    }
-    else
-    {
-        while (remainingSendByteCount > 0)
-        {
-            if (remainingSendByteCount <= 2)
-            {
-                while (!(DSPI_GetStatusFlags(base) & kDSPI_TxFifoFillRequestFlag))
-                {
-                    DSPI_ClearStatusFlags(base, kDSPI_TxFifoFillRequestFlag);
-                }
-
-                if (txData != NULL)
-                {
-                    wordToSend = *(txData);
-                    ++txData;
-
-                    if (remainingSendByteCount > 1)
-                    {
-                        wordToSend |= (unsigned)(*(txData)) << 8U;
-                        ++txData;
-                    }
-                }
-                else
-                {
-                    wordToSend = dummyData;
-                }
-
-                base->PUSHR = lastCommand | wordToSend;
-
-                DSPI_ClearStatusFlags(base, kDSPI_TxFifoFillRequestFlag);
-                remainingSendByteCount = 0;
-
-                while (remainingReceiveByteCount > 0)
-                {
-                    if (DSPI_GetStatusFlags(base) & kDSPI_RxFifoDrainRequestFlag)
-                    {
-                        wordReceived = DSPI_ReadData(base);
-
-                        if (remainingReceiveByteCount != 1)
-                        {
-                            if (rxData != NULL)
-                            {
-                                *(rxData) = wordReceived;
-                                ++rxData;
-                                *(rxData) = wordReceived >> 8;
-                                ++rxData;
-                            }
-                            remainingReceiveByteCount -= 2;
-                        }
-                        else
-                        {
-                            if (rxData != NULL)
-                            {
-                                *(rxData) = wordReceived;
-                                ++rxData;
-                            }
-                            remainingReceiveByteCount--;
-                        }
-                        DSPI_ClearStatusFlags(base, kDSPI_RxFifoDrainRequestFlag);
-                    }
-                }
-            }
-            else
-            {
-                //Wait until Tx Fifo is not full//
-                while (!(DSPI_GetStatusFlags(base) & kDSPI_TxFifoFillRequestFlag))
-                {
-                    DSPI_ClearStatusFlags(base, kDSPI_TxFifoFillRequestFlag);
-                }
-
-                if (txData != NULL)
-                {
-                    wordToSend = *(txData);
-                    ++txData;
-                    wordToSend |= (unsigned)(*(txData)) << 8U;
-                    ++txData;
-                }
-                else
-                {
-                    wordToSend = dummyData;
-                }
-                base->PUSHR = command | wordToSend;
-                remainingSendByteCount -= 2;
-
-                DSPI_ClearStatusFlags(base, kDSPI_TxFifoFillRequestFlag);
-
-                while (((remainingReceiveByteCount - remainingSendByteCount) / 2) >= fifoSize)
-                {
-                    if (DSPI_GetStatusFlags(base) & kDSPI_RxFifoDrainRequestFlag)
-                    {
-                        wordReceived = DSPI_ReadData(base);
-
-                        if (rxData != NULL)
-                        {
-                            *rxData = wordReceived;
-                            ++rxData;
-                            *rxData = wordReceived >> 8;
-                            ++rxData;
-                        }
-                        remainingReceiveByteCount -= 2;
-
-                        DSPI_ClearStatusFlags(base, kDSPI_RxFifoDrainRequestFlag);
-                    }
-                }
-            }
-        }
-    }
-
-    return kStatus_Success;
+    /* Wait till TCF sets */
+    //while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_SHIFT))
+    //{
+    //}
 }
 
+/*
+void clearInterruptFlag(pin_t pin){
+	PORT_Type *port = portPtrs[PIN2PORT(pin)];
+	uint32_t num = PIN2NUM(pin); // num es el numero de pin
+	port->PCR[num] |= PORT_PCR_ISF_MASK;
+}
+
+void clearAllSPIInterruptFlags(void){
+	clearInterruptFlag(PIN_PCS0);
+	clearInterruptFlag(PIN_SCK_MASTER);
+	clearInterruptFlag(PIN_MOSI_MASTER);
+	clearInterruptFlag(PIN_MISO_MASTER);
+}
+
+void setInterruptConfig(pin_t pin, isf_configs_t config){
+	PORT_Type *port = portPtrs[PIN2PORT(pin)];
+	uint32_t num = PIN2NUM(pin); // num es el numero de pin
+	port->PCR[num] &= ~PORT_PCR_IRQC_MASK;
+	port->PCR[num] |= PORT_PCR_IRQC(config);
+}
+
+void configAllSPIInterrupts(void){
+	setInterruptConfig(PIN_PCS0, ISF_DMA_RISING_EDGE);
+	setInterruptConfig(PIN_SCK_MASTER, ISF_DMA_RISING_EDGE);
+	setInterruptConfig(PIN_MOSI_MASTER, ISF_DMA_RISING_EDGE);
+	setInterruptConfig(PIN_MISO_MASTER, ISF_DMA_RISING_EDGE);
+}
+
+void spiEnableInterrupts(uint8_t SPI_n, uint32_t mask)
+{
+	SPI_Type* base = SPIPtrs[SPI_n];
+    if (mask & SPI_RSER_TFFF_RE_MASK)
+    {
+        base->RSER &= ~SPI_RSER_TFFF_DIRS_MASK;
+    }
+    if (mask & SPI_RSER_RFDF_RE_MASK)
+    {
+        base->RSER &= ~SPI_RSER_RFDF_DIRS_MASK;
+    }
+    base->RSER |= mask;
+}
 */
+

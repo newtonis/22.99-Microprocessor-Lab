@@ -64,14 +64,18 @@ void internarHandler(void){
 		break;
 	}
 }
-
-
+/*
+__ISR__ SPI0_IRQHandler(void){
+	// llamo a los puertos de spi y cleareo sus ISF
+	clearAllSPIInterruptFlags();
+}
+*/
 
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-
-
+	//NVIC_EnableIRQ(SPI0_IRQn);
+	//PORTA_IRQHandler();
 	SPI_Initialize();
 	internalControlInit(internarHandler);
 	RGBIndicator(BLUE_INDICATOR);

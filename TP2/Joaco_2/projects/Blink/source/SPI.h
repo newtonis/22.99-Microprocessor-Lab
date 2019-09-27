@@ -35,6 +35,28 @@ enum{PULL_DOWN,PULL_UP,DISABLE_PULL};
 enum{SPI_0,SPI_1,SPI_2};
 enum{SPI_CONFIG,RESERVED_0,RESERVED_1,RESERVED_2};
 
+typedef enum which_pcs_config{
+	Pcs0 = (1U << 0) , /*!< Pcs[0] */
+	Pcs1 = (1U << 1) , /*!< Pcs[1] */
+	Pcs2 = (1U << 2) , /*!< Pcs[2] */
+	Pcs3 = (1U << 3) , /*!< Pcs[3] */
+	Pcs4 = (1U << 4) , /*!< Pcs[4] */
+	Pcs5 = (1U << 5)   /*!< Pcs[5] */
+}pcs_t;
+
+typedef enum ISF_configs{
+	ISF_DISABLED = 0b0000 ,
+	ISF_DMA_RISING_EDGE = 0b0001 ,
+	ISF_DMA_FALLING_EDGE = 0b0010 ,
+	ISF_DMA_EITHER_EDGE = 0b0011 ,
+
+	ISF_INTERRUPT_LOGIC_0 = 0b1000 ,
+	ISF_INTERRUPT_RISING_EDGE = 0b1001 ,
+	ISF_INTERRUPT_FALLING_EDGE = 0b1010 ,
+	ISF_INTERRUPT_EITHER_EDGE = 0b1011 ,
+	ISF_INTERRUPT_LOGIC_1 = 0b1100
+}isf_configs_t;
+
 typedef struct{
 	bool whichCTAR;
 	bool SCKE;
@@ -51,11 +73,13 @@ typedef struct{
 } spi_master_config_t;
 
 
+
+
 typedef struct{
 
 	bool isPcsContinuous;
 	bool whichCtar;
-	bool whichPcs;
+	uint32_t whichPcs;
 	bool isEndOfQueue;
 	bool clearTransferCount;
 
@@ -141,13 +165,25 @@ void clearTxFifoFillRequestFlag(uint8_t SPI_n);
 
 void defCommand(spi_command* command);
 
-
 void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data);
 
+void MasterWriteCommandDataBlocking(uint8_t SPI_n, uint32_t data);
 
 
+/*
+void clearInterruptFlag(pin_t pin);
 
 
+void clearAllSPIInterruptFlags(void);
+
+void setInterruptConfig(pin_t pin, isf_configs_t config);
+
+
+void configAllSPIInterrupts(void);
+
+void spiEnableInterrupts(uint8_t SPI_n, uint32_t mask);
+
+*/
 
 /*******************************************************************************
  ******************************************************************************/
