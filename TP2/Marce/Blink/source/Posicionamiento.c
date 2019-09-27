@@ -75,7 +75,8 @@ void Position_CalculateRoll(void){
 	}
 
 	if(clock_type != ZERO){
-		tita = 180*atan(fabs(accel_cords.z)/fabs(accel_cords.x))/M_PI;
+		float aux = sqrtf(powf(accel_cords.z, 2) + powf(accel_cords.y, 2));
+		tita = 180*atan(aux/fabs(accel_cords.x))/M_PI;
 	}else{
 		tita = 90;
 	}
@@ -122,7 +123,8 @@ void Position_CalculatePitching(void){
 	}
 
 	if(clock_type != ZERO){
-		tita = 180*atan(fabs(accel_cords.z)/fabs(accel_cords.y))/M_PI;
+		float aux = sqrtf(powf(accel_cords.z, 2) + powf(accel_cords.x, 2));
+		tita = 180*atan(aux/fabs(accel_cords.y))/M_PI;
 	}else{
 		tita = 90;
 	}
@@ -169,7 +171,8 @@ void Position_CalculateOrientation(void){
 	}
 
 	if(clock_type != ZERO){
-		tita = 180*atan(fabs(magnet_cords.x)/fabs(magnet_cords.y))/M_PI;
+		float aux = sqrtf(powf(magnet_cords.y, 2) + powf(magnet_cords.z, 2));
+		tita = 180*atan(fabs(magnet_cords.x)/aux)/M_PI;
 	}else{
 		tita = 90;
 	}
