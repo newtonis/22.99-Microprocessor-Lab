@@ -9,14 +9,114 @@
 
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
 static SPI_Type* SPIPtrs[] = SPI_BASE_PTRS;
-static uint32_t simMasks[] = {SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK, SIM_SCGC5_PORTC_MASK, SIM_SCGC5_PORTD_MASK, SIM_SCGC5_PORTE_MASK };
 static SIM_Type* sim_ptr = SIM;
 
-//static SPI_Type* SPI_IRQSPtrs[] = SPI_IRQS;
 
-// Existe la macro SPI_IRQS
+void masterConfig(spi_master_config_t * master_cfg){
+	master_cfg->whichCTAR = 0;
+	master_cfg->SCKE = false;
+	master_cfg->MTFE = false;
+	master_cfg->ROOE = false;
+	master_cfg->SMPL_PT = 0;
+	master_cfg->DIS_RXF = false;
+	master_cfg->DIS_TXF = false;
+	master_cfg->MDIS = 0; // con 0 habilito el modulo
 
-void SPIClockGatingEnable(int SPI_n){
+	master_cfg->CTAR_FMSZ = 8;
+	master_cfg->CTAR_CPOL = 0;
+	master_cfg->CTAR_CPHA = 0;
+	master_cfg->CTAR_LSBFE = 0;
+
+	master_cfg->CTAR_BR = 15;
+	master_cfg->CTAR_BRPRESC = 3;
+}
+
+void masterInitiliaze(uint8_t SPI_n){
+	uint8_t SPI_alternative = 2;
+
+	// cargamos la configuracion de master
+	spi_master_config_t master_config;
+	masterConfig(&master_config);
+
+	SPIMode(PIN_PCS0, DISABLE_PULL, SPI_alternative );
+	SPIMode(PIN_SCK_MASTER, DISABLE_PULL, SPI_alternative );
+	SPIMode(PIN_MOSI_MASTER, DISABLE_PULL, SPI_alternative );
+	SPIMode(PIN_MISO_MASTER, DISABLE_PULL, SPI_alternative );
+
+
+	SPIClockGatingEnable(SPI_n);
+	setSPIConfig(SPI_n, SPI_CONFIG);
+
+
+	SPI_Type* base = SPIPtrs[SPI_n];
+	uint32_t temp = 0;
+
+	//moduleEnable(SPI_n);
+
+
+	HALTStopTransfers(SPI_n);
+
+
+	base->MCR &=~ SPI_MCR_MDIS_MASK;
+	base->MCR |= SPI_MCR_MDIS(master_config.MDIS);
+
+	base->MCR &=~ SPI_MCR_MSTR_MASK;
+	base->MCR |= SPI_MCR_MSTR(1);
+
+	temp = base->MCR & (~(  SPI_MCR_CONT_SCKE_MASK |
+							SPI_MCR_MTFE_MASK |
+							SPI_MCR_ROOE_MASK |
+							SPI_MCR_SMPL_PT_MASK |
+	                        SPI_MCR_DIS_TXF_MASK |
+							SPI_MCR_DIS_RXF_MASK));
+
+	base->MCR = temp |
+					SPI_MCR_CONT_SCKE(master_config.SCKE) |
+	                SPI_MCR_MTFE(master_config.MTFE) |
+	                SPI_MCR_ROOE(master_config.ROOE) |
+					SPI_MCR_SMPL_PT(master_config.SMPL_PT) |
+	                SPI_MCR_DIS_TXF(master_config.DIS_TXF) |
+					SPI_MCR_DIS_RXF(master_config.DIS_RXF);
+
+	base->CTAR[master_config.whichCTAR] &= ~SPI_CTAR_BR_MASK;
+	base->CTAR[master_config.whichCTAR] |= SPI_CTAR_BR(master_config.CTAR_BR);
+
+	base->CTAR[master_config.whichCTAR] &= ~SPI_CTAR_PBR_MASK;
+	base->CTAR[master_config.whichCTAR] |= SPI_CTAR_PBR(master_config.CTAR_BRPRESC);
+
+	temp = base->CTAR[master_config.whichCTAR] & ~(  SPI_CTAR_FMSZ_MASK |
+									 	 	 	 	 SPI_CTAR_CPOL_MASK |
+													 SPI_CTAR_CPHA_MASK |
+													 SPI_CTAR_LSBFE_MASK);
+
+	base->CTAR[master_config.whichCTAR] = temp | SPI_CTAR_FMSZ(master_config.CTAR_FMSZ - 1) |
+								   	   	   	   	 SPI_CTAR_CPOL(master_config.CTAR_CPOL) |
+												 SPI_CTAR_CPHA(master_config.CTAR_CPHA) |
+												 SPI_CTAR_LSBFE(master_config.CTAR_LSBFE);
+
+	   /*
+	    *
+		DSPI_MasterSetDelayTimes(base, masterConfig->whichCtar, kDSPI_PcsToSck, srcClock_Hz,
+								 masterConfig->ctarConfig.pcsToSckDelayInNanoSec);
+		DSPI_MasterSetDelayTimes(base, masterConfig->whichCtar, kDSPI_LastSckToPcs, srcClock_Hz,
+								 masterConfig->ctarConfig.lastSckToPcsDelayInNanoSec);
+		DSPI_MasterSetDelayTimes(base, masterConfig->whichCtar, kDSPI_BetweenTransfer, srcClock_Hz,
+								 masterConfig->ctarConfig.betweenTransferDelayInNanoSec);
+	    *
+	    *
+	    * */
+	// dumdata
+	setPCSActiveLow(SPI_n);
+	HALTStartTransfers(SPI_n);
+}
+
+void SPI_Initialize(void){
+
+	masterInitiliaze(SPI_0);
+	//spiEnableInterrupts(SPI_0, SPI_RSER_TFFF_RE_MASK);
+}
+
+void SPIClockGatingEnable(uint8_t SPI_n){
 	switch(SPI_n){
 		case SPI_0:
 			sim_ptr->SCGC6 |= SIM_SCGC6_SPI0(ENABLE); // activo clock gating
@@ -31,12 +131,11 @@ void SPIClockGatingEnable(int SPI_n){
 }
 
 
-void SPIMode(pin_t pin, uint8_t mode){
+void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt){
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
 	uint32_t num = PIN2NUM(pin); // num es el numero de pin
-	// connect to gpio (hay un PCR por pin)
 	port->PCR[num] = 0x00;
-	port->PCR[num] |= PORT_PCR_MUX(2); // ENABLE SPI
+	port->PCR[num] |= PORT_PCR_MUX(mux_alt); // ENABLE SPI
 	port->PCR[num] |= PORT_PCR_IRQC(0);
 	switch(mode){
 		case PULL_UP:
@@ -53,143 +152,215 @@ void SPIMode(pin_t pin, uint8_t mode){
 	}
 }
 
-void setMasterBaudRate(int SPI_n,int mode){
-	SPIPtrs[SPI_n]->CTAR[1] &= ~ SPI_CTAR_BR_MASK;
-	SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_BR(mode);
+
+void testSPI(uint8_t SPI_n){
+
+	uint16_t data = 0xAA;
+	spi_command command;
+	command.isPcsContinuous = false;
+	command.isEndOfQueue = false;
+	command.whichPcs = Pcs0;
+	command.whichCtar = 0;
+	command.clearTransferCount = 0;
+	//MasterWriteCommandDataBlocking(SPI_n, data);
+	MasterWriteDataBlocking(SPI_n, &command, data);
+
+	data = 0x0F;
+	command.isPcsContinuous = false;
+	command.isEndOfQueue = false;
+	command.whichPcs = Pcs0;
+	command.whichCtar = 0;
+	command.clearTransferCount = 0;
+	//MasterWriteCommandDataBlocking(SPI_n, data);
+	MasterWriteDataBlocking(SPI_n, &command, data);
+
+	data = 0x55;
+	command.isPcsContinuous = false;
+	command.isEndOfQueue = false;
+	command.whichPcs = Pcs0;
+	command.whichCtar = 0;
+	command.clearTransferCount = 0;
+	//MasterWriteCommandDataBlocking(SPI_n, data);
+	MasterWriteDataBlocking(SPI_n, &command, data);
+	int a = 5;
+
 }
 
-void setMasterBaudRatePrescaler(int SPI_n,int mode){
-	SPIPtrs[SPI_n]->CTAR[1] &= ~ SPI_CTAR_PBR_MASK;
-	SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_PBR(mode);
-}
 
-void setMasterClockPolarity(int SPI_n, bool pol){
-	if (pol == ENABLE){
-		SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_CPOL(ENABLE);
+void setMode(uint8_t SPI_n, bool mode){
+	if(mode == MASTER){
+		SPIPtrs[SPI_n]->MCR |= SPI_MCR_MSTR(MASTER);
 	}else{
-		SPIPtrs[SPI_n]->CTAR[1] &= ~SPI_CTAR_CPOL_SHIFT;
+		SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_MSTR_MASK;
 	}
 }
 
-
-void setMasterClockPhase(int SPI_n, bool pha){
-	if (pha == ENABLE){
-		SPIPtrs[SPI_n]->CTAR[1] |= SPI_CTAR_CPHA(ENABLE);
-	}else{
-		SPIPtrs[SPI_n]->CTAR[1] &= ~SPI_CTAR_CPHA_SHIFT;
-	}
+bool getMode(uint8_t SPI_n){
+	return (SPIPtrs[SPI_n]->MCR & SPI_MCR_MSTR_MASK) == (SPI_MCR_MSTR_MASK);
 }
 
-void setMasterMode(int SPI_n){
-	//SPI_Type * spi_aux = SPIPtrs[SPI_n];
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_MSTR(MASTER);
-}
 
-void setSlaveMode(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_MSTR_SHIFT;
-}
-
-bool getMode(int SPI_n){
-	return (SPIPtrs[SPI_n]->MCR & SPI_MCR_MSTR_SHIFT) == (SPI_MCR_MSTR_SHIFT);
-}
-
-void enableContinousSCK(int SPI_n){
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_CONT_SCKE(ENABLE);
-}
-
-void disableContinousSCK(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CONT_SCKE_SHIFT;
-}
-
-void setSPIConfig(int SPI_n, int SPI_config){
+void setSPIConfig(uint8_t SPI_n, int SPI_config){
 	SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_DCONF_MASK;
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_DCONF(SPI_config);
 }
 
-void enableFreeze(int SPI_n){
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_FRZ(ENABLE);
-}
-
-void disableFreeze(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_FRZ_SHIFT;
-}
-
-void enableModifyTransferFormat(int SPI_n){
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_MTFE(ENABLE);
-}
-
-void disableModifyTransferFormat(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_MTFE_SHIFT;
-}
-
-void enableChipSelectStrobe(int SPI_n){
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_PCSSE(ENABLE);
-}
-
-void disableChipSelectStrobe(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_PCSSE_SHIFT;
-}
-
-void enableRxFIFOOverflowOverwrite(int SPI_n){
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_ROOE(ENABLE);
-}
-
-void disableRxFIFOOverflowOverwrite(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_ROOE_SHIFT;
-}
-
-void dozeEnable(int SPI_n){
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_DOZE(ENABLE);
-}
-
-void dozeDisable(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DOZE_SHIFT;
-}
-
-void moduleDisable(int SPI_n){ // power saving
-	SPIPtrs[SPI_n]->MCR |= SPI_MCR_MDIS(ENABLE);
-}
-
-void moduleEnable(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~  SPI_MCR_MDIS_SHIFT;
-}
-
-void disableTxFIFO(int SPI_n){
+void disableTxFIFO(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_DIS_TXF(ENABLE);
 }
 
-void enableTxFIFO(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DIS_TXF_SHIFT;
+void enableTxFIFO(uint8_t SPI_n){
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DIS_TXF_MASK;
 }
 
-void disableRxFIFO(int SPI_n){
+void disableRxFIFO(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_DIS_RXF(ENABLE);
 }
 
-void enableRxFIFO(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DIS_RXF_SHIFT;
+void enableRxFIFO(uint8_t SPI_n){
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DIS_RXF_MASK;
 }
 
-void clearTxFIFO(int SPI_n){ //flush
+void clearTxFIFO(uint8_t SPI_n){ //flush
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_CLR_TXF(ENABLE);
 }
 
-void dontClearTxFIFO(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_TXF_SHIFT;
+void dontClearTxFIFO(uint8_t SPI_n){
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_TXF_MASK;
 }
 
-void clearRxFIFO(int SPI_n){  //flush
+void clearRxFIFO(uint8_t SPI_n){  //flush
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_CLR_RXF(ENABLE);
 }
 
-void dontClearRxFIFO(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_RXF_SHIFT;
+void dontClearRxFIFO(uint8_t SPI_n){
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_RXF_MASK;
 }
 
-void HALTStopTransfers(int SPI_n){
+void HALTStopTransfers(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_HALT(ENABLE);
 }
 
-void HALTStartTransfers(int SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_HALT_SHIFT;
+void HALTStartTransfers(uint8_t SPI_n){
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_HALT_MASK;
 }
+
+void setPCSActiveHigh(uint8_t SPI_n){
+	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_PCSIS_MASK;
+}
+
+void setPCSActiveLow(uint8_t SPI_n){
+	SPIPtrs[SPI_n]->MCR |=  SPI_MCR_PCSIS_MASK;
+}
+
+
+
+
+void clearTxCompleteFlag(uint8_t SPI_n){
+	SPIPtrs[SPI_n]->SR |= SPI_SR_TCF(1);
+}
+
+void clearTxFifoFillRequestFlag(uint8_t SPI_n){
+	SPIPtrs[SPI_n]->SR |= SPI_SR_TFFF_MASK;
+}
+
+void defCommand(spi_command* command){
+	command->isPcsContinuous = false;
+	command->whichCtar = 0;
+	command->whichPcs = 0;
+	command->isEndOfQueue = false;
+	command->clearTransferCount = false;
+}
+
+void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data)
+{
+	/* First, clear Transmit Complete Flag (TCF) */
+	clearTxCompleteFlag(SPI_n);
+
+	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_MASK))
+    {
+    	clearTxFifoFillRequestFlag(SPI_n);
+    }
+
+	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->isPcsContinuous) |
+							SPI_PUSHR_PCS(command->whichPcs)|
+							SPI_PUSHR_CTAS(command->whichCtar)  |
+							SPI_PUSHR_EOQ(command->isEndOfQueue) |
+							SPI_PUSHR_CTCNT(command->clearTransferCount) |
+							SPI_PUSHR_TXDATA(data);
+
+
+    clearTxFifoFillRequestFlag(SPI_n);
+
+    /* Wait till TCF sets */
+    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_MASK))
+    {
+    }
+}
+
+
+
+void MasterWriteCommandDataBlocking(uint8_t SPI_n, uint32_t data)
+{
+
+	clearTxCompleteFlag(SPI_n);
+
+	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_MASK))
+
+    {
+    	clearTxFifoFillRequestFlag(SPI_n);
+    }
+
+	SPIPtrs[SPI_n]->PUSHR = data;
+
+    clearTxFifoFillRequestFlag(SPI_n);
+
+    /* Wait till TCF sets */
+    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_MASK))
+    {
+    }
+}
+
+/*
+void clearInterruptFlag(pin_t pin){
+	PORT_Type *port = portPtrs[PIN2PORT(pin)];
+	uint32_t num = PIN2NUM(pin); // num es el numero de pin
+	port->PCR[num] |= PORT_PCR_ISF_MASK;
+}
+
+void clearAllSPIInterruptFlags(void){
+	clearInterruptFlag(PIN_PCS0);
+	clearInterruptFlag(PIN_SCK_MASTER);
+	clearInterruptFlag(PIN_MOSI_MASTER);
+	clearInterruptFlag(PIN_MISO_MASTER);
+}
+
+void setInterruptConfig(pin_t pin, isf_configs_t config){
+	PORT_Type *port = portPtrs[PIN2PORT(pin)];
+	uint32_t num = PIN2NUM(pin); // num es el numero de pin
+	port->PCR[num] &= ~PORT_PCR_IRQC_MASK;
+	port->PCR[num] |= PORT_PCR_IRQC(config);
+}
+
+void configAllSPIInterrupts(void){
+	setInterruptConfig(PIN_PCS0, ISF_DMA_RISING_EDGE);
+	setInterruptConfig(PIN_SCK_MASTER, ISF_DMA_RISING_EDGE);
+	setInterruptConfig(PIN_MOSI_MASTER, ISF_DMA_RISING_EDGE);
+	setInterruptConfig(PIN_MISO_MASTER, ISF_DMA_RISING_EDGE);
+}
+
+void spiEnableInterrupts(uint8_t SPI_n, uint32_t mask)
+{
+	SPI_Type* base = SPIPtrs[SPI_n];
+    if (mask & SPI_RSER_TFFF_RE_MASK)
+    {
+        base->RSER &= ~SPI_RSER_TFFF_DIRS_MASK;
+    }
+    if (mask & SPI_RSER_RFDF_RE_MASK)
+    {
+        base->RSER &= ~SPI_RSER_RFDF_DIRS_MASK;
+    }
+    base->RSER |= mask;
+}
+*/
+

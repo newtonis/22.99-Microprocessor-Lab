@@ -35,36 +35,14 @@
 #define PIN_SW3			PORTNUM2PIN(PA,4) // PTA4
 
 // SPI
-#define PIN_SCK    PORTNUM2PIN(PD,1) // PTD1
-#define PIN_MOSI    PORTNUM2PIN(PD,2) // PTD2
-#define PIN_MISO    PORTNUM2PIN(PD,3) // PTD3
+#define PIN_PCS0    PORTNUM2PIN(PD,0) // PTD0
+#define PIN_SCK_MASTER    PORTNUM2PIN(PD,1) // PTD1
+#define PIN_MOSI_MASTER    PORTNUM2PIN(PD,2) // PTD2
+#define PIN_MISO_MASTER    PORTNUM2PIN(PD,3) // PTD3
 
 
 #define SW_ACTIVE       // ???
 #define SW_INPUT_TYPE   // ???
-
-// Display Segments
-#define SEG_A	PORTNUM2PIN(PC,5)
-#define SEG_B	PORTNUM2PIN(PC,7)
-#define SEG_C	PORTNUM2PIN(PC,0)
-#define SEG_D	PORTNUM2PIN(PC,9)
-#define SEG_E	PORTNUM2PIN(PC,8)
-#define SEG_F	PORTNUM2PIN(PC,1)
-#define SEG_G	PORTNUM2PIN(PB,19)
-#define SEG_DP	PORTNUM2PIN(PB,18)
-
-// Display Selector
-#define	SEL0	PORTNUM2PIN(PC,17)
-#define SEL1	PORTNUM2PIN(PC,16)
-
-// Status LED's
-#define STAT0	PORTNUM2PIN(PA,1)
-#define STAT1	PORTNUM2PIN(PB,9)
-
-// Encoder Pins
-#define RSwitch	PORTNUM2PIN(PC,3)
-#define RCHB	PORTNUM2PIN(PC,2)
-#define RCHA	PORTNUM2PIN(PA,2)
 
 
 /*******************************************************************************

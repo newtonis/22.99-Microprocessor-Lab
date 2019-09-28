@@ -29,11 +29,67 @@
  ******************************************************************************/
 
 typedef uint8_t pin_t;
+enum{SLAVE,MASTER};
 enum{DISABLE,ENABLE};
 enum{PULL_DOWN,PULL_UP,DISABLE_PULL};
 enum{SPI_0,SPI_1,SPI_2};
-enum{SLAVE,MASTER};
 enum{SPI_CONFIG,RESERVED_0,RESERVED_1,RESERVED_2};
+
+typedef enum which_pcs_config{
+	Pcs0 = (1U << 0) , /*!< Pcs[0] */
+	Pcs1 = (1U << 1) , /*!< Pcs[1] */
+	Pcs2 = (1U << 2) , /*!< Pcs[2] */
+	Pcs3 = (1U << 3) , /*!< Pcs[3] */
+	Pcs4 = (1U << 4) , /*!< Pcs[4] */
+	Pcs5 = (1U << 5)   /*!< Pcs[5] */
+}pcs_t;
+
+typedef enum ISF_configs{
+	ISF_DISABLED = 0b0000 ,
+	ISF_DMA_RISING_EDGE = 0b0001 ,
+	ISF_DMA_FALLING_EDGE = 0b0010 ,
+	ISF_DMA_EITHER_EDGE = 0b0011 ,
+
+	ISF_INTERRUPT_LOGIC_0 = 0b1000 ,
+	ISF_INTERRUPT_RISING_EDGE = 0b1001 ,
+	ISF_INTERRUPT_FALLING_EDGE = 0b1010 ,
+	ISF_INTERRUPT_EITHER_EDGE = 0b1011 ,
+	ISF_INTERRUPT_LOGIC_1 = 0b1100
+}isf_configs_t;
+
+typedef struct{
+	bool whichCTAR;
+	bool SCKE;
+	bool MTFE;
+	bool ROOE;
+	uint8_t SMPL_PT;
+	bool DIS_TXF;
+	bool DIS_RXF;
+	bool MDIS;
+
+
+	uint8_t CTAR_FMSZ;
+	bool CTAR_CPOL;
+	bool CTAR_CPHA;
+	bool CTAR_LSBFE;
+	uint8_t CTAR_BR;
+	uint8_t CTAR_BRPRESC;
+
+} spi_master_config_t;
+
+
+
+
+typedef struct{
+
+	bool isPcsContinuous;
+	bool whichCtar;
+	uint32_t whichPcs;
+	bool isEndOfQueue;
+	bool clearTransferCount;
+
+}spi_command;
+
 /*******************************************************************************
  * VARIABLE PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
@@ -47,102 +103,85 @@ enum{SPI_CONFIG,RESERVED_0,RESERVED_1,RESERVED_2};
  * @param the number of SPI
  * @return void
  */
-void setMasterMode(int SPI_n);
-/**
- * @brief sets Slave Mode
- * @param the number of SPI
- * @return void
- */
-void setSlaveMode(int SPI_n);
-/**
- * @brief gets which Mode is activated
- * @param the number of SPI
- * @return bool indicating the mode
- */
+//void setMasterMode(uint8_t SPI_n);
 
-bool getMode(int SPI_n);
+void masterConfig(spi_master_config_t * master_cfg);
 
-/**
- * @brief Enables Continous Clock SCK
- * @param void
- * @return bool indicating the mode
- */
+void masterInitiliaze(uint8_t SPI_n);
 
-void initSPIDriver(void);
+void SPI_Initialize(void);
 
-void enableContinousSCK(int SPI_n);
+void SPIClockGatingEnable(uint8_t SPI_n);
 
-void disableContinousSCK(int SPI_n);
+void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt);
 
-void setSPIConfig(int SPI_n, int SPI_config);
+void testSPI(uint8_t SPI_n);
 
-void enableFreeze(int SPI_n);
+void setMode(uint8_t SPI_n, bool mode);
 
-void disableFreeze(int SPI_n);
+bool getMode(uint8_t SPI_n);
 
-void enableModifyTransferFormat(int SPI_n);
+void setSPIConfig(uint8_t SPI_n, int SPI_config);
 
-void disableModifyTransferFormat(int SPI_n);
 
-void enableChipSelectStrobe(int SPI_n);
+void disableTxFIFO(uint8_t SPI_n);
 
-void disableChipSelectStrobe(int SPI_n);
+void enableTxFIFO(uint8_t SPI_n);
 
-void enableRxFIFOOverflowOverwrite(int SPI_n);
+void disableRxFIFO(uint8_t SPI_n);
 
-void disableRxFIFOOverflowOverwrite(int SPI_n);
+void enableRxFIFO(uint8_t SPI_n);
 
-void dozeEnable(int SPI_n);
 
-void dozeDisable(int SPI_n);
+void clearTxFIFO(uint8_t SPI_n); //flush
 
-void moduleDisable(int SPI_n);
+void dontClearTxFIFO(uint8_t SPI_n);
 
-void moduleEnable(int SPI_n);
 
-void disableTxFIFO(int SPI_n);
+void clearRxFIFO(uint8_t SPI_n); //flush
 
-void enableTxFIFO(int SPI_n);
+void dontClearRxFIFO(uint8_t SPI_n);
 
-void disableRxFIFO(int SPI_n);
 
-void enableRxFIFO(int SPI_n);
+void HALTStopTransfers(uint8_t SPI_n);
 
-void clearTxFIFO(int SPI_n); //flush
+void HALTStartTransfers(uint8_t SPI_n);
 
-void dontClearTxFIFO(int SPI_n);
 
-void clearRxFIFO(int SPI_n); //flush
+void setPCSActiveHigh(uint8_t SPI_n);
 
-void dontClearRxFIFO(int SPI_n);
+void setPCSActiveLow(uint8_t SPI_n);
 
-void HALTStopTransfers(int SPI_n);
 
-void HALTStartTransfers(int SPI_n);
+
+
+
+void clearTxCompleteFlag(uint8_t SPI_n);
+
+void clearTxFifoFillRequestFlag(uint8_t SPI_n);
+
+
+void defCommand(spi_command* command);
+
+void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data);
+
+void MasterWriteCommandDataBlocking(uint8_t SPI_n, uint32_t data);
 
 
 /*
-void sendTxFifoInfo(tx_info_t data);
-rx_info_t getReceivedRxFifoInfo(void);
-void disableTxFifo(void); // esto es para low latency updates to SPI queues
-void disableRxFifo(void); // esto es para low latency updates to SPI queues
+void clearInterruptFlag(pin_t pin);
+
+
+void clearAllSPIInterruptFlags(void);
+
+void setInterruptConfig(pin_t pin, isf_configs_t config);
+
+
+void configAllSPIInterrupts(void);
+
+void spiEnableInterrupts(uint8_t SPI_n, uint32_t mask);
+
 */
-
-//void addDMAEntryToTxFifo(dma_info_t data);
-
-//void removeDMAEntryFromRxFifo(dma_info_t data);
-
-// Interrupciones:
-// EOQF = End of Queue Reached
-// TFFF = Tx fifo is not full
-// TCF = Transfer of current frame complete
-// TFUF = Attemp to transmit with an empty Transmit FIFO
-// RFDF = RX fifo is not empty
-// RFOF = Frame received while Receive FIFO is full (RFOF)
-
-// SPI tiene multiples interrupciones, las fuentes de esas interrupciones
-// son OReadas para generar una interrupción simple al controlador de interrupciones
-// cuando ocurren hay que leer SPI_SR para determinar la interrupción exacta
 
 /*******************************************************************************
  ******************************************************************************/
