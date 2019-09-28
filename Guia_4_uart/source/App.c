@@ -34,21 +34,22 @@ static void delayLoop(uint32_t veces);
 void App_Init (void){
     //gpioMode(PIN_LED_BLUE, OUTPUT);
 	uart_cfg_t config;
+
 	config.baudrate = 4800;
-
+	gpioMode(PIN_PRUEBA,OUTPUT);
+	gpioWrite(PIN_PRUEBA,LOW);
 	uartInit(config);
-
-
 
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
-void App_Run (void)
-{
+void App_Run (void){
     delayLoop(4000000UL);
+    sendWord("¡Bualo Ari y Valen xdxdxd!");
 
     //while (UART0->)
 }
+
 
 
 /*******************************************************************************
