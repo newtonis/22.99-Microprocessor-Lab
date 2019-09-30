@@ -8,20 +8,23 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 
-#include "board.h"
-#include "gpio.h"
-
+#include "i2c.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-
+static char data [10];
+static void i2c_handler (void);
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-static void delayLoop(uint32_t veces);
+void i2c_handler (void)
+{
+	int a;
+	a++;
+}
 
 
 /*******************************************************************************
@@ -33,29 +36,19 @@ static void delayLoop(uint32_t veces);
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-	gpioMode(PIN_TP, OUTPUT);
-    gpioMode(PIN_LED_BLUE, OUTPUT);
+
+    i2cInit(I2C_0);
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-    delayLoop(4000000UL);
-    gpioToggle(PIN_LED_BLUE);
+
+	i2cReadMsg(0x1D, data, 0x0D, 1, i2c_handler);
+	while (1)
+	{
+
+	}
 }
 
-
-/*******************************************************************************
- *******************************************************************************
-                        LOCAL FUNCTION DEFINITIONS
- *******************************************************************************
- ******************************************************************************/
-
-static void delayLoop(uint32_t veces)
-{
-    while (veces--);
-}
-
-
-/*******************************************************************************
- ******************************************************************************/

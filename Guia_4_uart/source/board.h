@@ -27,6 +27,7 @@
 
 #define LED_ACTIVE      LOW
 
+#define PIN_PRUEBA PORTNUM2PIN(PB,9)
 
 // On Board User Switches
 #define PIN_SW2         // ???

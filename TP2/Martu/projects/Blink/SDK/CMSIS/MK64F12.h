@@ -7035,8 +7035,8 @@ typedef struct {
 #define I2C_C1_TXAK_SHIFT                        (3U)
 #define I2C_C1_TXAK(x)                           (((uint8_t)(((uint8_t)(x)) << I2C_C1_TXAK_SHIFT)) & I2C_C1_TXAK_MASK)
 #define I2C_C1_TX_MASK                           (0x10U)
-#define I2C_C1_TX_SHIFT                          (4U)
-#define I2C_C1_TX(x)                             (((uint8_t)(((uint8_t)(x)) << I2C_C1_TX_SHIFT)) & I2C_C1_TX_MASK)
+#define _C1_TX_SHIFT                          (4U)
+#define _C1_TX(x)                             (((uint8_t)(((uint8_t)(x)) << _C1_TX_SHIFT)) & _C1_TX_MASK)
 #define I2C_C1_MST_MASK                          (0x20U)
 #define I2C_C1_MST_SHIFT                         (5U)
 #define I2C_C1_MST(x)                            (((uint8_t)(((uint8_t)(x)) << I2C_C1_MST_SHIFT)) & I2C_C1_MST_MASK)
@@ -10629,8 +10629,6 @@ typedef struct {
 #define SIM_BASE_ADDRS                           { SIM_BASE }
 /** Array initializer of SIM peripheral base pointers */
 #define SIM_BASE_PTRS                            { SIM }
-
-#define SIM_BASE_MASKS							{ SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK , SIM_SCGC5_PORTC_MASK , SIM_SCGC5_PORTD_MASK , SIM_SCGC5_PORTE_MASK }
 
 /*!
  * @}
