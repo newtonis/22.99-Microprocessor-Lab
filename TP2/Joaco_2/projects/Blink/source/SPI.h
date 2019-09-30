@@ -59,18 +59,20 @@ typedef enum ISF_configs{
 
 typedef struct{
 	bool whichCTAR;
-	bool SCKE;
-	bool MTFE;
-	bool ROOE;
-	uint8_t SMPL_PT;
-	bool DIS_TXF;
-	bool DIS_RXF;
-	bool MDIS;
+
+	bool MCR_isMaster;
+	bool MCR_ContinousSerialClockEnable; // habilita el clock a correr continuamente
+	bool MCR_ModifiedTransferFormatEnable; // habilita el modo de ModifiedTransfer
+	bool MCR_ReceiveFIFOverflowOverwriteEnable; // Rxfifo llena y sigue llegando datos: 0 data es ignorada, 1 se shiftea data
+	uint8_t MCR_Sample_Point;// configuro cuando sampleo en Modified Transfer Format, solo valido cuando CTAR[CPHA]=0
+	bool MCR_isTxfifoDisabled; // Desactivo Txfifo con 1
+	bool MCR_isRxfifoDisabled; // Desactivo Rxfifo con 1
+	bool MCR_isModuleDisabled; // Desactivar modulo, con 0 habilito, con 1 deshabilito
 
 
-	uint8_t CTAR_FMSZ;
-	bool CTAR_CPOL;
-	bool CTAR_CPHA;
+	uint8_t CTAR_FrameSize;
+	bool CTAR_CPOL; //estado del clock en IDLE
+	bool CTAR_CPHA; // seteo en que flanco muestreo, 0 es en el primero, 1 en el segundo
 	bool CTAR_LSBFE;
 	uint8_t CTAR_BR;
 	uint8_t CTAR_BRPRESC;
@@ -82,7 +84,7 @@ typedef struct{
 
 typedef struct{
 
-	bool isPcsContinuous;
+	bool keepAssertedPCSnBetweenTransfers;
 	bool whichCtar;
 	uint32_t whichPcs;
 	bool isEndOfQueue;

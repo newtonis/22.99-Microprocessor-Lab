@@ -14,19 +14,20 @@ static SIM_Type* sim_ptr = SIM;
 
 void masterConfig(spi_master_config_t * master_cfg){
 	master_cfg->whichCTAR = 0;
-	master_cfg->SCKE = false;
-	master_cfg->MTFE = false;
-	master_cfg->ROOE = false;
-	master_cfg->SMPL_PT = 0;
-	master_cfg->DIS_RXF = false;
-	master_cfg->DIS_TXF = false;
-	master_cfg->MDIS = 0; // con 0 habilito el modulo
 
-	master_cfg->CTAR_FMSZ = 8;
+	master_cfg->MCR_isMaster = true;
+	master_cfg->MCR_ContinousSerialClockEnable = false;
+	master_cfg->MCR_ModifiedTransferFormatEnable = false;
+	master_cfg->MCR_ReceiveFIFOverflowOverwriteEnable = false;
+	master_cfg->MCR_Sample_Point = 0;
+	master_cfg->MCR_isTxfifoDisabled = false;
+	master_cfg->MCR_isRxfifoDisabled = false;
+	master_cfg->MCR_isModuleDisabled = false;
+
+	master_cfg->CTAR_FrameSize = 8;
 	master_cfg->CTAR_CPOL = 0;
 	master_cfg->CTAR_CPHA = 0;
 	master_cfg->CTAR_LSBFE = 0;
-
 	master_cfg->CTAR_BR = 15;
 	master_cfg->CTAR_BRPRESC = 3;
 }
@@ -51,19 +52,14 @@ void masterInitiliaze(uint8_t SPI_n){
 	SPI_Type* base = SPIPtrs[SPI_n];
 	uint32_t temp = 0;
 
-	//moduleEnable(SPI_n);
-
-
 	HALTStopTransfers(SPI_n);
 
 
 	base->MCR &=~ SPI_MCR_MDIS_MASK;
-	base->MCR |= SPI_MCR_MDIS(master_config.MDIS);
+	base->MCR |= SPI_MCR_MDIS(master_config.MCR_isModuleDisabled);
 
-	base->MCR &=~ SPI_MCR_MSTR_MASK;
-	base->MCR |= SPI_MCR_MSTR(1);
-
-	temp = base->MCR & (~(  SPI_MCR_CONT_SCKE_MASK |
+	temp = base->MCR & (~(  SPI_MCR_MSTR_MASK |
+							SPI_MCR_CONT_SCKE_MASK |
 							SPI_MCR_MTFE_MASK |
 							SPI_MCR_ROOE_MASK |
 							SPI_MCR_SMPL_PT_MASK |
@@ -71,25 +67,24 @@ void masterInitiliaze(uint8_t SPI_n){
 							SPI_MCR_DIS_RXF_MASK));
 
 	base->MCR = temp |
-					SPI_MCR_CONT_SCKE(master_config.SCKE) |
-	                SPI_MCR_MTFE(master_config.MTFE) |
-	                SPI_MCR_ROOE(master_config.ROOE) |
-					SPI_MCR_SMPL_PT(master_config.SMPL_PT) |
-	                SPI_MCR_DIS_TXF(master_config.DIS_TXF) |
-					SPI_MCR_DIS_RXF(master_config.DIS_RXF);
+					SPI_MCR_MSTR(master_config.MCR_isMaster) |
+					SPI_MCR_CONT_SCKE(master_config.MCR_ContinousSerialClockEnable) |
+	                SPI_MCR_MTFE(master_config.MCR_ModifiedTransferFormatEnable) |
+	                SPI_MCR_ROOE(master_config.MCR_ReceiveFIFOverflowOverwriteEnable) |
+					SPI_MCR_SMPL_PT(master_config.MCR_Sample_Point) |
+	                SPI_MCR_DIS_TXF(master_config.MCR_isTxfifoDisabled) |
+					SPI_MCR_DIS_RXF(master_config.MCR_isRxfifoDisabled);
 
-	base->CTAR[master_config.whichCTAR] &= ~SPI_CTAR_BR_MASK;
-	base->CTAR[master_config.whichCTAR] |= SPI_CTAR_BR(master_config.CTAR_BR);
-
-	base->CTAR[master_config.whichCTAR] &= ~SPI_CTAR_PBR_MASK;
-	base->CTAR[master_config.whichCTAR] |= SPI_CTAR_PBR(master_config.CTAR_BRPRESC);
-
-	temp = base->CTAR[master_config.whichCTAR] & ~(  SPI_CTAR_FMSZ_MASK |
+	temp = base->CTAR[master_config.whichCTAR] & ~(  SPI_CTAR_BR_MASK |
+													 SPI_CTAR_PBR_MASK |
+													 SPI_CTAR_FMSZ_MASK |
 									 	 	 	 	 SPI_CTAR_CPOL_MASK |
 													 SPI_CTAR_CPHA_MASK |
 													 SPI_CTAR_LSBFE_MASK);
 
-	base->CTAR[master_config.whichCTAR] = temp | SPI_CTAR_FMSZ(master_config.CTAR_FMSZ - 1) |
+	base->CTAR[master_config.whichCTAR] = temp | SPI_CTAR_BR(master_config.CTAR_BR) |
+												 SPI_CTAR_PBR(master_config.CTAR_BRPRESC) |
+												 SPI_CTAR_FMSZ(master_config.CTAR_FrameSize - 1) |
 								   	   	   	   	 SPI_CTAR_CPOL(master_config.CTAR_CPOL) |
 												 SPI_CTAR_CPHA(master_config.CTAR_CPHA) |
 												 SPI_CTAR_LSBFE(master_config.CTAR_LSBFE);
@@ -107,6 +102,7 @@ void masterInitiliaze(uint8_t SPI_n){
 	    * */
 	// dumdata
 	setPCSActiveLow(SPI_n);
+
 	HALTStartTransfers(SPI_n);
 }
 
@@ -157,7 +153,7 @@ void testSPI(uint8_t SPI_n){
 
 	uint16_t data = 0xAA;
 	spi_command command;
-	command.isPcsContinuous = false;
+	command.keepAssertedPCSnBetweenTransfers = false;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
@@ -166,7 +162,7 @@ void testSPI(uint8_t SPI_n){
 	MasterWriteDataBlocking(SPI_n, &command, data);
 
 	data = 0x0F;
-	command.isPcsContinuous = false;
+	command.keepAssertedPCSnBetweenTransfers = false;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
@@ -175,14 +171,13 @@ void testSPI(uint8_t SPI_n){
 	MasterWriteDataBlocking(SPI_n, &command, data);
 
 	data = 0x55;
-	command.isPcsContinuous = false;
+	command.keepAssertedPCSnBetweenTransfers = false;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
 	command.clearTransferCount = 0;
 	//MasterWriteCommandDataBlocking(SPI_n, data);
 	MasterWriteDataBlocking(SPI_n, &command, data);
-	int a = 5;
 
 }
 
@@ -265,7 +260,7 @@ void clearTxFifoFillRequestFlag(uint8_t SPI_n){
 }
 
 void defCommand(spi_command* command){
-	command->isPcsContinuous = false;
+	command->keepAssertedPCSnBetweenTransfers = false;
 	command->whichCtar = 0;
 	command->whichPcs = 0;
 	command->isEndOfQueue = false;
@@ -282,7 +277,7 @@ void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data)
     	clearTxFifoFillRequestFlag(SPI_n);
     }
 
-	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->isPcsContinuous) |
+	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->keepAssertedPCSnBetweenTransfers) |
 							SPI_PUSHR_PCS(command->whichPcs)|
 							SPI_PUSHR_CTAS(command->whichCtar)  |
 							SPI_PUSHR_EOQ(command->isEndOfQueue) |
