@@ -76,6 +76,12 @@ typedef struct{
 	bool CTAR_LSBFE;
 	uint8_t CTAR_BR;
 	uint8_t CTAR_BRPRESC;
+	uint8_t CTAR_DelayAfterTransferScaler; // quiero que sea 2ms para 200hz
+	uint8_t CTAR_DelayAfterTransferPrescaler;
+	uint8_t CTAR_DelayAfterSCKtoNegPCSScaler;
+	uint8_t CTAR_DelayAfterSCKtoNegPCSPrescaler;
+	uint8_t CTAR_DelayPCStoSCKScaler;
+	uint8_t CTAR_DelayPCStoSCKPrescaler;
 
 } spi_master_config_t;
 

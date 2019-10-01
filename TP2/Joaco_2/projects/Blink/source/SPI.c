@@ -30,6 +30,24 @@ void masterConfig(spi_master_config_t * master_cfg){
 	master_cfg->CTAR_LSBFE = 0;
 	master_cfg->CTAR_BR = 15;
 	master_cfg->CTAR_BRPRESC = 3;
+
+
+	master_cfg->CTAR_DelayAfterTransferScaler = 0; // esto reduce el gap entre transfers para el SLAVE SELECT (PCSn)
+	master_cfg->CTAR_DelayAfterTransferPrescaler = 0; // entonces lo hago lo mas chico posible
+
+	// con master_cfg->CTAR_BR-3 obtenemos un delay de un cuarto de clock ( ojo con CTAR_BR chicos)
+
+	master_cfg->CTAR_DelayAfterSCKtoNegPCSScaler = master_cfg->CTAR_BR-3;
+	master_cfg->CTAR_DelayAfterSCKtoNegPCSPrescaler = master_cfg->CTAR_BRPRESC;
+	master_cfg->CTAR_DelayPCStoSCKScaler = master_cfg->CTAR_BR-3;
+	master_cfg->CTAR_DelayPCStoSCKPrescaler = master_cfg->CTAR_BRPRESC;
+
+	// After pone delay para la derecha
+	// PCStoSck pone delay para la izquierda
+	// ponemos un valor tal que entre los dos delays cuando se superpongan, den la mitad de un clock (sumados)
+	// de esa forma, nos quitamos de encima el problema de tener un dos unos de clock pegados (metimos
+	// medio clock de delay en el medio para compensar)
+
 }
 
 void masterInitiliaze(uint8_t SPI_n){
@@ -80,14 +98,26 @@ void masterInitiliaze(uint8_t SPI_n){
 													 SPI_CTAR_FMSZ_MASK |
 									 	 	 	 	 SPI_CTAR_CPOL_MASK |
 													 SPI_CTAR_CPHA_MASK |
-													 SPI_CTAR_LSBFE_MASK);
+													 SPI_CTAR_LSBFE_MASK|
+													 SPI_CTAR_ASC_MASK|
+													 SPI_CTAR_PASC_MASK|
+													 SPI_CTAR_CSSCK_MASK|
+													 SPI_CTAR_PCSSCK_MASK|
+													 SPI_CTAR_DT_MASK|
+													 SPI_CTAR_PDT_MASK);
 
 	base->CTAR[master_config.whichCTAR] = temp | SPI_CTAR_BR(master_config.CTAR_BR) |
 												 SPI_CTAR_PBR(master_config.CTAR_BRPRESC) |
 												 SPI_CTAR_FMSZ(master_config.CTAR_FrameSize - 1) |
 								   	   	   	   	 SPI_CTAR_CPOL(master_config.CTAR_CPOL) |
 												 SPI_CTAR_CPHA(master_config.CTAR_CPHA) |
-												 SPI_CTAR_LSBFE(master_config.CTAR_LSBFE);
+												 SPI_CTAR_LSBFE(master_config.CTAR_LSBFE)|
+												 SPI_CTAR_ASC(master_config.CTAR_DelayAfterSCKtoNegPCSScaler)|
+												 SPI_CTAR_PASC(master_config.CTAR_DelayAfterSCKtoNegPCSPrescaler)|
+												 SPI_CTAR_CSSCK(master_config.CTAR_DelayPCStoSCKScaler)|
+												 SPI_CTAR_PCSSCK(master_config.CTAR_DelayPCStoSCKPrescaler)|
+												 SPI_CTAR_DT(master_config.CTAR_DelayAfterTransferScaler)|
+												 SPI_CTAR_PDT(master_config.CTAR_DelayAfterTransferPrescaler);
 
 	   /*
 	    *
@@ -153,31 +183,29 @@ void testSPI(uint8_t SPI_n){
 
 	uint16_t data = 0xAA;
 	spi_command command;
-	command.keepAssertedPCSnBetweenTransfers = false;
+	command.keepAssertedPCSnBetweenTransfers = true;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
 	command.clearTransferCount = 0;
-	//MasterWriteCommandDataBlocking(SPI_n, data);
 	MasterWriteDataBlocking(SPI_n, &command, data);
-
+	// el clock se activa cada vez que se modifica el PUSHR
 	data = 0x0F;
-	command.keepAssertedPCSnBetweenTransfers = false;
+	command.keepAssertedPCSnBetweenTransfers = true;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
 	command.clearTransferCount = 0;
-	//MasterWriteCommandDataBlocking(SPI_n, data);
 	MasterWriteDataBlocking(SPI_n, &command, data);
 
-	data = 0x55;
+	data = 0xA0;
 	command.keepAssertedPCSnBetweenTransfers = false;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
-	command.clearTransferCount = 0;
-	//MasterWriteCommandDataBlocking(SPI_n, data);
+	command.clearTransferCount = 0; // 0 equivale a no borrar TransferCount
 	MasterWriteDataBlocking(SPI_n, &command, data);
+	int a = 5;
 
 }
 
