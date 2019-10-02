@@ -14,7 +14,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE, ID_ERROR_STAGE}; // FSM estados
+enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE, ID_ERROR_STAGE,MESSAGE_RECEIVED}; // FSM estados
 enum{NOT_IDLE, IDLE}; // IDLE estados
 
 #define ID_LEN			8
@@ -33,9 +33,12 @@ enum{NOT_IDLE, IDLE}; // IDLE estados
 #define BRIGHT_UNIT		3
 #define BRIGHT_DEC		2
 
+#define MAX_MESSAGES	3
 
 static int fsm = ID_STAGE;
 
+
+static uint16_t messages[MAX_MESSAGES]= {0,0,0};
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -43,11 +46,15 @@ static int fsm = ID_STAGE;
 
 void internarHandler(void);
 
+void spiFallingEdgeOnINTPinHandler(void);
+
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
+
+
 
 void internarHandler(void){
 	switch(internalControlGetEvent()){
@@ -64,19 +71,22 @@ void internarHandler(void){
 		break;
 	}
 }
-/*
-__ISR__ SPI0_IRQHandler(void){
-	// llamo a los puertos de spi y cleareo sus ISF
-	clearAllSPIInterruptFlags();
+
+void spiFallingEdgeOnINTPinHandler(void){ // este callback es especifico de este evento
+	uint8_t SPI_n = 0;
+	for(int i = 0; i<MAX_MESSAGES; i++){
+		messages[i]= getDataSent(SPI_n); // hay que mejorar este codigo
+	}
+	fsm = MESSAGE_RECEIVED;
 }
-*/
+
+
+
 
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-	//NVIC_EnableIRQ(SPI0_IRQn);
-	//PORTA_IRQHandler();
-	SPI_Initialize();
+	SPI_Initialize(spiFallingEdgeOnINTPinHandler);
 	internalControlInit(internarHandler);
 	RGBIndicator(BLUE_INDICATOR);
 
@@ -85,8 +95,7 @@ void App_Init (void)
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-
-		testSPI(SPI_0);
+	testSPI(SPI_0);
 }
 
 

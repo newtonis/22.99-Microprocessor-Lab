@@ -11,7 +11,6 @@
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
 static SPI_Type* SPIPtrs[] = SPI_BASE_PTRS;
 static SIM_Type* sim_ptr = SIM;
-static GPIO_Type * gpioPtrs[] = GPIO_BASE_PTRS;
 static uint16_t data[BUFF_LEN];
 
 static void (*callbackTick)();
@@ -59,13 +58,11 @@ void masterInitiliaze(uint8_t SPI_n){
 	spi_master_config_t master_config;
 	masterConfig(&master_config);
 
-	SPIMode(PIN_PCS0, DISABLE_PULL, 0, SPI_ALTERNATIVE, GPIO_IRQ_MODE_DISABLE);
-	SPIMode(PIN_SCK_MASTER, DISABLE_PULL, 0, SPI_ALTERNATIVE, GPIO_IRQ_MODE_DISABLE);
-	SPIMode(PIN_MOSI_MASTER, DISABLE_PULL, 0, SPI_ALTERNATIVE, GPIO_IRQ_MODE_DISABLE);
-	SPIMode(PIN_CAN_INTERRUPT, DISABLE_PULL, INPUT, GPIO_ALTERNATIVE, GPIO_IRQ_MODE_FALLING_EDGE);
-
+	configPin(PIN_PCS0, DISABLE_PULL, 0, SPI_ALTERNATIVE, GPIO_IRQ_MODE_DISABLE);
+	configPin(PIN_SCK_MASTER, DISABLE_PULL, 0, SPI_ALTERNATIVE, GPIO_IRQ_MODE_DISABLE);
+	configPin(PIN_MOSI_MASTER, DISABLE_PULL, 0, SPI_ALTERNATIVE, GPIO_IRQ_MODE_DISABLE);
+	configPin(PIN_CAN_INTERRUPT, DISABLE_PULL, INPUT, GPIO_ALTERNATIVE, GPIO_IRQ_MODE_FALLING_EDGE);
 	NVIC_EnableIRQ(PORTD_IRQn);
-
 
 	SPIClockGatingEnable(SPI_n);
 	setSPIConfig(SPI_n, SPI_CONFIG);
@@ -148,16 +145,18 @@ void SPIClockGatingEnable(uint8_t SPI_n){
 }
 
 
-void SPIMode(pin_t pin, uint8_t mode, uint8_t gpio_mode, uint8_t mux_alt, uint8_t interrupt_alt){
+
+void configPin(pin_t pin, uint8_t mode, uint8_t gpio_mode, uint8_t mux_alt, uint8_t interrupt_alt){
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
 	uint32_t num = PIN2NUM(pin); // num es el numero de pin
 	port->PCR[num] = 0x00;
-	if(mux_alt == 1){ // si es GPIOAlt
+	if(mux_alt == GPIO_ALTERNATIVE){
 		gpioMode(pin, gpio_mode);
 		gpioIRQ(pin, interrupt_alt, callbackTick);
 	}
 	port->PCR[num] &= ~PORT_PCR_MUX_MASK;
 	port->PCR[num] &= ~PORT_PCR_IRQC_MASK;
+
 	port->PCR[num] |= PORT_PCR_MUX(mux_alt); // ENABLE SPI
 	port->PCR[num] |= PORT_PCR_IRQC(interrupt_alt);
 	switch(mode){
@@ -175,7 +174,6 @@ void SPIMode(pin_t pin, uint8_t mode, uint8_t gpio_mode, uint8_t mux_alt, uint8_
 	}
 }
 
-
 void testSPI(uint8_t SPI_n){
 
 	uint16_t data = 0x01;
@@ -185,7 +183,7 @@ void testSPI(uint8_t SPI_n){
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
 	command.clearTransferCount = 0;
-	MasterWriteDataBlocking(SPI_n, &command, data);
+	MasterWriteDataWithCommandBlocking(SPI_n, &command, data);
 	// el clock se activa cada vez que se modifica el PUSHR
 	data = 0x02;
 	command.keepAssertedPCSnBetweenTransfers = true;
@@ -193,7 +191,7 @@ void testSPI(uint8_t SPI_n){
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
 	command.clearTransferCount = 0;
-	MasterWriteDataBlocking(SPI_n, &command, data);
+	MasterWriteDataWithCommandBlocking(SPI_n, &command, data);
 
 	data = 0x03;
 	command.keepAssertedPCSnBetweenTransfers = false;
@@ -201,28 +199,20 @@ void testSPI(uint8_t SPI_n){
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
 	command.clearTransferCount = 0; // 0 equivale a no borrar TransferCount
-	MasterWriteDataBlocking(SPI_n, &command, data);
+	MasterWriteDataWithCommandBlocking(SPI_n, &command, data);
 	int a = 5;
 
 }
 
 
-
-void setMode(uint8_t SPI_n, bool mode){
-	if(mode == MASTER){
-		SPIPtrs[SPI_n]->MCR |= SPI_MCR_MSTR(MASTER);
-	}else{
-		SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_MSTR_MASK;
-	}
-}
-
-bool getMode(uint8_t SPI_n){
-	return (SPIPtrs[SPI_n]->MCR & SPI_MCR_MSTR_MASK) == (SPI_MCR_MSTR_MASK);
-}
-
 uint16_t getDataSent(uint8_t SPI_n){
 	return SPIPtrs[SPI_n]->POPR;
 }
+
+
+
+
+
 
 void setSPIConfig(uint8_t SPI_n, int SPI_config){
 	SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_DCONF_MASK;
@@ -245,21 +235,18 @@ void enableRxFIFO(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_DIS_RXF_MASK;
 }
 
+
+
+
+
 void clearTxFIFO(uint8_t SPI_n){ //flush
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_CLR_TXF(ENABLE);
-}
-
-void dontClearTxFIFO(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_TXF_MASK;
 }
 
 void clearRxFIFO(uint8_t SPI_n){  //flush
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_CLR_RXF(ENABLE);
 }
 
-void dontClearRxFIFO(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_CLR_RXF_MASK;
-}
 
 void HALTStopTransfers(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_HALT(ENABLE);
@@ -268,6 +255,8 @@ void HALTStopTransfers(uint8_t SPI_n){
 void HALTStartTransfers(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_HALT_MASK;
 }
+
+
 
 void setPCSActiveHigh(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->MCR &= ~ SPI_MCR_PCSIS_MASK;
@@ -278,25 +267,15 @@ void setPCSActiveLow(uint8_t SPI_n){
 }
 
 
-
-
 void clearTxCompleteFlag(uint8_t SPI_n){
-	SPIPtrs[SPI_n]->SR |= SPI_SR_TCF(1);
+	SPIPtrs[SPI_n]->SR |= SPI_SR_TCF(ENABLE);
 }
 
 void clearTxFifoFillRequestFlag(uint8_t SPI_n){
 	SPIPtrs[SPI_n]->SR |= SPI_SR_TFFF_MASK;
 }
 
-void defCommand(spi_command* command){
-	command->keepAssertedPCSnBetweenTransfers = false;
-	command->whichCtar = 0;
-	command->whichPcs = 0;
-	command->isEndOfQueue = false;
-	command->clearTransferCount = false;
-}
-
-void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data)
+void MasterWriteDataWithCommandBlocking(uint8_t SPI_n, spi_command *command, uint16_t data)
 {
 	/* First, clear Transmit Complete Flag (TCF) */
 	clearTxCompleteFlag(SPI_n);
@@ -323,63 +302,7 @@ void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data)
 }
 
 
-
-void MasterWriteCommandDataBlocking(uint8_t SPI_n, uint32_t data)
-{
-
-	clearTxCompleteFlag(SPI_n);
-
-	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_MASK))
-
-    {
-    	clearTxFifoFillRequestFlag(SPI_n);
-    }
-
-	SPIPtrs[SPI_n]->PUSHR = data;
-
-    clearTxFifoFillRequestFlag(SPI_n);
-
-    /* Wait till TCF sets */
-    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_MASK))
-    {
-    }
-}
-
-
-
-__ISR__ PORTD_IRQHandler(void){
-	callbackTick();
-}
-
-
 /*
-void clearInterruptFlag(pin_t pin){
-	PORT_Type *port = portPtrs[PIN2PORT(pin)];
-	uint32_t num = PIN2NUM(pin); // num es el numero de pin
-	port->PCR[num] |= PORT_PCR_ISF_MASK;
-}
-
-void clearAllSPIInterruptFlags(void){
-	clearInterruptFlag(PIN_PCS0);
-	clearInterruptFlag(PIN_SCK_MASTER);
-	clearInterruptFlag(PIN_MOSI_MASTER);
-	clearInterruptFlag(PIN_MISO_MASTER);
-}
-
-void setInterruptConfig(pin_t pin, isf_configs_t config){
-	PORT_Type *port = portPtrs[PIN2PORT(pin)];
-	uint32_t num = PIN2NUM(pin); // num es el numero de pin
-	port->PCR[num] &= ~PORT_PCR_IRQC_MASK;
-	port->PCR[num] |= PORT_PCR_IRQC(config);
-}
-
-void configAllSPIInterrupts(void){
-	setInterruptConfig(PIN_PCS0, ISF_DMA_RISING_EDGE);
-	setInterruptConfig(PIN_SCK_MASTER, ISF_DMA_RISING_EDGE);
-	setInterruptConfig(PIN_MOSI_MASTER, ISF_DMA_RISING_EDGE);
-	setInterruptConfig(PIN_MISO_MASTER, ISF_DMA_RISING_EDGE);
-}
-
 void spiEnableInterrupts(uint8_t SPI_n, uint32_t mask)
 {
 	SPI_Type* base = SPIPtrs[SPI_n];

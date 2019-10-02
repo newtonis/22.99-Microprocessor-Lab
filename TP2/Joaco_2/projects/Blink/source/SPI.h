@@ -46,18 +46,6 @@ typedef enum which_pcs_config{
 	Pcs5 = (1U << 5)   /*!< Pcs[5] */
 }pcs_t;
 
-typedef enum ISF_configs{
-	ISF_DISABLED = 0b0000 ,
-	ISF_DMA_RISING_EDGE = 0b0001 ,
-	ISF_DMA_FALLING_EDGE = 0b0010 ,
-	ISF_DMA_EITHER_EDGE = 0b0011 ,
-
-	ISF_INTERRUPT_LOGIC_0 = 0b1000 ,
-	ISF_INTERRUPT_RISING_EDGE = 0b1001 ,
-	ISF_INTERRUPT_FALLING_EDGE = 0b1010 ,
-	ISF_INTERRUPT_EITHER_EDGE = 0b1011 ,
-	ISF_INTERRUPT_LOGIC_1 = 0b1100
-}isf_configs_t;
 
 typedef struct{
 	bool whichCTAR;
@@ -119,17 +107,19 @@ void masterConfig(spi_master_config_t * master_cfg);
 
 void masterInitiliaze(uint8_t SPI_n);
 
-void SPI_Initialize(void);
+void SPI_Initialize(void (*funcallback)(void));
 
 void SPIClockGatingEnable(uint8_t SPI_n);
 
-void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt);
+void configPin(pin_t pin, uint8_t mode, uint8_t gpio_mode, uint8_t mux_alt, uint8_t interrupt_alt);
 
 void testSPI(uint8_t SPI_n);
 
-void setMode(uint8_t SPI_n, bool mode);
+uint16_t getDataSent(uint8_t SPI_n);
 
-bool getMode(uint8_t SPI_n);
+
+
+
 
 void setSPIConfig(uint8_t SPI_n, int SPI_config);
 
@@ -143,14 +133,13 @@ void disableRxFIFO(uint8_t SPI_n);
 void enableRxFIFO(uint8_t SPI_n);
 
 
+
+
 void clearTxFIFO(uint8_t SPI_n); //flush
-
-void dontClearTxFIFO(uint8_t SPI_n);
-
 
 void clearRxFIFO(uint8_t SPI_n); //flush
 
-void dontClearRxFIFO(uint8_t SPI_n);
+
 
 
 void HALTStopTransfers(uint8_t SPI_n);
@@ -164,18 +153,11 @@ void setPCSActiveLow(uint8_t SPI_n);
 
 
 
-
-
 void clearTxCompleteFlag(uint8_t SPI_n);
 
 void clearTxFifoFillRequestFlag(uint8_t SPI_n);
 
-
-void defCommand(spi_command* command);
-
-void MasterWriteDataBlocking(uint8_t SPI_n, spi_command *command, uint16_t data);
-
-void MasterWriteCommandDataBlocking(uint8_t SPI_n, uint32_t data);
+void MasterWriteDataWithCommandBlocking(uint8_t SPI_n, spi_command *command, uint16_t data);
 
 
 /*
