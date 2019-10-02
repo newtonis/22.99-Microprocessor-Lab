@@ -36,6 +36,9 @@ static void delayLoop(uint32_t veces);
 
 static roll_t rolido = 0;
 static pitching_t cabeceo = 0;
+<<<<<<< HEAD:TP2/i2c/projects/Blink/source/App.c
+>>>>>>> parent of cf4fd69... edited accel:TP2/Marce/Blink/source/App.c
+=======
 >>>>>>> parent of cf4fd69... edited accel:TP2/Marce/Blink/source/App.c
 
 /*******************************************************************************
