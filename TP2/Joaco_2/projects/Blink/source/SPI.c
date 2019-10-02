@@ -6,15 +6,19 @@
  *  Created on: 18 sep. 2019
  *      Author: joa-m
  */
+#include "gpio.h"
 
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
 static SPI_Type* SPIPtrs[] = SPI_BASE_PTRS;
 static SIM_Type* sim_ptr = SIM;
+static GPIO_Type * gpioPtrs[] = GPIO_BASE_PTRS;
+static uint16_t data[BUFF_LEN];
+
+static void (*callbackTick)();
 
 
 void masterConfig(spi_master_config_t * master_cfg){
 	master_cfg->whichCTAR = 0;
-
 	master_cfg->MCR_isMaster = true;
 	master_cfg->MCR_ContinousSerialClockEnable = false;
 	master_cfg->MCR_ModifiedTransferFormatEnable = false;
@@ -28,8 +32,8 @@ void masterConfig(spi_master_config_t * master_cfg){
 	master_cfg->CTAR_CPOL = 0;
 	master_cfg->CTAR_CPHA = 0;
 	master_cfg->CTAR_LSBFE = 0;
-	master_cfg->CTAR_BR = 15;
-	master_cfg->CTAR_BRPRESC = 3;
+	master_cfg->CTAR_BR = 5;
+	master_cfg->CTAR_BRPRESC = 1;
 
 
 	master_cfg->CTAR_DelayAfterTransferScaler = 0; // esto reduce el gap entre transfers para el SLAVE SELECT (PCSn)
@@ -51,21 +55,20 @@ void masterConfig(spi_master_config_t * master_cfg){
 }
 
 void masterInitiliaze(uint8_t SPI_n){
-	uint8_t SPI_alternative = 2;
-
 	// cargamos la configuracion de master
 	spi_master_config_t master_config;
 	masterConfig(&master_config);
 
-	SPIMode(PIN_PCS0, DISABLE_PULL, SPI_alternative );
-	SPIMode(PIN_SCK_MASTER, DISABLE_PULL, SPI_alternative );
-	SPIMode(PIN_MOSI_MASTER, DISABLE_PULL, SPI_alternative );
-	SPIMode(PIN_MISO_MASTER, DISABLE_PULL, SPI_alternative );
+	SPIMode(PIN_PCS0, DISABLE_PULL, 0, SPI_ALTERNATIVE, GPIO_IRQ_MODE_DISABLE);
+	SPIMode(PIN_SCK_MASTER, DISABLE_PULL, 0, SPI_ALTERNATIVE, GPIO_IRQ_MODE_DISABLE);
+	SPIMode(PIN_MOSI_MASTER, DISABLE_PULL, 0, SPI_ALTERNATIVE, GPIO_IRQ_MODE_DISABLE);
+	SPIMode(PIN_CAN_INTERRUPT, DISABLE_PULL, INPUT, GPIO_ALTERNATIVE, GPIO_IRQ_MODE_FALLING_EDGE);
+
+	NVIC_EnableIRQ(PORTD_IRQn);
 
 
 	SPIClockGatingEnable(SPI_n);
 	setSPIConfig(SPI_n, SPI_CONFIG);
-
 
 	SPI_Type* base = SPIPtrs[SPI_n];
 	uint32_t temp = 0;
@@ -119,25 +122,13 @@ void masterInitiliaze(uint8_t SPI_n){
 												 SPI_CTAR_DT(master_config.CTAR_DelayAfterTransferScaler)|
 												 SPI_CTAR_PDT(master_config.CTAR_DelayAfterTransferPrescaler);
 
-	   /*
-	    *
-		DSPI_MasterSetDelayTimes(base, masterConfig->whichCtar, kDSPI_PcsToSck, srcClock_Hz,
-								 masterConfig->ctarConfig.pcsToSckDelayInNanoSec);
-		DSPI_MasterSetDelayTimes(base, masterConfig->whichCtar, kDSPI_LastSckToPcs, srcClock_Hz,
-								 masterConfig->ctarConfig.lastSckToPcsDelayInNanoSec);
-		DSPI_MasterSetDelayTimes(base, masterConfig->whichCtar, kDSPI_BetweenTransfer, srcClock_Hz,
-								 masterConfig->ctarConfig.betweenTransferDelayInNanoSec);
-	    *
-	    *
-	    * */
-	// dumdata
 	setPCSActiveLow(SPI_n);
 
 	HALTStartTransfers(SPI_n);
 }
 
-void SPI_Initialize(void){
-
+void SPI_Initialize(void (*funcallback)(void)){
+	callbackTick = funcallback;
 	masterInitiliaze(SPI_0);
 	//spiEnableInterrupts(SPI_0, SPI_RSER_TFFF_RE_MASK);
 }
@@ -157,12 +148,18 @@ void SPIClockGatingEnable(uint8_t SPI_n){
 }
 
 
-void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt){
+void SPIMode(pin_t pin, uint8_t mode, uint8_t gpio_mode, uint8_t mux_alt, uint8_t interrupt_alt){
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
 	uint32_t num = PIN2NUM(pin); // num es el numero de pin
 	port->PCR[num] = 0x00;
+	if(mux_alt == 1){ // si es GPIOAlt
+		gpioMode(pin, gpio_mode);
+		gpioIRQ(pin, interrupt_alt, callbackTick);
+	}
+	port->PCR[num] &= ~PORT_PCR_MUX_MASK;
+	port->PCR[num] &= ~PORT_PCR_IRQC_MASK;
 	port->PCR[num] |= PORT_PCR_MUX(mux_alt); // ENABLE SPI
-	port->PCR[num] |= PORT_PCR_IRQC(0);
+	port->PCR[num] |= PORT_PCR_IRQC(interrupt_alt);
 	switch(mode){
 		case PULL_UP:
 			port->PCR[num] |= HIGH<<1; //PULL ENABLE en 1
@@ -181,7 +178,7 @@ void SPIMode(pin_t pin, uint8_t mode, uint8_t mux_alt){
 
 void testSPI(uint8_t SPI_n){
 
-	uint16_t data = 0xAA;
+	uint16_t data = 0x01;
 	spi_command command;
 	command.keepAssertedPCSnBetweenTransfers = true;
 	command.isEndOfQueue = false;
@@ -190,7 +187,7 @@ void testSPI(uint8_t SPI_n){
 	command.clearTransferCount = 0;
 	MasterWriteDataBlocking(SPI_n, &command, data);
 	// el clock se activa cada vez que se modifica el PUSHR
-	data = 0x0F;
+	data = 0x02;
 	command.keepAssertedPCSnBetweenTransfers = true;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
@@ -198,7 +195,7 @@ void testSPI(uint8_t SPI_n){
 	command.clearTransferCount = 0;
 	MasterWriteDataBlocking(SPI_n, &command, data);
 
-	data = 0xA0;
+	data = 0x03;
 	command.keepAssertedPCSnBetweenTransfers = false;
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
@@ -208,6 +205,7 @@ void testSPI(uint8_t SPI_n){
 	int a = 5;
 
 }
+
 
 
 void setMode(uint8_t SPI_n, bool mode){
@@ -222,6 +220,9 @@ bool getMode(uint8_t SPI_n){
 	return (SPIPtrs[SPI_n]->MCR & SPI_MCR_MSTR_MASK) == (SPI_MCR_MSTR_MASK);
 }
 
+uint16_t getDataSent(uint8_t SPI_n){
+	return SPIPtrs[SPI_n]->POPR;
+}
 
 void setSPIConfig(uint8_t SPI_n, int SPI_config){
 	SPIPtrs[SPI_n]->MCR &= ~SPI_MCR_DCONF_MASK;
@@ -343,6 +344,13 @@ void MasterWriteCommandDataBlocking(uint8_t SPI_n, uint32_t data)
     {
     }
 }
+
+
+
+__ISR__ PORTD_IRQHandler(void){
+	callbackTick();
+}
+
 
 /*
 void clearInterruptFlag(pin_t pin){

@@ -21,6 +21,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
+#define BUFF_LEN 100
 //#define PIN2PORT(p)         (((p)>>5) & 0x07)
 //#define LOW     0
 //#define HIGH    1
@@ -29,6 +30,7 @@
  ******************************************************************************/
 
 typedef uint8_t pin_t;
+enum{GPIO_ALTERNATIVE=1,SPI_ALTERNATIVE};
 enum{SLAVE,MASTER};
 enum{DISABLE,ENABLE};
 enum{PULL_DOWN,PULL_UP,DISABLE_PULL};

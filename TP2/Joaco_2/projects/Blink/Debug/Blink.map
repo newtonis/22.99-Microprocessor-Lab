@@ -128,8 +128,11 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/SPI.o
  .data          0x00000000        0x0 ./source/SPI.o
  .bss           0x00000000        0x0 ./source/SPI.o
+ .bss.data      0x00000000       0xc8 ./source/SPI.o
  .text.setMode  0x00000000       0x58 ./source/SPI.o
  .text.getMode  0x00000000       0x34 ./source/SPI.o
+ .text.getDataSent
+                0x00000000       0x28 ./source/SPI.o
  .text.disableTxFIFO
                 0x00000000       0x34 ./source/SPI.o
  .text.enableTxFIFO
@@ -1146,18 +1149,18 @@ END GROUP
                 0x00001770                _image_size = (_image_end - _image_start)
 OUTPUT(Blink.axf elf32-littlearm)
 
-.debug_info     0x00000000     0x513c
+.debug_info     0x00000000     0x5189
  .debug_info    0x00000000      0x993 ./source/App.o
  .debug_info    0x00000993      0xe72 ./source/InternalControl.o
- .debug_info    0x00001805      0xc0a ./source/SPI.o
- .debug_info    0x0000240f      0x526 ./source/SysTick.o
- .debug_info    0x00002935      0x706 ./source/gpio.o
- .debug_info    0x0000303b      0xaee ./source/timer.o
- .debug_info    0x00003b29      0x675 ./SDK/startup/hardware.o
- .debug_info    0x0000419e       0xb7 ./SDK/startup/main.o
- .debug_info    0x00004255       0x3b ./SDK/startup/semihost_hardfault.o
- .debug_info    0x00004290      0x8b0 ./SDK/startup/startup_mk64f12.o
- .debug_info    0x00004b40      0x5fc ./SDK/CMSIS/system_MK64F12.o
+ .debug_info    0x00001805      0xc57 ./source/SPI.o
+ .debug_info    0x0000245c      0x526 ./source/SysTick.o
+ .debug_info    0x00002982      0x706 ./source/gpio.o
+ .debug_info    0x00003088      0xaee ./source/timer.o
+ .debug_info    0x00003b76      0x675 ./SDK/startup/hardware.o
+ .debug_info    0x000041eb       0xb7 ./SDK/startup/main.o
+ .debug_info    0x000042a2       0x3b ./SDK/startup/semihost_hardfault.o
+ .debug_info    0x000042dd      0x8b0 ./SDK/startup/startup_mk64f12.o
+ .debug_info    0x00004b8d      0x5fc ./SDK/CMSIS/system_MK64F12.o
 
 .debug_abbrev   0x00000000     0x1135
  .debug_abbrev  0x00000000      0x1da ./source/App.o
@@ -1172,130 +1175,130 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_abbrev  0x00000e9a      0x15c ./SDK/startup/startup_mk64f12.o
  .debug_abbrev  0x00000ff6      0x13f ./SDK/CMSIS/system_MK64F12.o
 
-.debug_aranges  0x00000000      0x648
+.debug_aranges  0x00000000      0x650
  .debug_aranges
                 0x00000000       0x30 ./source/App.o
  .debug_aranges
                 0x00000030       0x70 ./source/InternalControl.o
  .debug_aranges
-                0x000000a0       0xe8 ./source/SPI.o
+                0x000000a0       0xf0 ./source/SPI.o
  .debug_aranges
-                0x00000188       0x30 ./source/SysTick.o
+                0x00000190       0x30 ./source/SysTick.o
  .debug_aranges
-                0x000001b8       0x70 ./source/gpio.o
+                0x000001c0       0x70 ./source/gpio.o
  .debug_aranges
-                0x00000228       0x50 ./source/timer.o
+                0x00000230       0x50 ./source/timer.o
  .debug_aranges
-                0x00000278       0x30 ./SDK/startup/hardware.o
+                0x00000280       0x30 ./SDK/startup/hardware.o
  .debug_aranges
-                0x000002a8       0x20 ./SDK/startup/main.o
+                0x000002b0       0x20 ./SDK/startup/main.o
  .debug_aranges
-                0x000002c8       0x20 ./SDK/startup/semihost_hardfault.o
+                0x000002d0       0x20 ./SDK/startup/semihost_hardfault.o
  .debug_aranges
-                0x000002e8      0x330 ./SDK/startup/startup_mk64f12.o
+                0x000002f0      0x330 ./SDK/startup/startup_mk64f12.o
  .debug_aranges
-                0x00000618       0x30 ./SDK/CMSIS/system_MK64F12.o
+                0x00000620       0x30 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_ranges   0x00000000      0x598
+.debug_ranges   0x00000000      0x5a0
  .debug_ranges  0x00000000       0x20 ./source/App.o
  .debug_ranges  0x00000020       0x60 ./source/InternalControl.o
- .debug_ranges  0x00000080       0xd8 ./source/SPI.o
- .debug_ranges  0x00000158       0x20 ./source/SysTick.o
- .debug_ranges  0x00000178       0x60 ./source/gpio.o
- .debug_ranges  0x000001d8       0x40 ./source/timer.o
- .debug_ranges  0x00000218       0x20 ./SDK/startup/hardware.o
- .debug_ranges  0x00000238       0x10 ./SDK/startup/main.o
- .debug_ranges  0x00000248       0x10 ./SDK/startup/semihost_hardfault.o
- .debug_ranges  0x00000258      0x320 ./SDK/startup/startup_mk64f12.o
- .debug_ranges  0x00000578       0x20 ./SDK/CMSIS/system_MK64F12.o
+ .debug_ranges  0x00000080       0xe0 ./source/SPI.o
+ .debug_ranges  0x00000160       0x20 ./source/SysTick.o
+ .debug_ranges  0x00000180       0x60 ./source/gpio.o
+ .debug_ranges  0x000001e0       0x40 ./source/timer.o
+ .debug_ranges  0x00000220       0x20 ./SDK/startup/hardware.o
+ .debug_ranges  0x00000240       0x10 ./SDK/startup/main.o
+ .debug_ranges  0x00000250       0x10 ./SDK/startup/semihost_hardfault.o
+ .debug_ranges  0x00000260      0x320 ./SDK/startup/startup_mk64f12.o
+ .debug_ranges  0x00000580       0x20 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_macro    0x00000000    0x12663
- .debug_macro   0x00000000      0x1fd ./source/App.o
- .debug_macro   0x000001fd      0xa5a ./source/App.o
- .debug_macro   0x00000c57      0x34e ./source/App.o
- .debug_macro   0x00000fa5       0x22 ./source/App.o
- .debug_macro   0x00000fc7       0x17 ./source/App.o
- .debug_macro   0x00000fde       0x22 ./source/App.o
- .debug_macro   0x00001000       0x52 ./source/App.o
- .debug_macro   0x00001052       0x8d ./source/App.o
- .debug_macro   0x000010df       0x35 ./source/App.o
- .debug_macro   0x00001114       0x9c ./source/App.o
- .debug_macro   0x000011b0       0x16 ./source/App.o
- .debug_macro   0x000011c6      0x10e ./source/App.o
- .debug_macro   0x000012d4       0x8d ./source/App.o
- .debug_macro   0x00001361       0x57 ./source/App.o
- .debug_macro   0x000013b8       0x58 ./source/App.o
- .debug_macro   0x00001410       0x1f ./source/App.o
- .debug_macro   0x0000142f       0x43 ./source/App.o
- .debug_macro   0x00001472       0x20 ./source/App.o
- .debug_macro   0x00001492      0x18e ./source/App.o
- .debug_macro   0x00001620      0x330 ./source/App.o
- .debug_macro   0x00001950       0x16 ./source/App.o
- .debug_macro   0x00001966       0x29 ./source/App.o
- .debug_macro   0x0000198f       0x1c ./source/App.o
- .debug_macro   0x000019ab       0x1c ./source/App.o
- .debug_macro   0x000019c7       0x10 ./source/App.o
- .debug_macro   0x000019d7       0x5c ./source/App.o
- .debug_macro   0x00001a33       0x1c ./source/App.o
- .debug_macro   0x00001a4f       0x22 ./source/App.o
- .debug_macro   0x00001a71       0xd9 ./source/App.o
- .debug_macro   0x00001b4a      0xecf ./source/App.o
- .debug_macro   0x00002a19       0x48 ./source/App.o
- .debug_macro   0x00002a61     0xe07b ./source/App.o
- .debug_macro   0x00010adc     0x122b ./source/App.o
- .debug_macro   0x00011d07       0x16 ./source/App.o
- .debug_macro   0x00011d1d       0x46 ./source/App.o
- .debug_macro   0x00011d63       0x52 ./source/App.o
- .debug_macro   0x00011db5      0x1b7 ./source/InternalControl.o
- .debug_macro   0x00011f6c       0x16 ./source/InternalControl.o
- .debug_macro   0x00011f82       0x22 ./source/InternalControl.o
- .debug_macro   0x00011fa4       0xc4 ./source/SPI.o
- .debug_macro   0x00012068       0xdf ./source/SPI.o
- .debug_macro   0x00012147       0xac ./source/SysTick.o
- .debug_macro   0x000121f3       0xab ./source/gpio.o
- .debug_macro   0x0001229e      0x1c3 ./source/timer.o
- .debug_macro   0x00012461       0x10 ./source/timer.o
- .debug_macro   0x00012471       0x9c ./SDK/startup/hardware.o
- .debug_macro   0x0001250d       0x9c ./SDK/startup/main.o
- .debug_macro   0x000125a9       0x11 ./SDK/startup/semihost_hardfault.o
- .debug_macro   0x000125ba       0x29 ./SDK/startup/startup_mk64f12.o
- .debug_macro   0x000125e3       0x80 ./SDK/CMSIS/system_MK64F12.o
+.debug_macro    0x00000000    0x1266f
+ .debug_macro   0x00000000      0x203 ./source/App.o
+ .debug_macro   0x00000203      0xa5a ./source/App.o
+ .debug_macro   0x00000c5d      0x34e ./source/App.o
+ .debug_macro   0x00000fab       0x22 ./source/App.o
+ .debug_macro   0x00000fcd       0x17 ./source/App.o
+ .debug_macro   0x00000fe4       0x22 ./source/App.o
+ .debug_macro   0x00001006       0x52 ./source/App.o
+ .debug_macro   0x00001058       0x8d ./source/App.o
+ .debug_macro   0x000010e5       0x35 ./source/App.o
+ .debug_macro   0x0000111a       0x9c ./source/App.o
+ .debug_macro   0x000011b6       0x16 ./source/App.o
+ .debug_macro   0x000011cc      0x10e ./source/App.o
+ .debug_macro   0x000012da       0x8d ./source/App.o
+ .debug_macro   0x00001367       0x57 ./source/App.o
+ .debug_macro   0x000013be       0x58 ./source/App.o
+ .debug_macro   0x00001416       0x1f ./source/App.o
+ .debug_macro   0x00001435       0x43 ./source/App.o
+ .debug_macro   0x00001478       0x20 ./source/App.o
+ .debug_macro   0x00001498      0x18e ./source/App.o
+ .debug_macro   0x00001626      0x330 ./source/App.o
+ .debug_macro   0x00001956       0x16 ./source/App.o
+ .debug_macro   0x0000196c       0x29 ./source/App.o
+ .debug_macro   0x00001995       0x1c ./source/App.o
+ .debug_macro   0x000019b1       0x1c ./source/App.o
+ .debug_macro   0x000019cd       0x10 ./source/App.o
+ .debug_macro   0x000019dd       0x5c ./source/App.o
+ .debug_macro   0x00001a39       0x1c ./source/App.o
+ .debug_macro   0x00001a55       0x22 ./source/App.o
+ .debug_macro   0x00001a77       0xd9 ./source/App.o
+ .debug_macro   0x00001b50      0xecf ./source/App.o
+ .debug_macro   0x00002a1f       0x48 ./source/App.o
+ .debug_macro   0x00002a67     0xe07b ./source/App.o
+ .debug_macro   0x00010ae2     0x122b ./source/App.o
+ .debug_macro   0x00011d0d       0x16 ./source/App.o
+ .debug_macro   0x00011d23       0x46 ./source/App.o
+ .debug_macro   0x00011d69       0x52 ./source/App.o
+ .debug_macro   0x00011dbb      0x1b7 ./source/InternalControl.o
+ .debug_macro   0x00011f72       0x16 ./source/InternalControl.o
+ .debug_macro   0x00011f88       0x22 ./source/InternalControl.o
+ .debug_macro   0x00011faa       0xca ./source/SPI.o
+ .debug_macro   0x00012074       0xdf ./source/SPI.o
+ .debug_macro   0x00012153       0xac ./source/SysTick.o
+ .debug_macro   0x000121ff       0xab ./source/gpio.o
+ .debug_macro   0x000122aa      0x1c3 ./source/timer.o
+ .debug_macro   0x0001246d       0x10 ./source/timer.o
+ .debug_macro   0x0001247d       0x9c ./SDK/startup/hardware.o
+ .debug_macro   0x00012519       0x9c ./SDK/startup/main.o
+ .debug_macro   0x000125b5       0x11 ./SDK/startup/semihost_hardfault.o
+ .debug_macro   0x000125c6       0x29 ./SDK/startup/startup_mk64f12.o
+ .debug_macro   0x000125ef       0x80 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_line     0x00000000     0x2047
+.debug_line     0x00000000     0x2059
  .debug_line    0x00000000      0x37e ./source/App.o
  .debug_line    0x0000037e      0x444 ./source/InternalControl.o
- .debug_line    0x000007c2      0x412 ./source/SPI.o
- .debug_line    0x00000bd4      0x1b6 ./source/SysTick.o
- .debug_line    0x00000d8a      0x299 ./source/gpio.o
- .debug_line    0x00001023      0x3e3 ./source/timer.o
- .debug_line    0x00001406      0x1d4 ./SDK/startup/hardware.o
- .debug_line    0x000015da      0x175 ./SDK/startup/main.o
- .debug_line    0x0000174f       0x59 ./SDK/startup/semihost_hardfault.o
- .debug_line    0x000017a8      0x6d8 ./SDK/startup/startup_mk64f12.o
- .debug_line    0x00001e80      0x1c7 ./SDK/CMSIS/system_MK64F12.o
+ .debug_line    0x000007c2      0x424 ./source/SPI.o
+ .debug_line    0x00000be6      0x1b6 ./source/SysTick.o
+ .debug_line    0x00000d9c      0x299 ./source/gpio.o
+ .debug_line    0x00001035      0x3e3 ./source/timer.o
+ .debug_line    0x00001418      0x1d4 ./SDK/startup/hardware.o
+ .debug_line    0x000015ec      0x175 ./SDK/startup/main.o
+ .debug_line    0x00001761       0x59 ./SDK/startup/semihost_hardfault.o
+ .debug_line    0x000017ba      0x6d8 ./SDK/startup/startup_mk64f12.o
+ .debug_line    0x00001e92      0x1c7 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_str      0x00000000    0x7bec8
- .debug_str     0x00000000    0x7a544 ./source/App.o
-                              0x7a7a6 (size before relaxing)
- .debug_str     0x0007a544      0x6e6 ./source/InternalControl.o
+.debug_str      0x00000000    0x7bee1
+ .debug_str     0x00000000    0x7a551 ./source/App.o
+                              0x7a7b3 (size before relaxing)
+ .debug_str     0x0007a551      0x6e6 ./source/InternalControl.o
                               0x7adcb (size before relaxing)
- .debug_str     0x0007ac2a      0x61d ./source/SPI.o
-                              0x77819 (size before relaxing)
- .debug_str     0x0007b247       0x93 ./source/SysTick.o
+ .debug_str     0x0007ac37      0x629 ./source/SPI.o
+                              0x77832 (size before relaxing)
+ .debug_str     0x0007b260       0x93 ./source/SysTick.o
                               0x775b1 (size before relaxing)
- .debug_str     0x0007b2da      0x11c ./source/gpio.o
+ .debug_str     0x0007b2f3      0x11c ./source/gpio.o
                               0x77298 (size before relaxing)
- .debug_str     0x0007b3f6       0xe1 ./source/timer.o
+ .debug_str     0x0007b40f       0xe1 ./source/timer.o
                               0x7a79f (size before relaxing)
- .debug_str     0x0007b4d7      0x169 ./SDK/startup/hardware.o
+ .debug_str     0x0007b4f0      0x169 ./SDK/startup/hardware.o
                               0x771ef (size before relaxing)
- .debug_str     0x0007b640       0x1b ./SDK/startup/main.o
+ .debug_str     0x0007b659       0x1b ./SDK/startup/main.o
                               0x76fc3 (size before relaxing)
- .debug_str     0x0007b65b       0x36 ./SDK/startup/semihost_hardfault.o
+ .debug_str     0x0007b674       0x36 ./SDK/startup/semihost_hardfault.o
                                0x2d29 (size before relaxing)
- .debug_str     0x0007b691      0x7d5 ./SDK/startup/startup_mk64f12.o
+ .debug_str     0x0007b6aa      0x7d5 ./SDK/startup/startup_mk64f12.o
                                0x3597 (size before relaxing)
- .debug_str     0x0007be66       0x62 ./SDK/CMSIS/system_MK64F12.o
+ .debug_str     0x0007be7f       0x62 ./SDK/CMSIS/system_MK64F12.o
                               0x770fe (size before relaxing)
 
 .comment        0x00000000       0x7e
@@ -1337,15 +1340,15 @@ OUTPUT(Blink.axf elf32-littlearm)
  .ARM.attributes
                 0x0000023a       0x39 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_frame    0x00000000     0x139c
+.debug_frame    0x00000000     0x13c4
  .debug_frame   0x00000000       0x64 ./source/App.o
  .debug_frame   0x00000064      0x17c ./source/InternalControl.o
- .debug_frame   0x000001e0      0x404 ./source/SPI.o
- .debug_frame   0x000005e4       0x88 ./source/SysTick.o
- .debug_frame   0x0000066c      0x1f0 ./source/gpio.o
- .debug_frame   0x0000085c      0x10c ./source/timer.o
- .debug_frame   0x00000968       0x70 ./SDK/startup/hardware.o
- .debug_frame   0x000009d8       0x2c ./SDK/startup/main.o
- .debug_frame   0x00000a04       0x20 ./SDK/startup/semihost_hardfault.o
- .debug_frame   0x00000a24      0x904 ./SDK/startup/startup_mk64f12.o
- .debug_frame   0x00001328       0x74 ./SDK/CMSIS/system_MK64F12.o
+ .debug_frame   0x000001e0      0x42c ./source/SPI.o
+ .debug_frame   0x0000060c       0x88 ./source/SysTick.o
+ .debug_frame   0x00000694      0x1f0 ./source/gpio.o
+ .debug_frame   0x00000884      0x10c ./source/timer.o
+ .debug_frame   0x00000990       0x70 ./SDK/startup/hardware.o
+ .debug_frame   0x00000a00       0x2c ./SDK/startup/main.o
+ .debug_frame   0x00000a2c       0x20 ./SDK/startup/semihost_hardfault.o
+ .debug_frame   0x00000a4c      0x904 ./SDK/startup/startup_mk64f12.o
+ .debug_frame   0x00001350       0x74 ./SDK/CMSIS/system_MK64F12.o
