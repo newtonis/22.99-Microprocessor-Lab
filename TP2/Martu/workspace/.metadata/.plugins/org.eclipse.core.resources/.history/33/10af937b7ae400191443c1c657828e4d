@@ -19,12 +19,12 @@ enum{CLOCKWISE, COUNTER_CLOCKWISE, ZERO};
 /*******************************************************************************
  * VARIABLE PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
-SRAWDATA accel_cords = {.x = -1, .y = -1, .z = -1};  // Aca guardar las coordenadas
-SRAWDATA magnet_cords = {.x = 0, .y = -1, .z = 0}; //
+SRAWDATA accel_cords = {.x = 0, .y = 0, .z = 0};  // Aca guardar las coordenadas
+SRAWDATA magnet_cords = {.x = 0, .y = 0, .z = 0}; //
 
-roll_t roll = 0; 		// Form -179° to 180°
-pitching_t pitching = 0;	// Form -179° to 180°
-orientation_t orientation = 0;
+int8_t roll = 0; 		// Form -179° to 180°
+int8_t pitching = 0;	// Form -179° to 180°
+int8_t orientation = 0;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
