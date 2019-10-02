@@ -135,9 +135,9 @@ void enableRxFIFO(uint8_t SPI_n);
 
 
 
-void clearTxFIFO(uint8_t SPI_n); //flush
+void clearTxFIFOCounter(uint8_t SPI_n); //flush
 
-void clearRxFIFO(uint8_t SPI_n); //flush
+void clearRxFIFOCounter(uint8_t SPI_n); //flush
 
 
 

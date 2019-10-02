@@ -137,9 +137,9 @@ Discarded input sections
                 0x00000000       0x34 ./source/SPI.o
  .text.enableRxFIFO
                 0x00000000       0x34 ./source/SPI.o
- .text.clearTxFIFO
+ .text.clearTxFIFOCounter
                 0x00000000       0x34 ./source/SPI.o
- .text.clearRxFIFO
+ .text.clearRxFIFOCounter
                 0x00000000       0x34 ./source/SPI.o
  .text.setPCSActiveHigh
                 0x00000000       0x34 ./source/SPI.o
@@ -1279,28 +1279,28 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_line    0x000017a2      0x6d8 ./SDK/startup/startup_mk64f12.o
  .debug_line    0x00001e7a      0x1c7 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_str      0x00000000    0x7bf1c
+.debug_str      0x00000000    0x7bf2a
  .debug_str     0x00000000    0x7a5d3 ./source/App.o
                               0x7a835 (size before relaxing)
  .debug_str     0x0007a5d3      0x6de ./source/InternalControl.o
                               0x7adef (size before relaxing)
- .debug_str     0x0007acb1      0x5f7 ./source/SPI.o
-                              0x77e12 (size before relaxing)
- .debug_str     0x0007b2a8       0x86 ./source/SysTick.o
+ .debug_str     0x0007acb1      0x605 ./source/SPI.o
+                              0x77e20 (size before relaxing)
+ .debug_str     0x0007b2b6       0x86 ./source/SysTick.o
                               0x775b1 (size before relaxing)
- .debug_str     0x0007b32e      0x11c ./source/gpio.o
+ .debug_str     0x0007b33c      0x11c ./source/gpio.o
                               0x77298 (size before relaxing)
- .debug_str     0x0007b44a       0xe1 ./source/timer.o
+ .debug_str     0x0007b458       0xe1 ./source/timer.o
                               0x7a7c3 (size before relaxing)
- .debug_str     0x0007b52b      0x169 ./SDK/startup/hardware.o
+ .debug_str     0x0007b539      0x169 ./SDK/startup/hardware.o
                               0x771ef (size before relaxing)
- .debug_str     0x0007b694       0x1b ./SDK/startup/main.o
+ .debug_str     0x0007b6a2       0x1b ./SDK/startup/main.o
                               0x76fc3 (size before relaxing)
- .debug_str     0x0007b6af       0x36 ./SDK/startup/semihost_hardfault.o
+ .debug_str     0x0007b6bd       0x36 ./SDK/startup/semihost_hardfault.o
                                0x2d29 (size before relaxing)
- .debug_str     0x0007b6e5      0x7d5 ./SDK/startup/startup_mk64f12.o
+ .debug_str     0x0007b6f3      0x7d5 ./SDK/startup/startup_mk64f12.o
                                0x3597 (size before relaxing)
- .debug_str     0x0007beba       0x62 ./SDK/CMSIS/system_MK64F12.o
+ .debug_str     0x0007bec8       0x62 ./SDK/CMSIS/system_MK64F12.o
                               0x770fe (size before relaxing)
 
 .comment        0x00000000       0x7e

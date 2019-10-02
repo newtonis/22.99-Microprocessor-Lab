@@ -239,11 +239,11 @@ void enableRxFIFO(uint8_t SPI_n){
 
 
 
-void clearTxFIFO(uint8_t SPI_n){ //flush
+void clearTxFIFOCounter(uint8_t SPI_n){ //flush
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_CLR_TXF(ENABLE);
 }
 
-void clearRxFIFO(uint8_t SPI_n){  //flush
+void clearRxFIFOCounter(uint8_t SPI_n){  //flush
 	SPIPtrs[SPI_n]->MCR |= SPI_MCR_CLR_RXF(ENABLE);
 }
 
@@ -280,9 +280,9 @@ void MasterWriteDataWithCommandBlocking(uint8_t SPI_n, spi_command *command, uin
 	/* First, clear Transmit Complete Flag (TCF) */
 	clearTxCompleteFlag(SPI_n);
 
-	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_MASK))
+	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_MASK)) // Si TFFF = 1 (TxFifo no esta full, hay al menos un bit disponible), sale del while
     {
-    	clearTxFifoFillRequestFlag(SPI_n);
+    	clearTxFifoFillRequestFlag(SPI_n); // asumo que está llena, entonces hasta que no se haya ido al menos un bit, no va a cambiar TFFF a 1
     }
 
 	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->keepAssertedPCSnBetweenTransfers) |
@@ -293,11 +293,11 @@ void MasterWriteDataWithCommandBlocking(uint8_t SPI_n, spi_command *command, uin
 							SPI_PUSHR_TXDATA(data);
 
 
-    clearTxFifoFillRequestFlag(SPI_n);
+    clearTxFifoFillRequestFlag(SPI_n); // TxFifo Esta llena
 
     /* Wait till TCF sets */
-    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_MASK))
-    {
+    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_MASK)) // si TCF = 1 (transferencia completa), sale del while
+    {												// es decir espero a que se shifteen todos los bits del frame
     }
 }
 
