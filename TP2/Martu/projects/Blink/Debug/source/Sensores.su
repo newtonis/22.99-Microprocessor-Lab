@@ -1,0 +1,5 @@
+Sensores.c:47:6:callback_init	4	static
+Sensores.c:52:6:callback_read	8	static
+Sensores.c:77:6:callback_	4	static
+Sensores.c:86:10:_mqx_ints_FXOS8700CQ_start	16	static
+Sensores.c:276:6:ReadAccelMagnData	16	static

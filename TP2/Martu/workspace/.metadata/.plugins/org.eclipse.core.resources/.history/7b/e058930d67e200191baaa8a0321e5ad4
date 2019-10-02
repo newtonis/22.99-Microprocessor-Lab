@@ -1,0 +1,63 @@
+/***************************************************************************//**
+  @file     App.c
+  @brief    Application functions
+  @author   Nicolás Magliola
+ ******************************************************************************/
+
+/*******************************************************************************
+ * INCLUDE HEADER FILES
+ ******************************************************************************/
+#include "timer.h"
+#include "i2c.h"
+
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
+
+static tim_id_t timerDisp;
+static tim_id_t timerIdle;
+static tim_id_t timerError;
+static tim_id_t timerPestillo;
+static char data [10];
+static void i2c_handler (void);
+/*******************************************************************************
+ * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
+ ******************************************************************************/
+
+void i2c_handler (void)
+{
+	int a;
+	a++;
+}
+
+
+/*******************************************************************************
+ *******************************************************************************
+                        GLOBAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
+
+/* Función que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+
+
+
+    timerDisp = timerGetId();
+
+
+    timerIdle = timerGetId();
+    //timerStart(timerIdle, TIMER_MS2TICKS(3000), TIM_MODE_PERIODIC, idleHandler);
+
+    //timerPestillo = timerGetId(); // Lo disparo cuando se pueda abrir
+    i2cInit(I2C_0);
+
+}
+
+/* Función que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+
+	i2cReadMsg(0x1D, &data, 0x0D, 1, i2c_handler);
+}
+

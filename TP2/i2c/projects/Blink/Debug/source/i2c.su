@@ -1,0 +1,6 @@
+core_cm4.h:1677:22:__NVIC_EnableIRQ	16	static
+i2c.c:56:6:I2C0_IRQHandler	16	static
+i2c.c:198:6:finish_com	16	static
+i2c.c:225:6:i2cInit	64	static
+i2c.c:271:6:i2cReadMsg	16	static
+i2c.c:304:6:i2cWriteMsg	16	static
