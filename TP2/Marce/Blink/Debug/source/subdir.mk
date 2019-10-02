@@ -5,21 +5,27 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../source/App.c \
+../source/CAN.c \
 ../source/Posicionamiento.c \
-../source/Sensores.c 
-
-O_SRCS += \
-../source/gpio.o 
+../source/SPI.c \
+../source/Sensores.c \
+../source/gpio.c 
 
 OBJS += \
 ./source/App.o \
+./source/CAN.o \
 ./source/Posicionamiento.o \
-./source/Sensores.o 
+./source/SPI.o \
+./source/Sensores.o \
+./source/gpio.o 
 
 C_DEPS += \
 ./source/App.d \
+./source/CAN.d \
 ./source/Posicionamiento.d \
-./source/Sensores.d 
+./source/SPI.d \
+./source/Sensores.d \
+./source/gpio.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

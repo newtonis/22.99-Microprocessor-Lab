@@ -1,3 +1,0 @@
-App.c:28:6:i2c_handler	4	static
-App.c:43:6:App_Init	4	static
-App.c:50:6:App_Run	8	static

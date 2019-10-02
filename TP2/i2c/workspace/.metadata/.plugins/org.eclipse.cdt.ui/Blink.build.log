@@ -1,6 +1,0 @@
-18:49:16 **** Incremental Build of configuration Debug for project Blink ****
-make -r -j3 all 
-make: Nothing to be done for `all'.
-
-18:49:16 Build Finished. 0 errors, 0 warnings. (took 118ms)
-
