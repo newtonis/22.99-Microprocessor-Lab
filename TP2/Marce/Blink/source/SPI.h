@@ -113,7 +113,7 @@ void SPIClockGatingEnable(uint8_t SPI_n);
 
 void configPin(pin_t pin, uint8_t mode, uint8_t gpio_mode, uint8_t mux_alt, uint8_t interrupt_alt);
 
-void testSPI(uint8_t SPI_n);
+void SPI_ByteWrite(uint16_t data, bool keepCS);
 
 uint16_t getDataSent(uint8_t SPI_n);
 

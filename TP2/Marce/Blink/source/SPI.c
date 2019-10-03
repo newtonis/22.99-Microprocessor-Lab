@@ -11,7 +11,7 @@
 static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
 static SPI_Type* SPIPtrs[] = SPI_BASE_PTRS;
 static SIM_Type* sim_ptr = SIM;
-static uint16_t data[BUFF_LEN];
+//static uint16_t data[BUFF_LEN];
 
 static void (*callbackTick)();
 
@@ -174,16 +174,18 @@ void configPin(pin_t pin, uint8_t mode, uint8_t gpio_mode, uint8_t mux_alt, uint
 	}
 }
 
-void testSPI(uint8_t SPI_n){
+void SPI_ByteWrite(uint16_t data, bool keepCS){
 
-	uint16_t data = 0x01;
+	uint8_t SPI_n = 0;
 	spi_command command;
-	command.keepAssertedPCSnBetweenTransfers = true;
+	command.keepAssertedPCSnBetweenTransfers = keepCS; // 1 si mantener o 0 para bajarlo
 	command.isEndOfQueue = false;
 	command.whichPcs = Pcs0;
 	command.whichCtar = 0;
 	command.clearTransferCount = 0;
 	MasterWriteDataWithCommandBlocking(SPI_n, &command, data);
+
+	/*
 	// el clock se activa cada vez que se modifica el PUSHR
 	data = 0x02;
 	command.keepAssertedPCSnBetweenTransfers = true;
@@ -201,6 +203,7 @@ void testSPI(uint8_t SPI_n){
 	command.clearTransferCount = 0; // 0 equivale a no borrar TransferCount
 	MasterWriteDataWithCommandBlocking(SPI_n, &command, data);
 	int a = 5;
+	*/
 
 }
 

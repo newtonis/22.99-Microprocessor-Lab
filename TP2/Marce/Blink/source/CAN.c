@@ -6,6 +6,8 @@
  */
 
 #include "CAN.h"
+#include "SPI.h"
+#include <stdbool.h>
 
 //Defines de comandos de SPI
 #define RESET 0xC0
@@ -30,6 +32,7 @@
 #define RXF0SIDL_REG 0x01
 
 #define CANCTRL_REG 0x0F
+#define CANINTE_REG 0x2B
 
 #define TXB0CTRL_REG 0x30
 #define TXB0SIDH_REG 0x31
@@ -42,15 +45,12 @@
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
-// Escritura SPI (REEMPLAZAR DESPUES POR LAS QUE QUEDEN)
-void SPI_WRITE(char * data, int bytes);
-
-// Funciones de CAN
-void init_CAN(int ID);
 
 void CAN_BIT_MODIFY(char address, char mask, char data);
 
 void CAN_WRITE(char address, char data);
+
+void CAN_RESET(void);
 
 void CAN_RTS_TXB0(void);
 
@@ -59,23 +59,49 @@ void CAN_RTS_TXB0(void);
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
+void CAN_RESET(void)
+{
+	SPI_ByteWrite(RESET, false);
+}
+
 
 void CAN_BIT_MODIFY(char address, char mask, char data)
 {
-	char buffer[4] = {BIT_MODIFY,address,mask,data};
-	SPI_WRITE(buffer,4);
+	int i = 0;
+	char buffer[4] = {BIT_MODIFY, address, mask, data};
+	for(i = 0; i < 4; i++)
+	{
+		if(i < 4 - 1)
+		{
+			SPI_ByteWrite(buffer[i], true);
+		}
+		else
+		{
+			SPI_ByteWrite(buffer[i], false);
+		}
+	}
 }
 
 void CAN_WRITE(char address, char data)
 {
+	int i = 0;
 	char buffer[3] = {WRITE, address, data};
-	SPI_WRITE(buffer, 3);
+	for(i = 0; i < 3; i++)
+	{
+		if(i < 3 - 1)
+		{
+			SPI_ByteWrite(buffer[i], true);
+		}
+		else
+		{
+			SPI_ByteWrite(buffer[i], false);
+		}
+	}
 }
 
 void CAN_RTS_TXB0(void)
 {
-	char buffer[1] = {RTS_TX0};
-	SPI_WRITE(buffer, 1);
+	SPI_ByteWrite(RTS_TX0, false);
 }
 
 
@@ -84,8 +110,7 @@ void CAN_RTS_TXB0(void)
 //BRP tiene que valer 7
 void init_CAN(int ID)
 {
-	char buffer[1] = {RESET};
-	SPI_WRITE(buffer, 1); // Reseteo el controlador y lo pongo en modo configuración
+	CAN_RESET(); // Reseteo el controlador y lo pongo en modo configuración
 
 	// Seteo el bitrate y los time quantas
 	CAN_BIT_MODIFY(CNF1_REG, 0xFF ,7);//aca seteo el time quanta como 1us
@@ -99,13 +124,14 @@ void init_CAN(int ID)
 	CAN_WRITE(RXM0SIDH_REG, 0xFF); // Seteo la mask (H)
 	CAN_WRITE(RXM0SIDL_REG, 0x00); // Seteo la mask (L)
 
-	//VER SI NECESITO SETEARLO PARA MAS REGISTROS
-	CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x04); // Modo Normal, Clock Enable y Preescaler en 1
+	CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x0C); // Modo Normal, One-Shot, Clock Enable y Preescaler en 1
 }
 
 void send_CAN(int ID, char * buffer, int bufflen)
 {
 	CAN_BIT_MODIFY(TXB0CTRL_REG, 0x08, 0x00); // Clear de TXREQ
+
+	//CAN_WRITE(CANINTE_REG, 0x00); // Disable Interrupt
 
 	// Cargo ID de destino
 	char ID_H = ID >> 3;
@@ -118,7 +144,11 @@ void send_CAN(int ID, char * buffer, int bufflen)
 	CAN_WRITE(TXB0DLC_REG, DATA_LEN);
 
 	// Escribo la data a enviar en el buffer
-	CAN_WRITE(TXB0Dn_REG, data)
+	CAN_WRITE(TXB0Dn_REG, 0x69);
+
+	CAN_RTS_TXB0(); // Aviso que ya esta para enviar. Cuando detecte libre el bus se manda
+
+
 }
 
 

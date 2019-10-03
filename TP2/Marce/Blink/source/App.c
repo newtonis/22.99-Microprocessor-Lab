@@ -10,7 +10,8 @@
 
 #include "board.h"
 #include "gpio.h"
-#include "Posicionamiento.h"
+#include "SPI.h"
+#include "CAN.h"
 
 
 /*******************************************************************************
@@ -21,9 +22,7 @@
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
-
-static void delayLoop(uint32_t veces);
-
+void test_irq(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -35,14 +34,21 @@ static void delayLoop(uint32_t veces);
 void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
+    gpioWrite(PIN_LED_BLUE, LED_ACTIVE);
+
+    SPI_Initialize(test_irq);
+    init_CAN(0x102);
+
+    char buf = 0;
+
+    send_CAN(0x102, &buf, 1);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
 
-    delayLoop(4000000UL);
-    gpioToggle(PIN_LED_BLUE);
+
 }
 
 
@@ -51,12 +57,10 @@ void App_Run (void)
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-
-static void delayLoop(uint32_t veces)
+void test_irq(void)
 {
-    while (veces--);
-}
 
+}
 
 /*******************************************************************************
  ******************************************************************************/
