@@ -184,37 +184,44 @@ void SPI_ByteWrite(uint16_t data, bool keepCS){
 	command.whichCtar = 0;
 	command.clearTransferCount = 0;
 	MasterWriteDataWithCommandBlocking(SPI_n, &command, data);
+}
 
-	/*
-	// el clock se activa cada vez que se modifica el PUSHR
-	data = 0x02;
-	command.keepAssertedPCSnBetweenTransfers = true;
-	command.isEndOfQueue = false;
-	command.whichPcs = Pcs0;
-	command.whichCtar = 0;
-	command.clearTransferCount = 0;
-	MasterWriteDataWithCommandBlocking(SPI_n, &command, data);
+uint16_t SPI_BufferReadCommand(uint16_t data, bool keepCS, uint8_t SPI_n, spi_command *command)
+{
 
-	data = 0x03;
-	command.keepAssertedPCSnBetweenTransfers = false;
-	command.isEndOfQueue = false;
-	command.whichPcs = Pcs0;
-	command.whichCtar = 0;
-	command.clearTransferCount = 0; // 0 equivale a no borrar TransferCount
-	MasterWriteDataWithCommandBlocking(SPI_n, &command, data);
-	int a = 5;
-	*/
+	/* First, clear Transmit Complete Flag (TCF) */
+	clearTxCompleteFlag(SPI_n);
 
+	while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TFFF_MASK)) // Si TFFF = 1 (TxFifo no esta full, hay al menos un bit disponible), sale del while
+    {
+    	clearTxFifoFillRequestFlag(SPI_n); // asumo que está llena, entonces hasta que no se haya ido al menos un bit, no va a cambiar TFFF a 1
+    }
+
+	SPIPtrs[SPI_n]->PUSHR = SPI_PUSHR_CONT(command->keepAssertedPCSnBetweenTransfers) |
+							SPI_PUSHR_PCS(command->whichPcs)|
+							SPI_PUSHR_CTAS(command->whichCtar)  |
+							SPI_PUSHR_EOQ(command->isEndOfQueue) |
+							SPI_PUSHR_CTCNT(command->clearTransferCount) |
+							SPI_PUSHR_TXDATA(data);
+
+	uint16_t data_aux;
+	data_aux = getDataSent(SPI_n);
+
+    clearTxFifoFillRequestFlag(SPI_n); // TxFifo Esta llena
+
+
+    /* Wait till TCF sets */
+    while (!(SPIPtrs[SPI_n]->SR & SPI_SR_TCF_MASK)) // si TCF = 1 (transferencia completa), sale del while
+    {												// es decir espero a que se shifteen todos los bits del frame
+    }
+
+    return data_aux;
 }
 
 
 uint16_t getDataSent(uint8_t SPI_n){
 	return SPIPtrs[SPI_n]->POPR;
 }
-
-
-
-
 
 
 void setSPIConfig(uint8_t SPI_n, int SPI_config){

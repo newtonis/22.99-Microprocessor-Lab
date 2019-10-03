@@ -115,6 +115,8 @@ void configPin(pin_t pin, uint8_t mode, uint8_t gpio_mode, uint8_t mux_alt, uint
 
 void SPI_ByteWrite(uint16_t data, bool keepCS);
 
+uint16_t SPI_BufferReadCommand(uint16_t data, bool keepCS, uint8_t SPI_n, spi_command *command);
+
 uint16_t getDataSent(uint8_t SPI_n);
 
 
