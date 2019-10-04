@@ -1,0 +1,21 @@
+11:58:12 **** Incremental Build of configuration Debug for project Pul2Switch ****
+make -r -j8 all 
+Building target: Pul2Switch.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="Pul2Switch.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T "Pul2Switch_Debug.ld" -o "Pul2Switch.axf"  ./source/App.o ./source/gpio.o  ./SDK/startup/hardware.o ./SDK/startup/main.o ./SDK/startup/semihost_hardfault.o ./SDK/startup/startup_mk64f12.o  ./SDK/CMSIS/system_MK64F12.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:        2784 B         1 MB      0.27%
+./source/App.o: In function `App_Init':
+C:\Users\newto\LABO_DE_MICROS\TestMarce\projects\Pul2Switch\Debug/../source/App.c:36: undefined reference to `gpioMode'
+      SRAM_UPPER:        8216 B       192 KB      4.18%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+C:\Users\newto\LABO_DE_MICROS\TestMarce\projects\Pul2Switch\Debug/../source/App.c:37: undefined reference to `gpioMode'
+        FLEX_RAM:          0 GB         4 KB      0.00%
+C:\Users\newto\LABO_DE_MICROS\TestMarce\projects\Pul2Switch\Debug/../source/App.c:38: undefined reference to `gpioMode'
+./source/App.o: In function `App_Run':
+C:\Users\newto\LABO_DE_MICROS\TestMarce\projects\Pul2Switch\Debug/../source/App.c:71: undefined reference to `gpioToggle'
+collect2.exe: error: ld returned 1 exit status
+make: *** [Pul2Switch.axf] Error 1
+
+11:58:12 Build Finished (took 291ms)
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Guia_4_uart/source/uart&apos; to &apos;uart.h&apos;" description="Rename resource &apos;uart&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="source/uart" name="uart.h" stamp="1568748647328" updateReferences="true"/>
+</session>

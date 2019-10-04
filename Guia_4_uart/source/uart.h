@@ -56,6 +56,11 @@ typedef struct {
 void uartInit(uart_cfg_t config);
 void sendWord(const char *word);
 
+bool isNewWord();
+void getNextWord(char *data);
+void updateWord();
+void setOnNewWordListener();
+
 //void byteRecv(uart_manager *uart, uint8_t data);
 
 /**

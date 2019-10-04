@@ -26,6 +26,11 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/uart.o
  .data          0x00000000        0x0 ./source/uart.o
  .bss           0x00000000        0x0 ./source/uart.o
+ .bss.recvBuffer
+                0x00000000      0x190 ./source/uart.o
+ .bss.porRecibir
+                0x00000000        0x4 ./source/uart.o
+ .bss.recibido  0x00000000        0x4 ./source/uart.o
  .debug_macro   0x00000000      0xa5a ./source/uart.o
  .debug_macro   0x00000000      0x34e ./source/uart.o
  .debug_macro   0x00000000       0x1c ./source/uart.o
@@ -800,15 +805,15 @@ END GROUP
                 0x00000df8                _image_size = (_image_end - _image_start)
 OUTPUT(Guia_4_uart.axf elf32-littlearm)
 
-.debug_info     0x00000000     0x264c
+.debug_info     0x00000000     0x267f
  .debug_info    0x00000000      0x117 ./source/App.o
- .debug_info    0x00000117      0xa96 ./source/uart.o
- .debug_info    0x00000bad      0x675 ./SDK/startup/hardware.o
- .debug_info    0x00001222       0xb7 ./SDK/startup/main.o
- .debug_info    0x000012d9       0x3b ./SDK/startup/semihost_hardfault.o
- .debug_info    0x00001314      0x8b0 ./SDK/startup/startup_mk64f12.o
- .debug_info    0x00001bc4      0x5fc ./SDK/CMSIS/system_MK64F12.o
- .debug_info    0x000021c0      0x48c C:/Users/newto/LABO_DE_MICROS/Guia_4_uart/source/gpio.o
+ .debug_info    0x00000117      0xac9 ./source/uart.o
+ .debug_info    0x00000be0      0x675 ./SDK/startup/hardware.o
+ .debug_info    0x00001255       0xb7 ./SDK/startup/main.o
+ .debug_info    0x0000130c       0x3b ./SDK/startup/semihost_hardfault.o
+ .debug_info    0x00001347      0x8b0 ./SDK/startup/startup_mk64f12.o
+ .debug_info    0x00001bf7      0x5fc ./SDK/CMSIS/system_MK64F12.o
+ .debug_info    0x000021f3      0x48c C:/Users/newto/LABO_DE_MICROS/Guia_4_uart/source/gpio.o
 
 .debug_abbrev   0x00000000      0x8bd
  .debug_abbrev  0x00000000       0xd6 ./source/App.o
@@ -885,22 +890,22 @@ OUTPUT(Guia_4_uart.axf elf32-littlearm)
  .debug_line    0x00000d47      0x1c7 ./SDK/CMSIS/system_MK64F12.o
  .debug_line    0x00000f0e      0x1ec C:/Users/newto/LABO_DE_MICROS/Guia_4_uart/source/gpio.o
 
-.debug_str      0x00000000    0x7840a
+.debug_str      0x00000000    0x78429
  .debug_str     0x00000000     0x3851 ./source/App.o
                                0x39b4 (size before relaxing)
- .debug_str     0x00003851    0x6d40a ./source/uart.o
-                              0x70e00 (size before relaxing)
- .debug_str     0x00070c5b     0x6c65 ./SDK/startup/hardware.o
+ .debug_str     0x00003851    0x6d429 ./source/uart.o
+                              0x70e1f (size before relaxing)
+ .debug_str     0x00070c7a     0x6c65 ./SDK/startup/hardware.o
                               0x771e0 (size before relaxing)
- .debug_str     0x000778c0       0x1b ./SDK/startup/main.o
+ .debug_str     0x000778df       0x1b ./SDK/startup/main.o
                               0x76fb4 (size before relaxing)
- .debug_str     0x000778db       0x36 ./SDK/startup/semihost_hardfault.o
+ .debug_str     0x000778fa       0x36 ./SDK/startup/semihost_hardfault.o
                                0x2d1a (size before relaxing)
- .debug_str     0x00077911      0x823 ./SDK/startup/startup_mk64f12.o
+ .debug_str     0x00077930      0x823 ./SDK/startup/startup_mk64f12.o
                                0x3588 (size before relaxing)
- .debug_str     0x00078134       0x62 ./SDK/CMSIS/system_MK64F12.o
+ .debug_str     0x00078153       0x62 ./SDK/CMSIS/system_MK64F12.o
                               0x770ef (size before relaxing)
- .debug_str     0x00078196      0x274 C:/Users/newto/LABO_DE_MICROS/Guia_4_uart/source/gpio.o
+ .debug_str     0x000781b5      0x274 C:/Users/newto/LABO_DE_MICROS/Guia_4_uart/source/gpio.o
                               0x772d6 (size before relaxing)
 
 .comment        0x00000000       0x7e

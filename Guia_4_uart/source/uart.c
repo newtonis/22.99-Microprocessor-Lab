@@ -59,11 +59,15 @@ static uint8_t rx_data;
 #define BUFFER_SIZE 100
 
 int sendBuffer[BUFFER_SIZE];
+int recvBuffer[BUFFER_SIZE];
+
 int porEnviar = 0;
 int enviado = 0;
 
-__ISR__ UART0_RX_TX_IRQHandler (void){ // UART INTERRUPT!!
+int porRecibir = 0;
+int recibido = 0;
 
+__ISR__ UART0_RX_TX_IRQHandler (void){ // UART INTERRUPT!!
 	//gpioWrite(PIN_PRUEBA,HIGH);
 
 	uint8_t s1 = UART0->S1;
@@ -73,7 +77,6 @@ __ISR__ UART0_RX_TX_IRQHandler (void){ // UART INTERRUPT!!
 		//byteRecv(uart3_manager, rx_data);
 
 	}else{ // if (s1 & UART_S1_TDRE_MASK) // TX IRQ
-
 		//UART3->D = ~0xAA;//0b10101010; //tx_data;
 
 		// (currentSend != currentWriteSend){
@@ -83,9 +86,9 @@ __ISR__ UART0_RX_TX_IRQHandler (void){ // UART INTERRUPT!!
 
 		if (enviado == porEnviar){
 
-			//UART0->TWFIFO = 0;
-			//UART0->C2 &= ~UART_C2_TE_MASK;
-			//UART0->C2 |= UART_C2_TE_MASK;
+			UART0->TWFIFO = 0;
+			UART0->C2 &= ~UART_C2_TE_MASK;
+			UART0->C2 |= UART_C2_TE_MASK;
 
 			UART0->C2 &= ~UART_C2_TIE_MASK;
 
@@ -211,6 +214,21 @@ void uartInit (uart_cfg_t config){
 }
 
 
+bool isNewWord(){
+
+}
+
+void getNextWord(char *data){
+
+}
+
+void updateWord(){
+
+}
+
+void setOnNewWordListener(){
+
+}
 
 /**
  * @brief Check if a new byte was received

@@ -1,0 +1,263 @@
+/***************************************************************************//**
+  @file     UART.c
+  @brief    UART Driver for K64F. Non-Blocking and using FIFO feature
+  @author   Nicolás Magliola
+ ******************************************************************************/
+
+#include "MK64F12.h"
+#include "uart.h"
+#include "gpio.h"
+#include "board.h"
+
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
+
+static PORT_Type* portPtrs[] = PORT_BASE_PTRS;
+
+/*******************************************************************************
+ * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
+ ******************************************************************************/
+
+/*******************************************************************************
+ * VARIABLE PROTOTYPES WITH GLOBAL SCOPE
+ ******************************************************************************/
+
+/*******************************************************************************
+ * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
+ ******************************************************************************/
+
+/**
+ * @brief Initialize UART driver
+ * @param id UART's number
+ * @param config UART's configuration (baudrate, parity, etc.)
+*/
+
+//static void UART_SetBaudRate (UART_Type *uart, uint32_t baudrate)
+//{
+//	uint16_t sbr, brfa;
+//	uint32_t clock;
+//
+//	clock = ((uart == UART0) || (uart == UART1))?(__CORE_CLOCK__):(__CORE_CLOCK__ >> 1);
+//
+//	sbr = clock / (baudrate << 4);               // sbr = clock/(Baudrate x 16)
+//	brfa = (clock << 1) / baudrate - (sbr << 5); // brfa = 2*Clock/baudrate - 32*sbr
+//
+//
+//	uart->C4 = (uart->C4 & ~UART_C4_BRFA_MASK) | UART_C4_BRFA(brfa);
+//}
+
+#define UART0_TX_PIN 	17   //PTB17
+#define UART0_RX_PIN 	16   //PTB16
+#define PORT_UART0	PORTB
+#define GPIO_UART0	PTB
+#define __ISR__ 		void __attribute__ ((interrupt))
+
+static uint8_t rx_data;
+
+#define BUFFER_SIZE 100
+
+int sendBuffer[BUFFER_SIZE];
+int porEnviar = 0;
+int enviado = 0;
+
+__ISR__ UART3_RX_TX_IRQHandler (void){ // UART INTERRUPT!!
+
+	gpioWrite(PIN_PRUEBA,HIGH);
+
+	uint8_t s1 = UART3->S1;
+
+	if (s1 & UART_S1_RDRF_MASK){ // Llego un dato!!
+		rx_data = UART3->D; // RX DATA
+		//byteRecv(uart3_manager, rx_data);
+
+	}else{ // if (s1 & UART_S1_TDRE_MASK) // TX IRQ
+
+		//UART3->D = ~0xAA;//0b10101010; //tx_data;
+
+		// (currentSend != currentWriteSend){
+		UART3->D = sendBuffer[enviado];
+		enviado = (enviado + 1) % BUFFER_SIZE;
+
+		if (enviado == porEnviar){
+			UART3->C2 &= ~UART_C2_TIE_MASK;
+		}
+		//if (!(--(queue->count))){
+		//UART3->C2 &= ~UART_C2_TIE_MASK; // Disable TDRE IRQ
+		//}
+	}
+	gpioWrite(PIN_PRUEBA,LOW);
+}
+
+void sendWord(const char *word){
+	int i = 0;
+	while (word[i] != '\0'){
+		sendBuffer[porEnviar] = word[i];
+		porEnviar = (porEnviar + 1) % BUFFER_SIZE;
+		i ++;
+	}
+	UART3->C2 |= UART_C2_TIE_MASK;
+}
+//void byteRecv(uart_manager *uart, uint8_t data){
+//	uart->recv[uart->actual_recv] = data;
+//	uart->actual_recv ++;
+//
+//	if (data == '\n'){
+//		uart->recv[uart->actual_recv] = '\0';
+//
+//		char wordRecv[100];
+//		strcpy(wordRecv, uart->recv);
+//		uart->onWordRecv(wordRecv);
+//
+//		uart->actual_recv = 0;
+//	}
+//}
+
+void configPCR(int portName, int nume, uint32_t value){
+	int pin = PORTNUM2PIN(portName, nume);
+	PORT_Type *port = portPtrs[PIN2PORT(pin)];
+	uint32_t num = PIN2NUM(pin);
+	port->PCR[num] &= ~PORT_PCR_MUX(7); // fuerzo a valer 0 los PCR MUX
+	port->PCR[num] |= PORT_PCR_MUX(value); // hago valer lo que tienen que valer los PCR MUX
+	port->PCR[num] &= ~PORT_PCR_IRQC_MASK;
+	port->PCR[num] |= PORT_PCR_IRQC(0b0000);
+}
+void uartInit (uart_cfg_t config){
+
+	// Activo el clock gating
+
+	SIM->SCGC4 |= SIM_SCGC4_UART0_MASK;
+	SIM->SCGC4 |= SIM_SCGC4_UART1_MASK;
+	SIM->SCGC4 |= SIM_SCGC4_UART2_MASK;
+	SIM->SCGC4 |= SIM_SCGC4_UART3_MASK;
+	SIM->SCGC1 |= SIM_SCGC1_UART4_MASK;
+	SIM->SCGC1 |= SIM_SCGC1_UART5_MASK;
+
+
+	// Configuro puertos
+	configPCR(PC, 17, 3); //PB para la PC
+	configPCR(PC, 16, 3); //PB para la PC
+
+	//gpioWrite(PIN_PRUEBA,HIGH);
+	//gpioWrite(PIN_PRUEBA,LOW);
+
+	// Habilito interrupciones de UART3
+	NVIC_EnableIRQ(UART3_RX_TX_IRQn);
+
+	// Baudrate, brfa
+	uint32_t clock;
+	uint16_t sbr, brfa;
+
+	clock = 4900000U;
+
+	sbr = clock / (config.baudrate << 4);
+	brfa = (clock << 1) / config.baudrate - (sbr << 5);
+
+	//UART_Type *config;
+
+	// BAUDRATE
+
+	UART3->BDH = UART_BDH_SBR(sbr >> 8);
+	UART3->BDL = UART_BDL_SBR(sbr);
+
+	// CONFIGURO length, parity (C1)
+
+	UART3->C1 = 0x01;
+
+	// ESCRIBO MA1, MA2, C4
+	UART3->C4 = 0xE0 | (uint8_t)(brfa);
+
+	//UART3->MA1 = 0x55;
+	//UART3->MA2 = 0x33;
+
+	// ACTIVO TRANSMISOR INTERRUPCIONES Y RECEPTOR, WAKEUP CON C2, S2, C3
+
+	UART3->C2 |= UART_C2_TE_MASK | UART_C2_RE_MASK | UART_C2_RIE_MASK | UART_C2_TIE_MASK; // TE, RE, RIE-> interrupciones
+	UART3->S2 &= ~(0x06); // MSBF = 0, BRK13 = 0
+
+	//UART3->C3 &= ~0x0F; // ORIE=NEIE=PEIE=FEIE = 0 -> solo con interrupciones
+
+	//UART3->C3 &= UART_C3_ORIE;
+	//UART3->C3 &= UART_C3_NEIE;
+	//UART3->C3 &= UART_C3_PEIE;
+	//UART3->C3 &= UART_C3_FEIE;
+
+	//int i = 0;
+
+//	while (1){
+//		//while (!(UART3->S1 & 0x80)){}
+//		//int j = 1000;
+//		//while (j < 1000) j--;
+//
+//		if (i % 5 == 0){
+//			//UART3->C3 |= UART_C3_T8_SHIFT; // enviamos un 1
+//        	UART3->D = 0xC3;
+//		}else{
+//			//UART3->C3 &= ~0x40; //enviamos un 1
+//			//UART3->D = 0x55;
+//			//UART3->C3 |= UART_C3_T8_SHIFT; // enviamos un 0
+//			UART3->D = 0x00;
+//		}
+//		i ++;
+//	}
+
+}
+
+
+
+/**
+ * @brief Check if a new byte was received
+ * @param id UART's number
+ * @return A new byte has being received
+*/
+
+//uint8_t uartIsRxMsg(uart_manager *uart,uint8_t id){
+//
+//}
+
+/**
+ * @brief Check how many bytes were received
+ * @param id UART's number
+ * @return Quantity of received bytes
+*/
+//uint8_t uartGetRxMsgLength(uart_manager *uart,uint8_t id){
+//
+//}
+
+/**
+ * @brief Read a received message. Non-Blocking
+ * @param id UART's number
+ * @param msg Buffer to paste the received bytes
+ * @param cant Desired quantity of bytes to be pasted
+ * @return Real quantity of pasted bytes
+*/
+//uint8_t uartReadMsg(uart_manager *uart,uint8_t id, char* msg, uint8_t cant){
+//
+//}
+
+/**
+ * @brief Write a message to be transmitted. Non-Blocking
+ * @param id UART's number
+ * @param msg Buffer with the bytes to be transfered
+ * @param cant Desired quantity of bytes to be transfered
+ * @return Real quantity of bytes to be transfered
+*/
+//uint8_t uartWriteMsg(uart_manager *uart, uint8_t id, const char* msg, uint8_t cant){
+//	int i;
+//	for (i = 0;i < cant;i++){
+//		//sendBit
+//		uart->send[uart->actual_send] = msg[i];
+//		uart->actual_send = (uart->actual_send + 1) % UART_BUFFER_SIZE;
+//	}
+//	UART3->C2 |= UART_C2_TIE_MASK; // enable interrupt (TIE=1)
+//}
+
+/**
+ * @brief Check if all bytes were transfered
+ * @param id UART's number
+ * @return All bytes were transfered
+*/
+//uint8_t uartIsTxMsgComplete(uart_manager *uart, uint8_t id){
+//
+//}
+
