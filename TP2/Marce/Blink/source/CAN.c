@@ -9,7 +9,6 @@
 #include "SPI.h"
 #include "board.h"
 #include <stdio.h>
-#include <stdbool.h>
 
 //Defines de comandos de SPI
 #define RESET 0xC0
@@ -98,6 +97,11 @@ void CAN_ClearTxFlag(void)
 void CAN_ClearRxFlag(void)
 {
 	CAN_BIT_MODIFY(CANINTF_REG, 0X01, 0x00);
+}
+
+bool getTXFlag_CAN(void)
+{
+	return (CAN_READ(CANINTF_REG) & 0x04);
 }
 
 void CAN_BIT_MODIFY(char address, char mask, char data)

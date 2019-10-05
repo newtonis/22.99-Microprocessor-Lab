@@ -9,7 +9,7 @@
 #define CAN_H_
 
 #include <stdint.h>
-
+#include <stdbool.h>
 
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
@@ -32,5 +32,7 @@ void init_CAN(int ID, void (*funcallback)(void));
 void send_CAN(int ID, char * buffer, int bufflen);
 
 RXB_RAWDATA_t getRXB_Data_CAN(void);
+
+bool getTXFlag_CAN(void);
 
 #endif /* CAN_H_ */
