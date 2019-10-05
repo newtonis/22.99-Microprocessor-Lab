@@ -8,10 +8,8 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 
-#include "gpio.h"
 #include "Posicionamiento.h"
 #include "timer.h"
-#include "board.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -82,9 +80,6 @@ void periodicRefresh(void)
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-	 gpioMode(PIN_LED_BLUE, OUTPUT);
-	 gpioWrite(PIN_LED_BLUE, LED_ACTIVE);
-
 
 	 Position_InitDrv(test);
 

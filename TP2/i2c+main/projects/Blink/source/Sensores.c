@@ -95,10 +95,12 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 	// [7-1] = 0000 000
 	// [0]: active=0
 	databyte = 0x00;
-	finish = false;
+	//finish = false;
+	//i2c_com.register_address = FXOS8700CQ_CTRL_REG1;
 
-	i2c_com.register_address = FXOS8700CQ_CTRL_REG1;
+	i2cWriteMsgBlocking(&databyte, 1, FXOS8700CQ_CTRL_REG1, FXOS8700CQ_SLAVE_ADDR);
 
+	/*
 	i2cWriteMsg(&i2c_com);
 
 	while (finish == false)
@@ -108,6 +110,7 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 			return (I2C_ERROR);
 		}
 	}
+	*/
 
 
 
