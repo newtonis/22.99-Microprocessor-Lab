@@ -7,7 +7,8 @@
 
 #include "CAN.h"
 #include "SPI.h"
-#include <stdbool.h>
+#include "board.h"
+#include <stdio.h>
 
 //Defines de comandos de SPI
 #define RESET 0xC0
@@ -33,10 +34,13 @@
 
 #define RXB0CTRL_REG 0x60
 #define BFPCTRL_REG 0x0C
-#define RXBxSIDH_REG 0x61
+#define RXB0SIDH_REG 0x61
+#define RXB0SIDL_REG 0x62
+#define RXB0DLC_REG	0x65
 
 #define CANCTRL_REG 0x0F
 #define CANINTE_REG 0x2B
+#define CANINTF_REG 0x2C
 
 #define TXB0CTRL_REG 0x30
 #define TXB0SIDH_REG 0x31
@@ -46,6 +50,13 @@
 
 #define TXRTSCTRL_REG 0x0D
 
+/*******************************************************************************
+ * VARIABLES WITH GLOBAL SCOPE
+ ******************************************************************************/
+static RXB_RAWDATA_t RXbufferData;
+static uint16_t myID;
+
+static void (*callback)(void);
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
@@ -62,6 +73,12 @@ void CAN_LOAD_TX_BUFFER(char address, char *data, char nBytes);
 
 void CAN_READ_RX_BUFFER(void);
 
+void CAN_ClearTxFlag(void);
+
+void CAN_ClearRxFlag(void);
+
+uint8_t CAN_READ(char address);
+
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -72,50 +89,43 @@ void CAN_RESET(void)
 	CAN_BIT_MODIFY(CANCTRL_REG, 0xE0, 0x80); // Modo Configuracion
 }
 
+void CAN_ClearTxFlag(void)
+{
+	CAN_BIT_MODIFY(CANINTF_REG, 0x04, 0x00);
+}
+
+void CAN_ClearRxFlag(void)
+{
+	CAN_BIT_MODIFY(CANINTF_REG, 0X01, 0x00);
+}
+
+bool getTXFlag_CAN(void)
+{
+	return (CAN_READ(CANINTF_REG) & 0x04);
+}
 
 void CAN_BIT_MODIFY(char address, char mask, char data)
 {
-	int i = 0;
-	char buffer[4] = {BIT_MODIFY, address, mask, data};
-	for(i = 0; i < 4; i++)
-	{
-		if(i < 4 - 1)
-		{
-			SPI_ByteWrite(buffer[i], true);
-		}
-		else
-		{
-			SPI_ByteWrite(buffer[i], false);
-		}
-	}
+	unsigned char buffer[4] = {BIT_MODIFY, address, mask, data};
+	SPI_driver_sendRecive(buffer, 4, NULL);
 }
 
 void CAN_WRITE(char address, char data)
 {
-	int i = 0;
-	char buffer[3] = {WRITE, address, data};
-	for(i = 0; i < 3; i++)
-	{
-		if(i < 3 - 1)
-		{
-			SPI_ByteWrite(buffer[i], true);
-		}
-		else
-		{
-			SPI_ByteWrite(buffer[i], false);
-		}
-	}
+	unsigned char buffer[3] = {WRITE, address, data};
+	SPI_driver_sendRecive(buffer, 3, NULL);
 }
 
 void CAN_RTS_TXB0(void)
 {
-	SPI_ByteWrite(RTS_TX0, false);
+	unsigned char buffer[1] = {RTS_TX0};
+	SPI_driver_sendRecive(buffer, 1, NULL);
 }
 
 void CAN_LOAD_TX_BUFFER(char address, char *data, char nBytes)
 {
 	int i = 0;
-	char buffer[nBytes + 1]; // Ojo que nBytes solo puede ir hasta 8
+	unsigned char buffer[nBytes + 1]; // Ojo que nBytes solo puede ir hasta 8
 
 	for(i = 0; i < nBytes; i++)
 	{
@@ -133,58 +143,83 @@ void CAN_LOAD_TX_BUFFER(char address, char *data, char nBytes)
 			break;
 	}
 
-	for(i = 0; i < nBytes + 1; i++)
-	{
-		if(i < nBytes)
-		{
-			SPI_ByteWrite(buffer[i], true);
-		}
-		else
-		{
-			SPI_ByteWrite(buffer[i], false);
-		}
-	}
+	SPI_driver_sendRecive(buffer, nBytes+1, NULL);
+}
+
+uint8_t CAN_READ(char address){
+	unsigned char buffer[3] = {READ, address, 0x00};
+	unsigned char recBuffer[3] = {0, 0, 0};
+
+	SPI_driver_sendRecive(buffer, 3, recBuffer);
+
+	return recBuffer[2];
 }
 
 void CAN_READ_RX_BUFFER(void)
 {
-	spi_command command;
-	command.keepAssertedPCSnBetweenTransfers = true; // 1 si mantener o 0 para bajarlo
-	command.isEndOfQueue = false;
-	command.whichPcs = Pcs0;
-	command.whichCtar = 0;
-	command.clearTransferCount = 0;
+	uint8_t IE_Flags = CAN_READ(CANINTF_REG);
+	bool TX_Flag = IE_Flags & 0x04;
+	bool RX_Flag = IE_Flags & 0x01;
 
-	uint16_t data;
-	SPI_ByteWrite(READ_RX_BUFFER, true);
-	data = SPI_BufferReadCommand(0x00, false, 0, &command);
-	data = 1;
+	if(TX_Flag)
+	{
+		CAN_ClearTxFlag();
+	}
+	if(RX_Flag)
+	{
+		uint8_t bytesRX = 0;
+		uint16_t idRX = 0;
+
+		unsigned char bufferSend[4] = {READ, RXB0SIDH_REG, 0x00, 0x00};
+		uint8_t bufferID[4]; // Me interesan los ultimos 2
+		SPI_driver_sendRecive(bufferSend, 4, bufferID);
+
+		idRX = (bufferID[2] << 3) | ((bufferID[3] & 0xE0) >> 5);
+
+		bytesRX = 0x0F & CAN_READ(RXB0DLC_REG); // Numero de bytes recibidos
+
+		unsigned char bufferSend2[9] = {READ_RX_BUFFER, 0, 0, 0, 0, 0, 0, 0, 0};
+		unsigned char bufferDATA[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // Buffer data
+		SPI_driver_sendRecive(bufferSend2, 9, bufferDATA);
+
+		RXbufferData.SID = idRX;
+		RXbufferData.DLC = bytesRX;
+
+		for(int i = 0; i < BUFFER_SIZE; i++)
+		{
+			RXbufferData.Dn[i] = bufferDATA[i+1];
+		}
+
+		callback();
+
+		CAN_ClearRxFlag();
+	}
+}
+
+RXB_RAWDATA_t getRXB_Data_CAN(void)
+{
+	return RXbufferData;
 }
 
 //Oscilador de 16MHz
 //Tengo 8 time quantas por bit
 //BRP tiene que valer 7
-void init_CAN(int ID)
+void init_CAN(int ID, void (*funcallback)(void))
 {
+	myID = 0x100 + ID;
+	callback = funcallback;
+
+	gpioMode(IRQ_CAN, INPUT);
+	gpioIRQ(IRQ_CAN, GPIO_IRQ_MODE_FALLING_EDGE, CAN_READ_RX_BUFFER);
+	NVIC_EnableIRQ(PORTB_IRQn);
+
+	unsigned char res = RESET;
+	SPI_driver_sendRecive(&res, 1, NULL);
 	CAN_RESET(); // Reseteo el controlador y lo pongo en modo configuración
 
 	// Seteo el bitrate y los time quantas
-	CAN_BIT_MODIFY(CNF1_REG, 0xFF ,7); //aca seteo el time quanta como 1us
-// TEST
-	SPI_ByteWrite(READ, true);
-	SPI_ByteWrite(CNF1_REG, true);
-	spi_command command;
-	command.keepAssertedPCSnBetweenTransfers = true; // 1 si mantener o 0 para bajarlo
-	command.isEndOfQueue = false;
-	command.whichPcs = Pcs0;
-	command.whichCtar = 0;
-	command.clearTransferCount = 0;
+	CAN_BIT_MODIFY(CNF1_REG, 0xFF, 0x07); //aca seteo el time quanta como 1us
 
-	uint16_t data;
-	SPI_ByteWrite(READ_RX_BUFFER, true);
-	data = SPI_BufferReadCommand(0x00, false, 0, &command);
-	data = 1;
-// FIN DE TEST
 	CAN_BIT_MODIFY(CNF2_REG, 0xFF ,0x98); // Aca seteo cuantos time quantas tiene el PHSEG1 y el PRSEG
 	CAN_BIT_MODIFY(CNF3_REG, 0x47 ,0x41); // Seteo time quantas asociados a PHSEG2 y WAKFIL
 
@@ -197,16 +232,15 @@ void init_CAN(int ID)
 
 	CAN_BIT_MODIFY(RXB0CTRL_REG, 0x64, 0x00); // Habilito el filtro y desactivo rollover
 
-	CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x0C); // Modo Normal, One-Shot, Clock Enable y Preescaler en 1
-	//CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x4C); // Modo Loopback, One-Shot, Clock Enable y Preescaler en 1
-	//CAN_BIT_MODIFY(BFPCTRL_REG, 0x0F, 0x05); // Habilito interrupcion de RX0BF
+	//CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x0C); // Modo Normal, One-Shot, Clock Enable y Preescaler en 1
+	CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x4C); // Modo Loopback, One-Shot, Clock Enable y Preescaler en 1
+
+	CAN_BIT_MODIFY(CANINTE_REG, 0x05, 0x05); // Habilito interrupciones por TX y RX
 }
 
 void send_CAN(int ID, char * buffer, int bufflen)
 {
 	CAN_BIT_MODIFY(TXB0CTRL_REG, 0x08, 0x00); // Clear de TXREQ
-
-	//CAN_WRITE(CANINTE_REG, 0x00); // Disable Interrupt
 
 	// Cargo ID de destino
 	char ID_H = ID >> 3;
@@ -222,8 +256,6 @@ void send_CAN(int ID, char * buffer, int bufflen)
 	CAN_LOAD_TX_BUFFER(TXB0D0_REG, buffer, bufflen);
 
 	CAN_RTS_TXB0(); // Aviso que ya esta para enviar. Cuando detecte libre el bus se manda
-
-	//CAN_READ_RX_BUFFER(); // TESTEO DE RX
 }
 
 

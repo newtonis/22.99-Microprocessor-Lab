@@ -6,26 +6,35 @@
 C_SRCS += \
 ../source/App.c \
 ../source/CAN.c \
+../source/ExternalManager.c \
 ../source/Posicionamiento.c \
 ../source/SPI.c \
 ../source/Sensores.c \
-../source/gpio.c 
+../source/SysTick.c \
+../source/gpio.c \
+../source/timer.c 
 
 OBJS += \
 ./source/App.o \
 ./source/CAN.o \
+./source/ExternalManager.o \
 ./source/Posicionamiento.o \
 ./source/SPI.o \
 ./source/Sensores.o \
-./source/gpio.o 
+./source/SysTick.o \
+./source/gpio.o \
+./source/timer.o 
 
 C_DEPS += \
 ./source/App.d \
 ./source/CAN.d \
+./source/ExternalManager.d \
 ./source/Posicionamiento.d \
 ./source/SPI.d \
 ./source/Sensores.d \
-./source/gpio.d 
+./source/SysTick.d \
+./source/gpio.d \
+./source/timer.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
