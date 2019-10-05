@@ -44,7 +44,7 @@ void App_Init (void){
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void){
-    delayLoop(4000000UL);
+    delayLoop(40000000UL);
     sendWord("¡Bualo Ari y Valen xdxdxd!");
 
     //while (UART0->)

@@ -1698,3 +1698,65 @@ arm-none-eabi-size "Guia_4_uart.axf"; # arm-none-eabi-objcopy -v -O binary "Guia
 15:43:02 **** Incremental Build of configuration Debug for project Guia_4_uart ****
 make -r -j8 all 
 make: Nothing to be done for `all'.
+12:44:17 **** Incremental Build of configuration Debug for project Guia_4_uart ****
+make -r -j8 all 
+Building file: ../source/App.c
+Building file: ../source/uart.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DCPU_MK64FN1M0VLL12 -D__USE_CMSIS -DDEBUG -I../source -I../ -I../SDK/CMSIS -I../SDK/startup -O0 -fno-common -g3 -Wall -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -MMD -MP -MF"source/uart.d" -MT"source/uart.o" -MT"source/uart.d" -o "source/uart.o" "../source/uart.c"
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DCPU_MK64FN1M0VLL12 -D__USE_CMSIS -DDEBUG -I../source -I../ -I../SDK/CMSIS -I../SDK/startup -O0 -fno-common -g3 -Wall -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -MMD -MP -MF"source/App.d" -MT"source/App.o" -MT"source/App.d" -o "source/App.o" "../source/App.c"
+In file included from ../source/uart.c:8:0:
+../source/uart.h:59:1: error: unknown type name 'bool'; did you mean '_Bool'?
+ bool isNewWord();
+ ^~~~
+ _Bool
+../source/uart.c:107:6: error: conflicting types for 'isNewWord'
+ bool isNewWord(){
+      ^~~~~~~~~
+In file included from ../source/uart.c:8:0:
+../source/uart.h:59:6: note: previous declaration of 'isNewWord' was here
+ bool isNewWord();
+      ^~~~~~~~~
+../source/uart.c: In function 'updateWord':
+../source/uart.c:116:13: warning: statement with no effect [-Wunused-value]
+   recvBuffer[recibido];
+   ~~~~~~~~~~^~~~~~~~~~
+../source/uart.c: At top level:
+../source/uart.c:204:6: error: conflicting types for 'isNewWord'
+ bool isNewWord(){
+      ^~~~~~~~~
+In file included from ../source/uart.c:8:0:
+../source/uart.h:59:6: note: previous declaration of 'isNewWord' was here
+ bool isNewWord();
+      ^~~~~~~~~
+../source/uart.c:208:6: error: redefinition of 'getNextWord'
+ void getNextWord(char *data){
+      ^~~~~~~~~~~
+../source/uart.c:110:6: note: previous definition of 'getNextWord' was here
+ void getNextWord(char *data){
+      ^~~~~~~~~~~
+../source/uart.c:212:6: error: redefinition of 'updateWord'
+ void updateWord(){
+      ^~~~~~~~~~
+../source/uart.c:113:6: note: previous definition of 'updateWord' was here
+ void updateWord(){
+      ^~~~~~~~~~
+../source/uart.c:216:6: error: redefinition of 'setOnNewWordListener'
+ void setOnNewWordListener(){
+      ^~~~~~~~~~~~~~~~~~~~
+../source/uart.c:121:6: note: previous definition of 'setOnNewWordListener' was here
+ void setOnNewWordListener(){
+      ^~~~~~~~~~~~~~~~~~~~
+../source/uart.c: In function 'isNewWord':
+../source/uart.c:109:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../source/uart.c: In function 'isNewWord':
+../source/uart.c:206:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** [source/uart.o] Error 1
+make: *** Waiting for unfinished jobs....
+Finished building: ../source/App.c
+ 
