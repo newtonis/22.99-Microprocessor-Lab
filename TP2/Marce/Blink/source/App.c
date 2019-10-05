@@ -7,91 +7,69 @@
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
-
-#include "timer.h"
 #include "Posicionamiento.h"
-#include "CAN.h"
-#include "SPI.h"
+#include "ExternalManager.h"
+#include "timer.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-/// Idea del programa final ///
 enum{ROLL_REFRESH, PITCH_REFRESH, ORIENT_REFRESH};
 uint8_t fsm = ROLL_REFRESH;
 
 tim_id_t timPeriodico;
+tim_id_t timerUpdatePos;
 
-roll_t roll_app;
-pitching_t pitching_app;
-orientation_t orientation_app;
-///////////////////////////////
+BoardParams_t AppBoard;
+
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
+
 void periodicRefresh(void);
-
-void test_irq(void)
-{
-
-}
+void test (void);
 
 /*******************************************************************************
- *******************************************************************************
-                        GLOBAL FUNCTION DEFINITIONS
- *******************************************************************************
+ * PRIVATE FUNCTIONS DEFINITIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-/* Función que se llama 1 vez, al comienzo del programa */
-void App_Init (void)
+void test(void)
 {
-	SPI_driver_init();
-	init_CAN(0x102, test_irq);
-    char buf[5] = {0x82, 0x43, 0x01, 0x02, 0x03};
-    send_CAN(0x102, buf, 5);
-/*
-    char buf2[3] = {0x85, 0x23, 0xFA};
-    send_CAN(0x102, buf2, 3);
-
-    /// Idea del programa final ///
-    timPeriodico = timerGetId();
-
-    timerStart(timPeriodico, TIMER_MS2TICKS(1000), TIM_MODE_PERIODIC, periodicRefresh);
-
-    ///////////////////////////////
-
-     */
+	switch (Position_GetChangeEvent()) {
+		case ROLL_EVENT:
+			AppBoard.roll = Position_GetRoll();
+			ExternManager_send2Ext(AppBoard, ROLL_UPD);
+			break;
+		case PITCHING_EVENT:
+			AppBoard.pitching = Position_GetPitch();
+			ExternManager_send2Ext(AppBoard, PITCHING_UPD);
+			break;
+		case ORIENTATION_EVENT:
+			AppBoard.orientation = Position_GetOrientation();
+			ExternManager_send2Ext(AppBoard, ORIENTATION_UPD);
+			break;
+	}
 }
 
-/* Función que se llama constantemente en un ciclo infinito */
-void App_Run (void)
-{
-
-}
-
-
-/*******************************************************************************
- *******************************************************************************
-                        LOCAL FUNCTION DEFINITIONS
- *******************************************************************************
- ******************************************************************************/
 void periodicRefresh(void)
 {
+	int a;
+	a = 1;
 	// Cada 1 segundo refresca uno de los parámetros
 	switch (fsm) {
 		case ROLL_REFRESH:
-			roll_app = Position_GetRoll();
-			// ENVIAR A PC NUEVO DATO POR UART
+			AppBoard.roll = Position_GetRoll();
+			ExternManager_send2Ext(AppBoard, ROLL_UPD);
 			break;
 		case PITCH_REFRESH:
-			pitching_app = Position_GetPitch();
-			// Enviar a PC NUEVO DATO POR UART
+			AppBoard.pitching = Position_GetPitch();
+			ExternManager_send2Ext(AppBoard, PITCHING_UPD);
 			break;
 		case ORIENT_REFRESH:
-			orientation_app = Position_GetOrientation();
-			// ENVIAR A PC NUEVO DATO POR UART
+			AppBoard.orientation = Position_GetOrientation();
+			ExternManager_send2Ext(AppBoard, ORIENTATION_UPD);
 			break;
 	}
 
@@ -106,5 +84,36 @@ void periodicRefresh(void)
 	}
 }
 
+
+
 /*******************************************************************************
+ *******************************************************************************
+                        GLOBAL FUNCTION DEFINITIONS
+ *******************************************************************************
  ******************************************************************************/
+
+
+
+/* Función que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+	ExternManager_init(2);
+/*
+	Position_InitDrv(test);
+
+	timerInit();
+
+	timerUpdatePos = timerGetId();
+	timerStart(timerUpdatePos, TIMER_MS2TICKS(200), TIM_MODE_PERIODIC, Position_Update);
+
+	timPeriodico = timerGetId();
+	timerStart(timPeriodico, TIMER_MS2TICKS(1000), TIM_MODE_PERIODIC, periodicRefresh);
+*/
+}
+
+/* Función que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+
+}
+

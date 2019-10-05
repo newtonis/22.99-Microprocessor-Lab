@@ -35,7 +35,11 @@ orientation_t orientation = 0;	// Form -179° to 180°
 orientation_t prev_orientation = 0;
 bool orientation_change = false;
 
+static read_data accel_Read;
+static bool reading = false;
+
 void (*changeCallback)(void);
+
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -44,6 +48,7 @@ void (*changeCallback)(void);
 void Position_CalculateRoll(void);
 void Position_CalculatePitching(void);
 void Position_CalculateOrientation(void);
+void callback_updatePos (void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -53,14 +58,33 @@ void Position_CalculateOrientation(void);
 void Position_InitDrv(void (*funcallback)(void)){
 	// Inicializar los sensores
 	//_mqx_ints_FXOS8700CQ_start(ACA VA EL PUNTERO);
+
+	_mqx_ints_FXOS8700CQ_start();
+
 	changeCallback = funcallback;
+	accel_Read.callback = callback_updatePos;
+	accel_Read.pAccelData = &accel_cords;
+	accel_Read.pMagnData = &magnet_cords;
+}
+
+void callback_updatePos (void)
+{
+	if(accel_Read.error == I2C_OK)
+	{
+		Position_CalculateRoll();
+		Position_CalculatePitching();
+		Position_CalculateOrientation();
+	}
+	reading = false;
 }
 
 void Position_Update(void){
 
-	Position_CalculateRoll();
-	Position_CalculatePitching();
-	Position_CalculateOrientation();
+	if(reading == false)
+	{
+		ReadAccelMagnData(&accel_Read);
+	}
+
 }
 
 roll_t Position_GetRoll(void){
@@ -98,46 +122,44 @@ int Position_GetChangeEvent(void){
 
 void Position_CalculateRoll(void){
 	uint8_t clock_type;
-	uint8_t tita;
+	int tita;
 
-	if(accel_cords.x > 0){
+	if(accel_cords.x < 0){
 		clock_type = CLOCKWISE;
-	}else if(accel_cords.x < 0){
+	}else if(accel_cords.x > 0){
 		clock_type = COUNTER_CLOCKWISE;
 	}else{
 		clock_type = ZERO;
 	}
 
 	if(clock_type != ZERO){
-		float aux = sqrtf(powf(accel_cords.z, 2) + powf(accel_cords.y, 2));
-		tita = 180*atan(aux/fabs(accel_cords.x))/M_PI;
+
+		tita = (int)180*atan((float)accel_cords.z/ (float)accel_cords.x)/M_PI;
+
 	}else{
 		tita = 90;
 	}
 
 	switch (clock_type) {
 		case CLOCKWISE:
-			if(accel_cords.z < 0){
-				prev_roll = - 90 + tita;
-			}else if(accel_cords.z > 0){
+			if(accel_cords.z != 0){
 				prev_roll = - 90 - tita;
 			}else{
 				prev_roll = - 90;
 			}
 			break;
 		case COUNTER_CLOCKWISE:
-			if(accel_cords.z < 0){
+			if(accel_cords.z != 0){
 				prev_roll = 90 - tita;
-			}else if(accel_cords.z > 0){
-				prev_roll = 90 + tita;
 			}else{
 				prev_roll = 90;
 			}
 			break;
+
 		case ZERO:
-			if(accel_cords.z < 0){
+			if(accel_cords.z > 0){
 				prev_roll = 0;
-			}else if(accel_cords.z > 0){
+			}else if(accel_cords.z < 0){
 				prev_roll = 180; // Por defecto, podria ser tambien
 			}
 			break;
@@ -155,38 +177,35 @@ void Position_CalculateRoll(void){
 
 void Position_CalculatePitching(void){
 	uint8_t clock_type;
-	uint8_t tita;
+	int tita;
 
-	if(accel_cords.y > 0){
+	if(accel_cords.y < 0){
 		clock_type = CLOCKWISE;
-	}else if(accel_cords.y < 0){
+	}else if(accel_cords.y > 0){
 		clock_type = COUNTER_CLOCKWISE;
 	}else{
 		clock_type = ZERO;
 	}
 
 	if(clock_type != ZERO){
-		float aux = sqrtf(powf(accel_cords.z, 2) + powf(accel_cords.x, 2));
-		tita = 180*atan(aux/fabs(accel_cords.y))/M_PI;
+
+		tita = (int)180*atan((float)accel_cords.z/ (float)accel_cords.y)/M_PI;
+
 	}else{
 		tita = 90;
 	}
 
 	switch (clock_type) {
 		case CLOCKWISE:
-			if(accel_cords.z < 0){
-				prev_pitching = - 90 + tita;
-			}else if(accel_cords.z > 0){
+			if(accel_cords.z != 0){
 				prev_pitching = - 90 - tita;
 			}else{
 				prev_pitching = - 90;
 			}
 			break;
 		case COUNTER_CLOCKWISE:
-			if(accel_cords.z < 0){
+			if(accel_cords.z != 0){
 				prev_pitching = 90 - tita;
-			}else if(accel_cords.z > 0){
-				prev_pitching = 90 + tita;
 			}else{
 				prev_pitching = 90;
 			}
@@ -211,20 +230,22 @@ void Position_CalculatePitching(void){
 }
 
 void Position_CalculateOrientation(void){
-	uint8_t clock_type;
-	uint8_t tita;
 
-	if(magnet_cords.y > 0){
+	uint8_t clock_type;
+	int tita;
+
+	if(magnet_cords.y < 0){
 		clock_type = CLOCKWISE;
-	}else if(magnet_cords.y < 0){
+	}else if(magnet_cords.y > 0){
 		clock_type = COUNTER_CLOCKWISE;
 	}else{
 		clock_type = ZERO;
 	}
 
 	if(clock_type != ZERO){
-		float aux = sqrtf(powf(magnet_cords.y, 2) + powf(magnet_cords.z, 2));
-		tita = 180*atan(fabs(magnet_cords.x)/aux)/M_PI;
+
+		tita = (int)180*atan((float)magnet_cords.y/ (float)magnet_cords.x)/M_PI;
+
 	}else{
 		tita = 90;
 	}
@@ -232,30 +253,31 @@ void Position_CalculateOrientation(void){
 	switch (clock_type) {
 		case CLOCKWISE:
 			if(magnet_cords.x > 0){
-				prev_orientation = 180 - tita;
+				prev_orientation = - 90 + tita;
 			}else if(magnet_cords.x < 0){
-				prev_orientation = - 179 + tita;
+				prev_orientation = 90 + tita;
 			}else{
 				prev_orientation = 180;
 			}
 			break;
 		case COUNTER_CLOCKWISE:
 			if(magnet_cords.x < 0){
-				prev_orientation = 0 - tita;
+				prev_orientation = 90 + tita;
 			}else if(magnet_cords.x > 0){
-				prev_orientation = tita;
+				prev_orientation = - 90 + tita;
 			}else{
 				prev_orientation = 0;
 			}
 			break;
 		case ZERO:
 			if(magnet_cords.x < 0){
-				prev_orientation = 0 - tita;
+				prev_orientation = tita;
 			}else if(magnet_cords.x > 0){
-				prev_orientation = tita; // Por defecto, podria ser tambien
+				prev_orientation = 0 - tita; // Por defecto, podria ser tambien
 			}
 			break;
 	}
+
 
 	int diference = fabsf(fabsf(prev_orientation) - fabsf(orientation));
 

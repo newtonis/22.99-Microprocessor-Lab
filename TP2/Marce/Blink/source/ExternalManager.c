@@ -8,7 +8,7 @@
 #include "ExternalManager.h"
 #include "SPI.h"
 #include "CAN.h"
-#include "Posicionamiento.h"
+#include "UART.h"
 
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
@@ -19,17 +19,11 @@
 #define PLUS_CHAR	0x43
 #define MINUS_CHAR	0x45
 
-typedef struct
-{
-	roll_t roll;
-	pitching_t pitching;
-	orientation_t orientation;
-}BoardParams_t;
 
 /*******************************************************************************
  * VARIABLES WITH GLOBAL SCOPE
  ******************************************************************************/
-BoardParams_t Boards[GROPUS];
+BoardParams_t Boards[GROUPS];
 uint8_t myGroup;
 
 
@@ -38,6 +32,7 @@ uint8_t myGroup;
  ******************************************************************************/
 void ExternManager_EventHandler(void);
 
+int16_t ExternManager_MakeCANMsj(char* buf, int16_t* boardDATA, uint8_t typeUPD, BoardParams_t myBoard);
 
 /*******************************************************************************
  *******************************************************************************
@@ -49,6 +44,14 @@ void ExternManager_init(uint8_t group_num)
 	myGroup = group_num;
 	SPI_driver_init();
 	init_CAN(myGroup, ExternManager_EventHandler);
+
+	uart_cfg_t config;
+	config.baudrate = 9600;
+	uartInit(config);
+
+	// Borrar lo de abajo es prueba
+    //char buf[4] = {'O', '-', 4, 7};
+    //send_CAN(0x102, buf, 4);
 }
 
 void ExternManager_EventHandler(void)
@@ -95,6 +98,98 @@ void ExternManager_EventHandler(void)
 			Boards[group_index].orientation = angle;
 			break;
 	}
+
+	// N R + 1 2 3 \0
+
+
+	for(int i = 0; i < GROUPS; i++)
+	{
+
+	}
+}
+
+int16_t ExternManager_MakeCANMsj(char* buf, int16_t* boardDATA, uint8_t typeUPD, BoardParams_t myBoard)
+{
+	int16_t nBytes;
+
+	switch (typeUPD) {
+		case ROLL_UPD:
+			*boardDATA = myBoard.roll;
+			buf[0] = 'R';
+			break;
+		case PITCHING_UPD:
+			*boardDATA = myBoard.pitching;
+			buf[0] = 'C';
+			break;
+		case ORIENTATION_UPD:
+			*boardDATA = myBoard.orientation;
+			buf[0] = 'O';
+			break;
+	}
+
+	if(boardDATA == 0)
+	{
+		buf[1] = 0;
+		nBytes = 2;
+	}
+	else
+	{
+		// Defino signo
+		if(*boardDATA > 0)
+		{
+			buf[1] = '+';
+		}
+		else
+		{
+			buf[1] = '-';
+			*boardDATA = -(*boardDATA);
+		}
+
+		// Defino digitos
+		uint8_t c,d,u;
+		c = *boardDATA / 100;
+		d = *boardDATA / 10;
+		u = *boardDATA % 10;
+
+		if(c != 0)
+		{
+			buf[2] = c;
+			buf[3] = d;
+			buf[4] = u;
+			nBytes = 5;
+		}
+		else
+		{
+			if(d != 0)
+			{
+				buf[2] = d;
+				buf[3] = u;
+				nBytes = 4;
+			}
+			else
+			{
+				buf[2] = u;
+				nBytes = 3;
+
+			}
+		}
+	}
+
+	return nBytes;
+}
+
+void ExternManager_send2Ext(BoardParams_t myBoard, uint8_t typeUPD)
+{
+	int16_t boardDATA, nBytes;
+	char buffer[5]; // Considero peor caso, pero cuando mando indico cuantos bytes son
+
+	nBytes = ExternManager_MakeCANMsj(buffer, &boardDATA, typeUPD, myBoard);
+
+	send_CAN(0x102, buffer, nBytes);
+
+	Boards[myGroup].roll = myBoard.roll;
+	Boards[myGroup].pitching = myBoard.pitching;
+	Boards[myGroup].orientation = myBoard.orientation;
 }
 
 /*******************************************************************************

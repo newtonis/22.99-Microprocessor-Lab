@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include <hardware.h>
 
+
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
@@ -21,15 +22,20 @@ typedef struct
 	int16_t z;
 } SRAWDATA;
 
-// DEFINIR EL I2C POINTER Y LO DEMAS, LE PONGO ALGO PROVISORIO:
-// EL .c TIENE QUE PODER VER I2C.h
-/////////////////////////////////////
-typedef int8_t* MQX_FILE_PTR;
-#define	I2C_OK		1
-#define I2C_ERROR	0
-int8_t s_i2c_read_regs(MQX_FILE_PTR pf, int8_t slave_addr, int8_t slave_id, uint8_t *data, uint8_t ack);
-int8_t s_i2c_write_regs(MQX_FILE_PTR pf, int8_t slave_addr, int8_t slave_id, uint8_t *data, uint8_t ack);
-/////////////////////////////////////
+typedef void (* callbackp) (void);
+
+typedef enum { I2C_ERROR,  I2C_OK} I2C_FAIL;
+
+typedef struct
+{
+	SRAWDATA * pMagnData;
+	SRAWDATA * pAccelData;
+	callbackp callback;
+	I2C_FAIL error;
+}read_data;
+
+
+
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
@@ -41,13 +47,13 @@ int8_t s_i2c_write_regs(MQX_FILE_PTR pf, int8_t slave_addr, int8_t slave_id, uin
  * @param I2C pointer.
  * @return I2C_OK or I2C_ERROR.
  */
-bool _mqx_ints_FXOS8700CQ_start(MQX_FILE_PTR aFP);
+I2C_FAIL _mqx_ints_FXOS8700CQ_start(void);
 
 /**
  * @brief reads data from both sensors.
  * @param pointer to acceleration_data and to magnetometer_data.
  * @return I2C_OK or I2C_ERROR.
  */
-bool ReadAccelMagnData(SRAWDATA *pAccelData, SRAWDATA *pMagnData);
+void ReadAccelMagnData(read_data * data);
 
 #endif /* SENSORES_H_ */

@@ -11,7 +11,9 @@ C_SRCS += \
 ../source/SPI.c \
 ../source/Sensores.c \
 ../source/SysTick.c \
+../source/UART.c \
 ../source/gpio.c \
+../source/i2c.c \
 ../source/timer.c 
 
 OBJS += \
@@ -22,7 +24,9 @@ OBJS += \
 ./source/SPI.o \
 ./source/Sensores.o \
 ./source/SysTick.o \
+./source/UART.o \
 ./source/gpio.o \
+./source/i2c.o \
 ./source/timer.o 
 
 C_DEPS += \
@@ -33,7 +37,9 @@ C_DEPS += \
 ./source/SPI.d \
 ./source/Sensores.d \
 ./source/SysTick.d \
+./source/UART.d \
 ./source/gpio.d \
+./source/i2c.d \
 ./source/timer.d 
 
 

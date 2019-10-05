@@ -32,7 +32,11 @@
 
 #define IRQ_CAN		PORTNUM2PIN(PB,2)
 
+#define PIN_PRUEBA PORTNUM2PIN(PB,9)
 
+//Accelerometer pins
+#define I2C_SDA			PORTNUM2PIN(PE,25) //PTE25
+#define I2C_SCL			PORTNUM2PIN(PE,24) //PTE24
 
 #define LED_ACTIVE      LOW
 
