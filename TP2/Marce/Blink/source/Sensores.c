@@ -36,10 +36,10 @@
 
 static void callback_init (void);
 static void callback_read(void);
-static I2C_COM_CONTROL i2c_com;
+I2C_COM_CONTROL i2c_com;
 static read_data * r_data;
 static bool finish = false;
-static uint8_t Buffer[FXOS8700CQ_READ_LEN];
+uint8_t Buffer[FXOS8700CQ_READ_LEN];
 
 
 
@@ -58,9 +58,9 @@ void callback_read (void)
 		r_data->pAccelData->y = (int16_t)(((Buffer[3] << 8) | Buffer[4]))>> 2;
 		r_data->pAccelData->z = (int16_t)(((Buffer[5] << 8) | Buffer[6]))>> 2;
 		// copy the magnetometer byte data into 16 bit words
-		r_data->pMagnData->x = (Buffer[7] << 8) | Buffer[8];
-		r_data->pMagnData->y = (Buffer[9] << 8) | Buffer[10];
-		r_data->pMagnData->z = (Buffer[11] << 8) | Buffer[12];
+		r_data->pMagnData->x = (int16_t)(Buffer[7] << 8) | Buffer[8];
+		r_data->pMagnData->y = (int16_t)(Buffer[9] << 8) | Buffer[10];
+		r_data->pMagnData->z = (int16_t)(Buffer[11] << 8) | Buffer[12];
 
 		r_data->error = I2C_OK;
 		r_data->callback();
@@ -72,44 +72,11 @@ void callback_read (void)
 
 }
 
-///////////////////////////////////////////////
-void callback_ (void);
-void callback_ (void)
-{
-	int a;
-}
 
-static uint8_t test;
-
-///////////////////////////////////////////////
 
 I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 {
-
 	i2cInit(I2C_0);
-
-
-
-	/*////////////////////////////////////////////////////////////////
-
-	uint8_t datab = 0x00;
-
-	i2c_com.data = &datab;
-	i2c_com.data_size = 1;
-	i2c_com.register_address = FXOS8700CQ_CTRL_REG1;
-	i2c_com.slave_address =FXOS8700CQ_SLAVE_ADDR;
-
-
-	i2c_com.callback = callback_;
-	i2c_com.data = &test;
-
-	i2cWriteMsg(&i2c_com);
-
-
-	*/////////////////////////////////////////////////////////////////
-
-
-
 
 	uint8_t databyte;
 
@@ -161,8 +128,10 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 	// [5]: m_ost=0: no one-shot magnetic measurement
 	// [4-2]: m_os=111=7: 8x oversampling (for 200Hz) to reduce magnetometer noise
 	// [1-0]: m_hms=11=3: select hybrid mode with accelerometer and magnetometer active
-	databyte = 0x1F;
+	databyte = 0x9F;
+	i2c_com.register_address = FXOS8700CQ_M_CTRL_REG1;
 	finish = false;
+
 
 	i2cWriteMsg(&i2c_com);
 
@@ -201,15 +170,6 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 
 
 
-	/////////////////////////////////////////////////////////////////
-
-	i2c_com.callback = callback_;
-	i2c_com.data = &test;
-
-	i2cReadMsg(&i2c_com);
-
-
-	/////////////////////////////////////////////////////////////////
 
 	// write 0000 0001= 0x01 to XYZ_DATA_CFG register
 	// [7]: reserved
@@ -235,15 +195,6 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 	}
 
 
-	/////////////////////////////////////////////////////////////////
-
-	//i2c_com.callback = callback_;
-	//i2c_com.data = &test;
-
-	//i2cReadMsg(&i2c_com);
-
-
-	/////////////////////////////////////////////////////////////////
 
 
 	// write 0000 1101 = 0x0D to accelerometer control register 1
@@ -273,6 +224,7 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 
 
 
+
 void ReadAccelMagnData(read_data * data)
 {
 	// read FXOS8700CQ_READ_LEN=13 bytes (status byte and the six channels of data)
@@ -290,27 +242,7 @@ void ReadAccelMagnData(read_data * data)
 	return;
 }
 
-/*
 
-
-void ReadAccelMagnData(read_data * data)
-{
-	// read FXOS8700CQ_READ_LEN=13 bytes (status byte and the six channels of data)
-
-	r_data = data;
-	i2c_com.callback = callback_read;
-	i2c_com.data = Buffer;
-	i2c_com.data_size = FXOS8700CQ_READ_LEN ;
-	i2c_com.register_address = 0x05;
-	i2c_com.slave_address =FXOS8700CQ_SLAVE_ADDR;
-
-	i2cReadMsg(&i2c_com);
-
-	// normal return
-	return;
-}
-
-*/
 
 /*******************************************************************************
  ******************************************************************************/

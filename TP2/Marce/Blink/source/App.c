@@ -97,8 +97,8 @@ void periodicRefresh(void)
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-	ExternManager_init(2);
-/*
+	//ExternManager_init(2);
+
 	Position_InitDrv(test);
 
 	timerInit();
@@ -108,7 +108,7 @@ void App_Init (void)
 
 	timPeriodico = timerGetId();
 	timerStart(timPeriodico, TIMER_MS2TICKS(1000), TIM_MODE_PERIODIC, periodicRefresh);
-*/
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */

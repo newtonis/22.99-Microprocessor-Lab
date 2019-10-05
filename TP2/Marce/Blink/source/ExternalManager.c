@@ -23,9 +23,9 @@
 /*******************************************************************************
  * VARIABLES WITH GLOBAL SCOPE
  ******************************************************************************/
-BoardParams_t Boards[GROUPS];
-uint8_t myGroup;
-
+static BoardParams_t Boards[GROUPS];
+static uint8_t myGroup;
+static char bufferPC[7] = {'2', 'R', '+', '1', '2', '3', '\0'};
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -99,13 +99,32 @@ void ExternManager_EventHandler(void)
 			break;
 	}
 
-	// N R + 1 2 3 \0
-
-
-	for(int i = 0; i < GROUPS; i++)
+	// Refresco de PC
+	bufferPC[0] = group_index;
+	bufferPC[1] = bufferRXB.Dn[0];
+	if(bufferRXB.Dn[1] == 0)
 	{
-
+		bufferPC[2] = PLUS_CHAR;
+		bufferPC[3] = 0;
+		bufferPC[4] = 0;
+		bufferPC[5] = 0;
 	}
+	else
+	{
+		if(bufferRXB.Dn[1] == PLUS_CHAR)
+		{
+			bufferPC[2] = PLUS_CHAR;
+		}
+		else if(bufferRXB.Dn[1] == MINUS_CHAR)
+		{
+			bufferPC[2] = MINUS_CHAR;
+		}
+		bufferPC[3] = angle / 100;
+		bufferPC[4] = angle / 10;
+		bufferPC[5] = angle % 10;
+	}
+
+	sendWord(bufferPC);
 }
 
 int16_t ExternManager_MakeCANMsj(char* buf, int16_t* boardDATA, uint8_t typeUPD, BoardParams_t myBoard)
