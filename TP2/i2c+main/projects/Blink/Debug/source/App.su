@@ -1,4 +1,4 @@
-App.c:38:6:test	4	static
-App.c:43:6:periodicRefresh	8	static
-App.c:83:6:App_Init	8	static
-App.c:102:6:App_Run	4	static
+App.c:36:6:test	4	static
+App.c:41:6:periodicRefresh	8	static
+App.c:81:6:App_Init	8	static
+App.c:97:6:App_Run	4	static

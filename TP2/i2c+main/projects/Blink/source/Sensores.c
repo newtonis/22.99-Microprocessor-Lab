@@ -94,13 +94,19 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 	// write 0000 0000 = 0x00 to accelerometer control register 1 to place FXOS8700CQ into standby
 	// [7-1] = 0000 000
 	// [0]: active=0
+
+
 	databyte = 0x00;
-	//finish = false;
-	//i2c_com.register_address = FXOS8700CQ_CTRL_REG1;
+	finish = false;
 
-	i2cWriteMsgBlocking(&databyte, 1, FXOS8700CQ_CTRL_REG1, FXOS8700CQ_SLAVE_ADDR);
 
-	/*
+
+	i2c_com.callback = callback_init;
+	i2c_com.data = &databyte;
+	i2c_com.data_size = 1;
+	i2c_com.slave_address =FXOS8700CQ_SLAVE_ADDR;
+	i2c_com.register_address = FXOS8700CQ_CTRL_REG1;
+
 	i2cWriteMsg(&i2c_com);
 
 	while (finish == false)
@@ -110,7 +116,6 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 			return (I2C_ERROR);
 		}
 	}
-	*/
 
 
 
@@ -181,16 +186,6 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 		}
 	}
 
-
-	/////////////////////////////////////////////////////////////////
-
-	//i2c_com.callback = callback_;
-	//i2c_com.data = &test;
-
-	//i2cReadMsg(&i2c_com);
-
-
-	/////////////////////////////////////////////////////////////////
 
 
 	// write 0000 1101 = 0x0D to accelerometer control register 1

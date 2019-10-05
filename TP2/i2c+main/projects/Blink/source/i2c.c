@@ -89,7 +89,6 @@ void I2C0_IRQHandler(void)
 						I2C_REPEAT_START_SIGNAL;
 						I2C_WRITE_BYTE(device_address_r);
 
-
 					}
 					else
 					{
@@ -352,7 +351,6 @@ I2C_FAULT i2cWriteMsgBlocking (uint8_t * msg, uint8_t data_size,	uint8_t registe
 
 	if(I2C_CHECK_BUS != BUS_BUSY)
 	{
-
 		device_address_w = (slave_address << 1) & 0b11111110;
 		data_index = 0;
 

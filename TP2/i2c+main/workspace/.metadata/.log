@@ -7400,3 +7400,1919 @@ java.lang.Exception: The project description file (.project) for 'Blink' is miss
 
 !ENTRY org.eclipse.jface.text 2 0 2019-10-05 16:12:22.097
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.boolean'
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:24:45.512
+!MESSAGE PEMicro continuous memory service session connected on port 10224->65468 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:24:48.634
+!MESSAGE SWO session connected on port 10224->65484 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:26:47.016
+!MESSAGE PEMicro continuous memory service session connected on port 10224->65504 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:26:48.554
+!MESSAGE SWO session connected on port 10224->65511 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:27:21.250
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:27:21.258
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:27:38.894
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49152 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:27:40.457
+!MESSAGE SWO session connected on port 10224->49161 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:28:32.728
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:28:32.737
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:29:21.672
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49190 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:29:23.267
+!MESSAGE SWO session connected on port 10224->49197 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:29:41.926
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:29:41.934
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:29:56.467
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49228 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:29:58.029
+!MESSAGE SWO session connected on port 10224->49236 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:31:39.404
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:31:39.413
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:32:13.659
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49258 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:32:16.332
+!MESSAGE SWO session connected on port 10224->49272 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:33:30.245
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:33:30.254
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.crt.log 1 0 2019-10-05 16:34:29.072
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.crt.debugcommon 1 0 2019-10-05 16:34:29.075
+!MESSAGE RedlinkServer telnet session connected on port 3025->49292 @ 127.0.0.1
+
+!ENTRY com.crt.debugcommon 4 0 2019-10-05 16:34:29.078
+!MESSAGE Unable to parse ProbeList output to get probe ref count: []
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:34:32.478
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49302 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:34:34.033
+!MESSAGE SWO session connected on port 10224->49309 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:34:56.408
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:34:56.416
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:35:20.422
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49329 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:35:23.010
+!MESSAGE SWO session connected on port 10224->49341 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:38:14.365
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:38:14.374
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:38:23.649
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49359 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:38:25.284
+!MESSAGE SWO session connected on port 10224->49370 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:38:46.733
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:38:46.741
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.crt.log 1 0 2019-10-05 16:39:08.950
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.crt.debugcommon 1 0 2019-10-05 16:39:08.960
+!MESSAGE RedlinkServer telnet session connected on port 3025->49388 @ 127.0.0.1
+
+!ENTRY com.crt.debugcommon 4 0 2019-10-05 16:39:08.962
+!MESSAGE Unable to parse ProbeList output to get probe ref count: []
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:39:12.058
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49398 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:39:13.614
+!MESSAGE SWO session connected on port 10224->49406 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:39:40.681
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:39:40.690
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.crt.log 1 0 2019-10-05 16:40:15.471
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.crt.debugcommon 1 0 2019-10-05 16:40:15.473
+!MESSAGE RedlinkServer telnet session connected on port 3025->49435 @ 127.0.0.1
+
+!ENTRY com.crt.debugcommon 4 0 2019-10-05 16:40:15.475
+!MESSAGE Unable to parse ProbeList output to get probe ref count: []
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:40:21.391
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49448 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:40:22.940
+!MESSAGE SWO session connected on port 10224->49453 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:40:43.418
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:40:43.427
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:41:07.450
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49474 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:41:08.999
+!MESSAGE SWO session connected on port 10224->49483 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:41:18.441
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:41:18.450
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:53:36.674
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49682 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 16:53:39.426
+!MESSAGE SWO session connected on port 10224->49692 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 16:53:53.750
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 16:53:53.758
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:07:40.226
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49781 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:07:42.820
+!MESSAGE SWO session connected on port 10224->49790 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:08:09.593
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:08:09.601
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:08:52.727
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49820 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:08:55.351
+!MESSAGE SWO session connected on port 10224->49828 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:09:48.484
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:09:48.492
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:10:52.686
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49856 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:10:54.248
+!MESSAGE SWO session connected on port 10224->49864 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:11:10.429
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:11:10.431
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:11:27.090
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49882 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:11:28.662
+!MESSAGE SWO session connected on port 10224->49893 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:11:45.487
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:11:45.488
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:12:09.793
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49915 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:12:11.343
+!MESSAGE SWO session connected on port 10224->49923 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:12:21.198
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:12:21.207
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.crt.log 1 0 2019-10-05 17:13:10.637
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.crt.debugcommon 1 0 2019-10-05 17:13:10.647
+!MESSAGE RedlinkServer telnet session connected on port 3025->49947 @ 127.0.0.1
+
+!ENTRY com.crt.debugcommon 4 0 2019-10-05 17:13:10.649
+!MESSAGE Unable to parse ProbeList output to get probe ref count: []
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:13:16.899
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49959 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:13:18.527
+!MESSAGE SWO session connected on port 10224->49964 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2019-10-05 17:13:45.373
+!MESSAGE Failed to execute MI command:
+-data-list-register-values x 14
+Error message from debugger back end:
+Invalid thread id: 1
+!STACK 0
+java.lang.Exception: Invalid thread id: 1
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:993)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:822)
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:13:48.425
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:13:48.426
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:14:36.017
+!MESSAGE PEMicro continuous memory service session connected on port 10224->49994 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:14:37.694
+!MESSAGE SWO session connected on port 10224->50001 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:15:15.388
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:15:15.397
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2019-10-05 17:16:36.534
+!MESSAGE Request monitor: 'Sequence "", result for executing step #0 = Status CANCEL: com.pemicro.debug.gdbjtag.pne code=1 PEmicro GDB Launch Failure : The GDB Server was not able to establish a connection to the target processor. Please check your connections and power. Verify that the launch settings in the Debug Configuration are accurate. null' resulted in a cancel status: Status CANCEL: com.pemicro.debug.gdbjtag.pne code=1 PEmicro GDB Launch Failure : The GDB Server was not able to establish a connection to the target processor. Please check your connections and power. Verify that the launch settings in the Debug Configuration are accurate. null, even though the request is not set to cancel.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2019-10-05 17:16:36.535
+!MESSAGE Request monitor: 'Sequence "Initializing debugger services", result for executing step #0 = Status CANCEL: com.pemicro.debug.gdbjtag.pne code=1 PEmicro GDB Launch Failure : The GDB Server was not able to establish a connection to the target processor. Please check your connections and power. Verify that the launch settings in the Debug Configuration are accurate. null' resulted in a cancel status: Status CANCEL: com.pemicro.debug.gdbjtag.pne code=1 PEmicro GDB Launch Failure : The GDB Server was not able to establish a connection to the target processor. Please check your connections and power. Verify that the launch settings in the Debug Configuration are accurate. null, even though the request is not set to cancel.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2019-10-05 17:16:36.535
+!MESSAGE Request monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitorWithProgress@61b35806): Status CANCEL: com.pemicro.debug.gdbjtag.pne code=1 PEmicro GDB Launch Failure : The GDB Server was not able to establish a connection to the target processor. Please check your connections and power. Verify that the launch settings in the Debug Configuration are accurate. null' resulted in a cancel status: Status CANCEL: com.pemicro.debug.gdbjtag.pne code=1 PEmicro GDB Launch Failure : The GDB Server was not able to establish a connection to the target processor. Please check your connections and power. Verify that the launch settings in the Debug Configuration are accurate. null, even though the request is not set to cancel.
+
+!ENTRY com.pemicro.debug.gdbjtag.pne 4 5012 2019-10-05 17:16:36.566
+!MESSAGE Error in services launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: PEmicro GDB Launch Failure : The GDB Server was not able to establish a connection to the target processor. Please check your connections and power. Verify that the launch settings in the Debug Configuration are accurate.
+	at org.eclipse.cdt.dsf.concurrent.Sequence.abortExecution(Sequence.java:599)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$4(Sequence.java:591)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleErrorOrWarning(Sequence.java:448)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleFailure(RequestMonitor.java:433)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:393)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:317)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+!SUBENTRY 1 com.pemicro.debug.gdbjtag.pne 8 1 2019-10-05 17:16:36.567
+!MESSAGE PEmicro GDB Launch Failure : The GDB Server was not able to establish a connection to the target processor. Please check your connections and power. Verify that the launch settings in the Debug Configuration are accurate.
+
+!ENTRY com.crt.log 1 0 2019-10-05 17:17:06.861
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.crt.debugcommon 1 0 2019-10-05 17:17:06.863
+!MESSAGE RedlinkServer telnet session connected on port 3025->50037 @ 127.0.0.1
+
+!ENTRY com.crt.debugcommon 4 0 2019-10-05 17:17:06.864
+!MESSAGE Unable to parse ProbeList output to get probe ref count: []
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:17:09.731
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50046 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:17:12.310
+!MESSAGE SWO session connected on port 10224->50054 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:17:25.992
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:17:26.001
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:17:37.213
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50070 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:17:38.754
+!MESSAGE SWO session connected on port 10224->50078 @ 127.0.0.1
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2019-10-05 17:20:37.374
+!MESSAGE Request for monitor: 'RequestMonitor (com.nxp.lpcxpresso.debug.ui.providers.NXPHeapStackVariableVMNode$7@4866eb17): Status ERROR: org.eclipse.cdt.dsf.gdb code=10002 Container context not found null' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10002 2019-10-05 17:20:37.374
+!MESSAGE Container context not found
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:20:40.439
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:20:40.439
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.crt.log 1 0 2019-10-05 17:23:21.312
+!MESSAGE Trying to connect to redlink server on port 3025.
+
+!ENTRY com.crt.debugcommon 1 0 2019-10-05 17:23:21.321
+!MESSAGE RedlinkServer telnet session connected on port 3025->50134 @ 127.0.0.1
+
+!ENTRY com.crt.debugcommon 4 0 2019-10-05 17:23:21.323
+!MESSAGE Unable to parse ProbeList output to get probe ref count: []
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:23:48.364
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50166 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 4 0 2019-10-05 17:23:51.092
+!MESSAGE Unable to find Trace Service for '(gdb[23].proc[42000].threadGroup[i1],gdb[23].proc[42000].OSthread[1]).thread[1].frame[0]'
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:23:51.173
+!MESSAGE SWO session connected on port 10224->50178 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:24:58.313
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:24:58.322
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:25:32.198
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50215 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:25:33.934
+!MESSAGE SWO session connected on port 10224->50220 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:27:04.301
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:27:04.310
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:27:49.193
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50243 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:27:50.816
+!MESSAGE SWO session connected on port 10224->50252 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:28:02.747
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:28:02.748
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:29:00.537
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50283 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:29:02.205
+!MESSAGE SWO session connected on port 10224->50292 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:29:44.808
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:29:44.816
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:30:28.683
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50327 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:30:30.332
+!MESSAGE SWO session connected on port 10224->50333 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:31:15.701
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:31:15.710
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:31:37.362
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50359 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:31:39.059
+!MESSAGE SWO session connected on port 10224->50365 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:34:46.473
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:34:46.474
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:37:21.772
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50415 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 4 0 2019-10-05 17:37:24.463
+!MESSAGE Unable to find Trace Service for '(gdb[29].proc[42000].threadGroup[i1],gdb[29].proc[42000].OSthread[1]).thread[1].frame[0]'
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:37:24.482
+!MESSAGE SWO session connected on port 10224->50428 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:40:55.505
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:40:55.506
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:50:00.410
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50509 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 4 0 2019-10-05 17:50:03.127
+!MESSAGE Unable to find Trace Service for '(gdb[30].proc[42000].threadGroup[i1],gdb[30].proc[42000].OSthread[1]).thread[1].frame[0]'
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:50:03.150
+!MESSAGE SWO session connected on port 10224->50518 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:51:29.813
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:51:29.821
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:52:16.488
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50542 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 17:52:19.204
+!MESSAGE SWO session connected on port 10224->50553 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 17:57:41.150
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 17:57:41.159
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:02:18.624
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50596 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:02:20.319
+!MESSAGE SWO session connected on port 10224->50606 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 18:03:11.119
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 18:03:11.119
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:03:37.571
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50637 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:03:40.282
+!MESSAGE SWO session connected on port 10224->50650 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 18:05:06.526
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 18:05:06.527
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:06:17.288
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50679 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:06:19.994
+!MESSAGE SWO session connected on port 10224->50685 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 18:07:38.310
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 18:07:38.318
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:11:10.743
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50726 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 4 0 2019-10-05 18:11:13.515
+!MESSAGE Unable to find Trace Service for '(gdb[35].proc[42000].threadGroup[i1],gdb[35].proc[42000].OSthread[1]).thread[1].frame[0]'
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:11:13.544
+!MESSAGE SWO session connected on port 10224->50737 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 18:12:00.847
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 18:12:00.855
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:12:16.750
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50759 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:12:18.342
+!MESSAGE SWO session connected on port 10224->50766 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 18:13:48.641
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 18:13:48.650
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:16:13.173
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50801 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 4 0 2019-10-05 18:16:15.866
+!MESSAGE Unable to find Trace Service for '(gdb[37].proc[42000].threadGroup[i1],gdb[37].proc[42000].OSthread[1]).thread[1].frame[0]'
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:16:15.891
+!MESSAGE SWO session connected on port 10224->50811 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 18:19:31.757
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 18:19:31.757
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:21:50.985
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50852 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:21:52.652
+!MESSAGE SWO session connected on port 10224->50862 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 18:23:48.760
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 18:23:48.761
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:24:42.551
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50903 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:24:45.452
+!MESSAGE SWO session connected on port 10224->50915 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 18:26:05.254
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 18:26:05.262
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:26:33.915
+!MESSAGE PEMicro continuous memory service session connected on port 10224->50938 @ 127.0.0.1
+
+!ENTRY com.nxp.mcuxpresso.trace.core 4 0 2019-10-05 18:26:36.643
+!MESSAGE Unable to find Trace Service for '(gdb[40].proc[42000].threadGroup[i1],gdb[40].proc[42000].OSthread[1]).thread[1].frame[0]'
+
+!ENTRY com.nxp.mcuxpresso.trace.core 1 0 2019-10-05 18:26:36.666
+!MESSAGE SWO session connected on port 10224->50952 @ 127.0.0.1
+
+!ENTRY org.eclipse.debug.core 4 2 2019-10-05 18:29:31.046
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.debug.core 4 120 2019-10-05 18:29:31.054
+!MESSAGE An exception occurred during launch change notification.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.dsf.service.AbstractDsfService.shutdown(AbstractDsfService.java:106)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.shutdown(PEMicroContinuousMemReadingService.java:237)
+	at com.nxp.mcuxpresso.core.debug.support.pe.trace.PEMicroContinuousMemReadingService.launchesTerminated(PEMicroContinuousMemReadingService.java:223)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:307)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:262)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1050)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:482)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch.access$1(DsfLaunch.java:1)
+	at org.eclipse.cdt.dsf.debug.model.DsfLaunch$2.run(DsfLaunch.java:55)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.run(DebugPlugin.java:1098)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.debug.core.DebugPlugin$AsynchRunner.async(DebugPlugin.java:1085)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
