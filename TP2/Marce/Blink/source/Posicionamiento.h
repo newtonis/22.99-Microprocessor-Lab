@@ -16,6 +16,10 @@ typedef int16_t roll_t;			// Rolido
 typedef	int16_t pitching_t;		// Cabeceo
 typedef int16_t orientation_t;	// Orientacion
 
+#define ROLL_EVENT 1
+#define PITCHING_EVENT 2
+#define ORIENTATION_EVENT 3
+
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
@@ -23,10 +27,10 @@ typedef int16_t orientation_t;	// Orientacion
 /**
  * @brief Initializes drivers for roll, pitching and orientation measures.
  */
-void Position_InitDrv(void);
+void Position_InitDrv(void (*funcallback)(void));
 
 /**
- * @brief updates sensors internall data.
+ * @brief updates sensors internal data. (PASAR COMO CALLBACK)
  */
 void Position_Update(void);
 
@@ -47,5 +51,11 @@ pitching_t Position_GetPitch(void);
  * @return orientation angle.
  */
 orientation_t Position_GetOrientation(void);
+
+/**
+ * @brief gets the parameter that changed.
+ * @return parameter_EVENT.
+ */
+int Position_GetChangeEvent(void);
 
 #endif /* POSICIONAMIENTO_H_ */

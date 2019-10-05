@@ -1,36 +1,25 @@
 /*
- * CAN.h
+ * ExternalManager.h
  *
- *  Created on: 2 Oct 2019
+ *  Created on: 5 Oct 2019
  *      Author: Marcelo
  */
 
-#ifndef CAN_H_
-#define CAN_H_
+#ifndef EXTERNALMANAGER_H_
+#define EXTERNALMANAGER_H_
 
 #include <stdint.h>
-
 
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-#define BUFFER_SIZE	8
-
-typedef struct
-{
-	uint16_t SID;
-	uint8_t DLC;
-	uint8_t Dn[BUFFER_SIZE];
-}RXB_RAWDATA_t;
+#define GROPUS	7
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 
-void init_CAN(int ID, void (*funcallback)(void));
+void ExternManager_init(uint8_t group_num);
 
-void send_CAN(int ID, char * buffer, int bufflen);
 
-RXB_RAWDATA_t getRXB_Data_CAN(void);
-
-#endif /* CAN_H_ */
+#endif /* EXTERNALMANAGER_H_ */
