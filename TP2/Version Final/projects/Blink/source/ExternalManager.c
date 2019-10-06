@@ -13,11 +13,11 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-#define R_CHAR		0x82
-#define C_CHAR		0x67
-#define O_CHAR		0x79
-#define PLUS_CHAR	0x43
-#define MINUS_CHAR	0x45
+#define R_CHAR		82
+#define C_CHAR		67
+#define O_CHAR		79
+#define PLUS_CHAR	43
+#define MINUS_CHAR	45
 
 
 /*******************************************************************************
@@ -42,16 +42,12 @@ int16_t ExternManager_MakeCANMsj(char* buf, int16_t* boardDATA, uint8_t typeUPD,
 void ExternManager_init(uint8_t group_num)
 {
 	myGroup = group_num;
-	SPI_Init();
+	SPI_driver_init();
 	init_CAN(myGroup, ExternManager_EventHandler);
 
 	uart_cfg_t config;
-	config.baudrate = 9600;
+	config.baudrate = 4800;
 	uartInit(config);
-
-	// Borrar lo de abajo es prueba
-    char buf[4] = {'O', '-', 4, 7};
-    send_CAN(0x102, buf, 4);
 }
 
 void ExternManager_EventHandler(void)
@@ -60,32 +56,21 @@ void ExternManager_EventHandler(void)
 
 	uint8_t group_index = ((bufferRXB.SID) & 0x001) - 1;
 	uint8_t digitos = bufferRXB.DLC - 2;
-	uint8_t angle;
+	int16_t angle;
 
 	if(digitos == 1)
 	{
-		angle = bufferRXB.Dn[2];
+		angle = (bufferRXB.Dn[2]) - '0';
 	}
 	else if(digitos == 2)
 	{
-		angle = bufferRXB.Dn[2]*10 + bufferRXB.Dn[3];
+		angle = (bufferRXB.Dn[2] - '0')*10 + (bufferRXB.Dn[3] - '0');
 	}
 	else if(digitos == 3)
 	{
-		angle = bufferRXB.Dn[2]*100 + bufferRXB.Dn[3]*10 + bufferRXB.Dn[4];
+		angle = (bufferRXB.Dn[2] - '0')*100 + (bufferRXB.Dn[3] - '0')*10 + (bufferRXB.Dn[4] - '0');
 	}
 
-	switch (bufferRXB.Dn[1]) {
-		case PLUS_CHAR:
-			break;
-		case MINUS_CHAR:
-			angle = -angle;
-			break;
-		default:
-			// Si no es + ni - seguro es un 0
-			angle = 0;
-			break;
-	}
 
 	switch (bufferRXB.Dn[0]) {
 		case R_CHAR:
@@ -105,9 +90,9 @@ void ExternManager_EventHandler(void)
 	if(bufferRXB.Dn[1] == 0)
 	{
 		bufferPC[2] = PLUS_CHAR;
-		bufferPC[3] = 0;
-		bufferPC[4] = 0;
-		bufferPC[5] = 0;
+		bufferPC[3] = '0';
+		bufferPC[4] = '0';
+		bufferPC[5] = '0';
 	}
 	else
 	{
@@ -119,11 +104,21 @@ void ExternManager_EventHandler(void)
 		{
 			bufferPC[2] = MINUS_CHAR;
 		}
-		bufferPC[3] = angle / 100;
-		bufferPC[4] = angle / 10;
-		bufferPC[5] = angle % 10;
+		bufferPC[3] = (angle / 100) + '0';
+		if(angle >= 100)
+		{
+			bufferPC[4] = ((angle / 10) - 10) + '0';
+		}
+		else
+		{
+			bufferPC[4] = (angle / 10) + '0';
+		}
+		bufferPC[5] = (angle % 10) + '0';
 	}
 
+	//bufferPC[3] = bufferPC[3] + '0';
+	//bufferPC[4] = bufferPC[4] + '0';
+	//bufferPC[5] = bufferPC[5] + '0';
 	sendWord(bufferPC);
 }
 
@@ -207,6 +202,10 @@ void ExternManager_send2Ext(BoardParams_t myBoard, uint8_t typeUPD)
 	char buffer[5]; // Considero peor caso, pero cuando mando indico cuantos bytes son
 
 	nBytes = ExternManager_MakeCANMsj(buffer, &boardDATA, typeUPD, myBoard);
+
+	buffer[2] = buffer[2] + '0';
+	buffer[3] = buffer[3] + '0';
+	buffer[4] = buffer[4] + '0';
 
 	send_CAN(0x102, buffer, nBytes);
 

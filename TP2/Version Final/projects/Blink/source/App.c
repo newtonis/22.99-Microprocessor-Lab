@@ -97,9 +97,9 @@ void periodicRefresh(void)
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-	ExternManager_init(2);
-
 	Position_InitDrv(test);
+
+	ExternManager_init(2);
 
 	timerInit();
 

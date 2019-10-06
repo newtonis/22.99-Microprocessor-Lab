@@ -12,19 +12,21 @@
 #include<stdbool.h>
 
 
-#define SPI_ALTERNATIVE		2
-#define BAUD_RATE 5
-#define BAUD_RATE_PRESCALER 1
+#define SPI_DRIVER_MODE		2 //alternativa
+#define SPI_DRIVER_INPUT	1
 
-#define INITIAL_DATA2SEND_MASK SPI_PUSHR_PCS(1)|SPI_PUSHR_CONT(1)
-#define FINAL_DATA2SEND_MASK SPI_PUSHR_PCS(1)|SPI_PUSHR_CONT(0)|SPI_PUSHR_EOQ(1)
-
+#define SPI_DRIVER_BR 5
+#define SPI_DRIVER_PBR 1
 
 typedef uint8_t pin_t;
 
+
 void setup_pin (pin_t pin);
-void SPI_Init (void);
-uint8_t SPI_MasterReadWrite(uint8_t * data2end, uint8_t size,uint8_t * recivedData);
+void SPI_driver_init (void);
+uint8_t SPI_driver_sendRecive(uint8_t * data2end, uint8_t size,uint8_t * recivedData);
+bool SPI_driver_dataSended(void);
+bool SPI_driver_availableDataRecived(void);
+uint8_t SPI_driver_getData(uint8_t * dataRecived);
 
 
 #endif /* SPI_DRIVER_H_ */

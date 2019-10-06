@@ -129,13 +129,18 @@ def decodeInfo(text):
         return None
 
 comunic = None
+conectado = False
 queue = []
 
 def threadGetData():
     global comunic
+    global conectado
 
     while 1:
-        if not comunic:
+        print("hello", conectado)
+        pygame.time.wait(10)
+
+        if not conectado:
             try:
                 ports = serial.tools.list_ports.comports()
 
@@ -148,25 +153,34 @@ def threadGetData():
 
                 comunic = serial.Serial(available_ports[0], baudrate=9600, timeout=1)
                 print("Conectado!")
-
+                #print(data)
+                conectado = True
             except:
                 comunic = None
                 print("Intentando conectar ... ")
-        else:
-            data = comunic.readline().decode("utf-8")
-            dataString = str(data)
-            print("Informacion obtenida: ", dataString)
-            if dataString != "":
-                try:
-                    code, mode, angulo = decodeInfo(dataString)
-                    queue.append({
-                        "code": code,
-                        "mode": mode,
-                        "angulo": angulo
-                    })
 
-                except:
-                    print("Información corrompida")
+        else:
+            try:
+                data = comunic.readline()
+
+                print("data", data)
+
+                data = data.decode("ascii")
+                dataString = str(data)
+                print("Informacion obtenida: ", dataString)
+                if dataString != "":
+                    try:
+                        code, mode, angulo = decodeInfo(dataString)
+                        queue.append({
+                            "code": code,
+                            "mode": mode,
+                            "angulo": angulo
+                        })
+
+                    except:
+                        print("Información corrompida")
+            except:
+                print("Error with decoding")
 
 
 
@@ -272,13 +286,14 @@ def main():
             glRotatef(cabeceo[i], 1, 0, 0)
 
             Cube()
-
-            # rolido
-            glRotatef(rolido[i], 0, 0, -1)
-            # orientacion
-            glRotatef(orientacion[i], 0, -1, 0)
             # cabeceo
             glRotatef(cabeceo[i], -1, 0, 0)
+            # orientacion
+            glRotatef(orientacion[i], 0, -1, 0)
+            # rolido
+            glRotatef(rolido[i], 0, 0, -1)
+
+
 
             glTranslate(
                 -cubePositions[i][0],

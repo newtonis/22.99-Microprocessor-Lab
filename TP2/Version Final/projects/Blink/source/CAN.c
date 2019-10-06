@@ -107,19 +107,19 @@ bool getTXFlag_CAN(void)
 void CAN_BIT_MODIFY(char address, char mask, char data)
 {
 	unsigned char buffer[4] = {BIT_MODIFY, address, mask, data};
-	SPI_MasterReadWrite(buffer, 4, NULL);
+	SPI_driver_sendRecive(buffer, 4, NULL);
 }
 
 void CAN_WRITE(char address, char data)
 {
 	unsigned char buffer[3] = {WRITE, address, data};
-	SPI_MasterReadWrite(buffer, 3, NULL);
+	SPI_driver_sendRecive(buffer, 3, NULL);
 }
 
 void CAN_RTS_TXB0(void)
 {
 	unsigned char buffer[1] = {RTS_TX0};
-	SPI_MasterReadWrite(buffer, 1, NULL);
+	SPI_driver_sendRecive(buffer, 1, NULL);
 }
 
 void CAN_LOAD_TX_BUFFER(char address, char *data, char nBytes)
@@ -143,14 +143,14 @@ void CAN_LOAD_TX_BUFFER(char address, char *data, char nBytes)
 			break;
 	}
 
-	SPI_MasterReadWrite(buffer, nBytes+1, NULL);
+	SPI_driver_sendRecive(buffer, nBytes+1, NULL);
 }
 
 uint8_t CAN_READ(char address){
 	unsigned char buffer[3] = {READ, address, 0x00};
 	unsigned char recBuffer[3] = {0, 0, 0};
 
-	SPI_MasterReadWrite(buffer, 3, recBuffer);
+	SPI_driver_sendRecive(buffer, 3, recBuffer);
 
 	return recBuffer[2];
 }
@@ -172,7 +172,7 @@ void CAN_READ_RX_BUFFER(void)
 
 		unsigned char bufferSend[4] = {READ, RXB0SIDH_REG, 0x00, 0x00};
 		uint8_t bufferID[4]; // Me interesan los ultimos 2
-		SPI_MasterReadWrite(bufferSend, 4, bufferID);
+		SPI_driver_sendRecive(bufferSend, 4, bufferID);
 
 		idRX = (bufferID[2] << 3) | ((bufferID[3] & 0xE0) >> 5);
 
@@ -180,7 +180,7 @@ void CAN_READ_RX_BUFFER(void)
 
 		unsigned char bufferSend2[9] = {READ_RX_BUFFER, 0, 0, 0, 0, 0, 0, 0, 0};
 		unsigned char bufferDATA[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // Buffer data
-		SPI_MasterReadWrite(bufferSend2, 9, bufferDATA);
+		SPI_driver_sendRecive(bufferSend2, 9, bufferDATA);
 
 		RXbufferData.SID = idRX;
 		RXbufferData.DLC = bytesRX;
@@ -214,7 +214,7 @@ void init_CAN(int ID, void (*funcallback)(void))
 	NVIC_EnableIRQ(PORTB_IRQn);
 
 	unsigned char res = RESET;
-	SPI_MasterReadWrite(&res, 1, NULL);
+	SPI_driver_sendRecive(&res, 1, NULL);
 	CAN_RESET(); // Reseteo el controlador y lo pongo en modo configuración
 
 	// Seteo el bitrate y los time quantas
@@ -232,8 +232,8 @@ void init_CAN(int ID, void (*funcallback)(void))
 
 	CAN_BIT_MODIFY(RXB0CTRL_REG, 0x64, 0x00); // Habilito el filtro y desactivo rollover
 
-	//CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x04); // Modo Normal, One-Shot, Clock Enable y Preescaler en 1
-	CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x44); // Modo Loopback, One-Shot, Clock Enable y Preescaler en 1
+	CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x04); // Modo Normal, One-Shot, Clock Enable y Preescaler en 1
+	//CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x44); // Modo Loopback, One-Shot, Clock Enable y Preescaler en 1
 
 	CAN_BIT_MODIFY(CANINTE_REG, 0x05, 0x05); // Habilito interrupciones por TX y RX
 }

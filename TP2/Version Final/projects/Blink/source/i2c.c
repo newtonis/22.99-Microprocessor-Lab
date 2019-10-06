@@ -257,7 +257,7 @@ void i2cInit (I2C_ChannelType channel)
 	 // I2C Frequency Divider register
 
 	 //I2C baud rate = I2C module clock speed (Hz)/(mul × SCL divider)
-	 i2c->F = I2C_F_MULT(0) | I2C_F_ICR(0x02); //  set the I2C baud rate
+	 i2c->F = I2C_F_MULT(0) | I2C_F_ICR(0x09); //  set the I2C baud rate
 
 	 NVIC_EnableIRQ(i2c_irqs[channel]);
 
