@@ -69,34 +69,6 @@ void setPinConfigurations(uint8_t SPI_n){
 void masterInitiliaze(uint8_t SPI_n){
 	setPinConfigurations(SPI_n);
 
-//	spi_master_config_t master_cfg;
-	// cargamos la configuracion de master
-//	masterConfig(&master_cfg);
-
-//	SPI_Type * spi_mod = SPIPtrs[SPI_n];
-
-	// esta es una init
-
-	/*
-	spi_mod->MCR=SPI_MCR_HALT_MASK|SPI_MCR_MSTR_MASK;
-
-	spi_mod->CTAR[0] =   SPI_CTAR_CPOL(master_cfg.CTAR_CPOL) | \
-						 SPI_CTAR_CPHA(master_cfg.CTAR_CPHA) | \
-						 SPI_CTAR_PBR(master_cfg.CTAR_PBR) | \
-						 SPI_CTAR_BR(master_cfg.CTAR_BR) | \
-						 SPI_CTAR_FMSZ(master_cfg.CTAR_FMSZ-1) | \
-						 SPI_CTAR_ASC(master_cfg.CTAR_ASC) | \
-						 SPI_CTAR_PASC(master_cfg.CTAR_PASC) | \
-						 SPI_CTAR_CSSCK(master_cfg.CTAR_CSSCK) | \
-						 SPI_CTAR_PCSSCK(master_cfg.CTAR_PCSSCK) |
-						 SPI_CTAR_PDT(master_cfg.CTAR_PDT) | \
-						 SPI_CTAR_DT(master_cfg.CTAR_DT);
-
-	spi_mod->MCR=(spi_mod->MCR & (~SPI_MCR_PCSIS_MASK))|SPI_MCR_PCSIS(1);
-	spi_mod->MCR =(spi_mod->MCR & (~(SPI_MCR_MDIS_MASK | SPI_MCR_HALT_MASK | SPI_MCR_MSTR_MASK))) \
-														| SPI_MCR_MDIS(0) |SPI_MCR_HALT(0) | SPI_MCR_MSTR(1);
-
-	*/
 	MSTRCFG_t master_config;
 	MSTRCFG(&master_config);
 
@@ -161,7 +133,6 @@ void masterInitiliaze(uint8_t SPI_n){
 void SPI_Initialize(void (*funcallback)(void)){
 	callbackTick = funcallback;
 	masterInitiliaze(SPI_0);
-	//spiEnableInterrupts(SPI_0, SPI_RSER_TFFF_RE_MASK);
 }
 
 void SPIClockGatingEnable(uint8_t SPI_n){
@@ -249,7 +220,7 @@ void testSPI(uint8_t SPI_n){
 	uint16_t data[3] = {0x0C,0xAA,0xFF};
 	uint16_t received_data[3] = {0,0,0};
 	uint32_t size = 3;
-	masterWriteReadBuffer(&data, size, &received_data, SPI_n);
+	masterWriteReadBuffer(&data[0], size, &received_data[0], SPI_n);
 	int a = 5;
 }
 

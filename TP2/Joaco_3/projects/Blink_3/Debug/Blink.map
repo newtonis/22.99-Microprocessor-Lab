@@ -889,15 +889,15 @@ END GROUP
                 0x000015a8                _image_size = (_image_end - _image_start)
 OUTPUT(Blink.axf elf32-littlearm)
 
-.debug_info     0x00000000     0x2e7f
+.debug_info     0x00000000     0x2e72
  .debug_info    0x00000000       0xfc ./source/App.o
- .debug_info    0x000000fc     0x106a ./source/SPI.o
- .debug_info    0x00001166      0x706 ./source/gpio.o
- .debug_info    0x0000186c      0x675 ./SDK/startup/hardware.o
- .debug_info    0x00001ee1       0xb7 ./SDK/startup/main.o
- .debug_info    0x00001f98       0x3b ./SDK/startup/semihost_hardfault.o
- .debug_info    0x00001fd3      0x8b0 ./SDK/startup/startup_mk64f12.o
- .debug_info    0x00002883      0x5fc ./SDK/CMSIS/system_MK64F12.o
+ .debug_info    0x000000fc     0x105d ./source/SPI.o
+ .debug_info    0x00001159      0x706 ./source/gpio.o
+ .debug_info    0x0000185f      0x675 ./SDK/startup/hardware.o
+ .debug_info    0x00001ed4       0xb7 ./SDK/startup/main.o
+ .debug_info    0x00001f8b       0x3b ./SDK/startup/semihost_hardfault.o
+ .debug_info    0x00001fc6      0x8b0 ./SDK/startup/startup_mk64f12.o
+ .debug_info    0x00002876      0x5fc ./SDK/CMSIS/system_MK64F12.o
 
 .debug_abbrev   0x00000000      0x929
  .debug_abbrev  0x00000000       0xad ./source/App.o
@@ -962,15 +962,15 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_macro   0x0001154c       0x29 ./SDK/startup/startup_mk64f12.o
  .debug_macro   0x00011575       0x80 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_line     0x00000000     0x14c6
+.debug_line     0x00000000     0x14c4
  .debug_line    0x00000000      0x1b6 ./source/App.o
- .debug_line    0x000001b6      0x436 ./source/SPI.o
- .debug_line    0x000005ec      0x299 ./source/gpio.o
- .debug_line    0x00000885      0x1d4 ./SDK/startup/hardware.o
- .debug_line    0x00000a59      0x175 ./SDK/startup/main.o
- .debug_line    0x00000bce       0x59 ./SDK/startup/semihost_hardfault.o
- .debug_line    0x00000c27      0x6d8 ./SDK/startup/startup_mk64f12.o
- .debug_line    0x000012ff      0x1c7 ./SDK/CMSIS/system_MK64F12.o
+ .debug_line    0x000001b6      0x434 ./source/SPI.o
+ .debug_line    0x000005ea      0x299 ./source/gpio.o
+ .debug_line    0x00000883      0x1d4 ./SDK/startup/hardware.o
+ .debug_line    0x00000a57      0x175 ./SDK/startup/main.o
+ .debug_line    0x00000bcc       0x59 ./SDK/startup/semihost_hardfault.o
+ .debug_line    0x00000c25      0x6d8 ./SDK/startup/startup_mk64f12.o
+ .debug_line    0x000012fd      0x1c7 ./SDK/CMSIS/system_MK64F12.o
 
 .debug_str      0x00000000    0x787ea
  .debug_str     0x00000000    0x770d8 ./source/App.o
