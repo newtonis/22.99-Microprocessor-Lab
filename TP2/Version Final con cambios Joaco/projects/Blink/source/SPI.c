@@ -93,7 +93,7 @@ void setup_pin (pin_t pin){
 	SIM->SCGC5 |= sim_port[pinPort]; //Habilito el clock al puerto correspondiente
 
 	//configuro el pcr del pin
-	ports[pinPort]->PCR[pinBit]= 	PORT_PCR_MUX(SPI_DRIVER_MODE) | \
+	ports[pinPort]->PCR[pinBit]= 	PORT_PCR_MUX(SPI_ALTERNATIVE) | \
 									PORT_PCR_IRQC(0) | \
 									PORT_PCR_PS(0)| \
 									PORT_PCR_PE(0);
@@ -101,7 +101,8 @@ void setup_pin (pin_t pin){
 
 
 uint8_t SPI_driver_sendRecive(uint8_t * data2end, uint8_t size,uint8_t * recivedData){
-	SPI_Type * spi_mod = spiPtrs[0];
+	uint8_t SPI_module = SPI_0;
+	SPI_Type * spi_mod = spiPtrs[SPI_module];
 	uint32_t pushr2send=0;
 	uint8_t dataRecived=0;
 

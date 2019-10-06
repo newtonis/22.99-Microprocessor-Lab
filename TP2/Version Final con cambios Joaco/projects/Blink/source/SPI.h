@@ -12,11 +12,7 @@
 #include<stdbool.h>
 
 
-#define SPI_DRIVER_MODE		2 //alternativa
-#define SPI_DRIVER_INPUT	1
-#define SPI_DRIVER_BR 5
-#define SPI_DRIVER_PBR 1
-
+#define SPI_ALTERNATIVE		2
 
 enum{SPI_0,SPI_1,SPI_2};
 
