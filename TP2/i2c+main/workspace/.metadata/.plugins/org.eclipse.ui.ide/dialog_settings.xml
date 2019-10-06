@@ -45,6 +45,7 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/Users/martinamaspero/Desktop/LABO_DE_MICROS/TP2/i2c+main/projects/Blink"/>
 			<item value="/Users/martinamaspero/Desktop/i2c/projects/Blink"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
