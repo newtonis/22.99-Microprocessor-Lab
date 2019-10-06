@@ -34,20 +34,14 @@
  ******************************************************************************/
 
 
-static void callback_init (void);
 static void callback_read(void);
 I2C_COM_CONTROL i2c_com;
 static read_data * r_data;
-static bool finish = false;
 uint8_t Buffer[FXOS8700CQ_READ_LEN];
 
 
 
 
-void callback_init (void)
-{
-	finish = true;
-}
 
 void callback_read (void)
 {
@@ -76,26 +70,15 @@ void callback_read (void)
 
 I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 {
+
 	i2cInit(I2C_0);
 
 	uint8_t databyte;
 
-	i2c_com.callback = callback_init;
-	i2c_com.data = &databyte;
-	i2c_com.data_size = 1;
-	i2c_com.register_address = FXOS8700CQ_WHOAMI;
-	i2c_com.slave_address =FXOS8700CQ_SLAVE_ADDR;
-
-
 	// read and check the FXOS8700CQ WHOAMI register
-	i2cReadMsg(&i2c_com);
-
-	while (finish == false)
+	if (i2cReadMsgBlocking(&databyte, 1, FXOS8700CQ_WHOAMI, FXOS8700CQ_SLAVE_ADDR)!= I2C_NO_FAULT)
 	{
-		if(i2c_com.fault != I2C_NO_FAULT)
-		{
-			return (I2C_ERROR);
-		}
+		return (I2C_ERROR);
 	}
 
 	if (databyte != FXOS8700CQ_WHOAMI_VAL)
@@ -106,20 +89,11 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 	// [7-1] = 0000 000
 	// [0]: active=0
 	databyte = 0x00;
-	finish = false;
 
-	i2c_com.register_address = FXOS8700CQ_CTRL_REG1;
-
-	i2cWriteMsg(&i2c_com);
-
-	while (finish == false)
+	if (i2cWriteMsgBlocking(&databyte, 1, FXOS8700CQ_CTRL_REG1, FXOS8700CQ_SLAVE_ADDR) != I2C_NO_FAULT)
 	{
-		if(i2c_com.fault != I2C_NO_FAULT)
-		{
-			return (I2C_ERROR);
-		}
+		return (I2C_ERROR);
 	}
-
 
 
 	// write 0001 1111 = 0x1F to magnetometer control register 1
@@ -128,20 +102,14 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 	// [5]: m_ost=0: no one-shot magnetic measurement
 	// [4-2]: m_os=111=7: 8x oversampling (for 200Hz) to reduce magnetometer noise
 	// [1-0]: m_hms=11=3: select hybrid mode with accelerometer and magnetometer active
-	databyte = 0x9F;
-	i2c_com.register_address = FXOS8700CQ_M_CTRL_REG1;
-	finish = false;
+	databyte = 0x9F;// 0x1F;
 
 
-	i2cWriteMsg(&i2c_com);
-
-	while (finish == false)
+	if (i2cWriteMsgBlocking(&databyte, 1, FXOS8700CQ_M_CTRL_REG1, FXOS8700CQ_SLAVE_ADDR) != I2C_NO_FAULT)
 	{
-		if(i2c_com.fault != I2C_NO_FAULT)
-		{
-			return (I2C_ERROR);
-		}
+		return (I2C_ERROR);
 	}
+
 
 
 	// write 0010 0000 = 0x20 to magnetometer control register 2
@@ -154,21 +122,11 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 	// [2]: m_maxmin_rst=0
 	// [1-0]: m_rst_cnt=00 to enable magnetic reset each cycle
 	databyte = 0x20;
-	finish = false;
 
-	i2c_com.register_address = FXOS8700CQ_M_CTRL_REG2;
-
-	i2cWriteMsg(&i2c_com);
-
-	while (finish == false)
+	if (i2cWriteMsgBlocking(&databyte, 1, FXOS8700CQ_M_CTRL_REG2, FXOS8700CQ_SLAVE_ADDR) != I2C_NO_FAULT)
 	{
-		if(i2c_com.fault != I2C_NO_FAULT)
-		{
-			return (I2C_ERROR);
-		}
+		return (I2C_ERROR);
 	}
-
-
 
 
 	// write 0000 0001= 0x01 to XYZ_DATA_CFG register
@@ -180,21 +138,11 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 	// [2]: reserved
 	// [1-0]: fs=01 for accelerometer range of +/-4g range with 0.488mg/LSB
 	databyte = 0x01;
-	finish = false;
 
-	i2c_com.register_address = FXOS8700CQ_XYZ_DATA_CFG;
-
-	i2cWriteMsg(&i2c_com);
-
-	while (finish == false)
+	if (i2cWriteMsgBlocking(&databyte, 1, FXOS8700CQ_XYZ_DATA_CFG, FXOS8700CQ_SLAVE_ADDR) != I2C_NO_FAULT)
 	{
-		if(i2c_com.fault != I2C_NO_FAULT)
-		{
-			return (I2C_ERROR);
-		}
+		return (I2C_ERROR);
 	}
-
-
 
 
 	// write 0000 1101 = 0x0D to accelerometer control register 1
@@ -204,18 +152,10 @@ I2C_FAIL _mqx_ints_FXOS8700CQ_start(void)
 	// [1]: f_read=0 for normal 16 bit reads
 	// [0]: active=1 to take the part out of standby and enable sampling
 	databyte = 0x0D;
-	finish = false;
 
-	i2c_com.register_address = FXOS8700CQ_CTRL_REG1;
-
-	i2cWriteMsg(&i2c_com);
-
-	while (finish == false)
+	if (i2cWriteMsgBlocking(&databyte, 1, FXOS8700CQ_CTRL_REG1, FXOS8700CQ_SLAVE_ADDR) != I2C_NO_FAULT)
 	{
-		if(i2c_com.fault != I2C_NO_FAULT)
-		{
-			return (I2C_ERROR);
-		}
+		return (I2C_ERROR);
 	}
 
 	// normal return
