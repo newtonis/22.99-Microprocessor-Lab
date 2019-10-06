@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/joa-m/LABO_DE_MICROS/test/MK64F12.h
+
+C:/Users/joa-m/LABO_DE_MICROS/test/defineslocos.h
+
+C:/Users/joa-m/LABO_DE_MICROS/test/main.c
+stdio.h
+-
+spi.h
+C:/Users/joa-m/LABO_DE_MICROS/test/spi.h
+
+C:/Users/joa-m/LABO_DE_MICROS/test/spi.c
+MK64F12.h
+C:/Users/joa-m/LABO_DE_MICROS/test/MK64F12.h
+spi.h
+C:/Users/joa-m/LABO_DE_MICROS/test/spi.h
+
+C:/Users/joa-m/LABO_DE_MICROS/test/spi.h
+stdint.h
+-
+stdbool.h
+-
+defineslocos.h
+C:/Users/joa-m/LABO_DE_MICROS/test/defineslocos.h
+

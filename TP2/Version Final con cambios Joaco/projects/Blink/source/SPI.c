@@ -10,24 +10,55 @@
 #include <stdio.h>
 
 
-
 static SPI_Type *spiPtrs[] = SPI_BASE_PTRS;
 static PORT_Type * ports[] = PORT_BASE_PTRS;
 static uint32_t sim_port[] = {SIM_SCGC5_PORTA_MASK, SIM_SCGC5_PORTB_MASK, SIM_SCGC5_PORTC_MASK, SIM_SCGC5_PORTD_MASK, SIM_SCGC5_PORTE_MASK};
+static SIM_Type* sim_ptr = SIM;
+
+void SPIClockGatingEnable(uint8_t SPI_n){
+	switch(SPI_n){
+		case SPI_0:
+			sim_ptr->SCGC6 |= SIM_SCGC6_SPI0(1); // activo clock gating
+			break;
+		case SPI_1:
+			sim_ptr->SCGC6 |= SIM_SCGC6_SPI1(1);
+			break;
+		case SPI_2:
+			sim_ptr->SCGC3 |= SIM_SCGC3_SPI2(1);
+			break;
+	}
+}
 
 void SPI_driver_init (void){
-	SPI_Type * spi_mod = spiPtrs[0];
+	uint8_t SPI_module = SPI_0;
+	SPI_Type * spi_mod = spiPtrs[SPI_module];
 	setup_pin(PIN_SCK);
 	setup_pin(PIN_MOSI);
 	setup_pin(PIN_MISO);
 	setup_pin(PIN_CS);
 
-	SIM->SCGC6 |= SIM_SCGC6_SPI0(1); //habilite el clock del periferico de spi
+
+//	SIM->SCGC6 |= SIM_SCGC6_SPI0(1); //habilite el clock del periferico de spi
+	SPIClockGatingEnable(SPI_module);
+
+	spi_cfg_t master_cfg;
+	master_cfg.CTAR_CPOL = 0;
+	master_cfg.CTAR_CPHA = 0;
+	master_cfg.CTAR_PBR = 1;
+	master_cfg.CTAR_BR = 5;
+	master_cfg.CTAR_FMSZ = 8;
+	master_cfg.CTAR_ASC = master_cfg.CTAR_BR - 3;
+	master_cfg.CTAR_PASC = master_cfg.CTAR_PBR;
+	master_cfg.CTAR_CSSCK = master_cfg.CTAR_BR -3;
+	master_cfg.CTAR_PCSSCK = master_cfg.CTAR_PBR;
+	master_cfg.CTAR_PDT = 0;
+	master_cfg.CTAR_DT = 0;
+
 
 	spi_mod->MCR=SPI_MCR_HALT_MASK|SPI_MCR_MSTR_MASK;
-
-	spi_mod->CTAR[0] = SPI_CTAR_CPOL(0) |  \
-								 SPI_CTAR_CPHA(0)| \
+	/*
+	spi_mod->CTAR[0] = 			 SPI_CTAR_CPOL(0) |  \
+							 	 SPI_CTAR_CPHA(0)| \
 								 SPI_CTAR_PBR(SPI_DRIVER_PBR) | \
 								 SPI_CTAR_BR(SPI_DRIVER_BR) | \
 								 SPI_CTAR_FMSZ(8-1)| \
@@ -37,6 +68,19 @@ void SPI_driver_init (void){
 								 SPI_CTAR_PCSSCK(SPI_DRIVER_PBR) |
 								 SPI_CTAR_PDT(0)|\
 								 SPI_CTAR_DT(0);
+	*/
+	spi_mod->CTAR[0] =   SPI_CTAR_CPOL(master_cfg.CTAR_CPOL) | \
+					 	 SPI_CTAR_CPHA(master_cfg.CTAR_CPHA) | \
+						 SPI_CTAR_PBR(master_cfg.CTAR_PBR) | \
+						 SPI_CTAR_BR(master_cfg.CTAR_BR) | \
+						 SPI_CTAR_FMSZ(master_cfg.CTAR_FMSZ-1) | \
+						 SPI_CTAR_ASC(master_cfg.CTAR_ASC) | \
+						 SPI_CTAR_PASC(master_cfg.CTAR_PASC) | \
+						 SPI_CTAR_CSSCK(master_cfg.CTAR_CSSCK) | \
+						 SPI_CTAR_PCSSCK(master_cfg.CTAR_PCSSCK) |
+						 SPI_CTAR_PDT(master_cfg.CTAR_PDT) | \
+						 SPI_CTAR_DT(master_cfg.CTAR_DT);
+
 	spi_mod->MCR=(spi_mod->MCR & (~SPI_MCR_PCSIS_MASK))|SPI_MCR_PCSIS(1);
 	spi_mod->MCR =(spi_mod->MCR & (~(SPI_MCR_MDIS_MASK | SPI_MCR_HALT_MASK | SPI_MCR_MSTR_MASK))) \
 														| SPI_MCR_MDIS(0) |SPI_MCR_HALT(0) | SPI_MCR_MSTR(1);

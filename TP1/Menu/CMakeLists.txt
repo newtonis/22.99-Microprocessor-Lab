@@ -3,4 +3,4 @@ project(Menu)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Menu main.cpp)
+add_executable(Menu main.cpp spi.c spi.h)
