@@ -54,7 +54,7 @@ void ExternManager_EventHandler(void)
 {
 	RXB_RAWDATA_t bufferRXB = getRXB_Data_CAN(); // Hago un get de la data recibida
 
-	uint8_t group_index = ((bufferRXB.SID) & 0x001) - 1;
+	uint8_t group_index = ((bufferRXB.SID) - 256) - 1;
 	uint8_t digitos = bufferRXB.DLC - 2;
 	int16_t angle;
 
@@ -85,7 +85,7 @@ void ExternManager_EventHandler(void)
 	}
 
 	// Refresco de PC
-	bufferPC[0] = group_index;
+	bufferPC[0] = (group_index + 1) + '0';
 	bufferPC[1] = bufferRXB.Dn[0];
 	if(bufferRXB.Dn[1] == 0)
 	{
@@ -116,9 +116,6 @@ void ExternManager_EventHandler(void)
 		bufferPC[5] = (angle % 10) + '0';
 	}
 
-	//bufferPC[3] = bufferPC[3] + '0';
-	//bufferPC[4] = bufferPC[4] + '0';
-	//bufferPC[5] = bufferPC[5] + '0';
 	sendWord(bufferPC);
 }
 
@@ -207,7 +204,49 @@ void ExternManager_send2Ext(BoardParams_t myBoard, uint8_t typeUPD)
 	buffer[3] = buffer[3] + '0';
 	buffer[4] = buffer[4] + '0';
 
-	send_CAN(0x102, buffer, nBytes);
+	disableRXB0_CAN();
+
+	send_CAN(0x102, buffer, nBytes); // Para que no se interrumpa una operacion de envio por SPI
+
+	bufferPC[0] = myGroup + '0';
+	bufferPC[1] = buffer[0];
+	if(boardDATA != 0)
+	{
+		bufferPC[2] = buffer[1];
+	}
+	else
+	{
+		bufferPC[2] = '+';
+	}
+
+	if(nBytes == 2) // Es 0
+	{
+		bufferPC[3] = '0';
+		bufferPC[4] = '0';
+		bufferPC[5] = '0';
+	}
+	else if(nBytes == 3)
+	{
+		bufferPC[3] = '0';
+		bufferPC[4] = '0';
+		bufferPC[5] = buffer[2];
+	}
+	else if(nBytes == 4)
+	{
+		bufferPC[3] = '0';
+		bufferPC[4] = buffer[2];
+		bufferPC[5] = buffer[3];
+	}
+	else if(nBytes == 5)
+	{
+		bufferPC[3] = buffer[2];
+		bufferPC[4] = buffer[3];
+		bufferPC[5] = buffer[4];
+	}
+
+	sendWord(bufferPC);
+
+	enableRXB0_CAN();
 
 	Boards[myGroup].roll = myBoard.roll;
 	Boards[myGroup].pitching = myBoard.pitching;
