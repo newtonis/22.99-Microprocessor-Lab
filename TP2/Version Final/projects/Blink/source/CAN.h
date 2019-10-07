@@ -35,6 +35,8 @@ RXB_RAWDATA_t getRXB_Data_CAN(void);
 
 bool getTXFlag_CAN(void);
 
+void CAN_READ_RX_BUFFER(void);
+
 void enableRXB0_CAN(void);
 
 void disableRXB0_CAN(void);

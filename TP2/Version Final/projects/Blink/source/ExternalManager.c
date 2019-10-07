@@ -6,6 +6,7 @@
  */
 
 #include "ExternalManager.h"
+#include <stdio.h>
 #include "SPI.h"
 #include "CAN.h"
 #include "UART.h"
@@ -42,7 +43,7 @@ int16_t ExternManager_MakeCANMsj(char* buf, int16_t* boardDATA, uint8_t typeUPD,
 void ExternManager_init(uint8_t group_num)
 {
 	myGroup = group_num;
-	SPI_driver_init();
+	SPI_Initialize(NULL);
 	init_CAN(myGroup, ExternManager_EventHandler);
 
 	uart_cfg_t config;

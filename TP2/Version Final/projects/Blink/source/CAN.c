@@ -106,26 +106,30 @@ bool getTXFlag_CAN(void)
 
 void CAN_BIT_MODIFY(char address, char mask, char data)
 {
-	unsigned char buffer[4] = {BIT_MODIFY, address, mask, data};
-	SPI_driver_sendRecive(buffer, 4, NULL);
+	uint16_t buffer[4] = {BIT_MODIFY, address, mask, data};
+	uint16_t dummy[4];
+	masterWriteReadBufferX(buffer, 4, dummy, 0);
 }
 
 void CAN_WRITE(char address, char data)
 {
-	unsigned char buffer[3] = {WRITE, address, data};
-	SPI_driver_sendRecive(buffer, 3, NULL);
+	uint16_t buffer[3] = {WRITE, address, data};
+	uint16_t dummy[3];
+	masterWriteReadBufferX(buffer, 3, dummy, 0);
 }
 
 void CAN_RTS_TXB0(void)
 {
-	unsigned char buffer[1] = {RTS_TX0};
-	SPI_driver_sendRecive(buffer, 1, NULL);
+	uint16_t buffer[1] = {RTS_TX0};
+	uint16_t dummy[1];
+	masterWriteReadBufferX(buffer, 1, dummy, 0);
 }
 
 void CAN_LOAD_TX_BUFFER(char address, char *data, char nBytes)
 {
 	int i = 0;
-	unsigned char buffer[nBytes + 1]; // Ojo que nBytes solo puede ir hasta 8
+	uint16_t buffer[nBytes + 1]; // Ojo que nBytes solo puede ir hasta 8
+	uint16_t dummy[nBytes + 1];
 
 	for(i = 0; i < nBytes; i++)
 	{
@@ -143,14 +147,14 @@ void CAN_LOAD_TX_BUFFER(char address, char *data, char nBytes)
 			break;
 	}
 
-	SPI_driver_sendRecive(buffer, nBytes+1, NULL);
+	masterWriteReadBufferX(buffer, nBytes+1, dummy, 0);
 }
 
 uint8_t CAN_READ(char address){
-	unsigned char buffer[3] = {READ, address, 0x00};
-	unsigned char recBuffer[3] = {0, 0, 0};
+	uint16_t buffer[3] = {READ, address, 0x00};
+	uint16_t recBuffer[3] = {0, 0, 0};
 
-	SPI_driver_sendRecive(buffer, 3, recBuffer);
+	masterWriteReadBufferX(buffer, 3, recBuffer, 0);
 
 	return recBuffer[2];
 }
@@ -160,6 +164,7 @@ void CAN_READ_RX_BUFFER(void)
 	uint8_t IE_Flags = CAN_READ(CANINTF_REG);
 	bool TX_Flag = IE_Flags & 0x04;
 	bool RX_Flag = IE_Flags & 0x01;
+	RX_Flag;
 
 	if(TX_Flag)
 	{
@@ -170,17 +175,17 @@ void CAN_READ_RX_BUFFER(void)
 		uint8_t bytesRX = 0;
 		uint16_t idRX = 0;
 
-		unsigned char bufferSend[4] = {READ, RXB0SIDH_REG, 0x00, 0x00};
-		uint8_t bufferID[4]; // Me interesan los ultimos 2
-		SPI_driver_sendRecive(bufferSend, 4, bufferID);
+		uint16_t bufferSend[4] = {READ, RXB0SIDH_REG, 0x00, 0x00};
+		uint16_t bufferID[4]; // Me interesan los ultimos 2
+		masterWriteReadBufferX(bufferSend, 4, bufferID, 0);
 
 		idRX = (bufferID[2] << 3) | ((bufferID[3] & 0xE0) >> 5);
 
 		bytesRX = 0x0F & CAN_READ(RXB0DLC_REG); // Numero de bytes recibidos
 
-		unsigned char bufferSend2[9] = {READ_RX_BUFFER, 0, 0, 0, 0, 0, 0, 0, 0};
-		unsigned char bufferDATA[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // Buffer data
-		SPI_driver_sendRecive(bufferSend2, 9, bufferDATA);
+		uint16_t bufferSend2[9] = {READ_RX_BUFFER, 0, 0, 0, 0, 0, 0, 0, 0};
+		uint16_t bufferDATA[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // Buffer data
+		masterWriteReadBufferX(bufferSend2, 9, bufferDATA, 0);
 
 		RXbufferData.SID = idRX;
 		RXbufferData.DLC = bytesRX;
@@ -223,8 +228,9 @@ void init_CAN(int ID, void (*funcallback)(void))
 	gpioIRQ(IRQ_CAN, GPIO_IRQ_MODE_FALLING_EDGE, CAN_READ_RX_BUFFER);
 	NVIC_EnableIRQ(PORTB_IRQn);
 
-	unsigned char res = RESET;
-	SPI_driver_sendRecive(&res, 1, NULL);
+	uint16_t res = RESET;
+	uint16_t dummy;
+	masterWriteReadBufferX(&res, 1, &dummy, 0);
 	CAN_RESET(); // Reseteo el controlador y lo pongo en modo configuración
 
 	// Seteo el bitrate y los time quantas
