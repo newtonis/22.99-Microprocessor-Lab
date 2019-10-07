@@ -203,7 +203,24 @@ def threadGetData():
 
         else:
             try:
-                data = comunic.readline().decode("ascii")
+                # global iv
+                # while 1:
+                #     try:
+                #         iv = comunic.read()
+                #         print(iv)
+                #     except:
+                #         pass
+                iv = ""
+                data = ""
+                while iv != 'w':
+                    try:
+                        iv = comunic.read().decode("ascii")
+                        data += iv
+                    except:
+                        pass
+
+                data = data[-7:-1]
+
 
                 print("data", data)
 
@@ -323,7 +340,7 @@ def main():
             )
 
             # yaw - orientacion
-            glRotatef(showOrientacion[i], 0, 1, 0)
+            glRotatef(-showOrientacion[i], 0, 1, 0)
 
             # roll - rolido
             glRotatef(showRolido[i], 0, 0, 1)
@@ -340,7 +357,7 @@ def main():
             glRotatef(-showRolido[i], 0, 0, 1)
 
             # yaw - orientacion
-            glRotatef(-showOrientacion[i], 0, 1, 0)
+            glRotatef(showOrientacion[i], 0, 1, 0)
 
 
 

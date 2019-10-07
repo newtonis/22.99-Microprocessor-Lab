@@ -26,7 +26,7 @@
  ******************************************************************************/
 static BoardParams_t Boards[GROUPS];
 static uint8_t myGroup;
-static char bufferPC[7] = {'2', 'R', '+', '1', '2', '3', '\0'};
+static char bufferPC[7] = {'2', 'R', '+', '1', '2', '3', 'w','\0'};
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE

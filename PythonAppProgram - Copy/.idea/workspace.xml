@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b0e4ec8-88bb-4014-bc43-99ddcb8501b3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PythonAppProgram/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PythonAppProgram/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Blink PE Debug.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Blink PE Debug.launch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.axf" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.axf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.map" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.map" afterDir="false" />
@@ -47,8 +47,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="210" column="12" selection-start-line="210" selection-start-column="12" selection-end-line="210" selection-end-column="12" />
+            <state relative-caret-position="153">
+              <caret line="204" column="16" lean-forward="true" selection-start-line="204" selection-start-column="16" selection-end-line="204" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -86,7 +86,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="773" />
+    <option name="x" value="1006" />
     <option name="y" value="-22" />
     <option name="width" value="1279" />
     <option name="height" value="1047" />
@@ -98,23 +98,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="PythonAppProgram" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PythonAppProgram" type="462c0819:PsiDirectoryNode" />
+              <item name="PythonAppProgram - Copy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PythonAppProgram - Copy" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PythonAppProgram - Copy" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -238,13 +238,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10906217" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49918962" weight="0.30877572" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49918962" visible="true" weight="0.30877572" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -333,8 +334,8 @@
     <entry file="file://$USER_HOME$/hola/hola.py" />
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="210" column="12" selection-start-line="210" selection-start-column="12" selection-end-line="210" selection-end-column="12" />
+        <state relative-caret-position="153">
+          <caret line="204" column="16" lean-forward="true" selection-start-line="204" selection-start-column="16" selection-end-line="204" selection-end-column="16" />
         </state>
       </provider>
     </entry>
