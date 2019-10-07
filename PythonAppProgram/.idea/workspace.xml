@@ -2,31 +2,1357 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b0e4ec8-88bb-4014-bc43-99ddcb8501b3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/PythonAppProgram.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonAppProgram.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miPrograma.py" beforeDir="false" afterPath="$PROJECT_DIR$/miPrograma.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.log" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.cdt.core/.log" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.cdt.core/.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.cdt.core/Blink.language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.cdt.core/Blink.language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FreeRTOS_TAD_logs/TAD_log_191005_160417.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/.cproject" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/.settings/com.processorexpert.core.ide.newprojectwizard.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/.settings/language.settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/Blink PE Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/Blink PE Release.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/Debug/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/Debug/Blink.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/Debug/Blink.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/Debug/Blink_Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/Debug/Blink_Debug.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/Debug/Blink_Debug_library.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/Debug/Blink_Debug_memory.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/MK64F12_features.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/arm_common_tables.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/arm_const_structs.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/arm_math.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/cmsis_armcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/cmsis_armclang.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/cmsis_compiler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/cmsis_gcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/cmsis_iccarm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/cmsis_version.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/core_armv8mbl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/core_armv8mml.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/core_cm4.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/fsl_device_registers.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/mpu_armv7.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/mpu_armv8.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/system_MK64F12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/CMSIS/system_MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/startup/hardware.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/startup/hardware.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/startup/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/startup/semihost_hardfault.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/SDK/startup/startup_mk64f12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/source/App.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/source/SPI.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/source/SPI.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/source/board.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/source/gpio.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/projects/Blink_3/source/gpio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/workspace/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/workspace/FreeRTOS_TAD_logs/TAD_log_191006_180222.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/workspace/FreeRTOS_TAD_logs/TAD_log_191006_180638.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/workspace/FreeRTOS_TAD_logs/TAD_log_191006_181214.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Joaco_3/workspace/FreeRTOS_TAD_logs/TAD_log_191006_181300.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/.cproject" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/.settings/com.processorexpert.core.ide.newprojectwizard.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/.settings/language.settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Blink PE Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Blink PE Release.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/Blink.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/Blink_Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/Blink_Debug.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/Blink_Debug_library.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/Blink_Debug_memory.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/SDK/CMSIS/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/SDK/startup/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/objects.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/source/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/Debug/sources.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/MK64F12_features.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/arm_common_tables.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/arm_const_structs.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/arm_math.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/cmsis_armcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/cmsis_armclang.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/cmsis_compiler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/cmsis_gcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/cmsis_iccarm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/cmsis_version.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/core_armv8mbl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/core_armv8mml.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/core_cm4.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/fsl_device_registers.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/mpu_armv7.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/mpu_armv8.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/system_MK64F12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/CMSIS/system_MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/startup/hardware.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/startup/hardware.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/startup/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/startup/semihost_hardfault.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/SDK/startup/startup_mk64f12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/App.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/CAN.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/CAN.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/ExternalManager.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/ExternalManager.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/Posicionamiento.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/Posicionamiento.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/SPI.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/SPI.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/Sensores.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/Sensores.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/SysTick.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/SysTick.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/UART.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/UART.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/board.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/gpio.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/gpio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/i2c.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/i2c.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/timer.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Marce/Blink/source/timer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/.settings/com.processorexpert.core.ide.newprojectwizard.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/.settings/language.settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Blink LinkServer Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Blink LinkServer Release.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Blink PE Debug (1).launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Blink PE Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Blink PE Release.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 10.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 11.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 12.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 13.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 14.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 15.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 16.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 17.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 18.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 2.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 3.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 4.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 5.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 6.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 7.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 8.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink 9.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink_Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink_Debug.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink_Debug_library.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/Blink_Debug_memory.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/hardware.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/main.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/semihost_hardfault.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/startup_mk64f12.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/SDK/startup/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/objects.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/App.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/DisplayBoard.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Encoder.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/InternalControl.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Lector.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Posicionamiento.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Sensores.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/SysTick.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/Users.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/gpio.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/i2c.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 10.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 10.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 11.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 11.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 13.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 13.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 14.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 14.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 15.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 15.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 16.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 16.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 17.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 17.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 18.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 18.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 2.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 3.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 3.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 4.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 4.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 5.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 6.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 6.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 7.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 7.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 8.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 8.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 9.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer 9.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/source/timer.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/Debug/sources.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/MK64F12_features.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/arm_common_tables.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/arm_const_structs.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/arm_math.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/cmsis_armcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/cmsis_armclang.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/cmsis_compiler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/cmsis_gcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/cmsis_iccarm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/cmsis_version.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/core_armv8mbl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/core_armv8mml.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/core_cm4.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/fsl_device_registers.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/mpu_armv7.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/mpu_armv8.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/system_MK64F12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/CMSIS/system_MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/startup/hardware.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/startup/hardware.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/startup/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/startup/semihost_hardfault.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/SDK/startup/startup_mk64f12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/-.textClipping" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/App.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/Posicionamiento.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/Posicionamiento.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/Sensores.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/Sensores.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/SysTick.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/SysTick.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/board.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/gpio.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/gpio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/i2c.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/i2c.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/timer.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/projects/Blink/source/timer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/Flash/FTFE_4K.cfx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/K6x_dir_part.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/K6x_list.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/MK64F12_internal.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/com.crt.advproject.config.exe.debug.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/com.crt.advproject.config.exe.release.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/crt_directory.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/crt_infolist.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/info.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/crt_directory.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/crt_directory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/crt_infolist.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/info.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.mcuxpressoide_packages_support/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/com.pemicro.debug.gdbjtag.pne/config.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.core/.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.core/Blink.1568659091433.pdom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.core/Blink.1569603798345.pdom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.core/Blink.1569730246671.pdom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.core/Blink.1570030042761.pdom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.core/Blink.language.settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.core/preferences" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.dsf.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.make.core/specs.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.make.core/specs.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.managedbuilder.core/spec.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.ui/Blink.build.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.ui/dialog_settings 2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.cdt.ui/global-build.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/0/d0a328a1a6e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/10/50646c5177e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/11/d051976253e100191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/12/40894d99c0e400191c13ded57a1376a9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/13/f0a8adc6a4e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/14/6021192e7be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/17/9040d8046be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/18/e078bfbd8be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/19/50e9cd757be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/1a/00f131e97de400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/1a/f03ab1a36be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/1b/301132697be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/1c/c043f8c879e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/1f/e0df2aedd5e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/23/9010261d6ce200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/25/a05820a4a9e400191eee88a188f7ad1f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/29/f0aa07a17de400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/2b/80dde933d3e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/2e/80c4cc656ae200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/3/002b0a05a5e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/30/20620c976be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/30/b0b8a1eba2e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/31/00847ee28be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/31/a062ad706be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/33/10af937b7ae400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/33/409c02cd67e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/35/402b8652d3e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/37/0025fcc47be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/3c/f06f1b1ed3e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/3e/606d8fb9d3e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/3e/f03e422353e100191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/3f/80c9e3e7a6e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/3f/e0c8b68867e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/41/e0d7fa2679e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/42/c0e7fecf95e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/48/f022cc73d8e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/48/f0983a38a2e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/49/80b9dfcc3ce200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/4b/5025e792d2e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/4e/20a70a8b6be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/4f/a02bb861a4e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/51/705c873579e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/52/40338c25a6e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/54/2083b0fe78e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/54/8019ddf379e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/59/40abdf92d2e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/59/d022e4e9a5e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/5b/e0b1fd70a2e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/5d/2097859797e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/5d/b0deac2bafe40019123981dd3b84bbd2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/5e/605c488f61e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/6/40b7c9656ae200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/60/e0f15399c0e400191c13ded57a1376a9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/61/f0caf7fba8e400191eee88a188f7ad1f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/64/608c32fc6be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/65/0090b5a86be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/68/70defbed28e50019136fc26e545b28ea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/69/c09d5772bce40019123981dd3b84bbd2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/6a/40d74bbd61e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/6a/a0e2b894d3e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/6d/008dc31092e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/6f/b08d7ae561e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/70/4080274ad6e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/70/9006f60662e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/73/508d9cc461e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/74/20f950e18ee400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/76/80bf2a3ea0e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/79/7096dcfb66e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/7b/e058930d67e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/8/30dd3956bfe400191c13ded57a1376a9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/8/8043c7c88be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/8/e0c851417be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/80/c0c1cb4bd3e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/83/702bc8bd8be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/84/a0e9e4cc3ce200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/88/308b273ea0e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/88/40ce754ca0e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/8c/c0d6e6e7a6e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/8c/f0c97d3d6ce200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/8d/80643f4853e100191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/90/60751e7dd8e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/90/b066f7d479e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/90/f01898d466e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/91/d09aecb86ce200191911a49f67bab545" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/93/309153e18ee400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/95/b08d4305a9e400191eee88a188f7ad1f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/96/20e85212a9e400191eee88a188f7ad1f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/96/70f2169779e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/96/e0db4b2353e100191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/97/1020bafe78e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/98/10f5172b67e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/99/00eb89f166e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/a/40b51d2e7be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/a/c0b956347be400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/a0/608283f166e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/a6/d0b6dc1679e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/a8/505652e33ce200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/af/50b1ee3e67e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/af/60ce686a79e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/b1/e094d3f561e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/b2/603a9084bce40019123981dd3b84bbd2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/b5/101491d466e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/b5/10cd8c0a7fe400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/b5/c0ef49b274e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/ba/80f7d67179e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/bc/b0560471a4e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/c0/70768f6bade40019123981dd3b84bbd2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/c1/30f8a9d0bee400191c13ded57a1376a9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/c2/20ead6157ae400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/c3/0002636a79e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/c4/a075d33c6be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/c8/60fa30edd5e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/c8/b0acd3046be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/cc/40a99f8b6de200191911a49f67bab545" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/d/e07b06ea79e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/dd/204a970493e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/dd/f095a1766be200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/e/e0a334edd5e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/e1/5015ad27d3e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/e2/106d0b3453e100191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/e4/b062ef92d2e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/f0/50174d8f61e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/f4/001f4cada3e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/f4/60da1aa4a9e400191eee88a188f7ad1f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/f5/30b0d11aa4e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/f5/70c5267953e100191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/fa/902a87d961e200191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/fb/a088b9c74ce100191baaa8a0321e5ad4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/fd/60cfcd12a7e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/fe/10141f3977e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/fe/b0980a83a4e400191443c1c657828e4d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/ff/007ab294d3e300191c76fa61da375645" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/1a/13/properties 2.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/1a/13/properties.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/1a/83/history 2.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/1a/83/history.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/e5/history 2.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/e5/history.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/e5/properties 2.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/e5/properties 3.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/e5/properties.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/properties 2.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/properties 3.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/properties.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/1.tree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/2.tree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/org.eclipse.egit.core/GitProjectData 2.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/org.eclipse.egit.core/GitProjectData 3.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/org.eclipse.egit.core/GitProjectData.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history 2.version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties 2.version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.root/14.tree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.crt.dsfdebug.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.crt.quickstart.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.nxp.mcuxpresso.core.datamodels.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.core 2.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.core.prj-Blink 2.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.core.prj-Blink 3.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.core.prj-Blink.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.debug.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.dsf.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.managedbuilder.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.debug.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.launching.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.launchbar.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.search.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.browser.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.editors.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.debug.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory 2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.e4.workbench/workbench 2.xmi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache 2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache 2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.core/index.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache 2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers 2.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.ui/OpenTypeHistory 2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.ui/OpenTypeHistory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory 2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.linuxtools.cdt.libhover/C/devhelp.libhover" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.linuxtools.cdt.libhover/C/newlib_library.libhover" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2019/10/40/refactorings 2.history" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2019/10/40/refactorings 2.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2019/10/40/refactorings.history" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2019/10/40/refactorings.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2019/9/38/refactorings.history" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2019/9/38/refactorings.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2019/9/40/refactorings.history" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2019/9/40/refactorings.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.ui.refactoring/dialog_settings 2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ltk.ui.refactoring/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.search/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ui.editors/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ui.ide/dialog_settings 2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ui.workbench.texteditor/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ui.workbench/dialog_settings 2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/.metadata/version.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_190929_001702.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_190929_001740.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_190929_004610.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_190929_005559.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_190930_195921.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_154533.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_154601.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_154646.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_154732.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_154822.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_154901.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_154928.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_155128.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_155146.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_155305.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_155351.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_155549.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_160029.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_160228.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_160349.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_160553.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_160847.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_174211.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_174237.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_174451.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_175509.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_175732.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_175938.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_180036.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_182556.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_182625.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_182628.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_182651.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_182727.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_183308.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_184153.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_185459.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_190419.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_190551.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_200710.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_200720.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_200735.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_200855.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_200927.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_201035.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_202123.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_202306.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_202347.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_202740.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_203339.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_203552.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_204022.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_204312.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_204345.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_204521.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_204555.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_204908.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_205013.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_205052.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_205213.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_205500.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_205523.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_205643.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_205819.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_210119.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_210414.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_210452.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_210541.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_210605.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_211055.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_211135.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_211741.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_212010.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_212052.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_212211.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_212240.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_212348.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_212701.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_212808.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_213434.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_214006.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_214854.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_215542.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_222138.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_232929.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_233117.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_233345.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_233425.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_233516.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_233552.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_233755.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_233922.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234128.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234242.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234339.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234354.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234412.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234422.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234602.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234709.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234745.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234822.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_234941.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_235115.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_235227.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_235241.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_235343.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_235430.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_235541.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_235850.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191001_235857.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191002_000004.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191002_122545.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191002_122621.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191002_122822.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191002_122916.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191002_122932.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Martu/workspace/FreeRTOS_TAD_logs/TAD_log_191002_124023.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/.cproject" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/.settings/com.processorexpert.core.ide.newprojectwizard.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/.settings/language.settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Blink PE Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Blink PE Release.launch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink.axf" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink.axf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink.map" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug.launch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug.ld" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_library.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_library.ld" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_memory.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_memory.ld" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/App.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/App.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/CMSIS/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/startup/hardware.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/startup/hardware.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/startup/main.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/startup/main.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/startup/semihost_hardfault.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/startup/semihost_hardfault.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/startup/startup_mk64f12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/startup/startup_mk64f12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/SDK/startup/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/objects.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/App.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/App.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/CAN.d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/CAN.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/CAN.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/ExternalManager.d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/ExternalManager.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/ExternalManager.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/Posicionamiento.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/Posicionamiento.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/SPI.d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/SPI.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/SPI.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/App.c" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/App.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/CAN.c" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/CAN.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/ExternalManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/ExternalManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/SPI.c" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/SPI.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/SPI.h" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/SPI.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191005_220226.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/Sensores.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/Sensores.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/SysTick.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/SysTick.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/UART.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/UART.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/UART.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/gpio.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/gpio.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/i2c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/i2c.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/i2c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/timer.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/timer.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/timer.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/sources.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/MK64F12_features.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/arm_common_tables.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/arm_const_structs.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/arm_math.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/cmsis_armcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/cmsis_armclang.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/cmsis_compiler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/cmsis_gcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/cmsis_iccarm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/cmsis_version.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/core_armv8mbl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/core_armv8mml.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/core_cm4.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/fsl_device_registers.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/mpu_armv7.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/mpu_armv8.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/system_MK64F12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/CMSIS/system_MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/startup/hardware.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/startup/hardware.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/startup/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/startup/semihost_hardfault.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/SDK/startup/startup_mk64f12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/App.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/CAN.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/CAN.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/ExternalManager.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/ExternalManager.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/Posicionamiento.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/Posicionamiento.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/SPI.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/SPI.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/Sensores.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/Sensores.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/SysTick.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/SysTick.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/UART.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/UART.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/board.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/gpio.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/gpio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/i2c.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/i2c.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/timer.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/timer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191006_194701.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191006_194739.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191006_194910.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191006_195016.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/.cproject" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/.settings/com.processorexpert.core.ide.newprojectwizard.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/.settings/language.settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Blink PE Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/Blink.axf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/Blink.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/Blink_Debug.launch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/Blink_Debug.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/Blink_Debug_library.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/Blink_Debug_memory.ld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/CMSIS/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/hardware.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/hardware.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/hardware.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/main.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/main.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/main.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/semihost_hardfault.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/semihost_hardfault.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/semihost_hardfault.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/startup_mk64f12.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/startup_mk64f12.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/startup_mk64f12.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/SDK/startup/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/objects.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/App.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/App.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/App.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/Posicionamiento.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/Posicionamiento.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/Posicionamiento.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/Sensores.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/Sensores.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/Sensores.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/SysTick.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/SysTick.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/SysTick.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/gpio.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/gpio.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/gpio.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/i2c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/i2c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/i2c.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/subdir.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/timer.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/timer.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/source/timer.su" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/Debug/sources.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/MK64F12_features.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/arm_common_tables.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/arm_const_structs.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/arm_math.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/cmsis_armcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/cmsis_armclang.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/cmsis_compiler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/cmsis_gcc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/cmsis_iccarm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/cmsis_version.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/core_armv8mbl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/core_armv8mml.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/core_cm4.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/fsl_device_registers.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/mpu_armv7.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/mpu_armv8.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/system_MK64F12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/CMSIS/system_MK64F12.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/startup/hardware.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/startup/hardware.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/startup/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/startup/semihost_hardfault.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/SDK/startup/startup_mk64f12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/App.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/Posicionamiento.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/Posicionamiento.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/Sensores.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/Sensores.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/SysTick.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/SysTick.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/board.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/gpio.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/gpio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/i2c.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/i2c.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/timer.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/projects/Blink/source/timer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/Flash/FTFE_4K.cfx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/K6x_dir_part.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/K6x_list.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/MK64F12_internal.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/com.crt.advproject.config.exe.debug.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/com.crt.advproject.config.exe.release.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/crt_directory.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/crt_infolist.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/MK64FN1M0xxx12_support/info.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/crt_directory.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/crt_directory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/crt_infolist.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/info.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.mcuxpressoide_packages_support/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/com.pemicro.debug.gdbjtag.pne/config.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.core/.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.core/Blink.1570036378909.pdom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.core/Blink.language.settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.core/preferences" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.dsf.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.make.core/specs.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.make.core/specs.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.managedbuilder.core/spec.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.ui/Blink.build.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.cdt.ui/global-build.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/e5/properties.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.indexes/properties.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/Blink/.location" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.crt.dsfdebug.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.crt.quickstart.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.nxp.mcuxpresso.core.datamodels.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.core.prj-Blink.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.debug.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.dsf.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.managedbuilder.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.launching.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.launchbar.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.browser.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.editors.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.debug.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.jdt.core/index.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.jdt.ui/OpenTypeHistory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.linuxtools.cdt.libhover/C/devhelp.libhover" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.linuxtools.cdt.libhover/C/newlib_library.libhover" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.ui.editors/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.ui.workbench.texteditor/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/.metadata/version.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/FreeRTOS_TAD_logs/TAD_log_191005_181931.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/FreeRTOS_TAD_logs/TAD_log_191005_182348.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/FreeRTOS_TAD_logs/TAD_log_191005_182605.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/i2c+main/workspace/FreeRTOS_TAD_logs/TAD_log_191005_182930.log" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="380" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../hola/hola.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="311" lean-forward="true" selection-start-line="311" selection-end-line="311" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hola.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="78" selection-start-line="78" selection-end-line="78" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/3dTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1002">
+              <caret line="125" column="11" selection-start-line="125" selection-start-column="11" selection-end-line="125" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="226" column="25" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -38,13 +1364,51 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>DOUBLEBUF</find>
+      <find>HELLO</find>
+      <find>showCabeceo</find>
+      <find>ORIENTACION</find>
+      <find>orientacion</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/3dTest.py" />
+        <option value="$PROJECT_DIR$/miPrograma.py" />
+        <option value="$PROJECT_DIR$/../../hola/hola.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1288" />
+    <option name="width" value="1279" />
+    <option name="height" value="1047" />
+  </component>
   <component name="ProjectId" id="1RoKnfk34nRzFbeSmgJwgwTcddj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PythonAppProgram" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PythonAppProgram" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -62,7 +1426,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.miPrograma">
+    <configuration name="3dTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PythonAppProgram" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/3dTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="miPrograma" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PythonAppProgram" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -75,7 +1460,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/miPrograma.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\newtonis\Documents\GitHub\LABO_DE_MICROS\PythonAppProgram\main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PythonAppProgram" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -87,6 +1493,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.miPrograma" />
+        <item itemvalue="Python.3dTest" />
+        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -103,12 +1511,58 @@
     </task>
     <servers />
   </component>
+  <component name="ToolWindowManager">
+    <frame x="1288" y="0" width="1279" height="1047" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22969647" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49918962" visible="true" weight="0.32932165" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32932165" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5008104" side_tool="true" weight="0.32932165" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="right" id="R Packages" order="4" />
+    </layout>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
           </value>
         </entry>
       </map>
@@ -120,5 +1574,57 @@
         <watch expression="data" language="Python" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="226" column="25" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3dTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1002">
+          <caret line="125" column="11" selection-start-line="125" selection-start-column="11" selection-end-line="125" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hola.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="380" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../hola/hola.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="311" lean-forward="true" selection-start-line="311" selection-end-line="311" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
