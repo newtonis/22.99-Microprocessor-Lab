@@ -86,28 +86,19 @@ typedef struct
 
 /**
  * @brief Initialize i2c driver
- * @param id i2c's number
- * @param config i2c's configuration (baudrate, parity, etc.)
 */
 void i2cInit (uint8_t channel); //, uint8_t baud_rate, uint32_t systemClock
 
 
 /**
  * @brief Read a received message. Non-Blocking
- * @param id i2c's number
- * @param msg Buffer to paste the received bytes
- * @param cant Desired quantity of bytes to be pasted
- * @return Real quantity of pasted bytes
+
 */
 void i2cReadMsg(I2C_COM_CONTROL * i2c_comm);
 
 
 /**
  * @brief Write a message to be transmitted. Non-Blocking
- * @param id i2c's number
- * @param msg Buffer with the bytes to be transfered
- * @param cant Desired quantity of bytes to be transfered
- * @return Real quantity of bytes to be transfered
 */
 void i2cWriteMsg(I2C_COM_CONTROL * i2c_comm);
 

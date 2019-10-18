@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b0e4ec8-88bb-4014-bc43-99ddcb8501b3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PythonAppProgram/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PythonAppProgram/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Blink PE Debug.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Blink PE Debug.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PythonAppProgram.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonAppProgram.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/PythonAppProgram.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/3dTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/H&amp;BSketchDemo.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/hola.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/test.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.axf" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.axf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.map" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink_Debug.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink_Debug.ld" afterDir="false" />
@@ -30,30 +40,24 @@
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/subdir.mk" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/subdir.mk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/timer.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/timer.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/sources.mk" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/sources.mk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/source/ExternalManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/source/ExternalManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../uart_definitivo/workspace/FreeRTOS_TAD_logs/TAD_log_191005_164754.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../uart_definitivo/workspace/FreeRTOS_TAD_logs/TAD_log_191005_164758.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../uart_definitivo/workspace/FreeRTOS_TAD_logs/TAD_log_191005_164840.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../uart_definitivo/workspace/FreeRTOS_TAD_logs/TAD_log_191005_164844.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/source/CAN.c" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/source/CAN.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/workspace/FreeRTOS_TAD_logs/TAD_log_191007_000533.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink.axf" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink.axf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_library.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_library.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_memory.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_memory.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/App.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/App.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/App.c" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/App.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191007_000533.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191007_000707.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191007_001337.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191007_001753.log" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="204" column="16" lean-forward="true" selection-start-line="204" selection-start-column="16" selection-end-line="204" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -62,56 +66,11 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>DOUBLEBUF</find>
-      <find>HELLO</find>
-      <find>showCabeceo</find>
-      <find>ORIENTACION</find>
-      <find>orientacion</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/3dTest.py" />
-        <option value="$PROJECT_DIR$/miPrograma.py" />
-        <option value="$USER_HOME$/hola/hola.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1006" />
-    <option name="y" value="-22" />
-    <option name="width" value="1279" />
-    <option name="height" value="1047" />
-  </component>
   <component name="ProjectId" id="1RoKnfk34nRzFbeSmgJwgwTcddj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="PythonAppProgram - Copy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PythonAppProgram - Copy" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -236,43 +195,13 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10906217" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49918962" visible="true" weight="0.30877572" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32932165" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5008104" side_tool="true" weight="0.32932165" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="right" id="R Packages" order="4" />
-    </layout>
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -299,45 +228,5 @@
         <watch expression="data" language="Python" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="226" column="25" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3dTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1002">
-          <caret line="125" column="11" selection-start-line="125" selection-start-column="11" selection-end-line="125" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hola.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/hola/hola.py" />
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="204" column="16" lean-forward="true" selection-start-line="204" selection-start-column="16" selection-end-line="204" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

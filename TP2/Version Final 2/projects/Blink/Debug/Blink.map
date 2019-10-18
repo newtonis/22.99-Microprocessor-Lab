@@ -1935,39 +1935,39 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_line    0x00002990      0x6d8 ./SDK/startup/startup_mk64f12.o
  .debug_line    0x00003068      0x1c7 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_str      0x00000000    0x7e90a
- .debug_str     0x00000000     0x6bb5 ./source/App.o
-                               0x6e24 (size before relaxing)
- .debug_str     0x00006bb5    0x756b0 ./source/CAN.o
-                              0x7c292 (size before relaxing)
- .debug_str     0x0007c265      0x166 ./source/ExternalManager.o
-                              0x7bb39 (size before relaxing)
- .debug_str     0x0007c3cb      0xa83 ./source/Posicionamiento.o
-                              0x7afb9 (size before relaxing)
- .debug_str     0x0007ce4e      0x64a ./source/SPI.o
-                              0x77e8f (size before relaxing)
- .debug_str     0x0007d498      0x21c ./source/Sensores.o
-                              0x77256 (size before relaxing)
- .debug_str     0x0007d6b4       0x86 ./source/SysTick.o
-                              0x775b9 (size before relaxing)
- .debug_str     0x0007d73a      0x196 ./source/UART.o
-                              0x77a83 (size before relaxing)
- .debug_str     0x0007d8d0      0x11c ./source/gpio.o
-                              0x772a0 (size before relaxing)
- .debug_str     0x0007d9ec      0x47b ./source/i2c.o
-                              0x77dcb (size before relaxing)
- .debug_str     0x0007de67       0xe1 ./source/timer.o
-                              0x7a7e6 (size before relaxing)
- .debug_str     0x0007df48      0x161 ./SDK/startup/hardware.o
-                              0x771f7 (size before relaxing)
- .debug_str     0x0007e0a9       0x1b ./SDK/startup/main.o
-                              0x76fcb (size before relaxing)
- .debug_str     0x0007e0c4       0x36 ./SDK/startup/semihost_hardfault.o
-                               0x2d31 (size before relaxing)
- .debug_str     0x0007e0fa      0x7ae ./SDK/startup/startup_mk64f12.o
-                               0x359f (size before relaxing)
- .debug_str     0x0007e8a8       0x62 ./SDK/CMSIS/system_MK64F12.o
-                              0x77106 (size before relaxing)
+.debug_str      0x00000000    0x7e91d
+ .debug_str     0x00000000     0x6bc8 ./source/App.o
+                               0x6e37 (size before relaxing)
+ .debug_str     0x00006bc8    0x756b0 ./source/CAN.o
+                              0x7c2a5 (size before relaxing)
+ .debug_str     0x0007c278      0x166 ./source/ExternalManager.o
+                              0x7bb4c (size before relaxing)
+ .debug_str     0x0007c3de      0xa83 ./source/Posicionamiento.o
+                              0x7afcc (size before relaxing)
+ .debug_str     0x0007ce61      0x64a ./source/SPI.o
+                              0x77ea2 (size before relaxing)
+ .debug_str     0x0007d4ab      0x21c ./source/Sensores.o
+                              0x77269 (size before relaxing)
+ .debug_str     0x0007d6c7       0x86 ./source/SysTick.o
+                              0x775cc (size before relaxing)
+ .debug_str     0x0007d74d      0x196 ./source/UART.o
+                              0x77a96 (size before relaxing)
+ .debug_str     0x0007d8e3      0x11c ./source/gpio.o
+                              0x772b3 (size before relaxing)
+ .debug_str     0x0007d9ff      0x47b ./source/i2c.o
+                              0x77dde (size before relaxing)
+ .debug_str     0x0007de7a       0xe1 ./source/timer.o
+                              0x7a7f9 (size before relaxing)
+ .debug_str     0x0007df5b      0x161 ./SDK/startup/hardware.o
+                              0x7720a (size before relaxing)
+ .debug_str     0x0007e0bc       0x1b ./SDK/startup/main.o
+                              0x76fde (size before relaxing)
+ .debug_str     0x0007e0d7       0x36 ./SDK/startup/semihost_hardfault.o
+                               0x2d44 (size before relaxing)
+ .debug_str     0x0007e10d      0x7ae ./SDK/startup/startup_mk64f12.o
+                               0x35b2 (size before relaxing)
+ .debug_str     0x0007e8bb       0x62 ./SDK/CMSIS/system_MK64F12.o
+                              0x77119 (size before relaxing)
 
 .comment        0x00000000       0x7e
  .comment       0x00000000       0x7e ./source/App.o

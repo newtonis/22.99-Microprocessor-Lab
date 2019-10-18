@@ -248,8 +248,8 @@ void init_CAN(int ID, void (*funcallback)(void))
 
 	CAN_BIT_MODIFY(RXB0CTRL_REG, 0x64, 0x00); // Habilito el filtro y desactivo rollover
 
-	//CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x04); // Modo Normal, One-Shot, Clock Enable y Preescaler en 1
-	CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x44); // Modo Loopback, One-Shot, Clock Enable y Preescaler en 1
+	CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x04); // Modo Normal, One-Shot, Clock Enable y Preescaler en 1
+	//CAN_BIT_MODIFY(CANCTRL_REG, 0xEF, 0x44); // Modo Loopback, One-Shot, Clock Enable y Preescaler en 1
 
 	CAN_BIT_MODIFY(CANINTE_REG, 0x05, 0x05); // Habilito interrupciones por TX y RX
 }
