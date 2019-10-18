@@ -61,7 +61,7 @@ texts = [
     "Placa 5",
     "Placa 6",
     "Placa 7",
-    "Placa 8"
+    "Placa 0"
 ]
 
 cubePositions = (
@@ -145,7 +145,7 @@ codes = {
     "5": 4,
     "6": 5,
     "7": 6,
-    "8": 7
+    "0": 7
 }
 
 def decodeInfo(text):
@@ -297,7 +297,7 @@ def main():
                     if status > 0:
                         status -= 1
                 if event.key == pygame.K_RIGHT:
-                    if status < 8:
+                    if status < 7:
                         status += 1
 
                 if event.type == pygame.KEYDOWN:

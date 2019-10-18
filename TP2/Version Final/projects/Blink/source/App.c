@@ -99,7 +99,7 @@ void App_Init (void)
 {
 	Position_InitDrv(test);
 
-	ExternManager_init(2);
+	ExternManager_init(5);
 
 	timerInit();
 

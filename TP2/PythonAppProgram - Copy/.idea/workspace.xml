@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7b0e4ec8-88bb-4014-bc43-99ddcb8501b3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/PythonAppProgram.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonAppProgram.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/PythonAppProgram.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/3dTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/H&amp;BSketchDemo.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/hola.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PythonAppProgram/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.axf" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.axf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.map" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink_Debug.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink_Debug.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink_Debug_library.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink_Debug_library.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink_Debug_memory.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/Blink_Debug_memory.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/CMSIS/subdir.mk" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/CMSIS/subdir.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/CMSIS/system_MK64F12.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/hardware.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/hardware.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/main.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/semihost_hardfault.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/semihost_hardfault.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/startup_mk64f12.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/startup_mk64f12.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/subdir.mk" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/SDK/startup/subdir.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/App.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/App.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/CAN.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/CAN.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/ExternalManager.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/ExternalManager.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/Posicionamiento.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/Posicionamiento.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/SPI.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/SPI.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/Sensores.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/Sensores.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/SysTick.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/SysTick.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/UART.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/UART.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/gpio.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/gpio.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/i2c.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/i2c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/subdir.mk" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/subdir.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/timer.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/source/timer.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/sources.mk" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/Debug/sources.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/source/CAN.c" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final 2/projects/Blink/source/CAN.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final 2/workspace/FreeRTOS_TAD_logs/TAD_log_191007_000533.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink.axf" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink.axf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_library.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_library.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_memory.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/Blink_Debug_memory.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/App.o" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/Debug/source/App.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/App.c" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/Version Final/projects/Blink/source/App.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191007_000533.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191007_000707.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191007_001337.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/Version Final/workspace/FreeRTOS_TAD_logs/TAD_log_191007_001753.log" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>DOUBLEBUF</find>
+      <find>HELLO</find>
+      <find>showCabeceo</find>
+      <find>ORIENTACION</find>
+      <find>orientacion</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1RoKnfk34nRzFbeSmgJwgwTcddj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PythonAppProgram - Copy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PythonAppProgram - Copy" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="3dTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PythonAppProgram" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/3dTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PythonAppProgram" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="miPrograma" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PythonAppProgram" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\newtonis\Documents\GitHub\LABO_DE_MICROS\PythonAppProgram\main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PythonAppProgram" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.miPrograma" />
+        <item itemvalue="Python.3dTest" />
+        <item itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7b0e4ec8-88bb-4014-bc43-99ddcb8501b3" name="Default Changelist" comment="" />
+      <created>1570217060028</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570217060028</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="data" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
