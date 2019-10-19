@@ -1,27 +1,29 @@
 /*
- * DAC.h
+ * Modulador.h
  *
- *  Created on: 18 Oct 2019
+ *  Created on: 19 Oct 2019
  *      Author: Marcelo
  */
 
-#ifndef DAC_H_
-#define DAC_H_
+#ifndef MODULADOR_H_
+#define MODULADOR_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-typedef uint16_t DACDATA_t;
+#define STAND_LEN	11
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-void DAC_init(void);
+void Modulador_init(void(*funcallback)(void));
 
-void DAC_setData(DACDATA_t data);
+void Modulador_sendStream(bool *stream);
 
-#endif /* DAC_H_ */
+
+#endif /* MODULADOR_H_ */

@@ -10,13 +10,14 @@
 
 #include "board.h"
 #include "gpio.h"
-#include "DAC.h"
+#include "Modulador.h"
 
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-
+bool testStream[STAND_LEN] = {0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1};
+uint8_t a = 0;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -35,7 +36,8 @@ void test(void);
 void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
-    DAC_init();
+    Modulador_init(test);
+    Modulador_sendStream(testStream);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
@@ -53,7 +55,7 @@ void App_Run (void)
 
 void test(void)
 {
-
+	a = 1; // avisa que termino de enviar la señal modulada por callback
 }
 
 
