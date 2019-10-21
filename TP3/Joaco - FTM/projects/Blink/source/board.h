@@ -32,9 +32,12 @@
 #define PIN_SW2         PORTNUM2PIN(PC,6) // PTC6
 #define PIN_SW3			PORTNUM2PIN(PA,4) // PTA4
 
-#define PIN_FTM			PORTNUM2PIN(PD,1) // PTD1
+#define PIN_FTM_TEST_OVF			PORTNUM2PIN(PD,1) // PTD1
 
-
+#define PIN_OUTPUT_CAPTURE PORTNUM2PIN(PC,1)
+#define PIN_GPIO_TEST PORTNUM2PIN(PC,8)
+// PTC9 as IC (FTM3-CH5)
+#define PIN_INPUT_CAPTURE PORTNUM2PIN(PC,9)
 /*******************************************************************************
  ******************************************************************************/
 

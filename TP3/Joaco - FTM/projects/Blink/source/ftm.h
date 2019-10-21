@@ -12,14 +12,44 @@
 #include <stdbool.h>
 #include "board.h"
 
-#define FTM_MODULE_NUMBER 0
+enum{FTM_PSC_x1=0,
+	FTM_PSC_x2,
+	FTM_PSC_x4,
+	FTM_PSC_x8,
+	FTM_PSC_x16,
+	FTM_PSC_x32,
+	FTM_PSC_x64,
+	FTM_PSC_x128
+	};
 
+enum{FTM_IC_CaptureOnRisingEdgeOnly=0,
+	FTM_IC_CaptureOnFallingEdgeOnly,
+	FTM_IC_CaptureOnEitherEdge
+};
+
+enum{FTM_OC_ToggleOutputOnMatch=0,
+	FTM_OC_ClearOutputOnMatch,
+	FTM_OC_SetOutputOnMatch
+};
+
+
+
+#define GPIO_ALTERNATIVE 1
 
 __ISR__ FTM0_IRQHandler(void);
 
+__ISR__ FTM3_IRQHandler(void);
+
 void OVF_ISR(void);
 
+void IC_ISR(void);
+
+void OC_ISR(void);
+
+void configPinFtm(pin_t pin, uint8_t mux_alt);
+
 void ftmInit(void);
+
 
 
 
