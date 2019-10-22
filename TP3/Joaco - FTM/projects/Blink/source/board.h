@@ -35,8 +35,10 @@
 #define PIN_FTM_TEST_OVF			PORTNUM2PIN(PD,1) // PTD1
 
 #define PIN_OUTPUT_CAPTURE PORTNUM2PIN(PC,1)
+
 #define PIN_GPIO_TEST PORTNUM2PIN(PC,8)
-// PTC9 as IC (FTM3-CH5)
+#define PIN_SCK PORTNUM2PIN(PC,8)
+
 #define PIN_INPUT_CAPTURE PORTNUM2PIN(PC,9)
 /*******************************************************************************
  ******************************************************************************/

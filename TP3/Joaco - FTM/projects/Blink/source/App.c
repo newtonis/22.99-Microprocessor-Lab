@@ -11,6 +11,7 @@
 #include "board.h"
 #include "gpio.h"
 #include "ftm.h"
+//#include "driverFtm.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -34,6 +35,7 @@ static void delayLoop(uint32_t veces);
 void App_Init (void)
 {
 	ftmInit();
+//	driverFtmInit(0);
     gpioMode(PIN_LED_BLUE, OUTPUT);
 }
 

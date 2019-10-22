@@ -22,12 +22,12 @@ enum{FTM_PSC_x1=0,
 	FTM_PSC_x128
 	};
 
-enum{FTM_IC_CaptureOnRisingEdgeOnly=0,
+enum{FTM_IC_CaptureOnRisingEdgeOnly=1,
 	FTM_IC_CaptureOnFallingEdgeOnly,
 	FTM_IC_CaptureOnEitherEdge
 };
 
-enum{FTM_OC_ToggleOutputOnMatch=0,
+enum{FTM_OC_ToggleOutputOnMatch=1,
 	FTM_OC_ClearOutputOnMatch,
 	FTM_OC_SetOutputOnMatch
 };
