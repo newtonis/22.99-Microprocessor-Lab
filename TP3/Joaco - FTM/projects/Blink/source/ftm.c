@@ -6,7 +6,7 @@
  */
 #include "ftm.h"
 
-FTM_Type * ftm_pointers[] = FTM_BASE_PTRS;
+static FTM_Type * ftm_pointers[] = FTM_BASE_PTRS;
 static SIM_Type* sim_ptr = SIM;
 static PORT_Type* portPointers[] = PORT_BASE_PTRS;
 
@@ -14,6 +14,10 @@ uint16_t OC_Delta = 100;
 
 #define PWM_MOD 10000-1
 #define PWM_DUTY_CYCLE PWM_MOD-2000
+
+static uint16_t PWM_MODS[] = {1000,1000,1000};
+static uint16_t PWM_DUTYS[] = {100,500,900};
+
 
 /* FTM0 fault, overflow and channels interrupt handler*/
 
@@ -40,52 +44,22 @@ void PWM_ISR (void)
 	if ((ftm_module->SC & FTM_SC_TOF_MASK) == FTM_SC_TOF_MASK ){ // CNT == MOD
 		ftm_module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
 
+
 	}
 
 	if((ftm_module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK){// CNT = CnV
 		FTM_ClearInterruptFlag(ftm_module, channel);
+		/*
+		for(int i =0 ; i<5 ; i++){
+			ftm_module->MOD = (ftm_module->MOD 	 & ~FTM_MOD_MOD_MASK)	| FTM_MOD_MOD(PWM_MODS[i]);//seteo el valor al que llega el contador
+			ftm_module->CONTROLS[channel].CnV = PWM_DUTYS[i];
+		}
+		*/
 	}
 
 
 }
 
-
-void configPinFtm(pin_t pin, uint8_t mux_alt){
-	sim_ptr->SCGC5 |= SIM_SCGC5_PORTD_MASK; // clk gating de los pines puerto D y C
-	sim_ptr->SCGC5 |= SIM_SCGC5_PORTC_MASK;
-
-	PORT_Type * port_ftm = portPointers[PIN2PORT(pin)];
-	port_ftm-> PCR[PIN2NUM(pin)] = PORT_PCR_DSE(1)| // enable Drive Strength
-									PORT_PCR_MUX(mux_alt)| // gpio alternative
-									PORT_PCR_IRQC(0)|
-									PORT_PCR_PS(0)|
-									PORT_PCR_PE(0); // deshabilito interrupciones
-}
-
-
-uint32_t FTM_GetCounter (FTM_Type* ftm, uint8_t channel)
-{
-	return ftm->CONTROLS[channel].CnV & FTM_CnV_VAL_MASK;
-}
-
-void FTM_SetCounter (FTM_Type* ftm, uint8_t channel, uint16_t data)
-{
-	ftm->CONTROLS[channel].CnV = FTM_CnV_VAL(data);
-}
-
-void FTM_ClearInterruptFlag (FTM_Type * ftm_module , uint8_t channel){
-	ftm_module->CONTROLS[channel].CnSC &= ~FTM_CnSC_CHF_MASK; // clear interupt status flag
-}
-void FTM_SetClock(FTM_Type * module){
-	module->SC |= FTM_SC_CLKS(0x01); // select clock
-}
-void FTM_DisableClock(FTM_Type * module){
-	module->SC &= ~FTM_SC_CLKS_MASK; // select clock
-}
-
-void FTM_EnableInterrupts(FTM_Type * module, uint8_t channel){
-	module->CONTROLS[channel].CnSC |= FTM_CnSC_CHIE(1);
-}
 
 void OC_ISR(void)  //FTM0 CH0 PTC8 as GPIO
 {
@@ -94,8 +68,7 @@ void OC_ISR(void)  //FTM0 CH0 PTC8 as GPIO
 	if((ftm_module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK){
 		FTM_ClearInterruptFlag(ftm_module, channel);
 		gpioToggle(PIN_GPIO_TEST);
-
-//		FTM_SetCounter(ftm_module,channel,FTM_GetCounter (ftm_module, channel)+ OC_Delta); // OC + oc_Delta --> oc
+		FTM_SetCounter(ftm_module,channel,FTM_GetCounter (ftm_module, channel)+ OC_Delta); // OC + oc_Delta --> oc
 	}
 	if((ftm_module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
 		ftm_module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
@@ -120,13 +93,8 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 		{
 			med2=FTM_GetCounter (ftm_module, channel);
 			med=med2-med1;
-			// con prescaler de 32 daba 200 el med y la frecuencia era 3.91k que es 256uS
-			// entonces si 256us/2 es hasta que termina de contar FFFF
-			// mi tick entonces es de 1,95e-9 o sea 511 megas?? what
-
 			state=0;					// Set break point here and watch "med" value
 		}
-
 	}
 
 	if((ftm_module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
@@ -134,36 +102,46 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 	}
 
 }
-/*
-void OVF_ISR(void)
-{
-	FTM_Type* ftm_mod = FTM0;
-	ftm_mod->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
-	gpioToggle(PIN_FTM_TEST_OVF);
-}
-*/
 
 
-void configFtmModuleForOverFlowInterrupts(FTM_Type * ftm_mod){
-	ftm_mod->MODE=(ftm_mod->MODE & ~FTM_MODE_FTMEN_MASK) | FTM_MODE_FTMEN(1); ///  Enable Timer advanced modes
-	ftm_mod->SC = (ftm_mod->SC & ~FTM_SC_PS_MASK) | FTM_SC_PS(0); // seteamos el prescaler (divide por 2**(n)) lo que sea que este en CLKS
-	ftm_mod->CNTIN=0x00; // es importante inicializarlo antes de setear el modulo
-	ftm_mod->MOD=50-1;
-	ftm_mod->SC = (FTM0->SC & ~FTM_SC_TOIE_MASK) | FTM_SC_TOIE(1); // habilitamos la interrupcion del timeroverflow
-	ftm_mod->SC |= FTM_SC_CLKS(0x01); // seleccionamos system clock , pdria haber sido un frec fija de clock o clk ext
+void configPinFtm(pin_t pin, uint8_t mux_alt){
+	sim_ptr->SCGC5 |= SIM_SCGC5_PORTD_MASK; // clk gating de los pines puerto D y C
+	sim_ptr->SCGC5 |= SIM_SCGC5_PORTC_MASK;
+
+	PORT_Type * port_ftm = portPointers[PIN2PORT(pin)];
+	port_ftm-> PCR[PIN2NUM(pin)] = PORT_PCR_DSE(1)| // enable Drive Strength
+									PORT_PCR_MUX(mux_alt)| // gpio alternative
+									PORT_PCR_IRQC(0)|  // deshabilito interrupciones
+									PORT_PCR_PS(0)|
+									PORT_PCR_PE(0);
 }
 
-/*
-void OVF_Init(){
-	configPinFtm(PIN_FTM_TEST_OVF,GPIO_ALTERNATIVE); // configuramos pin a togglear cuando hace overflow el contador
-	gpioMode(PIN_FTM_TEST_OVF, OUTPUT);
-	configFtmModuleForOverFlowInterrupts(FTM0);
+
+uint32_t FTM_GetCounter(FTM_Type* ftm, uint8_t channel){
+	return ftm->CONTROLS[channel].CnV & FTM_CnV_VAL_MASK;
 }
-*/
+
+void FTM_SetCounter (FTM_Type* ftm, uint8_t channel, uint16_t data){
+	ftm->CONTROLS[channel].CnV = FTM_CnV_VAL(data);
+}
+
+void FTM_ClearInterruptFlag (FTM_Type * ftm_module , uint8_t channel){
+	ftm_module->CONTROLS[channel].CnSC &= ~FTM_CnSC_CHF_MASK; // clear interupt status flag
+}
+
+void FTM_SetClock(FTM_Type * module){
+	module->SC |= FTM_SC_CLKS(0x01); // select clock
+}
+void FTM_DisableClock(FTM_Type * module){
+	module->SC &= ~FTM_SC_CLKS_MASK; // select clock
+}
+
+void FTM_EnableInterrupts(FTM_Type * module, uint8_t channel){
+	module->CONTROLS[channel].CnSC |= FTM_CnSC_CHIE(1);
+}
 
 
-
-void setChannelnMode(FTM_Type* module,uint8_t channel, uint8_t mode, bool isOutputCompare){
+void setChannelnModeForIcOrOC(FTM_Type* module,uint8_t channel, uint8_t mode, bool isOutputCompare){
 	if(module == FTM0){
 		module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN0_MASK)|FTM_COMBINE_DECAPEN0(0);
 		module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE0_MASK )|FTM_COMBINE_COMBINE0(0);
@@ -184,45 +162,28 @@ void setChannelnMode(FTM_Type* module,uint8_t channel, uint8_t mode, bool isOutp
 }
 
 void setChannelnModeForPwm(FTM_Type* module,uint8_t channel, uint8_t mode, uint8_t PWM_type){
-	if(PWM_type == EDGE_ALIGNED_PWM){
-		module->QDCTRL = (module->QDCTRL & ~ FTM_QDCTRL_QUADEN_MASK) | FTM_QDCTRL_QUADEN(0);
-		if(module == FTM0){
-			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN0_MASK)|FTM_COMBINE_DECAPEN0(0);
-			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE0_MASK )|FTM_COMBINE_COMBINE0(0);
-		}else if(module == FTM3){
-			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN3_MASK)|FTM_COMBINE_DECAPEN3(0);
-			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE3_MASK )|FTM_COMBINE_COMBINE3(0);
-		}
-
-		module->SC=(module->SC & ~FTM_SC_CPWMS_MASK)|FTM_SC_CPWMS(0);
-
-		module->CONTROLS[channel].CnSC = (FTM0->CONTROLS[channel].CnSC & ~ FTM_CnSC_MSB_MASK)| FTM_CnSC_MSB(1);
-		module->CONTROLS[channel].CnSC = (FTM0->CONTROLS[channel].CnSC & ~ FTM_CnSC_MSA_MASK)| FTM_CnSC_MSA(0); // este no importa supuestamente
-
-		bool elsb = (mode&(1<<1)) == 1<<1;
-		bool elsa = (mode&(1<<0)) == 1<<0;
-		module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSB_MASK)| FTM_CnSC_ELSB(elsb);
-		module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSA_MASK)| FTM_CnSC_ELSA(elsa);
-	}else if(PWM_type == CENTER_ALIGNED_PWM){
-		module->QDCTRL = (module->QDCTRL & ~ FTM_QDCTRL_QUADEN_MASK) | FTM_QDCTRL_QUADEN(0);
-		if(module == FTM0){
-			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN0_MASK)|FTM_COMBINE_DECAPEN0(0);
-			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE0_MASK )|FTM_COMBINE_COMBINE0(0);
-		}else if(module == FTM3){
-			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN3_MASK)|FTM_COMBINE_DECAPEN3(0);
-			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE3_MASK )|FTM_COMBINE_COMBINE3(0);
-		}
-
-		module->SC=(module->SC & ~FTM_SC_CPWMS_MASK)|FTM_SC_CPWMS(1);
-
-		module->CONTROLS[channel].CnSC = (FTM0->CONTROLS[channel].CnSC & ~ FTM_CnSC_MSB_MASK)| FTM_CnSC_MSB(0); // no importan MSB ni MSA
-		module->CONTROLS[channel].CnSC = (FTM0->CONTROLS[channel].CnSC & ~ FTM_CnSC_MSA_MASK)| FTM_CnSC_MSA(0); //
-
-		bool elsb = (mode&(1<<1)) == 1<<1;
-		bool elsa = (mode&(1<<0)) == 1<<0;
-		module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSB_MASK)| FTM_CnSC_ELSB(elsb);
-		module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSA_MASK)| FTM_CnSC_ELSA(elsa);
+	module->QDCTRL = (module->QDCTRL & ~ FTM_QDCTRL_QUADEN_MASK) | FTM_QDCTRL_QUADEN(0);
+	if(module == FTM0){
+		module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN0_MASK)|FTM_COMBINE_DECAPEN0(0);
+		module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE0_MASK )|FTM_COMBINE_COMBINE0(0);
+	}else if(module == FTM3){
+		module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN3_MASK)|FTM_COMBINE_DECAPEN3(0);
+		module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE3_MASK )|FTM_COMBINE_COMBINE3(0);
 	}
+
+	if(PWM_type == EDGE_ALIGNED_PWM){
+		module->SC=(module->SC & ~FTM_SC_CPWMS_MASK)|FTM_SC_CPWMS(0);
+		module->CONTROLS[channel].CnSC = (FTM0->CONTROLS[channel].CnSC & ~ FTM_CnSC_MSB_MASK)| FTM_CnSC_MSB(1);
+
+	}else if(PWM_type == CENTER_ALIGNED_PWM){
+		module->SC=(module->SC & ~FTM_SC_CPWMS_MASK)|FTM_SC_CPWMS(1);
+	}
+
+	bool elsb = (mode&(1<<1)) == 1<<1;
+	bool elsa = (mode&(1<<0)) == 1<<0;
+	module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSB_MASK)| FTM_CnSC_ELSB(elsb);
+	module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSA_MASK)| FTM_CnSC_ELSA(elsa);
+
 }
 
 
@@ -263,7 +224,7 @@ void setOC(FTM_Type* module,uint8_t channel){
 
 	initSettings(module, channel,FTM_PSC_x32,0,0xFFFF);
 
-	setChannelnMode(module,channel, FTM_OC_ToggleOutputOnMatch,isOutputCompare);
+	setChannelnModeForIcOrOC(module,channel, FTM_OC_ToggleOutputOnMatch,isOutputCompare);
 
 	FTM_EnableInterrupts(module, channel);
 
@@ -283,7 +244,7 @@ void setIC(FTM_Type* module,uint8_t channel){
 
 	initSettings(module, channel,FTM_PSC_x32,0,0xFFFF);
 
-	setChannelnMode(module,channel, FTM_IC_CaptureOnEitherEdge,isOutputCompare);
+	setChannelnModeForIcOrOC(module,channel, FTM_IC_CaptureOnEitherEdge,isOutputCompare);
 
 	FTM_EnableInterrupts(module, channel);
 
@@ -314,7 +275,38 @@ void ftmInit(void){
 	FTM3->PWMLOAD = FTM_PWMLOAD_LDOK_MASK | 0x0F;
 
 	setIC(FTM3,5); // module = FTM3 , channel = 5
-	//setOC(FTM0,0); // module = FTM0, channel = 0
+//	setOC(FTM0,0); // module = FTM0, channel = 0
 	setAlignedPWM(FTM0, 0);
 
 }
+
+
+
+
+
+/*
+ * Este código era un código ejemplo para poder ver las interrupciones por overflow del contador
+void OVF_ISR(void)
+{
+	FTM_Type* ftm_mod = FTM0;
+	ftm_mod->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
+	gpioToggle(PIN_FTM_TEST_OVF);
+}
+
+
+void OVF_Init(){
+	configPinFtm(PIN_FTM_TEST_OVF,GPIO_ALTERNATIVE); // configuramos pin a togglear cuando hace overflow el contador
+	gpioMode(PIN_FTM_TEST_OVF, OUTPUT);
+	configFtmModuleForOverFlowInterrupts(FTM0);
+}
+
+void configFtmModuleForOverFlowInterrupts(FTM_Type * ftm_mod){
+	ftm_mod->MODE=(ftm_mod->MODE & ~FTM_MODE_FTMEN_MASK) | FTM_MODE_FTMEN(1); ///  Enable Timer advanced modes
+	ftm_mod->SC = (ftm_mod->SC & ~FTM_SC_PS_MASK) | FTM_SC_PS(0); // seteamos el prescaler (divide por 2**(n)) lo que sea que este en CLKS
+	ftm_mod->CNTIN=0x00; // es importante inicializarlo antes de setear el modulo
+	ftm_mod->MOD=50-1;
+	ftm_mod->SC = (FTM0->SC & ~FTM_SC_TOIE_MASK) | FTM_SC_TOIE(1); // habilitamos la interrupcion del timeroverflow
+	ftm_mod->SC |= FTM_SC_CLKS(0x01); // seleccionamos system clock , pdria haber sido un frec fija de clock o clk ext
+}
+
+*/

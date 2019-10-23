@@ -59,6 +59,9 @@ void OC_ISR(void);
 
 void configPinFtm(pin_t pin, uint8_t mux_alt);
 
+
+uint32_t FTM_GetCounter(FTM_Type* ftm, uint8_t channel);
+
 void ftmInit(void);
 
 
