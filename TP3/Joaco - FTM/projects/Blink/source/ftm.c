@@ -10,15 +10,19 @@ FTM_Type * ftm_pointers[] = FTM_BASE_PTRS;
 static SIM_Type* sim_ptr = SIM;
 static PORT_Type* portPointers[] = PORT_BASE_PTRS;
 
-uint16_t OC_Delta = 200;
+uint16_t OC_Delta = 100;
 
+#define PWM_MOD 10000-1
+#define PWM_DUTY_CYCLE PWM_MOD-2000
 
 /* FTM0 fault, overflow and channels interrupt handler*/
+
 
 __ISR__ FTM0_IRQHandler(void)
 {
 	//OVF_ISR(); si tuviera habilitadas las de overflow usaria esto
-	OC_ISR();
+	//OC_ISR();
+	PWM_ISR();
 }
 
 /* FTM3 fault, overflow and channels interrupt handler*/
@@ -26,6 +30,23 @@ __ISR__ FTM0_IRQHandler(void)
 __ISR__ FTM3_IRQHandler(void)
 {
 	IC_ISR();
+}
+
+void PWM_ISR (void)
+{
+	uint8_t channel = 0;
+	FTM_Type * ftm_module = FTM0;
+
+	if ((ftm_module->SC & FTM_SC_TOF_MASK) == FTM_SC_TOF_MASK ){ // CNT == MOD
+		ftm_module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
+
+	}
+
+	if((ftm_module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK){// CNT = CnV
+		FTM_ClearInterruptFlag(ftm_module, channel);
+	}
+
+
 }
 
 
@@ -73,7 +94,8 @@ void OC_ISR(void)  //FTM0 CH0 PTC8 as GPIO
 	if((ftm_module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK){
 		FTM_ClearInterruptFlag(ftm_module, channel);
 		gpioToggle(PIN_GPIO_TEST);
-		FTM_SetCounter(ftm_module,channel,FTM_GetCounter (ftm_module, channel)+ OC_Delta); // OC + oc_Delta --> oc
+
+//		FTM_SetCounter(ftm_module,channel,FTM_GetCounter (ftm_module, channel)+ OC_Delta); // OC + oc_Delta --> oc
 	}
 	if((ftm_module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
 		ftm_module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
@@ -130,6 +152,7 @@ void configFtmModuleForOverFlowInterrupts(FTM_Type * ftm_mod){
 	ftm_mod->SC = (FTM0->SC & ~FTM_SC_TOIE_MASK) | FTM_SC_TOIE(1); // habilitamos la interrupcion del timeroverflow
 	ftm_mod->SC |= FTM_SC_CLKS(0x01); // seleccionamos system clock , pdria haber sido un frec fija de clock o clk ext
 }
+
 /*
 void OVF_Init(){
 	configPinFtm(PIN_FTM_TEST_OVF,GPIO_ALTERNATIVE); // configuramos pin a togglear cuando hace overflow el contador
@@ -160,16 +183,78 @@ void setChannelnMode(FTM_Type* module,uint8_t channel, uint8_t mode, bool isOutp
 	module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSA_MASK)| FTM_CnSC_ELSA(elsa);
 }
 
+void setChannelnModeForPwm(FTM_Type* module,uint8_t channel, uint8_t mode, uint8_t PWM_type){
+	if(PWM_type == EDGE_ALIGNED_PWM){
+		module->QDCTRL = (module->QDCTRL & ~ FTM_QDCTRL_QUADEN_MASK) | FTM_QDCTRL_QUADEN(0);
+		if(module == FTM0){
+			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN0_MASK)|FTM_COMBINE_DECAPEN0(0);
+			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE0_MASK )|FTM_COMBINE_COMBINE0(0);
+		}else if(module == FTM3){
+			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN3_MASK)|FTM_COMBINE_DECAPEN3(0);
+			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE3_MASK )|FTM_COMBINE_COMBINE3(0);
+		}
+
+		module->SC=(module->SC & ~FTM_SC_CPWMS_MASK)|FTM_SC_CPWMS(0);
+
+		module->CONTROLS[channel].CnSC = (FTM0->CONTROLS[channel].CnSC & ~ FTM_CnSC_MSB_MASK)| FTM_CnSC_MSB(1);
+		module->CONTROLS[channel].CnSC = (FTM0->CONTROLS[channel].CnSC & ~ FTM_CnSC_MSA_MASK)| FTM_CnSC_MSA(0); // este no importa supuestamente
+
+		bool elsb = (mode&(1<<1)) == 1<<1;
+		bool elsa = (mode&(1<<0)) == 1<<0;
+		module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSB_MASK)| FTM_CnSC_ELSB(elsb);
+		module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSA_MASK)| FTM_CnSC_ELSA(elsa);
+	}else if(PWM_type == CENTER_ALIGNED_PWM){
+		module->QDCTRL = (module->QDCTRL & ~ FTM_QDCTRL_QUADEN_MASK) | FTM_QDCTRL_QUADEN(0);
+		if(module == FTM0){
+			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN0_MASK)|FTM_COMBINE_DECAPEN0(0);
+			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE0_MASK )|FTM_COMBINE_COMBINE0(0);
+		}else if(module == FTM3){
+			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_DECAPEN3_MASK)|FTM_COMBINE_DECAPEN3(0);
+			module->COMBINE=(module->COMBINE & ~FTM_COMBINE_COMBINE3_MASK )|FTM_COMBINE_COMBINE3(0);
+		}
+
+		module->SC=(module->SC & ~FTM_SC_CPWMS_MASK)|FTM_SC_CPWMS(1);
+
+		module->CONTROLS[channel].CnSC = (FTM0->CONTROLS[channel].CnSC & ~ FTM_CnSC_MSB_MASK)| FTM_CnSC_MSB(0); // no importan MSB ni MSA
+		module->CONTROLS[channel].CnSC = (FTM0->CONTROLS[channel].CnSC & ~ FTM_CnSC_MSA_MASK)| FTM_CnSC_MSA(0); //
+
+		bool elsb = (mode&(1<<1)) == 1<<1;
+		bool elsa = (mode&(1<<0)) == 1<<0;
+		module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSB_MASK)| FTM_CnSC_ELSB(elsb);
+		module->CONTROLS[channel].CnSC = (module->CONTROLS[channel].CnSC & ~ FTM_CnSC_ELSA_MASK)| FTM_CnSC_ELSA(elsa);
+	}
+}
+
 
 void initSettings(FTM_Type* module,uint8_t channel, uint8_t prescaler,uint16_t initial, uint16_t final){
+	module->MODE = (module->MODE  & ~FTM_MODE_WPDIS_MASK)| FTM_MODE_WPDIS(1);// desactivo write protection (poniendo 1)
 	module->MODE = (module->MODE  & ~FTM_MODE_FTMEN_MASK)| FTM_MODE_FTMEN_MASK;//pongo el ftmen en 1
 	module->SC = (module->SC 	 & ~FTM_SC_PS_MASK) 	| FTM_SC_PS(prescaler); //indico que utilizo el sitem clock 50M
 	module->SC = (module->SC 	 & ~FTM_SC_TOIE_MASK) 	| FTM_SC_TOIE_MASK;//habilito la interrupcion de overflow
 	module->MOD = (module->MOD 	 & ~FTM_MOD_MOD_MASK)	| FTM_MOD_MOD(final);//seteo el valor al que llega el contador
 	module->CNTIN = (module->CNTIN & ~FTM_CNTIN_INIT_MASK)| FTM_CNTIN_INIT(initial);//seteo el valor inicial del contador
+	//module->CNT = 0;
 }
 
 
+void setAlignedPWM(FTM_Type* module,uint8_t channel){
+	FTM_DisableClock(module);
+
+	initSettings(module, channel,FTM_PSC_x32,0,PWM_MOD);
+
+	setChannelnModeForPwm(module, channel, FTM_EA_PWM_SetOutputOnMatchUp, EDGE_ALIGNED_PWM);
+	module->CONTROLS[channel].CnV = PWM_DUTY_CYCLE;
+
+	FTM_EnableInterrupts(module, channel);
+
+	FTM_SetClock(module);
+
+	NVIC_EnableIRQ(FTM0_IRQn);
+
+	configPinFtm(PIN_OUTPUT_CAPTURE,4);
+	configPinFtm(PIN_GPIO_TEST,1);
+	gpioMode(PIN_GPIO_TEST, OUTPUT);
+}
 
 
 void setOC(FTM_Type* module,uint8_t channel){
@@ -223,7 +308,13 @@ void ftmInit(void){
 	sim_ptr->SCGC5 |= SIM_SCGC5_PORTD_MASK; // clk gating de los pines puerto D y C
 	sim_ptr->SCGC5 |= SIM_SCGC5_PORTC_MASK;
 
+	FTM0->PWMLOAD = FTM_PWMLOAD_LDOK_MASK | 0x0F;
+	FTM1->PWMLOAD = FTM_PWMLOAD_LDOK_MASK | 0x0F;
+	FTM2->PWMLOAD = FTM_PWMLOAD_LDOK_MASK | 0x0F;
+	FTM3->PWMLOAD = FTM_PWMLOAD_LDOK_MASK | 0x0F;
+
 	setIC(FTM3,5); // module = FTM3 , channel = 5
-	setOC(FTM0,0); // module = FTM0, channel = 0
+	//setOC(FTM0,0); // module = FTM0, channel = 0
+	setAlignedPWM(FTM0, 0);
 
 }

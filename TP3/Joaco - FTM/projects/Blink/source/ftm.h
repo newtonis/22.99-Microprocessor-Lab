@@ -32,6 +32,17 @@ enum{FTM_OC_ToggleOutputOnMatch=1,
 	FTM_OC_SetOutputOnMatch
 };
 
+enum{EDGE_ALIGNED_PWM,
+	CENTER_ALIGNED_PWM
+};
+
+enum{FTM_CA_PWM_ClearOutputOnMatch = 2,
+	FTM_CA_PWM_SetOutputOnMatch
+};
+
+enum{FTM_EA_PWM_ClearOutputOnMatchUp = 2,
+	FTM_EA_PWM_SetOutputOnMatchUp
+};
 
 
 #define GPIO_ALTERNATIVE 1
