@@ -8,6 +8,7 @@ C_SRCS += \
 ../source/App.c \
 ../source/DAC.c \
 ../source/Modulador.c \
+../source/PIT.c \
 ../source/SysTick.c \
 ../source/gpio.c \
 ../source/timer.c 
@@ -17,6 +18,7 @@ OBJS += \
 ./source/App.o \
 ./source/DAC.o \
 ./source/Modulador.o \
+./source/PIT.o \
 ./source/SysTick.o \
 ./source/gpio.o \
 ./source/timer.o 
@@ -26,6 +28,7 @@ C_DEPS += \
 ./source/App.d \
 ./source/DAC.d \
 ./source/Modulador.d \
+./source/PIT.d \
 ./source/SysTick.d \
 ./source/gpio.d \
 ./source/timer.d 

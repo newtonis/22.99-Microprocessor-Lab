@@ -6,14 +6,14 @@
  */
 #include "Modulador.h"
 #include "DAC.h"
-#include "timer.h"
+#include "PIT.h"
 #include "math.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-#define SIN_VALUES	90
+#define SIN_VALUES	83
 
 #define NEXT_SYM	2
 #define START		1
@@ -22,8 +22,6 @@
 #define SIN0		0
 #define SIN1		1
 
-static tim_id_t timerSin0;
-static tim_id_t timerSin1;
 
 static uint16_t sinValues[SIN_VALUES];
 static uint16_t cont = 0;
@@ -57,9 +55,7 @@ void Modulador_init(void(*funcallback)(void))
 
 	DAC_setData(2048); // Por default VCC/2
 
-	timerInit();
-	timerSin0 = timerGetId();
-	timerSin1 = timerGetId();
+	PIT_init(sendSin0, sendSin1); // Configuracion de PIT
 
 	// Generacion de valores de señal de salida
 	for(int i = 0; i < SIN_VALUES; i++)
@@ -151,27 +147,13 @@ void sendSin0(void)
 
 void configTimerSin(uint8_t symbol, bool option)
 {
-	switch (symbol) {
-		case SIN0:
-			if(option == START)
-			{
-				timerStart(timerSin0, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, sendSin0);
-			}
-			else if(option == STOP)
-			{
-				timerStop(timerSin0);
-			}
-			break;
-		case SIN1:
-			if(option == START)
-			{
-				timerStart(timerSin1, TIMER_MS2TICKS(2), TIM_MODE_PERIODIC, sendSin1);
-			}
-			else if(option == STOP)
-			{
-				timerStop(timerSin1);
-			}
-			break;
+	if(option == START)
+	{
+		PIT_startTime(symbol);
+	}
+	else if(option == STOP)
+	{
+		PIT_stopTime(symbol);
 	}
 }
 /*******************************************************************************
