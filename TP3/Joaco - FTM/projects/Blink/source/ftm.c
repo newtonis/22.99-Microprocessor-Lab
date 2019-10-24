@@ -6,18 +6,17 @@
  */
 #include "ftm.h"
 
-static FTM_Type * ftm_pointers[] = FTM_BASE_PTRS;
+
 static SIM_Type* sim_ptr = SIM;
 static PORT_Type* portPointers[] = PORT_BASE_PTRS;
 
 uint16_t OC_Delta = 100;
 
 #define PWM_MOD 10000-1
-#define PWM_DUTY_CYCLE PWM_MOD-2000
+#define PWM_DUTY_CYCLE 1000
 
-static uint16_t PWM_MODS[] = {1000,1000,1000};
-static uint16_t PWM_DUTYS[] = {100,500,900};
 
+static uint16_t dutys[]={0,25,75};
 
 /* FTM0 fault, overflow and channels interrupt handler*/
 
@@ -39,39 +38,47 @@ __ISR__ FTM3_IRQHandler(void)
 void PWM_ISR (void)
 {
 	uint8_t channel = 0;
-	FTM_Type * ftm_module = FTM0;
-
-	if ((ftm_module->SC & FTM_SC_TOF_MASK) == FTM_SC_TOF_MASK ){ // CNT == MOD
-		ftm_module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
+	FTM_Type * module = FTM0;
+	static uint8_t DCPercent = 1;
 
 
+	if (isTimerOverFlowInterrupt(module)){ // CNT == MOD
+		clearTimerOverFlowFlag(module);
+		DCPercent++;
+		DCPercent%=3;
+		gpioToggle(PIN_GPIO_TEST);
+		updateDuty(module, channel, dutys[DCPercent]);
 	}
 
-	if((ftm_module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK){// CNT = CnV
-		FTM_ClearInterruptFlag(ftm_module, channel);
-		/*
-		for(int i =0 ; i<5 ; i++){
-			ftm_module->MOD = (ftm_module->MOD 	 & ~FTM_MOD_MOD_MASK)	| FTM_MOD_MOD(PWM_MODS[i]);//seteo el valor al que llega el contador
-			ftm_module->CONTROLS[channel].CnV = PWM_DUTYS[i];
-		}
-		*/
+	if(isChannelnInterrupt(module,channel)){// CNT = CnV
+		FTM_ClearInterruptFlag(module, channel);
 	}
-
-
 }
 
+bool isTimerOverFlowInterrupt(FTM_Type* module){
+	return (module->SC & FTM_SC_TOF_MASK) == FTM_SC_TOF_MASK;
+}
+
+void clearTimerOverFlowFlag(FTM_Type* module){
+	module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
+}
+
+
+bool isChannelnInterrupt(FTM_Type* module, uint8_t channel){
+	return (module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK;
+}
 
 void OC_ISR(void)  //FTM0 CH0 PTC8 as GPIO
 {
 	uint8_t channel = 0 ;
-	FTM_Type * ftm_module = FTM0;
-	if((ftm_module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK){
-		FTM_ClearInterruptFlag(ftm_module, channel);
+	FTM_Type * module = FTM0;
+	if((module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK){
+		FTM_ClearInterruptFlag(module, channel);
 		gpioToggle(PIN_GPIO_TEST);
-		FTM_SetCounter(ftm_module,channel,FTM_GetCounter (ftm_module, channel)+ OC_Delta); // OC + oc_Delta --> oc
+		FTM_SetCounter(module,channel,FTM_GetCounter (module, channel)+ OC_Delta); // OC + oc_Delta --> oc
 	}
-	if((ftm_module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
-		ftm_module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
+	if((module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
+		module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
 	}
 }
 
@@ -79,26 +86,26 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 {
 	static uint16_t med1,med2,med;
 	static uint8_t  state=0;
-	FTM_Type * ftm_module = FTM3;
+	FTM_Type * module = FTM3;
 	uint8_t channel = 5;
 
-	if((ftm_module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK){
-		FTM_ClearInterruptFlag (ftm_module, channel);
+	if((module->CONTROLS[channel].CnSC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK){
+		FTM_ClearInterruptFlag (module, channel);
 		if(state==0)
 		{
-			med1=FTM_GetCounter (ftm_module, channel); //
+			med1=FTM_GetCounter (module, channel); //
 			state=1;
 		}
 		else if(state==1)
 		{
-			med2=FTM_GetCounter (ftm_module, channel);
+			med2=FTM_GetCounter (module, channel);
 			med=med2-med1;
 			state=0;					// Set break point here and watch "med" value
 		}
 	}
 
-	if((ftm_module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
-		ftm_module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
+	if((module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
+		module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
 	}
 
 }
@@ -125,8 +132,8 @@ void FTM_SetCounter (FTM_Type* ftm, uint8_t channel, uint16_t data){
 	ftm->CONTROLS[channel].CnV = FTM_CnV_VAL(data);
 }
 
-void FTM_ClearInterruptFlag (FTM_Type * ftm_module , uint8_t channel){
-	ftm_module->CONTROLS[channel].CnSC &= ~FTM_CnSC_CHF_MASK; // clear interupt status flag
+void FTM_ClearInterruptFlag (FTM_Type * module , uint8_t channel){
+	module->CONTROLS[channel].CnSC &= ~FTM_CnSC_CHF_MASK; // clear interupt status flag
 }
 
 void FTM_SetClock(FTM_Type * module){
@@ -198,15 +205,40 @@ void initSettings(FTM_Type* module,uint8_t channel, uint8_t prescaler,uint16_t i
 }
 
 
+void updateDuty(FTM_Type* module,uint8_t channel, uint8_t DCpercent){
+	uint32_t period_ticks = 0 ;
+	module->PWMLOAD |= FTM_PWMLOAD_LDOK(1) | FTM_PWMLOAD_CH0SEL(1);
+	period_ticks = (module->MOD & FTM_MOD_MOD_MASK) - (module->CNTIN & FTM_CNTIN_INIT_MASK);
+	module->CONTROLS[channel].CnV = (module->CNTIN & FTM_CNTIN_INIT_MASK) + (uint32_t)(period_ticks*DCpercent/100);
+	module->SYNC |= FTM_SYNCONF_SWINVC(1);
+	module->PWMLOAD |= FTM_PWMLOAD_LDOK(1) | FTM_PWMLOAD_CH0SEL(1);
+}
+
+
 void setAlignedPWM(FTM_Type* module,uint8_t channel){
 	FTM_DisableClock(module);
 
 	initSettings(module, channel,FTM_PSC_x32,0,PWM_MOD);
+	setChannelnModeForPwm(module, channel, FTM_EA_PWM_ClearOutputOnMatchUp, EDGE_ALIGNED_PWM);
+	updateDuty(module, channel, 15);
+	//module->CONTROLS[channel].CnV = PWM_DUTY_CYCLE;
 
-	setChannelnModeForPwm(module, channel, FTM_EA_PWM_SetOutputOnMatchUp, EDGE_ALIGNED_PWM);
-	module->CONTROLS[channel].CnV = PWM_DUTY_CYCLE;
+	module->MODE |= FTM_MODE_PWMSYNC(1);
+	module->SYNCONF |= FTM_SYNCONF_SYNCMODE(1);
+	module->SYNCONF |= FTM_SYNCONF_CNTINC(1);
+	module->SYNCONF |= FTM_SYNCONF_SWWRBUF(1);
+	module->SYNCONF |= FTM_SYNCONF_SWRSTCNT(1);
+
+	module->COMBINE |= FTM_COMBINE_SYNCEN0(1);
+
+	module->PWMLOAD |= FTM_PWMLOAD_LDOK(1) | FTM_PWMLOAD_CH0SEL(1);
+
 
 	FTM_EnableInterrupts(module, channel);
+
+
+
+
 
 	FTM_SetClock(module);
 

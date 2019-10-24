@@ -51,6 +51,11 @@ __ISR__ FTM0_IRQHandler(void);
 
 __ISR__ FTM3_IRQHandler(void);
 
+bool isChannelnInterrupt(FTM_Type* module, uint8_t channel);
+
+bool isTimerOverFlowInterrupt(FTM_Type* module);
+
+
 void OVF_ISR(void);
 
 void IC_ISR(void);
@@ -58,6 +63,7 @@ void IC_ISR(void);
 void OC_ISR(void);
 
 void configPinFtm(pin_t pin, uint8_t mux_alt);
+
 
 
 uint32_t FTM_GetCounter(FTM_Type* ftm, uint8_t channel);
