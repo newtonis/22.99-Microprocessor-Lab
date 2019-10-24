@@ -41,7 +41,6 @@ void PWM_ISR (void)
 	FTM_Type * module = FTM0;
 	static uint8_t DCPercent = 1;
 
-
 	if (isTimerOverFlowInterrupt(module)){ // CNT == MOD
 		clearTimerOverFlowFlag(module);
 		DCPercent++;
@@ -207,11 +206,13 @@ void initSettings(FTM_Type* module,uint8_t channel, uint8_t prescaler,uint16_t i
 
 void updateDuty(FTM_Type* module,uint8_t channel, uint8_t DCpercent){
 	uint32_t period_ticks = 0 ;
-	module->PWMLOAD |= FTM_PWMLOAD_LDOK(1) | FTM_PWMLOAD_CH0SEL(1);
+	module->PWMLOAD |= FTM_PWMLOAD_LDOK(1) | FTM_PWMLOAD_CH0SEL(1); // voy a cargar datos! (habilito a cargar en los buffers)
+	// habilita loading de MOD CNT y CV con valores de los buffers de escritura
+	// además el channel 0 esta incluido en el proceso de matcheo (cuando FTM_Counter = CnV)
 	period_ticks = (module->MOD & FTM_MOD_MOD_MASK) - (module->CNTIN & FTM_CNTIN_INIT_MASK);
 	module->CONTROLS[channel].CnV = (module->CNTIN & FTM_CNTIN_INIT_MASK) + (uint32_t)(period_ticks*DCpercent/100);
-	module->SYNC |= FTM_SYNCONF_SWINVC(1);
-	module->PWMLOAD |= FTM_PWMLOAD_LDOK(1) | FTM_PWMLOAD_CH0SEL(1);
+	//module->SYNC |= FTM_SYNCONF_SWINVC(1);
+	//module->PWMLOAD |= FTM_PWMLOAD_LDOK(1) | FTM_PWMLOAD_CH0SEL(1);
 }
 
 
@@ -221,23 +222,19 @@ void setAlignedPWM(FTM_Type* module,uint8_t channel){
 	initSettings(module, channel,FTM_PSC_x32,0,PWM_MOD);
 	setChannelnModeForPwm(module, channel, FTM_EA_PWM_ClearOutputOnMatchUp, EDGE_ALIGNED_PWM);
 	updateDuty(module, channel, 15);
-	//module->CONTROLS[channel].CnV = PWM_DUTY_CYCLE;
 
-	module->MODE |= FTM_MODE_PWMSYNC(1);
-	module->SYNCONF |= FTM_SYNCONF_SYNCMODE(1);
-	module->SYNCONF |= FTM_SYNCONF_CNTINC(1);
-	module->SYNCONF |= FTM_SYNCONF_SWWRBUF(1);
-	module->SYNCONF |= FTM_SYNCONF_SWRSTCNT(1);
+	//module->MODE |= FTM_MODE_PWMSYNC(1); // software trigger solo puede ser usado por MOD yCnv synchronization
+											// hardware triggers pueden ser usados por OUTMASK y FTM counter synchronization
 
-	module->COMBINE |= FTM_COMBINE_SYNCEN0(1);
+	// Pagina 1059 del manual de 1835 paginas!!!!!
+	module->SYNCONF |= FTM_SYNCONF_SYNCMODE(1); // enhanced synch enabled
+	module->SYNCONF |= FTM_SYNCONF_CNTINC(1);  // CNTIN register is updated with its buffer value by the PWM synchronization.
+	module->SYNCONF |= FTM_SYNCONF_SWWRBUF(1); // The software trigger activates MOD, CNTIN, and CV registers synchronization.
+	module->SYNCONF |= FTM_SYNCONF_SWRSTCNT(1); // The software trigger activates the FTM counter synchronization.
 
-	module->PWMLOAD |= FTM_PWMLOAD_LDOK(1) | FTM_PWMLOAD_CH0SEL(1);
-
+	module->COMBINE |= FTM_COMBINE_SYNCEN0(1);  // The PWM synchronization in this pair of channels is enabled. (enrte 0 y 1)
 
 	FTM_EnableInterrupts(module, channel);
-
-
-
 
 
 	FTM_SetClock(module);
