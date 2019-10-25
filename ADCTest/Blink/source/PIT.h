@@ -15,10 +15,10 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-void PIT_init(void(*funcallback0)(void), void(*funcallback1)(void));
+void PIT_init(void);
 
-// Provisorias
-void PIT_set0Time(void);
+// En value va el tiempo dividido por 20ns (hacer la cuenta aparte)
+void PIT_configTimer(uint8_t id, uint16_t value, void(*funcallback)(void));
 
 void PIT_startTime(uint8_t timer_id);
 

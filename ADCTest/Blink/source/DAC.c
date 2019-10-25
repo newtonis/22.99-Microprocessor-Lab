@@ -50,7 +50,7 @@ void DAC_init(void)
 					 DAC_C1_DACBFEN_MASK);
 	DAC0_ptr->C1 |= (DAC_C1_DMAEN(0) |			// DMA disabled
 					 DAC_C1_DACBFMD(0) |		// Normal Mode (circular buffer)
-					 DAC_C1_DACBFEN(0));		// Buffer PROVISORIAMENTE DESHABILITADO
+					 DAC_C1_DACBFEN(0));		// Buffer Disabled
 
 
 }
@@ -60,7 +60,6 @@ void DAC_setData(DACDATA_t data)
 	DAC0_ptr->DAT->DATL = DAC_DATL_DATA0(data);
 	DAC0_ptr->DAT->DATH = DAC_DATH_DATA1(data >> DACData_LOW_LEN);
 }
-
 
 /*******************************************************************************
  ******************************************************************************/

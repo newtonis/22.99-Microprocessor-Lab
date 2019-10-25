@@ -22,47 +22,41 @@ void (*callback1)(void);
  *******************************************************************************
  ******************************************************************************/
 
-void PIT_init(void(*funcallback0)(void), void(*funcallback1)(void))
+void PIT_init(void)
 {
 	// Clock Gating
 	sim_ptr->SCGC6 |= SIM_SCGC6_PIT_MASK;
 
-	NVIC_EnableIRQ(PIT0_IRQn);
-	NVIC_EnableIRQ(PIT1_IRQn);
-
-	callback0 = funcallback0;
-	callback1 = funcallback1;
-
 	PIT_ptr->MCR &= ~(PIT_MCR_MDIS_MASK | PIT_MCR_FRZ_MASK);
 	PIT_ptr->MCR |= (PIT_MCR_MDIS(0) | PIT_MCR_FRZ(1));
+}
 
-	PIT_ptr->CHANNEL[0].LDVAL = (PIT_LDVAL_TSV(250 - 1));
+void PIT_configTimer(uint8_t id, uint16_t value, void(*funcallback)(void))
+{
+	switch (id) {
+		case 0:
+			NVIC_EnableIRQ(PIT0_IRQn);
+			callback0 = funcallback;
+			break;
+		case 1:
+			NVIC_EnableIRQ(PIT1_IRQn);
+			callback1 = funcallback;
+			break;
+	}
+	PIT_ptr->CHANNEL[id].LDVAL = (PIT_LDVAL_TSV(value - 1));
 
-	PIT_ptr->CHANNEL[0].TCTRL &= ~(PIT_TCTRL_CHN_MASK);
-	PIT_ptr->CHANNEL[0].TCTRL |=(PIT_TCTRL_CHN(0));
+	PIT_ptr->CHANNEL[id].TCTRL &= ~(PIT_TCTRL_CHN_MASK);
+	PIT_ptr->CHANNEL[id].TCTRL |=(PIT_TCTRL_CHN(0));
 
-	PIT_ptr->CHANNEL[0].TCTRL &= ~(PIT_TCTRL_TIE_MASK);
-	PIT_ptr->CHANNEL[0].TCTRL |=(PIT_TCTRL_TIE(0));
+	PIT_ptr->CHANNEL[id].TCTRL &= ~(PIT_TCTRL_TIE_MASK);
+	PIT_ptr->CHANNEL[id].TCTRL |=(PIT_TCTRL_TIE(0));
 
-	PIT_ptr->CHANNEL[0].TCTRL &= ~(PIT_TCTRL_TEN_MASK);
-	PIT_ptr->CHANNEL[0].TCTRL |=(PIT_TCTRL_TEN(0));
-
-	PIT_ptr->CHANNEL[1].LDVAL = (PIT_LDVAL_TSV(500 - 1));
-
-	PIT_ptr->CHANNEL[1].TCTRL &= ~(PIT_TCTRL_CHN_MASK);
-	PIT_ptr->CHANNEL[1].TCTRL |=(PIT_TCTRL_CHN(0));
-
-	PIT_ptr->CHANNEL[1].TCTRL &= ~(PIT_TCTRL_TIE_MASK);
-	PIT_ptr->CHANNEL[1].TCTRL |=(PIT_TCTRL_TIE(0));
-
-	PIT_ptr->CHANNEL[1].TCTRL &= ~(PIT_TCTRL_TEN_MASK);
-	PIT_ptr->CHANNEL[1].TCTRL |=(PIT_TCTRL_TEN(0));
+	PIT_ptr->CHANNEL[id].TCTRL &= ~(PIT_TCTRL_TEN_MASK);
+	PIT_ptr->CHANNEL[id].TCTRL |=(PIT_TCTRL_TEN(0));
 }
 
 void PIT0_IRQHandler(void)
 {
-	//uint32_t flag = PIT_ptr->CHANNEL[0].TFLG;
-
 	callback0();
 
 	PIT_ptr->CHANNEL[0].TFLG = PIT_TFLG_TIF(1);
@@ -70,8 +64,6 @@ void PIT0_IRQHandler(void)
 
 void PIT1_IRQHandler(void)
 {
-	//uint32_t flag = PIT_ptr->CHANNEL[1].TFLG;
-
 	callback1();
 
 	PIT_ptr->CHANNEL[1].TFLG = PIT_TFLG_TIF(1);

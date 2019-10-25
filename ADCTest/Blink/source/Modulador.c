@@ -55,7 +55,10 @@ void Modulador_init(void(*funcallback)(void))
 
 	DAC_setData(2048); // Por default VCC/2
 
-	PIT_init(sendSin0, sendSin1); // Configuracion de PIT
+	PIT_init();
+
+	PIT_configTimer(0, 250, sendSin0);
+	PIT_configTimer(1, 500, sendSin1);
 
 	// Generacion de valores de señal de salida
 	for(int i = 0; i < SIN_VALUES; i++)
@@ -98,6 +101,7 @@ void procesBitStream(uint8_t command)
 void sendSin1(void)
 {
 	DAC_setData(sinValues[cont]);
+
 	cont++;
 	if(cont == SIN_VALUES)
 	{
@@ -123,6 +127,7 @@ void sendSin1(void)
 void sendSin0(void)
 {
 	DAC_setData(sinValues[cont]);
+
 	cont++;
 	if(cont == SIN_VALUES)
 	{
