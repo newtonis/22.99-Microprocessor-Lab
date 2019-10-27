@@ -88,6 +88,47 @@ void write2BuffLogic(uint8_t a0, uint8_t a1, uint8_t threshold){
     }
 }
 
+void decodeDutys(uint8_t input){
+    if(status==NOT_TAKEN_SYMBOLS){
+        if(isValidA0(input,10)){
+            a0 = input;
+            status = FIRST_DC_TAKEN;
+        }
+    }else if(status == FIRST_DC_TAKEN){
+        if(isValidA1(a0,input,10)){
+            a1 = input;
+            status = SECOND_DC_TAKEN;
+        }else{
+            if(isNumberN(100,input,10)) { // si era valido a0 pero es el seugndo caracter
+                if(isNumberN(50,a0, 10)){ // si de 50 pasa a 100, entonces antes era 50,50 y ahora agarro 100
+                    write2BuffLogic(50,50,10);
+                }
+                a0 = 100;
+                status = FIRST_DC_TAKEN;
+            }else if(isNumberN(50, input, 10)){ // si de 0 pasa a 50
+                if(isZero(a0,10)){              // asumo que nates hubo un 100, 0 y ahora viene
+                    write2BuffLogic(100,0,10);  //
+                }
+                a0 = 50;
+                status = FIRST_DC_TAKEN;
+            }else{
+                // si fue totalmente invalido el input predigo qué va a venir
+                if(isNumberN(100,a0,10)){
+                    a1= 0;
+                }else if(isNumberN(50,a0,10)){
+                    a1= 50;
+                }
+                status = SECOND_DC_TAKEN;
+            }
+        }
+    }
+    if(status == SECOND_DC_TAKEN){
+        write2BuffLogic(a0,a1,10);
+        status = NOT_TAKEN_SYMBOLS;
+    }
+}
+
+
 int main() {
 
     uint8_t input;
@@ -95,7 +136,7 @@ int main() {
     // la logica funciona mientras sean números validos de duty.
     // voy a pasar los datos "on the fly" (es decir, duty tras duty)
 
-    uint8_t data[] ={55, 55, 100,0, 45, 52, 95, 5, 99, 0}; // esto sería 0 1 0 1 1
+    //uint8_t data[] ={55, 55, 100,0, 45, 52, 95, 5, 99, 0}; // esto sería 0 1 0 1 1
 
     // caso en el que viene mal el segundo y tiene que predecir en base a a0:
     //uint8_t data[] ={55, 33, 100,0, 45, 52, 95, 5, 99, 0}; // esto sería 0 1 0 1 1
@@ -104,48 +145,19 @@ int main() {
     //uint8_t data[] ={55, 100, 0, 55, 45, 100, 0, 50, 50}; // esto sería 0 1 0 1 0
     // en este caso, me re sincronizo y empieza a funcionar normal de nuevo desde 100,0
 
+    // hay un caso que estoy considerando y es cuando por alguna razon se
+    // desincroniza en el medio
+    // por ej
+    // 55, 100 ,0 ,basura, 100, 0 , 50 , 50 , 50
+
+    uint8_t data[] ={55, 100, 0, 33, 100, 0, 50, 50, 50};
+                    //0     1    x      1      0     x
 
     bool message_received =  true;
     for(int  i =0 ; i< (sizeof(data)); i++){ // con esto simulo los datos on the fly!! (no son buffer, cuidado!)
         input = data[i];
         if (message_received){
-            if(status==NOT_TAKEN_SYMBOLS){
-                if(isValidA0(input,10)){
-                    a0 = input;
-                    status = FIRST_DC_TAKEN;
-                }
-            }else if(status == FIRST_DC_TAKEN){
-                if(isValidA1(a0,input,10)){
-                    a1 = input;
-                    status = SECOND_DC_TAKEN;
-                }else{
-                    if(isNumberN(100,input,10)) { // si era valido a0 pero es el seugndo caracter
-                        if(isNumberN(50,a0, 10)){ // si de 50 pasa a 100, entonces antes era 50,50 y ahora agarro 100
-                            write2BuffLogic(50,50,10);
-                        }
-                        a0 = 100;
-                        status = FIRST_DC_TAKEN;
-                    }else if(isNumberN(50, input, 10)){ // si de 0 pasa a 50
-                        if(isZero(a0,10)){              // asumo que nates hubo un 100, 0 y ahora viene
-                            write2BuffLogic(100,0,10);  //
-                        }
-                        a0 = 50;
-                        status = FIRST_DC_TAKEN;
-                    }else{
-                        // si fue totalmente invalido el input predigo qué va a venir
-                        if(isNumberN(100,a0,10)){
-                            a1= 0;
-                        }else if(isNumberN(50,a0,10)){
-                            a1= 50;
-                        }
-                        status = SECOND_DC_TAKEN;
-                    }
-                }
-            }
-            if(status == SECOND_DC_TAKEN){
-                write2BuffLogic(a0,a1,10);
-                status = NOT_TAKEN_SYMBOLS;
-            }
+            decodeDutys(input);
         }
     }
     cout << "hello" << endl;
