@@ -9,9 +9,8 @@ C_SRCS += \
 ../source/DAC.c \
 ../source/Modulador.c \
 ../source/PIT.c \
-../source/SysTick.c \
-../source/gpio.c \
-../source/timer.c 
+../source/ftm.c \
+../source/gpio.c 
 
 OBJS += \
 ./source/ADC.o \
@@ -19,9 +18,8 @@ OBJS += \
 ./source/DAC.o \
 ./source/Modulador.o \
 ./source/PIT.o \
-./source/SysTick.o \
-./source/gpio.o \
-./source/timer.o 
+./source/ftm.o \
+./source/gpio.o 
 
 C_DEPS += \
 ./source/ADC.d \
@@ -29,9 +27,8 @@ C_DEPS += \
 ./source/DAC.d \
 ./source/Modulador.d \
 ./source/PIT.d \
-./source/SysTick.d \
-./source/gpio.d \
-./source/timer.d 
+./source/ftm.d \
+./source/gpio.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
