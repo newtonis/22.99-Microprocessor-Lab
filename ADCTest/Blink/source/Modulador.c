@@ -6,6 +6,7 @@
  */
 #include "Modulador.h"
 #include "ftm.h"
+#include "DMA.h"
 #include "math.h"
 
 /*******************************************************************************
@@ -40,6 +41,8 @@ void sendSignal(void);
 
 void procesBitStream(uint8_t command); // El comando puede ser START o NEXT_SYM
 
+void setNextBit(void);
+
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -53,13 +56,31 @@ void Modulador_init(void(*funcallback)(void))
 	// Generacion de valores de señal de salida
 	for(int i = 0; i < SIN_VALUES; i++) // Mark 0
 	{
-		sinValues[i] = 2048*(1 + sin(2*2*3.141592*i/SIN_VALUES));
-		sinValues1[i] = 2048*(1 + sin(2*3.141592*i/SIN_VALUES));
+		sinValues[i] = 2048*(1 + sin(2*2*3.141592*i/SIN_VALUES))/41;
+		if(sinValues[i] == 0)
+		{
+			sinValues[i] = sinValues[i] + 1;
+		}
+		sinValues1[i] = 2048*(1 + sin(2*3.141592*i/SIN_VALUES))/41;
+		if(sinValues1[i] == 0)
+		{
+			sinValues1[i] = sinValues1[i] + 1;
+		}
 	}
 
 	ftmInit(sendSignal);
 	setDuty(V_LEVEL); // Valor medio por default
+
+	//////////// Ejemplo para DMA ////////////
+	FTM_DmaMode(FTM0, 0, 1); // DMA ON
+
+	DMA_Config(sinValues, getDutyAddress(), setNextBit);
+
+	DMA_ConfigCounters(sizeof(sinValues), sizeof(sinValues[0]));
+
+	DMA_DisableRequest();
 }
+
 
 void Modulador_sendStream(bool *stream)
 {
@@ -75,6 +96,15 @@ void procesBitStream(uint8_t command)
 {
 	switch (command) {
 		case START:
+			if(bitStream[msg_ptr] == SIN0)
+			{
+				DMA_ConfigSourceAddress(sinValues);
+			}
+			else
+			{
+				DMA_ConfigSourceAddress(sinValues1);
+			}
+			DMA_EnableRequest();
 			is_Tx = true;
 			break;
 		case NEXT_SYM:
@@ -84,10 +114,20 @@ void procesBitStream(uint8_t command)
 				msg_ptr = 0;
 				is_Tx = false;
 				setDuty(V_LEVEL);
+				DMA_DisableRequest();
 				MsgSendedCallback(); // Avisa que termino de mandar la señal modulada
 			}
 			else
 			{
+				if(bitStream[msg_ptr] == SIN0)
+				{
+					DMA_ConfigSourceAddress(sinValues);
+				}
+				else
+				{
+					DMA_ConfigSourceAddress(sinValues1);
+				}
+				DMA_EnableRequest();
 				msg_ptr;
 				// NO TERMINO DE ENVIARSE EL DATO
 			}
@@ -95,16 +135,24 @@ void procesBitStream(uint8_t command)
 	}
 }
 
+void setNextBit(void)
+{
+	DMA_DisableRequest();
+	procesBitStream(NEXT_SYM);
+}
+
 void sendSignal(void)
 {
+	msg_ptr;
+	/*
 	if(is_Tx)
 	{
 		switch (bitStream[msg_ptr]) {
 			case 0:
-				setDuty(sinValues[cont]/41);
+				setDuty(sinValues[cont]);
 				break;
 			case 1:
-				setDuty(sinValues1[cont]/41);
+				setDuty(sinValues1[cont]);
 				break;
 		}
 
@@ -119,7 +167,5 @@ void sendSignal(void)
 			// NO TERMINO DE TRANSMITIR
 		}
 	}
+	*/
 }
-
-/*******************************************************************************
- ******************************************************************************/

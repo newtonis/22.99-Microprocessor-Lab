@@ -7,6 +7,7 @@ C_SRCS += \
 ../source/ADC.c \
 ../source/App.c \
 ../source/DAC.c \
+../source/DMA.c \
 ../source/Modulador.c \
 ../source/PIT.c \
 ../source/ftm.c \
@@ -16,6 +17,7 @@ OBJS += \
 ./source/ADC.o \
 ./source/App.o \
 ./source/DAC.o \
+./source/DMA.o \
 ./source/Modulador.o \
 ./source/PIT.o \
 ./source/ftm.o \
@@ -25,6 +27,7 @@ C_DEPS += \
 ./source/ADC.d \
 ./source/App.d \
 ./source/DAC.d \
+./source/DMA.d \
 ./source/Modulador.d \
 ./source/PIT.d \
 ./source/ftm.d \

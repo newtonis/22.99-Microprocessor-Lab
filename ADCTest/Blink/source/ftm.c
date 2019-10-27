@@ -20,7 +20,10 @@ void (*callback)(void);
 static uint16_t dutys = 0;
 
 /* FTM0 fault, overflow and channels interrupt handler*/
-
+uint16_t* getDutyAddress(void)
+{
+	return &dutys;
+}
 
 __ISR__ FTM0_IRQHandler(void)
 {
@@ -46,7 +49,7 @@ void PWM_ISR (void)
 		clearTimerOverFlowFlag(module);
 		gpioToggle(PIN_GPIO_TEST);
 		updateDuty(module, channel, dutys);
-		callback();
+		//callback();
 	}
 
 	if(isChannelnInterrupt(module,channel)){// CNT = CnV
@@ -289,6 +292,11 @@ void setIC(FTM_Type* module,uint8_t channel){
 	configPinFtm(PIN_INPUT_CAPTURE, 3);
 }
 
+void FTM_DmaMode (FTM_Type* ftm, uint8_t channel, bool dma_mode)
+{
+	ftm->CONTROLS[channel].CnSC = (ftm->CONTROLS[channel].CnSC & ~(FTM_CnSC_DMA_MASK)) |
+			                      (FTM_CnSC_DMA(dma_mode));
+}
 
 void ftmInit(void (*funcallback)(void)){
 	callback = funcallback;

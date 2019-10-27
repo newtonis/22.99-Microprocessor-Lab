@@ -72,5 +72,8 @@ void ftmInit(void (*funcallback)(void));
 
 void setDuty(uint8_t duty_cycle);
 
+void FTM_DmaMode (FTM_Type* ftm, uint8_t channel, bool dma_mode);
+
+uint16_t* getDutyAddress(void);
 
 #endif /* FTM_H_ */
