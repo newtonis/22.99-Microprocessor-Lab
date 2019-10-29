@@ -1,0 +1,22 @@
+
+
+#ifndef BUFFERCIRCULAR_H_
+#define BUFFERCIRCULAR_H_
+
+#include <stdint.h>
+#define MAX_CAPACITY 50
+
+typedef struct{
+	uint16_t *buffer; //data
+	uint8_t size;
+	uint8_t head;
+	uint8_t tail;
+}circularBuffer;
+
+void cb_init (circularBuffer cb, uint16* array, uint8_t len);
+
+
+
+#endif /* BUFFERCIRCULAR_H_ */
+
+

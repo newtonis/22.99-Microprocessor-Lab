@@ -1,0 +1,19 @@
+/*
+ * demodulatorFSK.h
+ *
+ *  Created on: Oct 18, 2019
+ *      Author: martinamaspero
+ */
+
+#ifndef DEMODULATORFSK_H_
+#define DEMODULATORFSK_H_
+
+#include <stdint.h>
+
+#define FS 12000
+#define BEST_DELAY 0.0004464
+
+void FSKdem_init();
+void FSKdemodulate(uint16_t * data, uint8_t data_size);
+
+#endif /* DEMODULATORFSK_H_ */

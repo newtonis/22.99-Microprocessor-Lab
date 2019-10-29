@@ -1,0 +1,5 @@
+App.c:42:6:App_Init	8	static
+App.c:56:6:App_Run	4	static
+App.c:68:6:test	4	static
+App.c:75:6:callback	8	static
+App.c:80:6:demCallback	16	static
