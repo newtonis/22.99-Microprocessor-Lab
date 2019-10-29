@@ -185,7 +185,6 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/Modulador.o
  .data          0x00000000        0x0 ./source/Modulador.o
  .bss           0x00000000        0x0 ./source/Modulador.o
- .bss.cont      0x00000000        0x2 ./source/Modulador.o
  .debug_macro   0x00000000      0xa5a ./source/Modulador.o
  .debug_macro   0x00000000      0x34e ./source/Modulador.o
  .debug_macro   0x00000000       0x22 ./source/Modulador.o
@@ -261,11 +260,11 @@ Discarded input sections
  .bss           0x00000000        0x0 ./source/ftm.o
  .data.OC_Delta
                 0x00000000        0x2 ./source/ftm.o
- .text.OC_ISR   0x00000000       0x78 ./source/ftm.o
+ .text.OC_ISR   0x00000000       0x7c ./source/ftm.o
  .text.FTM_SetCounter
                 0x00000000       0x2a ./source/ftm.o
  .text.setOC    0x00000000       0x6a ./source/ftm.o
- .data.DCPercent.6874
+ .data.DCPercent.6887
                 0x00000000        0x1 ./source/ftm.o
  .debug_macro   0x00000000      0xa5a ./source/ftm.o
  .debug_macro   0x00000000      0x34e ./source/ftm.o
@@ -801,9 +800,9 @@ END GROUP
  .text.setNextBit
                 0x00001d22       0x12 ./source/Modulador.o
                 0x00001d22                setNextBit
- .text.sendSignal
+ .text.dummyFun
                 0x00001d34        0xe ./source/Modulador.o
-                0x00001d34                sendSignal
+                0x00001d34                dummyFun
  .text.FTM0_IRQHandler
                 0x00001d42       0x1c ./source/ftm.o
                 0x00001d42                FTM0_IRQHandler
@@ -1243,16 +1242,16 @@ END GROUP
  .bss.errno     0x2000046c        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(errno.o)
                 0x2000046c                errno
  .bss.dutys     0x20000470        0x2 ./source/ftm.o
- .bss.med1.6905
+ .bss.med1.6909
                 0x20000472        0x2 ./source/ftm.o
- .bss.med2.6906
+ .bss.med2.6910
                 0x20000474        0x2 ./source/ftm.o
- .bss.med.6907  0x20000476        0x2 ./source/ftm.o
+ .bss.med.6911  0x20000476        0x2 ./source/ftm.o
  .bss.a         0x20000478        0x1 ./source/App.o
                 0x20000478                a
  .bss.msg_ptr   0x20000479        0x1 ./source/Modulador.o
  .bss.is_Tx     0x2000047a        0x1 ./source/Modulador.o
- .bss.state.6908
+ .bss.state.6912
                 0x2000047b        0x1 ./source/ftm.o
  *(SORT_BY_ALIGNMENT(COMMON))
                 0x20000480                . = ALIGN (0x8)
@@ -1299,33 +1298,33 @@ END GROUP
                 0x00002590                _image_size = (_image_end - _image_start)
 OUTPUT(Blink.axf elf32-littlearm)
 
-.debug_info     0x00000000     0x55b4
+.debug_info     0x00000000     0x550f
  .debug_info    0x00000000      0x893 ./source/ADC.o
  .debug_info    0x00000893      0x13e ./source/App.o
  .debug_info    0x000009d1      0xad3 ./source/DMA.o
- .debug_info    0x000014a4      0xc06 ./source/Modulador.o
- .debug_info    0x000020aa      0x7ca ./source/PIT.o
- .debug_info    0x00002874     0x1027 ./source/ftm.o
- .debug_info    0x0000389b      0x706 ./source/gpio.o
- .debug_info    0x00003fa1      0x675 ./SDK/startup/hardware.o
- .debug_info    0x00004616       0xb7 ./SDK/startup/main.o
- .debug_info    0x000046cd       0x3b ./SDK/startup/semihost_hardfault.o
- .debug_info    0x00004708      0x8b0 ./SDK/startup/startup_mk64f12.o
- .debug_info    0x00004fb8      0x5fc ./SDK/CMSIS/system_MK64F12.o
+ .debug_info    0x000014a4      0xbf5 ./source/Modulador.o
+ .debug_info    0x00002099      0x7ca ./source/PIT.o
+ .debug_info    0x00002863      0xf93 ./source/ftm.o
+ .debug_info    0x000037f6      0x706 ./source/gpio.o
+ .debug_info    0x00003efc      0x675 ./SDK/startup/hardware.o
+ .debug_info    0x00004571       0xb7 ./SDK/startup/main.o
+ .debug_info    0x00004628       0x3b ./SDK/startup/semihost_hardfault.o
+ .debug_info    0x00004663      0x8b0 ./SDK/startup/startup_mk64f12.o
+ .debug_info    0x00004f13      0x5fc ./SDK/CMSIS/system_MK64F12.o
 
-.debug_abbrev   0x00000000     0x1218
+.debug_abbrev   0x00000000     0x11db
  .debug_abbrev  0x00000000      0x1ef ./source/ADC.o
  .debug_abbrev  0x000001ef       0xe1 ./source/App.o
  .debug_abbrev  0x000002d0      0x1ff ./source/DMA.o
  .debug_abbrev  0x000004cf      0x276 ./source/Modulador.o
  .debug_abbrev  0x00000745      0x1e4 ./source/PIT.o
- .debug_abbrev  0x00000929      0x2c9 ./source/ftm.o
- .debug_abbrev  0x00000bf2      0x1a7 ./source/gpio.o
- .debug_abbrev  0x00000d99      0x138 ./SDK/startup/hardware.o
- .debug_abbrev  0x00000ed1       0x7d ./SDK/startup/main.o
- .debug_abbrev  0x00000f4e       0x2f ./SDK/startup/semihost_hardfault.o
- .debug_abbrev  0x00000f7d      0x15c ./SDK/startup/startup_mk64f12.o
- .debug_abbrev  0x000010d9      0x13f ./SDK/CMSIS/system_MK64F12.o
+ .debug_abbrev  0x00000929      0x28c ./source/ftm.o
+ .debug_abbrev  0x00000bb5      0x1a7 ./source/gpio.o
+ .debug_abbrev  0x00000d5c      0x138 ./SDK/startup/hardware.o
+ .debug_abbrev  0x00000e94       0x7d ./SDK/startup/main.o
+ .debug_abbrev  0x00000f11       0x2f ./SDK/startup/semihost_hardfault.o
+ .debug_abbrev  0x00000f40      0x15c ./SDK/startup/startup_mk64f12.o
+ .debug_abbrev  0x0000109c      0x13f ./SDK/CMSIS/system_MK64F12.o
 
 .debug_aranges  0x00000000      0x698
  .debug_aranges
@@ -1417,9 +1416,9 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_line    0x00000000      0x201 ./source/ADC.o
  .debug_line    0x00000201      0x1be ./source/App.o
  .debug_line    0x000003bf      0x236 ./source/DMA.o
- .debug_line    0x000005f5      0x3cb ./source/Modulador.o
- .debug_line    0x000009c0      0x217 ./source/PIT.o
- .debug_line    0x00000bd7      0x40e ./source/ftm.o
+ .debug_line    0x000005f5      0x3c9 ./source/Modulador.o
+ .debug_line    0x000009be      0x217 ./source/PIT.o
+ .debug_line    0x00000bd5      0x410 ./source/ftm.o
  .debug_line    0x00000fe5      0x299 ./source/gpio.o
  .debug_line    0x0000127e      0x1d4 ./SDK/startup/hardware.o
  .debug_line    0x00001452      0x175 ./SDK/startup/main.o
@@ -1427,30 +1426,30 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_line    0x00001620      0x6d8 ./SDK/startup/startup_mk64f12.o
  .debug_line    0x00001cf8      0x1c7 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_str      0x00000000    0x7c599
+.debug_str      0x00000000    0x7c592
  .debug_str     0x00000000    0x77532 ./source/ADC.o
                               0x776f7 (size before relaxing)
  .debug_str     0x00077532      0x258 ./source/App.o
                               0x77214 (size before relaxing)
  .debug_str     0x0007778a      0x25f ./source/DMA.o
                               0x77851 (size before relaxing)
- .debug_str     0x000779e9     0x3c34 ./source/Modulador.o
-                              0x7af73 (size before relaxing)
- .debug_str     0x0007b61d       0xb2 ./source/PIT.o
+ .debug_str     0x000779e9     0x3c2d ./source/Modulador.o
+                              0x7af6c (size before relaxing)
+ .debug_str     0x0007b616       0xb2 ./source/PIT.o
                               0x776aa (size before relaxing)
- .debug_str     0x0007b6cf      0x3f9 ./source/ftm.o
+ .debug_str     0x0007b6c8      0x3f9 ./source/ftm.o
                               0x77cc4 (size before relaxing)
- .debug_str     0x0007bac8      0x12a ./source/gpio.o
+ .debug_str     0x0007bac1      0x12a ./source/gpio.o
                               0x7729e (size before relaxing)
- .debug_str     0x0007bbf2      0x16f ./SDK/startup/hardware.o
+ .debug_str     0x0007bbeb      0x16f ./SDK/startup/hardware.o
                               0x771f5 (size before relaxing)
- .debug_str     0x0007bd61       0x1b ./SDK/startup/main.o
+ .debug_str     0x0007bd5a       0x1b ./SDK/startup/main.o
                               0x76fc9 (size before relaxing)
- .debug_str     0x0007bd7c       0x36 ./SDK/startup/semihost_hardfault.o
+ .debug_str     0x0007bd75       0x36 ./SDK/startup/semihost_hardfault.o
                                0x2d2f (size before relaxing)
- .debug_str     0x0007bdb2      0x785 ./SDK/startup/startup_mk64f12.o
+ .debug_str     0x0007bdab      0x785 ./SDK/startup/startup_mk64f12.o
                                0x359d (size before relaxing)
- .debug_str     0x0007c537       0x62 ./SDK/CMSIS/system_MK64F12.o
+ .debug_str     0x0007c530       0x62 ./SDK/CMSIS/system_MK64F12.o
                               0x77104 (size before relaxing)
 
 .comment        0x00000000       0x7e
@@ -1513,16 +1512,16 @@ OUTPUT(Blink.axf elf32-littlearm)
  .ARM.attributes
                 0x000003c9       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
 
-.debug_frame    0x00000000     0x14bc
+.debug_frame    0x00000000     0x14b8
  .debug_frame   0x00000000       0xe0 ./source/ADC.o
  .debug_frame   0x000000e0       0x6c ./source/App.o
  .debug_frame   0x0000014c      0x158 ./source/DMA.o
  .debug_frame   0x000002a4       0xbc ./source/Modulador.o
  .debug_frame   0x00000360      0x104 ./source/PIT.o
- .debug_frame   0x00000464      0x434 ./source/ftm.o
- .debug_frame   0x00000898      0x1f0 ./source/gpio.o
- .debug_frame   0x00000a88       0x70 ./SDK/startup/hardware.o
- .debug_frame   0x00000af8       0x2c ./SDK/startup/main.o
- .debug_frame   0x00000b24       0x20 ./SDK/startup/semihost_hardfault.o
- .debug_frame   0x00000b44      0x904 ./SDK/startup/startup_mk64f12.o
- .debug_frame   0x00001448       0x74 ./SDK/CMSIS/system_MK64F12.o
+ .debug_frame   0x00000464      0x430 ./source/ftm.o
+ .debug_frame   0x00000894      0x1f0 ./source/gpio.o
+ .debug_frame   0x00000a84       0x70 ./SDK/startup/hardware.o
+ .debug_frame   0x00000af4       0x2c ./SDK/startup/main.o
+ .debug_frame   0x00000b20       0x20 ./SDK/startup/semihost_hardfault.o
+ .debug_frame   0x00000b40      0x904 ./SDK/startup/startup_mk64f12.o
+ .debug_frame   0x00001444       0x74 ./SDK/CMSIS/system_MK64F12.o

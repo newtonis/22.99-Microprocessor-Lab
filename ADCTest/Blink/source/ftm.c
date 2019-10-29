@@ -19,6 +19,24 @@ void (*callback)(void);
 
 static uint16_t dutys = 0;
 
+/*******************************************************************************
+ * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
+ ******************************************************************************/
+void PWM_ISR (void);
+
+void clearTimerOverFlowFlag(FTM_Type* module);
+
+void FTM_SetCounter (FTM_Type* ftm, uint8_t channel, uint16_t data);
+
+void FTM_ClearInterruptFlag (FTM_Type * module , uint8_t channel);
+
+void updateDuty(FTM_Type* module,uint8_t channel, uint8_t DCpercent);
+/*******************************************************************************
+ *******************************************************************************
+                        GLOBAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
+
 /* FTM0 fault, overflow and channels interrupt handler*/
 uint16_t* getDutyAddress(void)
 {

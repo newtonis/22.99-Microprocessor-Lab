@@ -27,7 +27,6 @@
 
 static uint16_t sinValues[SIN_VALUES];
 static uint16_t sinValues1[SIN_VALUES];
-static uint16_t cont = 0;
 
 static bool bitStream[STAND_LEN];
 static uint8_t msg_ptr = 0;
@@ -37,7 +36,7 @@ void (*MsgSendedCallback)(void);
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
-void sendSignal(void);
+void dummyFun(void);
 
 void procesBitStream(uint8_t command); // El comando puede ser START o NEXT_SYM
 
@@ -68,7 +67,7 @@ void Modulador_init(void(*funcallback)(void))
 		}
 	}
 
-	ftmInit(sendSignal);
+	ftmInit(dummyFun);
 	setDuty(V_LEVEL); // Valor medio por default
 
 	//////////// Ejemplo para DMA ////////////
@@ -141,31 +140,7 @@ void setNextBit(void)
 	procesBitStream(NEXT_SYM);
 }
 
-void sendSignal(void)
+void dummyFun(void)
 {
-	msg_ptr;
-	/*
-	if(is_Tx)
-	{
-		switch (bitStream[msg_ptr]) {
-			case 0:
-				setDuty(sinValues[cont]);
-				break;
-			case 1:
-				setDuty(sinValues1[cont]);
-				break;
-		}
 
-		cont++;
-		if(cont == SIN_VALUES)
-		{
-			cont = 0;
-			procesBitStream(NEXT_SYM);
-		}
-		else
-		{
-			// NO TERMINO DE TRANSMITIR
-		}
-	}
-	*/
 }
