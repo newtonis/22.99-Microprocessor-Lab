@@ -19,7 +19,8 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-static bool testStream[STAND_LEN] = {0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1};
+static bool testStream[STAND_LEN] =  {0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1};
+static bool testStream2[STAND_LEN] = {0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0};
 static bool dummyStream[STAND_LEN] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 static uint8_t a = 0;
 
@@ -29,8 +30,6 @@ static uint8_t a = 0;
 void test(void);
 
 void testDecode(void);
-
-static void delayLoop(uint32_t veces);
 
 /*******************************************************************************
  *******************************************************************************
@@ -46,17 +45,13 @@ void App_Init (void)
     CMP_init(0);
     Modulador_init(getDutyAddress(), test);
 
-    a = 1;
-
+    Modulador_sendStream(dummyStream);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-    Modulador_sendStream(dummyStream);
-    delayLoop(4000000UL);
-    Modulador_sendStream(testStream);
-    delayLoop(4000000UL);
+
 }
 
 
@@ -68,21 +63,23 @@ void App_Run (void)
 
 void test(void)
 {
-	a; // avisa que termino de enviar la señal modulada por callback
+	a++; // avisa que termino de enviar la señal modulada por callback
+    if(a % 2)
+    {
+    	Modulador_sendStream(testStream);
+    }
+    else
+    {
+    	Modulador_sendStream(testStream2);
+    }
+
 }
 
 void testDecode(void)
 {
-	if(a == 1)
-	{
-		Decoder_parsePulse(getPulseMeasure());
-	}
 
-}
+	Decoder_parsePulse(getPulseMeasure());
 
-static void delayLoop(uint32_t veces)
-{
-    while (veces--);
 }
 
 /*******************************************************************************
