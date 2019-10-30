@@ -21,6 +21,7 @@
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-void Decoder_parsePulse(uint32_t input);
+void Decoder_init(uint16_t* medAddress);
+
 
 #endif /* DECODEBITS_H_ */

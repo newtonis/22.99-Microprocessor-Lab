@@ -54,6 +54,8 @@ void setDuty(uint8_t duty_cycle);
 
 uint16_t* getDutyAddress(void);
 
+uint16_t* getMedAddress(void);
+
 uint32_t getPulseMeasure(void);
 
 #endif /* FTM_H_ */

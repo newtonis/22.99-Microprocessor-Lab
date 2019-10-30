@@ -67,9 +67,9 @@ void Modulador_init(uint16_t* dutyAddress, void(*funcallback)(void))
 
 	DMA0_Config(sinValues1, dutyAddress, setNextBit);
 
-	DMA0_ConfigCounters(sizeof(sinValues), sizeof(sinValues[0]));
+	DMA0_ConfigCounters(0, sizeof(sinValues), sizeof(sinValues[0]));
 
-	DMA0_DisableRequest();
+	DMA0_DisableRequest(0);
 }
 
 
@@ -91,13 +91,13 @@ void procesBitStream(uint8_t command)
 			{
 				if(bitStream[msg_ptr] == SIN0)
 				{
-					DMA0_ConfigSourceAddress(sinValues);
+					DMA0_ConfigSourceAddress(0, sinValues);
 				}
 				else
 				{
-					DMA0_ConfigSourceAddress(sinValues1);
+					DMA0_ConfigSourceAddress(0, sinValues1);
 				}
-				DMA0_EnableRequest();
+				DMA0_EnableRequest(0);
 				is_Tx = true;
 			}
 			break;
@@ -107,21 +107,21 @@ void procesBitStream(uint8_t command)
 			{
 				msg_ptr = 0;
 				is_Tx = false;
-				DMA0_ConfigSourceAddress(sinValues1); // Estado de IDLE
-				DMA0_EnableRequest();
+				DMA0_ConfigSourceAddress(0, sinValues1); // Estado de IDLE
+				DMA0_EnableRequest(0);
 				MsgSendedCallback(); // Avisa que termino de mandar la señal modulada
 			}
 			else
 			{
 				if(bitStream[msg_ptr] == SIN0)
 				{
-					DMA0_ConfigSourceAddress(sinValues);
+					DMA0_ConfigSourceAddress(0, sinValues);
 				}
 				else
 				{
-					DMA0_ConfigSourceAddress(sinValues1);
+					DMA0_ConfigSourceAddress(0, sinValues1);
 				}
-				DMA0_EnableRequest();
+				DMA0_EnableRequest(0);
 				// NO TERMINO DE ENVIARSE EL DATO
 			}
 			break;
@@ -135,7 +135,7 @@ void setNextBit(void)
 {
 	if(is_Tx)
 	{
-		DMA0_DisableRequest();
+		DMA0_DisableRequest(0);
 		procesBitStream(NEXT_SYM);
 	}
 	else

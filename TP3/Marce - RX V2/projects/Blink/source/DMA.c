@@ -41,10 +41,10 @@ void DMA0_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 
 	/// ============= INIT TCD0 ===================//
 	/* Set memory address for source and destination. */
-	DMA0_ConfigSourceAddress(source_add);
+	DMA0_ConfigSourceAddress(0, source_add);
 
     //DMA_TCD0_DADDR = (uint32_t)(destinationBuffer);
-	DMA0_ConfigDestAddress(dest_add);
+	DMA0_ConfigDestAddress(0, dest_add);
 
 
 		/* Set an offset for source and destination address. */
@@ -66,11 +66,11 @@ void DMA0_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 
 }
 
-void DMA0_ConfigCounters(uint32_t source_full_size, uint32_t source_unit_size)
+void DMA0_ConfigCounters(uint8_t channel, uint32_t source_full_size, uint32_t source_unit_size)
 {
 	/* Autosize for Current major iteration count */
-	DMA0->TCD[0].CITER_ELINKNO = DMA_CITER_ELINKNO_CITER(source_full_size/source_unit_size);
-	DMA0->TCD[0].BITER_ELINKNO = DMA_BITER_ELINKNO_BITER(source_full_size/source_unit_size);
+	DMA0->TCD[channel].CITER_ELINKNO = DMA_CITER_ELINKNO_CITER(source_full_size/source_unit_size);
+	DMA0->TCD[channel].BITER_ELINKNO = DMA_BITER_ELINKNO_BITER(source_full_size/source_unit_size);
 
 
 	//DMA_TCD0_SLAST = 0x00;
@@ -78,35 +78,35 @@ void DMA0_ConfigCounters(uint32_t source_full_size, uint32_t source_unit_size)
 	//DMA_TCD0_SLAST = -((sizeof(sourceBuffer)/sizeof(sourceBuffer[0])*sizeof(uint16_t)));
 
 	/* Autosize SLAST for Wrap Around. This value is added to SADD at the end of Major Loop */
-	DMA0->TCD[0].SLAST = -source_full_size;
+	DMA0->TCD[channel].SLAST = -source_full_size;
 }
 
-void DMA0_EnableRequest(void)
+void DMA0_EnableRequest(uint8_t channel)
 {
 	/* Enable request signal for channel 0. */
 	DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
 	DMA0->ERQ |= DMA_ERQ_ERQ0(1);
-	DMAMUX->CHCFG[0] &= ~(DMAMUX_CHCFG_ENBL_MASK);
-	DMAMUX->CHCFG[0] |= DMAMUX_CHCFG_ENBL(1);
+	DMAMUX->CHCFG[channel] &= ~(DMAMUX_CHCFG_ENBL_MASK);
+	DMAMUX->CHCFG[channel] |= DMAMUX_CHCFG_ENBL(1);
 }
 
-void DMA0_DisableRequest(void)
+void DMA0_DisableRequest(uint8_t channel)
 {
 	/* Enable request signal for channel 0. */
 	DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
 	DMA0->ERQ |= DMA_ERQ_ERQ0(0);
-	DMAMUX->CHCFG[0] &= ~(DMAMUX_CHCFG_ENBL_MASK);
-	DMAMUX->CHCFG[0] |= DMAMUX_CHCFG_ENBL(0);
+	DMAMUX->CHCFG[channel] &= ~(DMAMUX_CHCFG_ENBL_MASK);
+	DMAMUX->CHCFG[channel] |= DMAMUX_CHCFG_ENBL(0);
 }
 
-void DMA0_ConfigSourceAddress(uint16_t *source_add)
+void DMA0_ConfigSourceAddress(uint8_t channel, uint16_t *source_add)
 {
-	DMA0->TCD[0].SADDR = (uint32_t)(source_add); //List of Duties
+	DMA0->TCD[channel].SADDR = (uint32_t)(source_add); //List of Duties
 }
 
-void DMA0_ConfigDestAddress(uint16_t *dest_add)
+void DMA0_ConfigDestAddress(uint8_t channel, uint16_t *dest_add)
 {
-	DMA0->TCD[0].DADDR = (uint32_t)(dest_add);  // To change FTM Duty
+	DMA0->TCD[channel].DADDR = (uint32_t)(dest_add);  // To change FTM Duty
 }
 
 void DMA0_IRQHandler()
@@ -131,28 +131,28 @@ void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 	NVIC_EnableIRQ(DMA1_IRQn);
 
 	/// ============= INIT TCD0 ===================//
-	//DMA1_ConfigSourceAddress(source_add);
+	DMA0_ConfigSourceAddress(1, source_add);
 
     //DMA_TCD0_DADDR = (uint32_t)(destinationBuffer);
-	//DMA1_ConfigDestAddress(dest_add);
+	DMA0_ConfigDestAddress(1, dest_add);
 
 
 		/* Set an offset for source and destination address. */
-	DMA0->TCD[0].SOFF =0x02; // Source address offset of 2 bytes per transaction.
-	DMA0->TCD[0].DOFF =0x00; // Destination address offset is 0. (Siempre al mismo lugar)
+	DMA0->TCD[1].SOFF = 0x00; // Source address offset of 0 bytes per transaction.
+	DMA0->TCD[1].DOFF = 0x00; // Destination address offset is 0. (Siempre al mismo lugar)
 
 	/* Set source and destination data transfer size to 16 bits (CnV is 2 bytes wide). */
-	DMA0->TCD[0].ATTR = DMA_ATTR_SSIZE(1) | DMA_ATTR_DSIZE(1);
+	DMA0->TCD[1].ATTR = DMA_ATTR_SSIZE(1) | DMA_ATTR_DSIZE(1);
 
 	/*Number of bytes to be transfered in each service request of the channel.*/
-	DMA0->TCD[0].NBYTES_MLNO = 0x02;
+	DMA0->TCD[1].NBYTES_MLNO = 0x02;
 
 
     /* DLASTSGA DLAST Scatter and Gatter */
-    DMA0->TCD[0].DLAST_SGA = 0x00;
+    DMA0->TCD[1].DLAST_SGA = 0x00;
 
 	/* Setup control and status register. */
-    DMA0->TCD[0].CSR = DMA_CSR_INTMAJOR_MASK;
+    DMA0->TCD[1].CSR = DMA_CSR_INTMAJOR_MASK;
 }
 
 
