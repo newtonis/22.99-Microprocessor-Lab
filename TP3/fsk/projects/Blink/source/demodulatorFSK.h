@@ -16,10 +16,10 @@
 #define DELAY 5 //NUMBER OF SAMPLE PERIODS
 #define FIR_ORDER 18
 
-typedef void (*callback_t)(void);
+typedef void (*myCallback)(void);
 
-void FSKdem_init(callback_t callback);
-bool * get_Msg (void);
+void FSKdem_init( myCallback funcallback);
+char get_Msg (void);
 
 
 

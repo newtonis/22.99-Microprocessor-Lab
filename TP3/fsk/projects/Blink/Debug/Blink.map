@@ -86,10 +86,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./source/App.o
  .data          0x0000000000000000        0x0 ./source/App.o
  .bss           0x0000000000000000        0x0 ./source/App.o
- .bss.testStreamc
-                0x0000000000000000        0xb ./source/App.o
- .data.testStreamu
-                0x0000000000000000        0xb ./source/App.o
  .debug_macro   0x0000000000000000      0xa9c ./source/App.o
  .debug_macro   0x0000000000000000      0x34e ./source/App.o
  .debug_macro   0x0000000000000000       0x22 ./source/App.o
@@ -266,7 +262,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./source/demodulatorFSK.o
  .data          0x0000000000000000        0x0 ./source/demodulatorFSK.o
  .bss           0x0000000000000000        0x0 ./source/demodulatorFSK.o
- .text.get_Msg  0x0000000000000000       0x14 ./source/demodulatorFSK.o
  .debug_macro   0x0000000000000000      0xa9c ./source/demodulatorFSK.o
  .debug_macro   0x0000000000000000      0x34e ./source/demodulatorFSK.o
  .debug_macro   0x0000000000000000       0x22 ./source/demodulatorFSK.o
@@ -617,7 +612,7 @@ END GROUP
                 0x0000000014001000                __top_FLEX_RAM = 0x14001000
                 0x0000000014001000                __top_RAM3 = 0x14001000
 
-.text           0x0000000000000000     0x2468
+.text           0x0000000000000000     0x2548
  FILL mask 0xff
                 0x0000000000000000                __vectors_start__ = ABSOLUTE (.)
  *(SORT_BY_ALIGNMENT(.isr_vector))
@@ -627,18 +622,18 @@ END GROUP
                 0x0000000000000198                . = ALIGN (0x4)
                 0x0000000000000198                __section_table_start = .
                 0x0000000000000198                __data_section_table = .
-                0x0000000000000198        0x4 LONG 0x2468 LOADADDR (.data)
+                0x0000000000000198        0x4 LONG 0x2548 LOADADDR (.data)
                 0x000000000000019c        0x4 LONG 0x20000000 ADDR (.data)
-                0x00000000000001a0        0x4 LONG 0xb8 SIZEOF (.data)
-                0x00000000000001a4        0x4 LONG 0x2468 LOADADDR (.data_RAM2)
+                0x00000000000001a0        0x4 LONG 0xb0 SIZEOF (.data)
+                0x00000000000001a4        0x4 LONG 0x2548 LOADADDR (.data_RAM2)
                 0x00000000000001a8        0x4 LONG 0x1fff0000 ADDR (.data_RAM2)
                 0x00000000000001ac        0x4 LONG 0x0 SIZEOF (.data_RAM2)
-                0x00000000000001b0        0x4 LONG 0x2468 LOADADDR (.data_RAM3)
+                0x00000000000001b0        0x4 LONG 0x2548 LOADADDR (.data_RAM3)
                 0x00000000000001b4        0x4 LONG 0x14000000 ADDR (.data_RAM3)
                 0x00000000000001b8        0x4 LONG 0x0 SIZEOF (.data_RAM3)
                 0x00000000000001bc                __data_section_table_end = .
                 0x00000000000001bc                __bss_section_table = .
-                0x00000000000001bc        0x4 LONG 0x200000b8 ADDR (.bss)
+                0x00000000000001bc        0x4 LONG 0x200000b0 ADDR (.bss)
                 0x00000000000001c0        0x4 LONG 0x488 SIZEOF (.bss)
                 0x00000000000001c4        0x4 LONG 0x1fff0000 ADDR (.bss_RAM2)
                 0x00000000000001c8        0x4 LONG 0x0 SIZEOF (.bss_RAM2)
@@ -784,431 +779,435 @@ END GROUP
                 0x0000000000000930                App_Init
  .text.test     0x000000000000097c       0x18 ./source/App.o
                 0x000000000000097c                test
- .text.callback
-                0x0000000000000994       0x14 ./source/App.o
-                0x0000000000000994                callback
  .text.DAC_init
-                0x00000000000009a8       0x8c ./source/DAC.o
-                0x00000000000009a8                DAC_init
+                0x0000000000000994       0x8c ./source/DAC.o
+                0x0000000000000994                DAC_init
  .text.DAC_setData
-                0x0000000000000a34       0x38 ./source/DAC.o
-                0x0000000000000a34                DAC_setData
- .text.Modulador_sendStream
-                0x0000000000000a6c       0x5c ./source/Modulador.o
-                0x0000000000000a6c                Modulador_sendStream
+                0x0000000000000a20       0x38 ./source/DAC.o
+                0x0000000000000a20                DAC_setData
+ .text.Modulador_sendChar
+                0x0000000000000a58       0x8c ./source/Modulador.o
+                0x0000000000000a58                Modulador_sendChar
  .text.procesBitStream
-                0x0000000000000ac8       0x3c ./source/Modulador.o
-                0x0000000000000ac8                procesBitStream
- .text.sendBit  0x0000000000000b04       0x40 ./source/Modulador.o
-                0x0000000000000b04                sendBit
+                0x0000000000000ae4       0x3c ./source/Modulador.o
+                0x0000000000000ae4                procesBitStream
+ .text.sendBit  0x0000000000000b20       0x40 ./source/Modulador.o
+                0x0000000000000b20                sendBit
  .text.sendSin1
-                0x0000000000000b44       0x6c ./source/Modulador.o
-                0x0000000000000b44                sendSin1
+                0x0000000000000b60       0x6c ./source/Modulador.o
+                0x0000000000000b60                sendSin1
  .text.sendSin0
-                0x0000000000000bb0       0xfc ./source/Modulador.o
-                0x0000000000000bb0                sendSin0
+                0x0000000000000bcc       0xfc ./source/Modulador.o
+                0x0000000000000bcc                sendSin0
  .text.__NVIC_EnableIRQ
-                0x0000000000000cac       0x3c ./source/PIT.o
+                0x0000000000000cc8       0x3c ./source/PIT.o
  .text.PIT_init
-                0x0000000000000ce8       0x54 ./source/PIT.o
-                0x0000000000000ce8                PIT_init
+                0x0000000000000d04       0x54 ./source/PIT.o
+                0x0000000000000d04                PIT_init
  .text.PIT_configTimer
-                0x0000000000000d3c      0x140 ./source/PIT.o
-                0x0000000000000d3c                PIT_configTimer
+                0x0000000000000d58      0x140 ./source/PIT.o
+                0x0000000000000d58                PIT_configTimer
  .text.PIT0_IRQHandler
-                0x0000000000000e7c       0x20 ./source/PIT.o
-                0x0000000000000e7c                PIT0_IRQHandler
+                0x0000000000000e98       0x20 ./source/PIT.o
+                0x0000000000000e98                PIT0_IRQHandler
  .text.PIT1_IRQHandler
-                0x0000000000000e9c       0x20 ./source/PIT.o
-                0x0000000000000e9c                PIT1_IRQHandler
+                0x0000000000000eb8       0x20 ./source/PIT.o
+                0x0000000000000eb8                PIT1_IRQHandler
  .text.PIT2_IRQHandler
-                0x0000000000000ebc       0x20 ./source/PIT.o
-                0x0000000000000ebc                PIT2_IRQHandler
+                0x0000000000000ed8       0x20 ./source/PIT.o
+                0x0000000000000ed8                PIT2_IRQHandler
  .text.PIT_startTime
-                0x0000000000000edc       0xac ./source/PIT.o
-                0x0000000000000edc                PIT_startTime
+                0x0000000000000ef8       0xac ./source/PIT.o
+                0x0000000000000ef8                PIT_startTime
  .text.__NVIC_EnableIRQ
-                0x0000000000000f88       0x3c ./source/SysTick.o
+                0x0000000000000fa4       0x3c ./source/SysTick.o
  .text.SysTick_Init
-                0x0000000000000fc4       0x4c ./source/SysTick.o
-                0x0000000000000fc4                SysTick_Init
+                0x0000000000000fe0       0x4c ./source/SysTick.o
+                0x0000000000000fe0                SysTick_Init
  .text.SysTick_Handler
-                0x0000000000001010       0x24 ./source/SysTick.o
-                0x0000000000001010                SysTick_Handler
+                0x000000000000102c       0x24 ./source/SysTick.o
+                0x000000000000102c                SysTick_Handler
  .text.FSKdem_init
-                0x0000000000001034       0x44 ./source/demodulatorFSK.o
-                0x0000000000001034                FSKdem_init
+                0x0000000000001050       0x44 ./source/demodulatorFSK.o
+                0x0000000000001050                FSKdem_init
  .text.FSKdemodulate
-                0x0000000000001078      0x1a8 ./source/demodulatorFSK.o
-                0x0000000000001078                FSKdemodulate
+                0x0000000000001094      0x1bc ./source/demodulatorFSK.o
+                0x0000000000001094                FSKdemodulate
  .text.updateData
-                0x0000000000001220       0x4c ./source/demodulatorFSK.o
-                0x0000000000001220                updateData
+                0x0000000000001250       0x4c ./source/demodulatorFSK.o
+                0x0000000000001250                updateData
  .text.filterSignal
-                0x000000000000126c       0x8c ./source/demodulatorFSK.o
-                0x000000000000126c                filterSignal
+                0x000000000000129c       0x8c ./source/demodulatorFSK.o
+                0x000000000000129c                filterSignal
+ .text.get_Msg  0x0000000000001328       0x50 ./source/demodulatorFSK.o
+                0x0000000000001328                get_Msg
  .text.PORTD_IRQHandler
-                0x00000000000012f8       0x64 ./source/gpio.o
-                0x00000000000012f8                PORTD_IRQHandler
+                0x0000000000001378       0x64 ./source/gpio.o
+                0x0000000000001378                PORTD_IRQHandler
  .text.PORTA_IRQHandler
-                0x000000000000135c       0x5c ./source/gpio.o
-                0x000000000000135c                PORTA_IRQHandler
+                0x00000000000013dc       0x5c ./source/gpio.o
+                0x00000000000013dc                PORTA_IRQHandler
  .text.PORTB_IRQHandler
-                0x00000000000013b8       0x64 ./source/gpio.o
-                0x00000000000013b8                PORTB_IRQHandler
+                0x0000000000001438       0x64 ./source/gpio.o
+                0x0000000000001438                PORTB_IRQHandler
  .text.PORTE_IRQHandler
-                0x000000000000141c       0x64 ./source/gpio.o
-                0x000000000000141c                PORTE_IRQHandler
+                0x000000000000149c       0x64 ./source/gpio.o
+                0x000000000000149c                PORTE_IRQHandler
  .text.PORTC_IRQHandler
-                0x0000000000001480       0x64 ./source/gpio.o
-                0x0000000000001480                PORTC_IRQHandler
+                0x0000000000001500       0x64 ./source/gpio.o
+                0x0000000000001500                PORTC_IRQHandler
  .text.gpioMode
-                0x00000000000014e4      0x174 ./source/gpio.o
-                0x00000000000014e4                gpioMode
+                0x0000000000001564      0x174 ./source/gpio.o
+                0x0000000000001564                gpioMode
  .text.PORT_ClearInterruptFlag
-                0x0000000000001658       0x48 ./source/gpio.o
-                0x0000000000001658                PORT_ClearInterruptFlag
+                0x00000000000016d8       0x48 ./source/gpio.o
+                0x00000000000016d8                PORT_ClearInterruptFlag
  .text.timerInit
-                0x00000000000016a0       0x28 ./source/timer.o
-                0x00000000000016a0                timerInit
+                0x0000000000001720       0x28 ./source/timer.o
+                0x0000000000001720                timerInit
  .text.timerGetId
-                0x00000000000016c8       0x2c ./source/timer.o
-                0x00000000000016c8                timerGetId
+                0x0000000000001748       0x2c ./source/timer.o
+                0x0000000000001748                timerGetId
  .text.timerStart
-                0x00000000000016f4       0xa4 ./source/timer.o
-                0x00000000000016f4                timerStart
+                0x0000000000001774       0xa4 ./source/timer.o
+                0x0000000000001774                timerStart
  .text.timerStop
-                0x0000000000001798       0x30 ./source/timer.o
-                0x0000000000001798                timerStop
+                0x0000000000001818       0x30 ./source/timer.o
+                0x0000000000001818                timerStop
  .text.timerExpired
-                0x00000000000017c8       0x44 ./source/timer.o
-                0x00000000000017c8                timerExpired
+                0x0000000000001848       0x44 ./source/timer.o
+                0x0000000000001848                timerExpired
  .text.timer_isr
-                0x000000000000180c       0xdc ./source/timer.o
- .text.hw_Init  0x00000000000018e8      0x10c ./SDK/startup/hardware.o
-                0x00000000000018e8                hw_Init
+                0x000000000000188c       0xdc ./source/timer.o
+ .text.hw_Init  0x0000000000001968      0x10c ./SDK/startup/hardware.o
+                0x0000000000001968                hw_Init
  .text.hw_EnableInterrupts
-                0x00000000000019f4       0x30 ./SDK/startup/hardware.o
-                0x00000000000019f4                hw_EnableInterrupts
+                0x0000000000001a74       0x30 ./SDK/startup/hardware.o
+                0x0000000000001a74                hw_EnableInterrupts
  .text.hw_DisableInterrupts
-                0x0000000000001a24       0x20 ./SDK/startup/hardware.o
-                0x0000000000001a24                hw_DisableInterrupts
+                0x0000000000001aa4       0x20 ./SDK/startup/hardware.o
+                0x0000000000001aa4                hw_DisableInterrupts
  .text.SystemInit
-                0x0000000000001a44       0x3c ./SDK/CMSIS/system_MK64F12.o
-                0x0000000000001a44                SystemInit
+                0x0000000000001ac4       0x3c ./SDK/CMSIS/system_MK64F12.o
+                0x0000000000001ac4                SystemInit
  .text.__aeabi_dmul
-                0x0000000000001a80      0x114 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x0000000000001a80                __aeabi_dmul
+                0x0000000000001b00      0x114 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x0000000000001b00                __aeabi_dmul
  .text.__aeabi_ddiv
-                0x0000000000001b94      0x150 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x0000000000001b94                __aeabi_ddiv
+                0x0000000000001c14      0x150 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x0000000000001c14                __aeabi_ddiv
  .text.__aeabi_dsub
-                0x0000000000001ce4      0x1ac /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x0000000000001ce4                __aeabi_dsub
+                0x0000000000001d64      0x1ac /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x0000000000001d64                __aeabi_dsub
  .text.__aeabi_dadd
-                0x0000000000001e90      0x114 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x0000000000001e90                __aeabi_dadd
- .text.App_Run  0x0000000000001fa4        0xe ./source/App.o
-                0x0000000000001fa4                App_Run
- .text.demCallback
-                0x0000000000001fb2       0x16 ./source/App.o
-                0x0000000000001fb2                demCallback
- .text.main     0x0000000000001fc8       0x1a ./SDK/startup/main.o
-                0x0000000000001fc8                main
+                0x0000000000001f10      0x114 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x0000000000001f10                __aeabi_dadd
+ .text.App_Run  0x0000000000002024        0xe ./source/App.o
+                0x0000000000002024                App_Run
+ .text.callback
+                0x0000000000002032        0xe ./source/App.o
+                0x0000000000002032                callback
+ .text.demodulador
+                0x0000000000002040       0x1a ./source/App.o
+                0x0000000000002040                demodulador
+ .text.parity   0x000000000000205a       0x4e ./source/Modulador.o
+                0x000000000000205a                parity
+ .text.main     0x00000000000020a8       0x1a ./SDK/startup/main.o
+                0x00000000000020a8                main
  .text.HardFault_Handler
-                0x0000000000001fe2       0x2c ./SDK/startup/semihost_hardfault.o
-                0x0000000000001fe2                HardFault_Handler
+                0x00000000000020c2       0x2c ./SDK/startup/semihost_hardfault.o
+                0x00000000000020c2                HardFault_Handler
  .text.DMA0_IRQHandler
-                0x000000000000200e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000200e                DMA0_IRQHandler
- .text.DMA1_IRQHandler
-                0x0000000000002016        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002016                DMA1_IRQHandler
- .text.DMA2_IRQHandler
-                0x000000000000201e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000201e                DMA2_IRQHandler
- .text.DMA3_IRQHandler
-                0x0000000000002026        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002026                DMA3_IRQHandler
- .text.DMA4_IRQHandler
-                0x000000000000202e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000202e                DMA4_IRQHandler
- .text.DMA5_IRQHandler
-                0x0000000000002036        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002036                DMA5_IRQHandler
- .text.DMA6_IRQHandler
-                0x000000000000203e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000203e                DMA6_IRQHandler
- .text.DMA7_IRQHandler
-                0x0000000000002046        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002046                DMA7_IRQHandler
- .text.DMA8_IRQHandler
-                0x000000000000204e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000204e                DMA8_IRQHandler
- .text.DMA9_IRQHandler
-                0x0000000000002056        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002056                DMA9_IRQHandler
- .text.DMA10_IRQHandler
-                0x000000000000205e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000205e                DMA10_IRQHandler
- .text.DMA11_IRQHandler
-                0x0000000000002066        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002066                DMA11_IRQHandler
- .text.DMA12_IRQHandler
-                0x000000000000206e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000206e                DMA12_IRQHandler
- .text.DMA13_IRQHandler
-                0x0000000000002076        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002076                DMA13_IRQHandler
- .text.DMA14_IRQHandler
-                0x000000000000207e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000207e                DMA14_IRQHandler
- .text.DMA15_IRQHandler
-                0x0000000000002086        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002086                DMA15_IRQHandler
- .text.DMA_Error_IRQHandler
-                0x000000000000208e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000208e                DMA_Error_IRQHandler
- .text.MCM_IRQHandler
-                0x0000000000002096        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002096                MCM_IRQHandler
- .text.FTFE_IRQHandler
-                0x000000000000209e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000209e                FTFE_IRQHandler
- .text.Read_Collision_IRQHandler
-                0x00000000000020a6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020a6                Read_Collision_IRQHandler
- .text.LVD_LVW_IRQHandler
-                0x00000000000020ae        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020ae                LVD_LVW_IRQHandler
- .text.LLWU_IRQHandler
-                0x00000000000020b6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020b6                LLWU_IRQHandler
- .text.WDOG_EWM_IRQHandler
-                0x00000000000020be        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020be                WDOG_EWM_IRQHandler
- .text.RNG_IRQHandler
-                0x00000000000020c6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020c6                RNG_IRQHandler
- .text.I2C0_IRQHandler
-                0x00000000000020ce        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020ce                I2C0_IRQHandler
- .text.I2C1_IRQHandler
-                0x00000000000020d6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020d6                I2C1_IRQHandler
- .text.SPI0_IRQHandler
-                0x00000000000020de        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020de                SPI0_IRQHandler
- .text.SPI1_IRQHandler
-                0x00000000000020e6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020e6                SPI1_IRQHandler
- .text.I2S0_Tx_IRQHandler
                 0x00000000000020ee        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020ee                I2S0_Tx_IRQHandler
- .text.I2S0_Rx_IRQHandler
+                0x00000000000020ee                DMA0_IRQHandler
+ .text.DMA1_IRQHandler
                 0x00000000000020f6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020f6                I2S0_Rx_IRQHandler
- .text.UART0_LON_IRQHandler
+                0x00000000000020f6                DMA1_IRQHandler
+ .text.DMA2_IRQHandler
                 0x00000000000020fe        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000020fe                UART0_LON_IRQHandler
- .text.UART0_RX_TX_IRQHandler
+                0x00000000000020fe                DMA2_IRQHandler
+ .text.DMA3_IRQHandler
                 0x0000000000002106        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002106                UART0_RX_TX_IRQHandler
- .text.UART0_ERR_IRQHandler
+                0x0000000000002106                DMA3_IRQHandler
+ .text.DMA4_IRQHandler
                 0x000000000000210e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000210e                UART0_ERR_IRQHandler
- .text.UART1_RX_TX_IRQHandler
+                0x000000000000210e                DMA4_IRQHandler
+ .text.DMA5_IRQHandler
                 0x0000000000002116        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002116                UART1_RX_TX_IRQHandler
- .text.UART1_ERR_IRQHandler
+                0x0000000000002116                DMA5_IRQHandler
+ .text.DMA6_IRQHandler
                 0x000000000000211e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000211e                UART1_ERR_IRQHandler
- .text.UART2_RX_TX_IRQHandler
+                0x000000000000211e                DMA6_IRQHandler
+ .text.DMA7_IRQHandler
                 0x0000000000002126        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002126                UART2_RX_TX_IRQHandler
- .text.UART2_ERR_IRQHandler
+                0x0000000000002126                DMA7_IRQHandler
+ .text.DMA8_IRQHandler
                 0x000000000000212e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000212e                UART2_ERR_IRQHandler
- .text.UART3_RX_TX_IRQHandler
+                0x000000000000212e                DMA8_IRQHandler
+ .text.DMA9_IRQHandler
                 0x0000000000002136        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002136                UART3_RX_TX_IRQHandler
- .text.UART3_ERR_IRQHandler
+                0x0000000000002136                DMA9_IRQHandler
+ .text.DMA10_IRQHandler
                 0x000000000000213e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000213e                UART3_ERR_IRQHandler
- .text.CMP0_IRQHandler
+                0x000000000000213e                DMA10_IRQHandler
+ .text.DMA11_IRQHandler
                 0x0000000000002146        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002146                CMP0_IRQHandler
- .text.CMP1_IRQHandler
+                0x0000000000002146                DMA11_IRQHandler
+ .text.DMA12_IRQHandler
                 0x000000000000214e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000214e                CMP1_IRQHandler
- .text.FTM0_IRQHandler
+                0x000000000000214e                DMA12_IRQHandler
+ .text.DMA13_IRQHandler
                 0x0000000000002156        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002156                FTM0_IRQHandler
- .text.FTM1_IRQHandler
+                0x0000000000002156                DMA13_IRQHandler
+ .text.DMA14_IRQHandler
                 0x000000000000215e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000215e                FTM1_IRQHandler
- .text.FTM2_IRQHandler
+                0x000000000000215e                DMA14_IRQHandler
+ .text.DMA15_IRQHandler
                 0x0000000000002166        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002166                FTM2_IRQHandler
- .text.CMT_IRQHandler
+                0x0000000000002166                DMA15_IRQHandler
+ .text.DMA_Error_IRQHandler
                 0x000000000000216e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000216e                CMT_IRQHandler
- .text.RTC_IRQHandler
+                0x000000000000216e                DMA_Error_IRQHandler
+ .text.MCM_IRQHandler
                 0x0000000000002176        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002176                RTC_IRQHandler
- .text.RTC_Seconds_IRQHandler
+                0x0000000000002176                MCM_IRQHandler
+ .text.FTFE_IRQHandler
                 0x000000000000217e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000217e                RTC_Seconds_IRQHandler
- .text.PIT3_IRQHandler
+                0x000000000000217e                FTFE_IRQHandler
+ .text.Read_Collision_IRQHandler
                 0x0000000000002186        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002186                PIT3_IRQHandler
- .text.PDB0_IRQHandler
+                0x0000000000002186                Read_Collision_IRQHandler
+ .text.LVD_LVW_IRQHandler
                 0x000000000000218e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000218e                PDB0_IRQHandler
- .text.USB0_IRQHandler
+                0x000000000000218e                LVD_LVW_IRQHandler
+ .text.LLWU_IRQHandler
                 0x0000000000002196        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002196                USB0_IRQHandler
- .text.USBDCD_IRQHandler
+                0x0000000000002196                LLWU_IRQHandler
+ .text.WDOG_EWM_IRQHandler
                 0x000000000000219e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000219e                USBDCD_IRQHandler
- .text.Reserved71_IRQHandler
+                0x000000000000219e                WDOG_EWM_IRQHandler
+ .text.RNG_IRQHandler
                 0x00000000000021a6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021a6                Reserved71_IRQHandler
- .text.DAC0_IRQHandler
+                0x00000000000021a6                RNG_IRQHandler
+ .text.I2C0_IRQHandler
                 0x00000000000021ae        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021ae                DAC0_IRQHandler
- .text.MCG_IRQHandler
+                0x00000000000021ae                I2C0_IRQHandler
+ .text.I2C1_IRQHandler
                 0x00000000000021b6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021b6                MCG_IRQHandler
- .text.LPTMR0_IRQHandler
+                0x00000000000021b6                I2C1_IRQHandler
+ .text.SPI0_IRQHandler
                 0x00000000000021be        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021be                LPTMR0_IRQHandler
- .text.SWI_IRQHandler
+                0x00000000000021be                SPI0_IRQHandler
+ .text.SPI1_IRQHandler
                 0x00000000000021c6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021c6                SWI_IRQHandler
- .text.SPI2_IRQHandler
+                0x00000000000021c6                SPI1_IRQHandler
+ .text.I2S0_Tx_IRQHandler
                 0x00000000000021ce        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021ce                SPI2_IRQHandler
- .text.UART4_RX_TX_IRQHandler
+                0x00000000000021ce                I2S0_Tx_IRQHandler
+ .text.I2S0_Rx_IRQHandler
                 0x00000000000021d6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021d6                UART4_RX_TX_IRQHandler
- .text.UART4_ERR_IRQHandler
+                0x00000000000021d6                I2S0_Rx_IRQHandler
+ .text.UART0_LON_IRQHandler
                 0x00000000000021de        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021de                UART4_ERR_IRQHandler
- .text.UART5_RX_TX_IRQHandler
+                0x00000000000021de                UART0_LON_IRQHandler
+ .text.UART0_RX_TX_IRQHandler
                 0x00000000000021e6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021e6                UART5_RX_TX_IRQHandler
- .text.UART5_ERR_IRQHandler
+                0x00000000000021e6                UART0_RX_TX_IRQHandler
+ .text.UART0_ERR_IRQHandler
                 0x00000000000021ee        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021ee                UART5_ERR_IRQHandler
- .text.CMP2_IRQHandler
+                0x00000000000021ee                UART0_ERR_IRQHandler
+ .text.UART1_RX_TX_IRQHandler
                 0x00000000000021f6        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021f6                CMP2_IRQHandler
- .text.FTM3_IRQHandler
+                0x00000000000021f6                UART1_RX_TX_IRQHandler
+ .text.UART1_ERR_IRQHandler
                 0x00000000000021fe        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00000000000021fe                FTM3_IRQHandler
- .text.DAC1_IRQHandler
+                0x00000000000021fe                UART1_ERR_IRQHandler
+ .text.UART2_RX_TX_IRQHandler
                 0x0000000000002206        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002206                DAC1_IRQHandler
- .text.ADC1_IRQHandler
+                0x0000000000002206                UART2_RX_TX_IRQHandler
+ .text.UART2_ERR_IRQHandler
                 0x000000000000220e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000220e                ADC1_IRQHandler
- .text.I2C2_IRQHandler
+                0x000000000000220e                UART2_ERR_IRQHandler
+ .text.UART3_RX_TX_IRQHandler
                 0x0000000000002216        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002216                I2C2_IRQHandler
- .text.CAN0_ORed_Message_buffer_IRQHandler
+                0x0000000000002216                UART3_RX_TX_IRQHandler
+ .text.UART3_ERR_IRQHandler
                 0x000000000000221e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000221e                CAN0_ORed_Message_buffer_IRQHandler
- .text.CAN0_Bus_Off_IRQHandler
+                0x000000000000221e                UART3_ERR_IRQHandler
+ .text.CMP0_IRQHandler
                 0x0000000000002226        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002226                CAN0_Bus_Off_IRQHandler
- .text.CAN0_Error_IRQHandler
+                0x0000000000002226                CMP0_IRQHandler
+ .text.CMP1_IRQHandler
                 0x000000000000222e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000222e                CAN0_Error_IRQHandler
- .text.CAN0_Tx_Warning_IRQHandler
+                0x000000000000222e                CMP1_IRQHandler
+ .text.FTM0_IRQHandler
                 0x0000000000002236        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002236                CAN0_Tx_Warning_IRQHandler
- .text.CAN0_Rx_Warning_IRQHandler
+                0x0000000000002236                FTM0_IRQHandler
+ .text.FTM1_IRQHandler
                 0x000000000000223e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000223e                CAN0_Rx_Warning_IRQHandler
- .text.CAN0_Wake_Up_IRQHandler
+                0x000000000000223e                FTM1_IRQHandler
+ .text.FTM2_IRQHandler
                 0x0000000000002246        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002246                CAN0_Wake_Up_IRQHandler
- .text.SDHC_IRQHandler
+                0x0000000000002246                FTM2_IRQHandler
+ .text.CMT_IRQHandler
                 0x000000000000224e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000224e                SDHC_IRQHandler
- .text.ENET_1588_Timer_IRQHandler
+                0x000000000000224e                CMT_IRQHandler
+ .text.RTC_IRQHandler
                 0x0000000000002256        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002256                ENET_1588_Timer_IRQHandler
- .text.ENET_Transmit_IRQHandler
+                0x0000000000002256                RTC_IRQHandler
+ .text.RTC_Seconds_IRQHandler
                 0x000000000000225e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000225e                ENET_Transmit_IRQHandler
- .text.ENET_Receive_IRQHandler
+                0x000000000000225e                RTC_Seconds_IRQHandler
+ .text.PIT3_IRQHandler
                 0x0000000000002266        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000000000002266                ENET_Receive_IRQHandler
- .text.ENET_Error_IRQHandler
+                0x0000000000002266                PIT3_IRQHandler
+ .text.PDB0_IRQHandler
                 0x000000000000226e        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000000000000226e                ENET_Error_IRQHandler
+                0x000000000000226e                PDB0_IRQHandler
+ .text.USB0_IRQHandler
+                0x0000000000002276        0x8 ./SDK/startup/startup_mk64f12.o
+                0x0000000000002276                USB0_IRQHandler
+ .text.USBDCD_IRQHandler
+                0x000000000000227e        0x8 ./SDK/startup/startup_mk64f12.o
+                0x000000000000227e                USBDCD_IRQHandler
+ .text.Reserved71_IRQHandler
+                0x0000000000002286        0x8 ./SDK/startup/startup_mk64f12.o
+                0x0000000000002286                Reserved71_IRQHandler
+ .text.DAC0_IRQHandler
+                0x000000000000228e        0x8 ./SDK/startup/startup_mk64f12.o
+                0x000000000000228e                DAC0_IRQHandler
+ .text.MCG_IRQHandler
+                0x0000000000002296        0x8 ./SDK/startup/startup_mk64f12.o
+                0x0000000000002296                MCG_IRQHandler
+ .text.LPTMR0_IRQHandler
+                0x000000000000229e        0x8 ./SDK/startup/startup_mk64f12.o
+                0x000000000000229e                LPTMR0_IRQHandler
+ .text.SWI_IRQHandler
+                0x00000000000022a6        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022a6                SWI_IRQHandler
+ .text.SPI2_IRQHandler
+                0x00000000000022ae        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022ae                SPI2_IRQHandler
+ .text.UART4_RX_TX_IRQHandler
+                0x00000000000022b6        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022b6                UART4_RX_TX_IRQHandler
+ .text.UART4_ERR_IRQHandler
+                0x00000000000022be        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022be                UART4_ERR_IRQHandler
+ .text.UART5_RX_TX_IRQHandler
+                0x00000000000022c6        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022c6                UART5_RX_TX_IRQHandler
+ .text.UART5_ERR_IRQHandler
+                0x00000000000022ce        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022ce                UART5_ERR_IRQHandler
+ .text.CMP2_IRQHandler
+                0x00000000000022d6        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022d6                CMP2_IRQHandler
+ .text.FTM3_IRQHandler
+                0x00000000000022de        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022de                FTM3_IRQHandler
+ .text.DAC1_IRQHandler
+                0x00000000000022e6        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022e6                DAC1_IRQHandler
+ .text.ADC1_IRQHandler
+                0x00000000000022ee        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022ee                ADC1_IRQHandler
+ .text.I2C2_IRQHandler
+                0x00000000000022f6        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022f6                I2C2_IRQHandler
+ .text.CAN0_ORed_Message_buffer_IRQHandler
+                0x00000000000022fe        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00000000000022fe                CAN0_ORed_Message_buffer_IRQHandler
+ .text.CAN0_Bus_Off_IRQHandler
+                0x0000000000002306        0x8 ./SDK/startup/startup_mk64f12.o
+                0x0000000000002306                CAN0_Bus_Off_IRQHandler
+ .text.CAN0_Error_IRQHandler
+                0x000000000000230e        0x8 ./SDK/startup/startup_mk64f12.o
+                0x000000000000230e                CAN0_Error_IRQHandler
+ .text.CAN0_Tx_Warning_IRQHandler
+                0x0000000000002316        0x8 ./SDK/startup/startup_mk64f12.o
+                0x0000000000002316                CAN0_Tx_Warning_IRQHandler
+ .text.CAN0_Rx_Warning_IRQHandler
+                0x000000000000231e        0x8 ./SDK/startup/startup_mk64f12.o
+                0x000000000000231e                CAN0_Rx_Warning_IRQHandler
+ .text.CAN0_Wake_Up_IRQHandler
+                0x0000000000002326        0x8 ./SDK/startup/startup_mk64f12.o
+                0x0000000000002326                CAN0_Wake_Up_IRQHandler
+ .text.SDHC_IRQHandler
+                0x000000000000232e        0x8 ./SDK/startup/startup_mk64f12.o
+                0x000000000000232e                SDHC_IRQHandler
+ .text.ENET_1588_Timer_IRQHandler
+                0x0000000000002336        0x8 ./SDK/startup/startup_mk64f12.o
+                0x0000000000002336                ENET_1588_Timer_IRQHandler
+ .text.ENET_Transmit_IRQHandler
+                0x000000000000233e        0x8 ./SDK/startup/startup_mk64f12.o
+                0x000000000000233e                ENET_Transmit_IRQHandler
+ .text.ENET_Receive_IRQHandler
+                0x0000000000002346        0x8 ./SDK/startup/startup_mk64f12.o
+                0x0000000000002346                ENET_Receive_IRQHandler
+ .text.ENET_Error_IRQHandler
+                0x000000000000234e        0x8 ./SDK/startup/startup_mk64f12.o
+                0x000000000000234e                ENET_Error_IRQHandler
  .text.SystemInitHook
-                0x0000000000002276        0xe ./SDK/CMSIS/system_MK64F12.o
-                0x0000000000002276                SystemInitHook
- .text.sin      0x0000000000002284       0x40 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(sin.o)
-                0x0000000000002284                sin
- .text.fabs     0x00000000000022c4       0x22 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(fabs.o)
-                0x00000000000022c4                fabs
+                0x0000000000002356        0xe ./SDK/CMSIS/system_MK64F12.o
+                0x0000000000002356                SystemInitHook
+ .text.sin      0x0000000000002364       0x40 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(sin.o)
+                0x0000000000002364                sin
+ .text.fabs     0x00000000000023a4       0x22 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(fabs.o)
+                0x00000000000023a4                fabs
  .text.__aeabi_d2iz
-                0x00000000000022e6       0x40 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x00000000000022e6                __aeabi_d2iz
+                0x00000000000023c6       0x40 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x00000000000023c6                __aeabi_d2iz
  .text.__aeabi_d2uiz
-                0x0000000000002326       0x32 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x0000000000002326                __aeabi_d2uiz
+                0x0000000000002406       0x32 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x0000000000002406                __aeabi_d2uiz
  .text.__bhs_ui2d
-                0x0000000000002358       0x46 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x0000000000002358                __bhs_ui2d
+                0x0000000000002438       0x46 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x0000000000002438                __bhs_ui2d
  .text.__aeabi_i2d
-                0x000000000000239e       0x12 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x000000000000239e                __aeabi_i2d
+                0x000000000000247e       0x12 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x000000000000247e                __aeabi_i2d
  .text.__aeabi_dcmplt
-                0x00000000000023b0       0x56 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x00000000000023b0                __aeabi_dcmplt
+                0x0000000000002490       0x56 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x0000000000002490                __aeabi_dcmplt
  .text.__aeabi_dcmpge
-                0x0000000000002406       0x5c /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
-                0x0000000000002406                __aeabi_dcmpge
+                0x00000000000024e6       0x5c /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
+                0x00000000000024e6                __aeabi_dcmpge
  *(SORT_BY_ALIGNMENT(.rodata) SORT_BY_ALIGNMENT(.rodata.*) SORT_BY_ALIGNMENT(.constdata) SORT_BY_ALIGNMENT(.constdata.*))
-                0x0000000000002468                . = ALIGN (0x8)
- *fill*         0x0000000000002462        0x6 ff
+                0x0000000000002548                . = ALIGN (0x8)
+ *fill*         0x0000000000002542        0x6 ff
 
-.glue_7         0x0000000000002468        0x0
- .glue_7        0x0000000000002468        0x0 linker stubs
+.glue_7         0x0000000000002548        0x0
+ .glue_7        0x0000000000002548        0x0 linker stubs
 
-.glue_7t        0x0000000000002468        0x0
- .glue_7t       0x0000000000002468        0x0 linker stubs
+.glue_7t        0x0000000000002548        0x0
+ .glue_7t       0x0000000000002548        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000002468        0x0
- .vfp11_veneer  0x0000000000002468        0x0 linker stubs
+.vfp11_veneer   0x0000000000002548        0x0
+ .vfp11_veneer  0x0000000000002548        0x0 linker stubs
 
-.v4_bx          0x0000000000002468        0x0
- .v4_bx         0x0000000000002468        0x0 linker stubs
+.v4_bx          0x0000000000002548        0x0
+ .v4_bx         0x0000000000002548        0x0 linker stubs
 
-.iplt           0x0000000000002468        0x0
- .iplt          0x0000000000002468        0x0 ./source/ADC.o
+.iplt           0x0000000000002548        0x0
+ .iplt          0x0000000000002548        0x0 ./source/ADC.o
 
-.rel.dyn        0x0000000000002468        0x0
- .rel.iplt      0x0000000000002468        0x0 ./source/ADC.o
+.rel.dyn        0x0000000000002548        0x0
+ .rel.iplt      0x0000000000002548        0x0 ./source/ADC.o
 
 .ARM.extab
  *(SORT_BY_ALIGNMENT(.ARM.extab*) SORT_BY_ALIGNMENT(.gnu.linkonce.armextab.*))
-                0x0000000000002468                __exidx_start = .
+                0x0000000000002548                __exidx_start = .
 
 .ARM.exidx
  *(SORT_BY_ALIGNMENT(.ARM.exidx*) SORT_BY_ALIGNMENT(.gnu.linkonce.armexidx.*))
-                0x0000000000002468                __exidx_end = .
-                0x0000000000002468                _etext = .
+                0x0000000000002548                __exidx_end = .
+                0x0000000000002548                _etext = .
 
 .m_usb_data
  *(SORT_BY_ALIGNMENT(m_usb_bdt))
 
-.data_RAM2      0x000000001fff0000        0x0 load address 0x0000000000002468
+.data_RAM2      0x000000001fff0000        0x0 load address 0x0000000000002548
  FILL mask 0xff
                 [!provide]                        PROVIDE (__start_data_RAM2 = .)
  *(SORT_BY_ALIGNMENT(.ramfunc.$RAM2))
@@ -1220,7 +1219,7 @@ END GROUP
                 0x000000001fff0000                . = ALIGN (0x8)
                 [!provide]                        PROVIDE (__end_data_RAM2 = .)
 
-.data_RAM3      0x0000000014000000        0x0 load address 0x0000000000002468
+.data_RAM3      0x0000000014000000        0x0 load address 0x0000000000002548
  FILL mask 0xff
                 [!provide]                        PROVIDE (__start_data_RAM3 = .)
  *(SORT_BY_ALIGNMENT(.ramfunc.$RAM3))
@@ -1239,7 +1238,7 @@ END GROUP
                 0x0000000020000000                . = ALIGN (0x8)
                 0x0000000020000000                _end_uninit_RESERVED = .
 
-.data           0x0000000020000000       0xb8 load address 0x0000000000002468
+.data           0x0000000020000000       0xb0 load address 0x0000000000002548
  FILL mask 0xff
                 0x0000000020000000                _data = .
  *(SORT_BY_ALIGNMENT(vtable))
@@ -1248,38 +1247,34 @@ END GROUP
  .data.ADC0_ptr
                 0x0000000020000000        0x4 ./source/ADC.o
  .data.sim_ptr  0x0000000020000004        0x4 ./source/ADC.o
- .data.testStream
-                0x0000000020000008        0xb ./source/App.o
-                0x0000000020000008                testStream
- *fill*         0x0000000020000013        0x1 ff
  .data.DAC0_ptr
-                0x0000000020000014        0x4 ./source/DAC.o
- .data.sim_ptr  0x0000000020000018        0x4 ./source/DAC.o
- .data.PIT_ptr  0x000000002000001c        0x4 ./source/PIT.o
- .data.sim_ptr  0x0000000020000020        0x4 ./source/PIT.o
+                0x0000000020000008        0x4 ./source/DAC.o
+ .data.sim_ptr  0x000000002000000c        0x4 ./source/DAC.o
+ .data.PIT_ptr  0x0000000020000010        0x4 ./source/PIT.o
+ .data.sim_ptr  0x0000000020000014        0x4 ./source/PIT.o
  .data.SysTick_ptr
-                0x0000000020000024        0x4 ./source/SysTick.o
- .data.firCoef  0x0000000020000028       0x4c ./source/demodulatorFSK.o
+                0x0000000020000018        0x4 ./source/SysTick.o
+ .data.firCoef  0x000000002000001c       0x4c ./source/demodulatorFSK.o
  .data.gpioPtrs
-                0x0000000020000074       0x14 ./source/gpio.o
+                0x0000000020000068       0x14 ./source/gpio.o
  .data.portPtrs
-                0x0000000020000088       0x14 ./source/gpio.o
+                0x000000002000007c       0x14 ./source/gpio.o
  .data.simMasks
-                0x000000002000009c       0x14 ./source/gpio.o
- .data.sim_ptr  0x00000000200000b0        0x4 ./source/gpio.o
- .data.value    0x00000000200000b4        0x1 ./source/demodulatorFSK.o
-                0x00000000200000b4                value
+                0x0000000020000090       0x14 ./source/gpio.o
+ .data.sim_ptr  0x00000000200000a4        0x4 ./source/gpio.o
+ .data.value    0x00000000200000a8        0x1 ./source/demodulatorFSK.o
+                0x00000000200000a8                value
  .data.firstZero
-                0x00000000200000b5        0x1 ./source/demodulatorFSK.o
-                0x00000000200000b5                firstZero
+                0x00000000200000a9        0x1 ./source/demodulatorFSK.o
+                0x00000000200000a9                firstZero
  .data.timers_cant
-                0x00000000200000b6        0x1 ./source/timer.o
-                0x00000000200000b8                . = ALIGN (0x8)
- *fill*         0x00000000200000b7        0x1 ff
-                0x00000000200000b8                _edata = .
+                0x00000000200000aa        0x1 ./source/timer.o
+                0x00000000200000b0                . = ALIGN (0x8)
+ *fill*         0x00000000200000ab        0x5 ff
+                0x00000000200000b0                _edata = .
 
-.igot.plt       0x00000000200000b8        0x0 load address 0x0000000000002520
- .igot.plt      0x00000000200000b8        0x0 ./source/ADC.o
+.igot.plt       0x00000000200000b0        0x0 load address 0x00000000000025f8
+ .igot.plt      0x00000000200000b0        0x0 ./source/ADC.o
 
 .bss_RAM2       0x000000001fff0000        0x0
                 0x000000001fff0000                . = ALIGN (0x8)
@@ -1301,80 +1296,78 @@ END GROUP
                 0x0000000014000000                . = ALIGN ((. != 0x0)?0x8:0x1)
                 [!provide]                        PROVIDE (__end_bss_RAM3 = .)
 
-.bss            0x00000000200000b8      0x488
-                0x00000000200000b8                . = ALIGN (0x8)
-                0x00000000200000b8                _bss = .
+.bss            0x00000000200000b0      0x488
+                0x00000000200000b0                . = ALIGN (0x8)
+                0x00000000200000b0                _bss = .
  *(SORT_BY_ALIGNMENT(.bss*))
  .bss.adc_channel
-                0x00000000200000b8        0x4 ./source/ADC.o
+                0x00000000200000b0        0x4 ./source/ADC.o
  .bss.ADCcallback
-                0x00000000200000bc        0x4 ./source/ADC.o
-                0x00000000200000bc                ADCcallback
+                0x00000000200000b4        0x4 ./source/ADC.o
+                0x00000000200000b4                ADCcallback
  .bss.sinValues
-                0x00000000200000c0       0x46 ./source/Modulador.o
- *fill*         0x0000000020000106        0x2 
+                0x00000000200000b8       0x46 ./source/Modulador.o
+ *fill*         0x00000000200000fe        0x2 
  .bss.bitStream
-                0x0000000020000108        0xb ./source/Modulador.o
- *fill*         0x0000000020000113        0x1 
- .bss.aux       0x0000000020000114        0x4 ./source/Modulador.o
+                0x0000000020000100        0xb ./source/Modulador.o
+ *fill*         0x000000002000010b        0x1 
+ .bss.aux       0x000000002000010c        0x4 ./source/Modulador.o
  .bss.MsgSendedCallback
-                0x0000000020000118        0x4 ./source/Modulador.o
-                0x0000000020000118                MsgSendedCallback
+                0x0000000020000110        0x4 ./source/Modulador.o
+                0x0000000020000110                MsgSendedCallback
  .bss.callback0
-                0x000000002000011c        0x4 ./source/PIT.o
-                0x000000002000011c                callback0
+                0x0000000020000114        0x4 ./source/PIT.o
+                0x0000000020000114                callback0
  .bss.callback1
-                0x0000000020000120        0x4 ./source/PIT.o
-                0x0000000020000120                callback1
+                0x0000000020000118        0x4 ./source/PIT.o
+                0x0000000020000118                callback1
  .bss.callback2
-                0x0000000020000124        0x4 ./source/PIT.o
-                0x0000000020000124                callback2
+                0x000000002000011c        0x4 ./source/PIT.o
+                0x000000002000011c                callback2
  .bss.callbackTick
-                0x0000000020000128        0x4 ./source/SysTick.o
- .bss.rawData   0x000000002000012c        0xc ./source/demodulatorFSK.o
-                0x000000002000012c                rawData
+                0x0000000020000120        0x4 ./source/SysTick.o
+ .bss.rawData   0x0000000020000124        0xc ./source/demodulatorFSK.o
+                0x0000000020000124                rawData
  .bss.prefilter
-                0x0000000020000138       0x4c ./source/demodulatorFSK.o
-                0x0000000020000138                prefilter
- .bss.output    0x0000000020000184        0xa ./source/demodulatorFSK.o
-                0x0000000020000184                output
- *fill*         0x000000002000018e        0x2 
- .bss.msg       0x0000000020000190        0xb ./source/demodulatorFSK.o
-                0x0000000020000190                msg
- *fill*         0x000000002000019b        0x1 
- .bss.DemCallback
-                0x000000002000019c        0x4 ./source/demodulatorFSK.o
-                0x000000002000019c                DemCallback
+                0x0000000020000130       0x4c ./source/demodulatorFSK.o
+                0x0000000020000130                prefilter
+ .bss.output    0x000000002000017c        0xa ./source/demodulatorFSK.o
+                0x000000002000017c                output
+ *fill*         0x0000000020000186        0x2 
+ .bss.msg       0x0000000020000188        0xb ./source/demodulatorFSK.o
+ *fill*         0x0000000020000193        0x1 
+ .bss.funcioncallback
+                0x0000000020000194        0x4 ./source/demodulatorFSK.o
  .bss.outputCount
-                0x00000000200001a0        0x4 ./source/demodulatorFSK.o
-                0x00000000200001a0                outputCount
+                0x0000000020000198        0x4 ./source/demodulatorFSK.o
+                0x0000000020000198                outputCount
  .bss.sampleCount
-                0x00000000200001a4        0x4 ./source/demodulatorFSK.o
-                0x00000000200001a4                sampleCount
+                0x000000002000019c        0x4 ./source/demodulatorFSK.o
+                0x000000002000019c                sampleCount
  .bss.isr_Matrix
-                0x00000000200001a8      0x280 ./source/gpio.o
- .bss.timers    0x0000000020000428      0x100 ./source/timer.o
+                0x00000000200001a0      0x280 ./source/gpio.o
+ .bss.timers    0x0000000020000420      0x100 ./source/timer.o
  .bss.__LDM_interruptDisableCount
-                0x0000000020000528        0x4 ./SDK/startup/hardware.o
- .bss.errno     0x000000002000052c        0x4 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(errno.o)
-                0x000000002000052c                errno
- .bss.ADCdata   0x0000000020000530        0x2 ./source/ADC.o
- .bss.cont      0x0000000020000532        0x2 ./source/Modulador.o
- .bss.cycle     0x0000000020000534        0x2 ./source/Modulador.o
- .bss.a         0x0000000020000536        0x1 ./source/App.o
-                0x0000000020000536                a
- .bss.timer     0x0000000020000537        0x1 ./source/App.o
-                0x0000000020000537                timer
- .bss.sinIndex  0x0000000020000538        0x1 ./source/Modulador.o
- .bss.msg_ptr   0x0000000020000539        0x1 ./source/Modulador.o
- .bss.status    0x000000002000053a        0x1 ./source/Modulador.o
- .bss.status    0x000000002000053b        0x1 ./source/demodulatorFSK.o
+                0x0000000020000520        0x4 ./SDK/startup/hardware.o
+ .bss.errno     0x0000000020000524        0x4 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(errno.o)
+                0x0000000020000524                errno
+ .bss.ADCdata   0x0000000020000528        0x2 ./source/ADC.o
+ .bss.cont      0x000000002000052a        0x2 ./source/Modulador.o
+ .bss.cycle     0x000000002000052c        0x2 ./source/Modulador.o
+ .bss.a         0x000000002000052e        0x1 ./source/App.o
+                0x000000002000052e                a
+ .bss.timer     0x000000002000052f        0x1 ./source/App.o
+                0x000000002000052f                timer
+ .bss.sinIndex  0x0000000020000530        0x1 ./source/Modulador.o
+ .bss.msg_ptr   0x0000000020000531        0x1 ./source/Modulador.o
+ .bss.status    0x0000000020000532        0x1 ./source/Modulador.o
+ .bss.status    0x0000000020000533        0x1 ./source/demodulatorFSK.o
  .bss.yaInit.7551
-                0x000000002000053c        0x1 ./source/timer.o
+                0x0000000020000534        0x1 ./source/timer.o
  *(SORT_BY_ALIGNMENT(COMMON))
-                0x0000000020000540                . = ALIGN (0x8)
- *fill*         0x000000002000053d        0x3 
-                0x0000000020000540                _ebss = .
+                0x0000000020000538                . = ALIGN (0x8)
+ *fill*         0x0000000020000535        0x3 
+                0x0000000020000538                _ebss = .
                 [!provide]                        PROVIDE (end = .)
 
 .noinit_RAM2    0x000000001fff0000        0x0
@@ -1393,69 +1386,69 @@ END GROUP
  *(SORT_BY_ALIGNMENT(.noinit.$FLEX_RAM.*))
                 0x0000000014000000                . = ALIGN (0x8)
 
-.noinit         0x0000000020000540        0x0
-                0x0000000020000540                . = ALIGN (0x8)
-                0x0000000020000540                _noinit = .
+.noinit         0x0000000020000538        0x0
+                0x0000000020000538                . = ALIGN (0x8)
+                0x0000000020000538                _noinit = .
  *(SORT_BY_ALIGNMENT(.noinit*))
-                0x0000000020000540                . = ALIGN (0x8)
-                0x0000000020000540                _end_noinit = .
+                0x0000000020000538                . = ALIGN (0x8)
+                0x0000000020000538                _end_noinit = .
                 0x0000000000001000                _HeapSize = 0x1000
 
-.heap           0x0000000020000540     0x1000
-                0x0000000020000540                _pvHeapStart = .
-                0x0000000020001540                . = (. + _HeapSize)
- *fill*         0x0000000020000540     0x1000 
-                0x0000000020001540                . = ALIGN (0x8)
-                0x0000000020001540                _pvHeapLimit = .
+.heap           0x0000000020000538     0x1000
+                0x0000000020000538                _pvHeapStart = .
+                0x0000000020001538                . = (. + _HeapSize)
+ *fill*         0x0000000020000538     0x1000 
+                0x0000000020001538                . = ALIGN (0x8)
+                0x0000000020001538                _pvHeapLimit = .
                 0x0000000000001000                _StackSize = 0x1000
 
 .heap2stackfill
-                0x0000000020001540     0x1000
-                0x0000000020002540                . = (. + _StackSize)
- *fill*         0x0000000020001540     0x1000 
+                0x0000000020001538     0x1000
+                0x0000000020002538                . = (. + _StackSize)
+ *fill*         0x0000000020001538     0x1000 
 
 .stack          0x000000002002f000        0x0
                 0x000000002002f000                _vStackBase = .
                 0x000000002002f000                . = ALIGN (0x8)
                 0x0000000020030000                _vStackTop = (. + _StackSize)
                 0x0000000000000000                _image_start = LOADADDR (.text)
-                0x0000000000002520                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x0000000000002520                _image_size = (_image_end - _image_start)
+                0x00000000000025f8                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x00000000000025f8                _image_size = (_image_end - _image_start)
 OUTPUT(Blink.axf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x6640
+.debug_info     0x0000000000000000     0x667e
  .debug_info    0x0000000000000000      0x920 ./source/ADC.o
- .debug_info    0x0000000000000920      0xa97 ./source/App.o
- .debug_info    0x00000000000013b7      0x39f ./source/DAC.o
- .debug_info    0x0000000000001756      0xb43 ./source/Modulador.o
- .debug_info    0x0000000000002299      0x83c ./source/PIT.o
- .debug_info    0x0000000000002ad5      0x549 ./source/SysTick.o
- .debug_info    0x000000000000301e      0xbca ./source/demodulatorFSK.o
- .debug_info    0x0000000000003be8      0x76a ./source/gpio.o
- .debug_info    0x0000000000004352      0xb93 ./source/timer.o
- .debug_info    0x0000000000004ee5      0x6dc ./SDK/startup/hardware.o
- .debug_info    0x00000000000055c1       0xbc ./SDK/startup/main.o
- .debug_info    0x000000000000567d       0x3c ./SDK/startup/semihost_hardfault.o
- .debug_info    0x00000000000056b9      0x92e ./SDK/startup/startup_mk64f12.o
- .debug_info    0x0000000000005fe7      0x659 ./SDK/CMSIS/system_MK64F12.o
+ .debug_info    0x0000000000000920      0xa57 ./source/App.o
+ .debug_info    0x0000000000001377      0x39f ./source/DAC.o
+ .debug_info    0x0000000000001716      0xb9c ./source/Modulador.o
+ .debug_info    0x00000000000022b2      0x83c ./source/PIT.o
+ .debug_info    0x0000000000002aee      0x549 ./source/SysTick.o
+ .debug_info    0x0000000000003037      0xbef ./source/demodulatorFSK.o
+ .debug_info    0x0000000000003c26      0x76a ./source/gpio.o
+ .debug_info    0x0000000000004390      0xb93 ./source/timer.o
+ .debug_info    0x0000000000004f23      0x6dc ./SDK/startup/hardware.o
+ .debug_info    0x00000000000055ff       0xbc ./SDK/startup/main.o
+ .debug_info    0x00000000000056bb       0x3c ./SDK/startup/semihost_hardfault.o
+ .debug_info    0x00000000000056f7      0x92e ./SDK/startup/startup_mk64f12.o
+ .debug_info    0x0000000000006025      0x659 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_abbrev   0x0000000000000000     0x185b
+.debug_abbrev   0x0000000000000000     0x1879
  .debug_abbrev  0x0000000000000000      0x219 ./source/ADC.o
  .debug_abbrev  0x0000000000000219      0x26b ./source/App.o
  .debug_abbrev  0x0000000000000484      0x14c ./source/DAC.o
- .debug_abbrev  0x00000000000005d0      0x287 ./source/Modulador.o
- .debug_abbrev  0x0000000000000857      0x20e ./source/PIT.o
- .debug_abbrev  0x0000000000000a65      0x1c2 ./source/SysTick.o
- .debug_abbrev  0x0000000000000c27      0x2a5 ./source/demodulatorFSK.o
- .debug_abbrev  0x0000000000000ecc      0x1cb ./source/gpio.o
- .debug_abbrev  0x0000000000001097      0x2e5 ./source/timer.o
- .debug_abbrev  0x000000000000137c      0x154 ./SDK/startup/hardware.o
- .debug_abbrev  0x00000000000014d0       0x85 ./SDK/startup/main.o
- .debug_abbrev  0x0000000000001555       0x31 ./SDK/startup/semihost_hardfault.o
- .debug_abbrev  0x0000000000001586      0x17a ./SDK/startup/startup_mk64f12.o
- .debug_abbrev  0x0000000000001700      0x15b ./SDK/CMSIS/system_MK64F12.o
+ .debug_abbrev  0x00000000000005d0      0x2b6 ./source/Modulador.o
+ .debug_abbrev  0x0000000000000886      0x20e ./source/PIT.o
+ .debug_abbrev  0x0000000000000a94      0x1c2 ./source/SysTick.o
+ .debug_abbrev  0x0000000000000c56      0x294 ./source/demodulatorFSK.o
+ .debug_abbrev  0x0000000000000eea      0x1cb ./source/gpio.o
+ .debug_abbrev  0x00000000000010b5      0x2e5 ./source/timer.o
+ .debug_abbrev  0x000000000000139a      0x154 ./SDK/startup/hardware.o
+ .debug_abbrev  0x00000000000014ee       0x85 ./SDK/startup/main.o
+ .debug_abbrev  0x0000000000001573       0x31 ./SDK/startup/semihost_hardfault.o
+ .debug_abbrev  0x00000000000015a4      0x17a ./SDK/startup/startup_mk64f12.o
+ .debug_abbrev  0x000000000000171e      0x15b ./SDK/CMSIS/system_MK64F12.o
 
-.debug_aranges  0x0000000000000000      0x658
+.debug_aranges  0x0000000000000000      0x660
  .debug_aranges
                 0x0000000000000000       0x50 ./source/ADC.o
  .debug_aranges
@@ -1463,45 +1456,45 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_aranges
                 0x0000000000000090       0x28 ./source/DAC.o
  .debug_aranges
-                0x00000000000000b8       0x48 ./source/Modulador.o
+                0x00000000000000b8       0x50 ./source/Modulador.o
  .debug_aranges
-                0x0000000000000100       0x58 ./source/PIT.o
+                0x0000000000000108       0x58 ./source/PIT.o
  .debug_aranges
-                0x0000000000000158       0x30 ./source/SysTick.o
+                0x0000000000000160       0x30 ./source/SysTick.o
  .debug_aranges
-                0x0000000000000188       0x40 ./source/demodulatorFSK.o
+                0x0000000000000190       0x40 ./source/demodulatorFSK.o
  .debug_aranges
-                0x00000000000001c8       0x70 ./source/gpio.o
+                0x00000000000001d0       0x70 ./source/gpio.o
  .debug_aranges
-                0x0000000000000238       0x50 ./source/timer.o
+                0x0000000000000240       0x50 ./source/timer.o
  .debug_aranges
-                0x0000000000000288       0x30 ./SDK/startup/hardware.o
+                0x0000000000000290       0x30 ./SDK/startup/hardware.o
  .debug_aranges
-                0x00000000000002b8       0x20 ./SDK/startup/main.o
+                0x00000000000002c0       0x20 ./SDK/startup/main.o
  .debug_aranges
-                0x00000000000002d8       0x20 ./SDK/startup/semihost_hardfault.o
+                0x00000000000002e0       0x20 ./SDK/startup/semihost_hardfault.o
  .debug_aranges
-                0x00000000000002f8      0x330 ./SDK/startup/startup_mk64f12.o
+                0x0000000000000300      0x330 ./SDK/startup/startup_mk64f12.o
  .debug_aranges
-                0x0000000000000628       0x30 ./SDK/CMSIS/system_MK64F12.o
+                0x0000000000000630       0x30 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_ranges   0x0000000000000000      0x578
+.debug_ranges   0x0000000000000000      0x580
  .debug_ranges  0x0000000000000000       0x40 ./source/ADC.o
  .debug_ranges  0x0000000000000040       0x30 ./source/App.o
  .debug_ranges  0x0000000000000070       0x18 ./source/DAC.o
- .debug_ranges  0x0000000000000088       0x38 ./source/Modulador.o
- .debug_ranges  0x00000000000000c0       0x48 ./source/PIT.o
- .debug_ranges  0x0000000000000108       0x20 ./source/SysTick.o
- .debug_ranges  0x0000000000000128       0x30 ./source/demodulatorFSK.o
- .debug_ranges  0x0000000000000158       0x60 ./source/gpio.o
- .debug_ranges  0x00000000000001b8       0x40 ./source/timer.o
- .debug_ranges  0x00000000000001f8       0x20 ./SDK/startup/hardware.o
- .debug_ranges  0x0000000000000218       0x10 ./SDK/startup/main.o
- .debug_ranges  0x0000000000000228       0x10 ./SDK/startup/semihost_hardfault.o
- .debug_ranges  0x0000000000000238      0x320 ./SDK/startup/startup_mk64f12.o
- .debug_ranges  0x0000000000000558       0x20 ./SDK/CMSIS/system_MK64F12.o
+ .debug_ranges  0x0000000000000088       0x40 ./source/Modulador.o
+ .debug_ranges  0x00000000000000c8       0x48 ./source/PIT.o
+ .debug_ranges  0x0000000000000110       0x20 ./source/SysTick.o
+ .debug_ranges  0x0000000000000130       0x30 ./source/demodulatorFSK.o
+ .debug_ranges  0x0000000000000160       0x60 ./source/gpio.o
+ .debug_ranges  0x00000000000001c0       0x40 ./source/timer.o
+ .debug_ranges  0x0000000000000200       0x20 ./SDK/startup/hardware.o
+ .debug_ranges  0x0000000000000220       0x10 ./SDK/startup/main.o
+ .debug_ranges  0x0000000000000230       0x10 ./SDK/startup/semihost_hardfault.o
+ .debug_ranges  0x0000000000000240      0x320 ./SDK/startup/startup_mk64f12.o
+ .debug_ranges  0x0000000000000560       0x20 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_macro    0x0000000000000000    0x13610
+.debug_macro    0x0000000000000000    0x1361c
  .debug_macro   0x0000000000000000       0xab ./source/ADC.o
  .debug_macro   0x00000000000000ab      0xa9c ./source/ADC.o
  .debug_macro   0x0000000000000b47      0x34e ./source/ADC.o
@@ -1557,70 +1550,70 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_macro   0x0000000000012326       0x29 ./source/App.o
  .debug_macro   0x000000000001234f       0x1c ./source/App.o
  .debug_macro   0x000000000001236b       0xac ./source/DAC.o
- .debug_macro   0x0000000000012417      0x145 ./source/Modulador.o
- .debug_macro   0x000000000001255c      0x174 ./source/Modulador.o
- .debug_macro   0x00000000000126d0      0x339 ./source/Modulador.o
- .debug_macro   0x0000000000012a09      0x1e1 ./source/Modulador.o
- .debug_macro   0x0000000000012bea       0xa6 ./source/PIT.o
- .debug_macro   0x0000000000012c90       0xac ./source/SysTick.o
- .debug_macro   0x0000000000012d3c      0x1da ./source/demodulatorFSK.o
- .debug_macro   0x0000000000012f16       0x16 ./source/demodulatorFSK.o
- .debug_macro   0x0000000000012f2c       0xab ./source/gpio.o
- .debug_macro   0x0000000000012fd7      0x1c3 ./source/timer.o
- .debug_macro   0x000000000001319a      0x10e ./source/timer.o
- .debug_macro   0x00000000000132a8       0x8d ./source/timer.o
- .debug_macro   0x0000000000013335       0x10 ./source/timer.o
- .debug_macro   0x0000000000013345       0xd9 ./source/timer.o
- .debug_macro   0x000000000001341e       0x9c ./SDK/startup/hardware.o
- .debug_macro   0x00000000000134ba       0x9c ./SDK/startup/main.o
- .debug_macro   0x0000000000013556       0x11 ./SDK/startup/semihost_hardfault.o
- .debug_macro   0x0000000000013567       0x29 ./SDK/startup/startup_mk64f12.o
- .debug_macro   0x0000000000013590       0x80 ./SDK/CMSIS/system_MK64F12.o
+ .debug_macro   0x0000000000012417      0x14b ./source/Modulador.o
+ .debug_macro   0x0000000000012562      0x174 ./source/Modulador.o
+ .debug_macro   0x00000000000126d6      0x339 ./source/Modulador.o
+ .debug_macro   0x0000000000012a0f      0x1e1 ./source/Modulador.o
+ .debug_macro   0x0000000000012bf0       0xa6 ./source/PIT.o
+ .debug_macro   0x0000000000012c96       0xac ./source/SysTick.o
+ .debug_macro   0x0000000000012d42      0x1e0 ./source/demodulatorFSK.o
+ .debug_macro   0x0000000000012f22       0x16 ./source/demodulatorFSK.o
+ .debug_macro   0x0000000000012f38       0xab ./source/gpio.o
+ .debug_macro   0x0000000000012fe3      0x1c3 ./source/timer.o
+ .debug_macro   0x00000000000131a6      0x10e ./source/timer.o
+ .debug_macro   0x00000000000132b4       0x8d ./source/timer.o
+ .debug_macro   0x0000000000013341       0x10 ./source/timer.o
+ .debug_macro   0x0000000000013351       0xd9 ./source/timer.o
+ .debug_macro   0x000000000001342a       0x9c ./SDK/startup/hardware.o
+ .debug_macro   0x00000000000134c6       0x9c ./SDK/startup/main.o
+ .debug_macro   0x0000000000013562       0x11 ./SDK/startup/semihost_hardfault.o
+ .debug_macro   0x0000000000013573       0x29 ./SDK/startup/startup_mk64f12.o
+ .debug_macro   0x000000000001359c       0x80 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_line     0x0000000000000000     0x3577
+.debug_line     0x0000000000000000     0x362c
  .debug_line    0x0000000000000000      0x2ca ./source/ADC.o
- .debug_line    0x00000000000002ca      0x592 ./source/App.o
- .debug_line    0x000000000000085c      0x1f9 ./source/DAC.o
- .debug_line    0x0000000000000a55      0x4f5 ./source/Modulador.o
- .debug_line    0x0000000000000f4a      0x2df ./source/PIT.o
- .debug_line    0x0000000000001229      0x235 ./source/SysTick.o
- .debug_line    0x000000000000145e      0x61c ./source/demodulatorFSK.o
- .debug_line    0x0000000000001a7a      0x44f ./source/gpio.o
- .debug_line    0x0000000000001ec9      0x59e ./source/timer.o
- .debug_line    0x0000000000002467      0x2aa ./SDK/startup/hardware.o
- .debug_line    0x0000000000002711      0x1bf ./SDK/startup/main.o
- .debug_line    0x00000000000028d0       0x5f ./SDK/startup/semihost_hardfault.o
- .debug_line    0x000000000000292f      0x914 ./SDK/startup/startup_mk64f12.o
- .debug_line    0x0000000000003243      0x334 ./SDK/CMSIS/system_MK64F12.o
+ .debug_line    0x00000000000002ca      0x595 ./source/App.o
+ .debug_line    0x000000000000085f      0x1f9 ./source/DAC.o
+ .debug_line    0x0000000000000a58      0x563 ./source/Modulador.o
+ .debug_line    0x0000000000000fbb      0x2df ./source/PIT.o
+ .debug_line    0x000000000000129a      0x235 ./source/SysTick.o
+ .debug_line    0x00000000000014cf      0x660 ./source/demodulatorFSK.o
+ .debug_line    0x0000000000001b2f      0x44f ./source/gpio.o
+ .debug_line    0x0000000000001f7e      0x59e ./source/timer.o
+ .debug_line    0x000000000000251c      0x2aa ./SDK/startup/hardware.o
+ .debug_line    0x00000000000027c6      0x1bf ./SDK/startup/main.o
+ .debug_line    0x0000000000002985       0x5f ./SDK/startup/semihost_hardfault.o
+ .debug_line    0x00000000000029e4      0x914 ./SDK/startup/startup_mk64f12.o
+ .debug_line    0x00000000000032f8      0x334 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_str      0x0000000000000000    0x7d661
+.debug_str      0x0000000000000000    0x7d678
  .debug_str     0x0000000000000000    0x77628 ./source/ADC.o
                                       0x777ed (size before relaxing)
- .debug_str     0x0000000000077628     0x482d ./source/App.o
-                                      0x7b9da (size before relaxing)
- .debug_str     0x000000000007be55       0x65 ./source/DAC.o
+ .debug_str     0x0000000000077628     0x480a ./source/App.o
+                                      0x7b9b1 (size before relaxing)
+ .debug_str     0x000000000007be32       0x65 ./source/DAC.o
                                       0x771bb (size before relaxing)
- .debug_str     0x000000000007beba      0x9a3 ./source/Modulador.o
-                                       0x7500 (size before relaxing)
- .debug_str     0x000000000007c85d       0xca ./source/PIT.o
+ .debug_str     0x000000000007be97      0x9bc ./source/Modulador.o
+                                       0x7519 (size before relaxing)
+ .debug_str     0x000000000007c853       0xca ./source/PIT.o
                                       0x77791 (size before relaxing)
- .debug_str     0x000000000007c927       0x8e ./source/SysTick.o
+ .debug_str     0x000000000007c91d       0x8e ./source/SysTick.o
                                       0x77684 (size before relaxing)
- .debug_str     0x000000000007c9b5       0xb5 ./source/demodulatorFSK.o
-                                       0x7ffa (size before relaxing)
- .debug_str     0x000000000007ca6a      0x15f ./source/gpio.o
+ .debug_str     0x000000000007c9ab       0xd6 ./source/demodulatorFSK.o
+                                       0x8013 (size before relaxing)
+ .debug_str     0x000000000007ca81      0x15f ./source/gpio.o
                                       0x7736b (size before relaxing)
- .debug_str     0x000000000007cbc9       0xe1 ./source/timer.o
+ .debug_str     0x000000000007cbe0       0xe1 ./source/timer.o
                                       0x7a69f (size before relaxing)
- .debug_str     0x000000000007ccaa      0x16f ./SDK/startup/hardware.o
+ .debug_str     0x000000000007ccc1      0x16f ./SDK/startup/hardware.o
                                       0x772c2 (size before relaxing)
- .debug_str     0x000000000007ce19       0x1b ./SDK/startup/main.o
+ .debug_str     0x000000000007ce30       0x1b ./SDK/startup/main.o
                                       0x77096 (size before relaxing)
- .debug_str     0x000000000007ce34       0x36 ./SDK/startup/semihost_hardfault.o
+ .debug_str     0x000000000007ce4b       0x36 ./SDK/startup/semihost_hardfault.o
                                        0x2dfc (size before relaxing)
- .debug_str     0x000000000007ce6a      0x795 ./SDK/startup/startup_mk64f12.o
+ .debug_str     0x000000000007ce81      0x795 ./SDK/startup/startup_mk64f12.o
                                        0x366a (size before relaxing)
- .debug_str     0x000000000007d5ff       0x62 ./SDK/CMSIS/system_MK64F12.o
+ .debug_str     0x000000000007d616       0x62 ./SDK/CMSIS/system_MK64F12.o
                                       0x771d1 (size before relaxing)
 
 .comment        0x0000000000000000       0x75
@@ -1686,18 +1679,18 @@ OUTPUT(Blink.axf elf32-littlearm)
  .ARM.attributes
                 0x00000000000003ad       0x34 /Applications/MCUXpressoIDE_11.0.0_2516/ide/plugins/com.nxp.mcuxpresso.tools.macosx_11.0.0.201905131304/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/libcr_eabihelpers.a(double.o)
 
-.debug_frame    0x0000000000000000     0x1280
+.debug_frame    0x0000000000000000     0x12a8
  .debug_frame   0x0000000000000000      0x100 ./source/ADC.o
- .debug_frame   0x0000000000000100       0xb0 ./source/App.o
- .debug_frame   0x00000000000001b0       0x58 ./source/DAC.o
- .debug_frame   0x0000000000000208       0xd8 ./source/Modulador.o
- .debug_frame   0x00000000000002e0      0x120 ./source/PIT.o
- .debug_frame   0x0000000000000400       0x88 ./source/SysTick.o
- .debug_frame   0x0000000000000488       0xc8 ./source/demodulatorFSK.o
- .debug_frame   0x0000000000000550      0x1f0 ./source/gpio.o
- .debug_frame   0x0000000000000740      0x10c ./source/timer.o
- .debug_frame   0x000000000000084c       0x70 ./SDK/startup/hardware.o
- .debug_frame   0x00000000000008bc       0x2c ./SDK/startup/main.o
- .debug_frame   0x00000000000008e8       0x20 ./SDK/startup/semihost_hardfault.o
- .debug_frame   0x0000000000000908      0x904 ./SDK/startup/startup_mk64f12.o
- .debug_frame   0x000000000000120c       0x74 ./SDK/CMSIS/system_MK64F12.o
+ .debug_frame   0x0000000000000100       0xac ./source/App.o
+ .debug_frame   0x00000000000001ac       0x58 ./source/DAC.o
+ .debug_frame   0x0000000000000204       0xfc ./source/Modulador.o
+ .debug_frame   0x0000000000000300      0x120 ./source/PIT.o
+ .debug_frame   0x0000000000000420       0x88 ./source/SysTick.o
+ .debug_frame   0x00000000000004a8       0xd0 ./source/demodulatorFSK.o
+ .debug_frame   0x0000000000000578      0x1f0 ./source/gpio.o
+ .debug_frame   0x0000000000000768      0x10c ./source/timer.o
+ .debug_frame   0x0000000000000874       0x70 ./SDK/startup/hardware.o
+ .debug_frame   0x00000000000008e4       0x2c ./SDK/startup/main.o
+ .debug_frame   0x0000000000000910       0x20 ./SDK/startup/semihost_hardfault.o
+ .debug_frame   0x0000000000000930      0x904 ./SDK/startup/startup_mk64f12.o
+ .debug_frame   0x0000000000001234       0x74 ./SDK/CMSIS/system_MK64F12.o

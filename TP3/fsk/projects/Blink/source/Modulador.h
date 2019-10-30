@@ -23,7 +23,7 @@
 
 void Modulador_init(void(*funcallback)(void));
 
-void Modulador_sendStream(bool *stream);
+void Modulador_sendChar(char my_char);
 
 
 #endif /* MODULADOR_H_ */

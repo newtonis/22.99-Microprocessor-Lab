@@ -1,6 +1,7 @@
-Modulador.c:60:6:Modulador_init	32	static
-Modulador.c:84:6:Modulador_sendStream	24	static
-Modulador.c:96:6:procesBitStream	8	static
-Modulador.c:111:6:sendBit	8	static
-Modulador.c:131:6:sendSin1	8	static
-Modulador.c:155:6:sendSin0	16	static
+Modulador.c:64:6:Modulador_init	32	static
+Modulador.c:88:6:Modulador_sendChar	24	static
+Modulador.c:109:6:procesBitStream	8	static
+Modulador.c:124:6:sendBit	8	static
+Modulador.c:144:6:sendSin1	8	static
+Modulador.c:168:6:sendSin0	16	static
+Modulador.c:212:6:parity	24	static

@@ -18,9 +18,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-bool testStreamc[STAND_LEN] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-bool testStreamu[STAND_LEN] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-bool testStream[STAND_LEN] = {0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0};
+
 uint8_t a = 0;
 tim_id_t timer;
 
@@ -29,7 +27,7 @@ tim_id_t timer;
  ******************************************************************************/
 void test(void);
 void callback (void);
-void demCallback(void);
+void demodulador(void);
 
 
 /*******************************************************************************
@@ -47,7 +45,7 @@ void App_Init (void)
 	//gpioMode(PIN_TP, OUTPUT);
 	//gpioWrite (PIN_TP, false);
     Modulador_init(test);
-    FSKdem_init(demCallback);
+    FSKdem_init(demodulador);
     timerStart(timer, TIMER_MS2TICKS(5000), TIM_MODE_PERIODIC, callback);
 
 }
@@ -74,12 +72,14 @@ void test(void)
 
 void callback (void)
 {
-	Modulador_sendStream(testStream);
+	Modulador_sendChar('k');
 }
 
-void demCallback(void)
+void demodulador(void)
 {
-	int b = 0;
+
+	char b = get_Msg();
+	int a = 0;
 }
 
 /*******************************************************************************

@@ -1,5 +1,5 @@
-demodulatorFSK.c:57:6:FSKdem_init	16	static
-demodulatorFSK.c:70:6:FSKdemodulate	32	static
-demodulatorFSK.c:161:6:updateData	24	static
-demodulatorFSK.c:170:6:filterSignal	16	static
-demodulatorFSK.c:190:8:get_Msg	4	static
+demodulatorFSK.c:60:6:FSKdem_init	16	static
+demodulatorFSK.c:73:6:FSKdemodulate	32	static
+demodulatorFSK.c:165:6:updateData	24	static
+demodulatorFSK.c:174:6:filterSignal	16	static
+demodulatorFSK.c:194:6:get_Msg	16	static

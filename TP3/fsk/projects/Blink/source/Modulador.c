@@ -24,6 +24,8 @@
 #define ONE_FREC	1200
 #define ZERO_FREC	2200
 
+#define TOBITMASK 		10000000
+
 typedef enum { IDLE, MSG} status_t;
 
 static uint16_t sinValues[SIN_VALUES];
@@ -50,6 +52,8 @@ void sendSin0(void);
 void sendSin1(void);
 
 void procesBitStream(void); // El comando puede ser START o NEXT_SYM
+
+bool parity (char num);
 
 /*******************************************************************************
  *******************************************************************************
@@ -81,16 +85,25 @@ void Modulador_init(void(*funcallback)(void))
 
 
 
-void Modulador_sendStream(bool *stream)
+void Modulador_sendChar(char my_char)
 {
 	status = MSG;
 	msg_ptr = 0;
 	cont = 0;
 
-	for(int i = 0; i < STAND_LEN; i++)
+	char msg = my_char;
+
+	bitStream[0] = false; //START
+	bitStream[STAND_LEN - 1] = true; //STOP
+	bitStream[STAND_LEN - 2] = parity(msg);
+
+	for(int i = 1; i < 9; i++)
 	{
-		bitStream[i] = stream[i];
+		bitStream[i] = (msg & TOBITMASK);
+		msg = msg<<1;
 	}
+
+
 }
 
 void procesBitStream(void)
@@ -100,8 +113,9 @@ void procesBitStream(void)
 	if(msg_ptr == STAND_LEN)
 	{
 		msg_ptr = 0;
-		MsgSendedCallback(); // Avisa que termino de mandar la señal modulada
 		status = IDLE;
+		MsgSendedCallback(); // Avisa que termino de mandar la señal modulada
+
 	}
 
 
@@ -194,6 +208,17 @@ void sendSin0(void)
 
 }
 
+
+
+bool parity (char num)
+{
+	bool par = 1;
+	for (int i = 0 ; i < 7; i++)
+	{
+		par ^= ((num & (1<<i))>>i);
+	}
+	return par;
+}
 
 /*******************************************************************************
  ******************************************************************************/

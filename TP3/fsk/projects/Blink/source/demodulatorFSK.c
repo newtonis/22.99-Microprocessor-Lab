@@ -10,21 +10,24 @@
 #include "PIT.h"
 
 #define ADC_CH 0
+#define MSG_LEN 11
 
 typedef enum {IDLE, MSG}status_t;
 
 void filterSignal (void);
-void updateData (uint16_t newdata);
+void updateData ();
 void FSKdemodulate(void);
+
 
 int16_t rawData [ DELAY + 1] = {0};
 float prefilter[FIR_ORDER+1] = {0};
 bool output[10];
-bool msg[11];
+static bool msg[11];
 bool value = true;
 bool firstZero = true;
 
-void (*DemCallback)(void);
+
+static myCallback funcioncallback = NULL;
 
 
 int outputCount = 0;
@@ -54,10 +57,10 @@ static float firCoef[ ] =
 		-0.0063458560700613868f,
 		-0.0018693054003477631f };
 
-void FSKdem_init(callback_t callback)
+void FSKdem_init(myCallback funcallback)
 {
 
-	DemCallback = callback;
+	funcioncallback = funcallback;
 	ADC_init(ADC_CH, FSKdemodulate);
 	ADC_enableModule(ADC_CH);
 
@@ -70,16 +73,17 @@ void FSKdem_init(callback_t callback)
 void FSKdemodulate()
 {
 
+	updateData();
 
-	uint8_t sum;
-	updateData( ADC_getDataResult() );
+	uint8_t sum = 0;
+
 	for(int i=1; i < (1+ FIR_ORDER); i++)
 	{
 		prefilter[i-1] = prefilter[i];
 	}
 	prefilter[FIR_ORDER] = rawData[DELAY]*rawData[0];
 	filterSignal();
-	sampleCount++;
+	sampleCount = sampleCount + 1;
 
 
 	if (status == MSG)
@@ -100,23 +104,21 @@ void FSKdemodulate()
 				msg[outputCount] = false;
 			}
 
-			outputCount++;
-			if (outputCount == 11)
+			outputCount = outputCount + 1;
+			if (outputCount == MSG_LEN)
 			{
+				funcioncallback();
 				status = IDLE;
-				//callback();
 			}
 
 
-			//estado idle, si llega 1 no hago nada, si llega cero paso a estado mensaje,
-			//guardo el cero y depues empiezo a guardar hasta llegar a 11 bits.
-			//me falta que cada vez que hago una suma resetar el array output
 		}
 	}
 	else
 	{
 		if (sampleCount == 10)
 		{
+			sampleCount = 0;
 			for(int j = 0; j<10 ; j++)
 			{
 				sum+= output[j];
@@ -158,8 +160,10 @@ void FSKdemodulate()
 	}
 }
 
-void updateData (uint16_t newdata)
+void updateData (void)
 {
+	uint16_t newdata = ADC_getDataResult();
+
 	for(int i=1; i < (1+ DELAY); i++)
 	{
 		rawData[i-1] = rawData[i];
@@ -187,7 +191,14 @@ void filterSignal (void)
 
 }
 
-bool * get_Msg (void)
+char get_Msg (void)
 {
-	return msg;
+	char retmsg = 0;
+
+	for (int k = 1; k < 9;k++ )
+	{
+		retmsg |= (msg[k]<< (8 - k));
+	}
+
+	return retmsg;
 }
