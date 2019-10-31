@@ -6,6 +6,7 @@
  */
 
 #include "DecodeBits.h"
+#include "hardware.h"
 #include "DMA.h"
 
 /*******************************************************************************
@@ -16,6 +17,8 @@ enum{NOT_TAKEN_SYMBOLS, FIRST_DC_TAKEN, SECOND_DC_TAKEN};
 
 static uint8_t buffer[11] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
 static uint16_t input_pulse = 0;
+static uint16_t entradasleidas[22] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static uint16_t cont = 0;
 
 static uint8_t index = 0;
 static bool is_buff_full = false;
@@ -60,7 +63,7 @@ void Decoder_parsePulse(uint32_t input);
 
 void Decoder_init(uint16_t* medAddress)
 {
-	DMA1_Config(medAddress, (&input_pulse), processPulse);
+	DMA1_Config(medAddress, &input_pulse, processPulse);
 
 	DMA0_ConfigCounters(1, sizeof(input_pulse), sizeof(input_pulse));
 
@@ -70,6 +73,12 @@ void Decoder_init(uint16_t* medAddress)
 void processPulse(void)
 {
 	Decoder_parsePulse(input_pulse);
+	entradasleidas[cont] = input_pulse;
+	cont++;
+	if(cont == 22)
+	{
+		cont = 0;
+	}
 }
 
 void Decoder_parsePulse(uint32_t pulse_in)

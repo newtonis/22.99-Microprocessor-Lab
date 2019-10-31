@@ -84,8 +84,17 @@ void DMA0_ConfigCounters(uint8_t channel, uint32_t source_full_size, uint32_t so
 void DMA0_EnableRequest(uint8_t channel)
 {
 	/* Enable request signal for channel 0. */
-	DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
-	DMA0->ERQ |= DMA_ERQ_ERQ0(1);
+	if(channel == 0)
+	{
+		DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
+		DMA0->ERQ |= DMA_ERQ_ERQ0(1);
+	}
+	if(channel == 1)
+	{
+		DMA0->ERQ &= ~(DMA_ERQ_ERQ1_MASK);
+		DMA0->ERQ |= DMA_ERQ_ERQ1(1);
+	}
+
 	DMAMUX->CHCFG[channel] &= ~(DMAMUX_CHCFG_ENBL_MASK);
 	DMAMUX->CHCFG[channel] |= DMAMUX_CHCFG_ENBL(1);
 }
@@ -93,8 +102,17 @@ void DMA0_EnableRequest(uint8_t channel)
 void DMA0_DisableRequest(uint8_t channel)
 {
 	/* Enable request signal for channel 0. */
-	DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
-	DMA0->ERQ |= DMA_ERQ_ERQ0(0);
+	if(channel == 0)
+	{
+		DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
+		DMA0->ERQ |= DMA_ERQ_ERQ0(0);
+	}
+	if(channel == 1)
+	{
+		DMA0->ERQ &= ~(DMA_ERQ_ERQ1_MASK);
+		DMA0->ERQ |= DMA_ERQ_ERQ1(0);
+	}
+
 	DMAMUX->CHCFG[channel] &= ~(DMAMUX_CHCFG_ENBL_MASK);
 	DMAMUX->CHCFG[channel] |= DMAMUX_CHCFG_ENBL(0);
 }
@@ -120,9 +138,8 @@ void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 {
 	InputCapCallback = funcallback;
 
-	/* Enable the eDMA channel 1 and set the FTM CH5 as the DMA request source. */
-	DMAMUX->CHCFG[1] |= DMAMUX_CHCFG_ENBL_MASK | DMAMUX_CHCFG_SOURCE(37);   // FTM3 CH5
-
+	/* Enable the eDMA channel 1 and set the FTM3 CH5 as the DMA request source. */
+	DMAMUX->CHCFG[1] |= DMAMUX_CHCFG_ENBL_MASK | DMAMUX_CHCFG_SOURCE(37);   // FTM3 CH5 es el 37
 	/* Enable the interrupts for the channel 0. */
 
 	/* Clear all the pending events. */
@@ -130,7 +147,7 @@ void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 	/* Enable the DMA interrupts. */
 	NVIC_EnableIRQ(DMA1_IRQn);
 
-	/// ============= INIT TCD0 ===================//
+	/// ============= INIT TCD1 ===================//
 	DMA0_ConfigSourceAddress(1, source_add);
 
     //DMA_TCD0_DADDR = (uint32_t)(destinationBuffer);
@@ -159,7 +176,7 @@ void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 void DMA1_IRQHandler()
 {
 	/* Clear the interrupt flag. */
-	DMA0->CINT |= 0;
+	DMA0->CINT |= 1;
 	InputCapCallback();
 }
 

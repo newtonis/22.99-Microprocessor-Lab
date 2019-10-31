@@ -4,7 +4,7 @@ source/ftm.o source/ftm.d: ../source/ftm.c ../source/ftm.h \
  ../SDK/CMSIS/core_cm4.h ../SDK/CMSIS/cmsis_version.h \
  ../SDK/CMSIS/cmsis_compiler.h ../SDK/CMSIS/cmsis_gcc.h \
  ../SDK/CMSIS/system_MK64F12.h ../SDK/CMSIS/MK64F12_features.h \
- ../SDK/CMSIS/core_cm4.h
+ ../SDK/CMSIS/core_cm4.h ../source/DMA.h
 
 ../source/ftm.h:
 
@@ -31,3 +31,5 @@ source/ftm.o source/ftm.d: ../source/ftm.c ../source/ftm.h \
 ../SDK/CMSIS/MK64F12_features.h:
 
 ../SDK/CMSIS/core_cm4.h:
+
+../source/DMA.h:
