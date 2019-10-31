@@ -6,6 +6,7 @@
  */
 
 #include "DecodeBits.h"
+#include "DMA.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -14,6 +15,7 @@
 enum{NOT_TAKEN_SYMBOLS, FIRST_DC_TAKEN, SECOND_DC_TAKEN};
 
 static uint8_t buffer[11] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+static uint16_t input_pulse = 0;
 
 static uint8_t index = 0;
 static bool is_buff_full = false;
@@ -46,11 +48,30 @@ bool isBufferFull(void);
 void write2BuffLogic(uint8_t a0, uint8_t a1, uint8_t threshold);
 
 void decodeDutys(uint8_t input);
+
+void processPulse(void);
+
+void Decoder_parsePulse(uint32_t input);
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
+
+void Decoder_init(uint16_t* medAddress)
+{
+	DMA1_Config(medAddress, (&input_pulse), processPulse);
+
+	DMA0_ConfigCounters(1, sizeof(input_pulse), sizeof(input_pulse));
+
+	DMA0_EnableRequest(1);
+}
+
+void processPulse(void)
+{
+	Decoder_parsePulse(input_pulse);
+}
+
 void Decoder_parsePulse(uint32_t pulse_in)
 {
 	if((pulse_in < 400)||(pulse_in > 20000))

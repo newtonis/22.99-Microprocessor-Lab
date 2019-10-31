@@ -54,8 +54,9 @@ void FTM_SetCounter (FTM_Type* ftm, uint8_t channel, uint16_t data);
 
 void FTM_ClearInterruptFlag (FTM_Type * module , uint8_t channel);
 
-void FTM_DmaMode (uint8_t channel, bool dma_mode);
+void FTM0_DmaMode (uint8_t channel, bool dma_mode);
 
+void FTM3_DmaMode (uint8_t channel, bool dma_mode);
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -149,7 +150,7 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 			med2=FTM_GetCounter (module, channel);
 			med=med2-med1;
 			state=0;					// Set break point here and watch "med" value
-			callback();
+			//callback();
 		}
 	}
 
@@ -337,9 +338,16 @@ void setIC(FTM_Type* module,uint8_t channel){
 	gpioMode(PIN_GPIO_TEST, OUTPUT);
 }
 
-void FTM_DmaMode (uint8_t channel, bool dma_mode)
+void FTM0_DmaMode (uint8_t channel, bool dma_mode)
 {
 	FTM_Type* ftm = FTM0;
+	ftm->CONTROLS[channel].CnSC = (ftm->CONTROLS[channel].CnSC & ~(FTM_CnSC_DMA_MASK)) |
+			                      (FTM_CnSC_DMA(dma_mode));
+}
+
+void FTM3_DmaMode (uint8_t channel, bool dma_mode)
+{
+	FTM_Type* ftm = FTM3;
 	ftm->CONTROLS[channel].CnSC = (ftm->CONTROLS[channel].CnSC & ~(FTM_CnSC_DMA_MASK)) |
 			                      (FTM_CnSC_DMA(dma_mode));
 }
@@ -368,12 +376,18 @@ void ftmInit(void (*funcallback)(void)){
 
 	setDuty(50); // Valor medio por default
 
-	FTM_DmaMode(0, 1); // DMA ON
+	FTM0_DmaMode(0, 1); // DMA ON
+	FTM3_DmaMode(5, 1);
 }
 
 uint32_t getPulseMeasure(void)
 {
 	return med;
+}
+
+uint16_t* getMedAddress(void)
+{
+	return &med;
 }
 /*******************************************************************************
  ******************************************************************************/

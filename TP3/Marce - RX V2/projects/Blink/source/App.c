@@ -44,6 +44,7 @@ void App_Init (void)
 	ftmInit(testDecode);
     CMP_init(0);
     Modulador_init(getDutyAddress(), test);
+    Decoder_init(getMedAddress());
 
     Modulador_sendStream(dummyStream);
 }
@@ -78,7 +79,7 @@ void test(void)
 void testDecode(void)
 {
 
-	Decoder_parsePulse(getPulseMeasure());
+	//Decoder_parsePulse(getPulseMeasure());
 
 }
 
