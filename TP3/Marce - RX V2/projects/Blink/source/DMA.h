@@ -23,13 +23,13 @@
 
 void DMA0_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(void));
 
-void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(void));
+void DMA1_Config(uint32_t *source_add, uint32_t* dest_add, void(*funcallback)(void));
 
 void DMA0_ConfigCounters(uint8_t channel, uint32_t source_full_size, uint32_t source_unit_size);
 
-void DMA0_ConfigSourceAddress(uint8_t channel, uint16_t *source_add);
+void DMA0_ConfigSourceAddress(uint8_t channel, uint32_t *source_add);
 
-void DMA0_ConfigDestAddress(uint8_t channel, uint16_t *dest_add);
+void DMA0_ConfigDestAddress(uint8_t channel, uint32_t *dest_add);
 
 void DMA0_EnableRequest(uint8_t channel);
 

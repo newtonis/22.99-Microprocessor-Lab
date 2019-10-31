@@ -21,7 +21,7 @@ uint16_t OC_Delta = 100;
 void (*callback)(void);
 
 static uint16_t dutys = 0;
-static uint16_t med = 0;
+uint32_t med = 0;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -31,6 +31,8 @@ __ISR__ FTM0_IRQHandler(void);
 __ISR__ FTM3_IRQHandler(void);
 
 bool isChannelnInterrupt(FTM_Type* module, uint8_t channel);
+
+void FTM_DisableInterrupts(FTM_Type * module, uint8_t channel);
 
 bool isTimerOverFlowInterrupt(FTM_Type* module);
 
@@ -131,7 +133,7 @@ void OC_ISR(void)  //FTM0 CH0 PTC8 as GPIO
 
 void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 {
-	static uint32_t med1,med2;
+	static uint32_t med1,med2,cnt_ovf;
 	static uint8_t  state=0;
 	FTM_Type * module = FTM3;
 	uint8_t channel = 5;
@@ -142,13 +144,22 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 		FTM_ClearInterruptFlag (module, channel);
 		if(state==0)
 		{
+			cnt_ovf = 0;
 			med1=FTM_GetCounter (module, channel); //
 			state=1;
 		}
 		else if(state==1)
 		{
 			med2=FTM_GetCounter (module, channel);
-			med=med2-med1;
+
+			if(med2 > med1){
+				med=med2-med1;
+			}
+			else{
+				med=med1-med2;
+			}
+			//med = med + (cnt_ovf*0xFFFF);
+
 			state=0;					// Set break point here and watch "med" value
 			//callback();
 		}
@@ -156,6 +167,7 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 
 	if((module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
 		module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
+		cnt_ovf++;
 		gpioToggle(PIN_GPIO_TEST);
 	}
 
@@ -198,6 +210,9 @@ void FTM_EnableInterrupts(FTM_Type * module, uint8_t channel){
 	module->CONTROLS[channel].CnSC |= FTM_CnSC_CHIE(1);
 }
 
+void FTM_DisableInterrupts(FTM_Type * module, uint8_t channel){
+	module->CONTROLS[channel].CnSC &= ~(FTM_CnSC_CHIE_MASK);
+}
 
 void setChannelnModeForIcOrOC(FTM_Type* module,uint8_t channel, uint8_t mode, bool isOutputCompare){
 	if(module == FTM0){
@@ -328,8 +343,10 @@ void setIC(FTM_Type* module,uint8_t channel){
 
 	FTM_EnableInterrupts(module, channel);
 
+
 	FTM_SetClock(module);
 
+	module->SC = (module->SC 	 & ~FTM_SC_TOIE_MASK) 	| FTM_SC_TOIE(0);//habilito la interrupcion de overflow
 	// PTC9 as IC (FTM3-CH5)
 	NVIC_EnableIRQ(FTM3_IRQn);
 
@@ -385,7 +402,7 @@ uint32_t getPulseMeasure(void)
 	return med;
 }
 
-uint16_t* getMedAddress(void)
+uint32_t* getMedAddress(void)
 {
 	return &med;
 }
