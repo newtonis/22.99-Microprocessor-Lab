@@ -13,7 +13,7 @@
 #include "Modulador.h"
 #include "demodulatorFSK.h"
 #include "timer.h"
-
+#include "uart.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -39,6 +39,11 @@ void demodulador(void);
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
+	uart_cfg_t config;
+	config.baudrate = 9600;
+	uartInit(config);
+	setOnNewCharListener(Modulador_sendChar);
+
 	timerInit();
 	timer = timerGetId();
 	gpioMode(PIN_LED_BLUE, OUTPUT);
@@ -46,14 +51,15 @@ void App_Init (void)
 	//gpioWrite (PIN_TP, false);
     Modulador_init(test);
     FSKdem_init(demodulador);
-    timerStart(timer, TIMER_MS2TICKS(5000), TIM_MODE_PERIODIC, callback);
+    //timerStart(timer, TIMER_MS2TICKS(5000), TIM_MODE_PERIODIC, callback);
 
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-
+	updateWord();
+	delayLoop(4000UL);
 }
 
 
@@ -69,17 +75,23 @@ void test(void)
 }
 
 
-
+/*
 void callback (void)
 {
 	Modulador_sendChar('k');
 }
+*/
 
 void demodulador(void)
 {
 
 	char b = get_Msg();
 	int a = 0;
+
+	char str[3];
+	str[0] = b;
+	str[1] = '\0';
+	sendWord(str);
 }
 
 /*******************************************************************************

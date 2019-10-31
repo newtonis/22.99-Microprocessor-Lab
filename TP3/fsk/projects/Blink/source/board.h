@@ -34,7 +34,9 @@
 
 #define SW_ACTIVE       // ???
 #define SW_INPUT_TYPE   // ???
-#define PIN_TP    		PORTNUM2PIN(PA,2) // PTA
+
+#define PIN_PRUEBA PORTNUM2PIN(PB,9)
+#define PIN_INPUT_PRUEBA PORTNUM2PIN(PA,4)
 
 
 /*******************************************************************************

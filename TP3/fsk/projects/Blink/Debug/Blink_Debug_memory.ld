@@ -1,12 +1,11 @@
 /*
  * GENERATED FILE - DO NOT EDIT
- * Copyright (c) 2008-2013 Code Red Technologies Ltd,
- * Copyright 2015, 2018-2019 NXP
+ * (c) Code Red Technologies Ltd, 2008-2013
  * (c) NXP Semiconductors 2013-2019
  * Generated linker script file for MK64FN1M0xxx12
  * Created from memory.ldt by FMCreateLinkMemory
  * Using Freemarker v2.3.23
- * MCUXpresso IDE v11.0.0 [Build 2516] [2019-06-05] on Oct 30, 2019 3:46:52 PM
+ * MCUXpresso IDE v10.2.0 [Build 759] [2018-05-15]  on Oct 30, 2019 9:59:07 PM
  */
 
 MEMORY
