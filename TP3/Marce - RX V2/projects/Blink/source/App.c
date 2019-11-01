@@ -21,7 +21,7 @@
  ******************************************************************************/
 static bool testStream[STAND_LEN] =  {0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1};
 static bool testStream2[STAND_LEN] = {0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0};
-static bool dummyStream[STAND_LEN] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+static bool dummyStream[STAND_LEN] = {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 static uint8_t a = 0;
 
 /*******************************************************************************
@@ -68,16 +68,25 @@ void App_Run (void)
 
 void test(void)
 {
-	a++; // avisa que termino de enviar la señal modulada por callback
-    if(a % 2)
+	// avisa que termino de enviar la señal modulada por callback
+    if(a == 0)
     {
     	Modulador_sendStream(testStream);
     }
-    else
+    if(a == 1)
+    {
+    	Modulador_sendStream(dummyStream);
+    }
+    if(a == 2)
     {
     	Modulador_sendStream(testStream2);
     }
 
+    a++;
+    if(a == 3)
+    {
+    	a = 0;
+    }
 }
 
 void testDecode(void)

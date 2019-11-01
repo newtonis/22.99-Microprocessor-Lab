@@ -340,7 +340,7 @@ void setIC(FTM_Type* module,uint8_t channel){
 	bool isOutputCompare = false;
 	FTM_DisableClock(module);
 
-	initSettings(module, channel,FTM_PSC_x1,0,0xFFFF);
+	initSettings(module, channel,FTM_PSC_x4,0,0xFFFF);
 
 	setChannelnModeForIcOrOC(module,channel, FTM_IC_CaptureOnEitherEdge,isOutputCompare);
 

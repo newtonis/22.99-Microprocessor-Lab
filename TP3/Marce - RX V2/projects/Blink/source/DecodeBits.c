@@ -18,12 +18,13 @@ enum{NOT_TAKEN_SYMBOLS, FIRST_DC_TAKEN, SECOND_DC_TAKEN};
 
 static uint8_t buffer[11] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
 static uint32_t input_pulse = 0;
-static uint32_t entradasleidas[22] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static uint32_t entradasleidas[11] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint32_t cont = 0;
 static uint32_t cnt_ovf = 0;
 
 static uint32_t med, med1, med2;
 static uint32_t medStatus = 0;
+static uint32_t zeroLostCont = 0;
 
 static uint8_t index = 0;
 static bool is_buff_full = false;
@@ -96,22 +97,21 @@ void processPulse(void)
 	{
 		med2 = input_pulse & FTM_CnV_VAL_MASK; // Segundo Flanco
 
-		if(med2 > med1){
-			med = med2 - med1;
+		if(cnt_ovf >= 1)
+		{
+			med = ((cnt_ovf-1)*65535) + (65535-med1+med2);
 		}
-		else{
-			med = med1 - med2;
+		else
+		{
+			med = med2- med1;
 		}
 
-		//med = med2-med1;
-
-		med = med + (cnt_ovf*0xFFFF);
 		medStatus = 0;					// Set break point here and watch "med" value
 
 		Decoder_parsePulse(med);
 		entradasleidas[cont] = med;
 		cont++;
-		if(cont == 22)
+		if(cont == 11)
 		{
 			cont = 0;
 		}
@@ -120,20 +120,30 @@ void processPulse(void)
 
 void Decoder_parsePulse(uint32_t pulse_in)
 {
-	if(pulse_in < 2000)
+	if((pulse_in < 1500)||(pulse_in > 25000))
 	{
 		// Filtrado de glitches
 	}
 	else
 	{
-		if( (pulse_in > 12000 && pulse_in <30000) || (pulse_in>118000))
+		if(pulse_in > 3000)
 		{
-			decodeDutys(100);
-			decodeDutys(0);
+			if(zeroLostCont % 2)
+			{
+				// Paso algo raro
+				decodeDutys(100);
+			}
+			else
+			{
+				decodeDutys(100);
+				decodeDutys(0);
+			}
+			zeroLostCont = 0;
 		}
 		else
 		{
 			decodeDutys(50);
+			zeroLostCont++;
 		}
 
 		if(is_RX)
