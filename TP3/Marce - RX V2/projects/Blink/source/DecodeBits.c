@@ -263,7 +263,7 @@ void decodeDutys(uint8_t input){
         }else{
             if(isNumberN(100,input,10)) { // si era valido a0 pero es el seugndo caracter
                 if(isNumberN(50,a0, 10)){ // si de 50 pasa a 100, entonces antes era 50,50 y ahora agarro 100
-                    write2BuffLogic(50,50,10);
+                    //write2BuffLogic(50,50,10);
                 }
                 a0 = 100;
                 status = FIRST_DC_TAKEN;
