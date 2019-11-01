@@ -58,6 +58,8 @@ uint32_t* getMedAddress(void);
 
 uint32_t getPulseMeasure(void);
 
+void setCntOvf(void);
+
 void FTM_ClearInterruptFlag (FTM_Type * module , uint8_t channel);
 
 #endif /* FTM_H_ */

@@ -20,6 +20,7 @@ static uint8_t buffer[11] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
 static uint32_t input_pulse = 0;
 static uint32_t entradasleidas[22] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint32_t cont = 0;
+static uint32_t cnt_ovf = 0;
 
 static uint32_t med, med1, med2;
 static uint32_t medStatus = 0;
@@ -32,6 +33,9 @@ static uint8_t a0;
 static uint8_t a1;
 
 static bool is_RX = false; // En IDLE por default
+
+
+void setCntOvf(void);
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -65,8 +69,14 @@ void Decoder_parsePulse(uint32_t input);
  *******************************************************************************
  ******************************************************************************/
 
+void setCntOvf(void){
+	cnt_ovf++;
+}
+
+
 void Decoder_init(uint32_t* medAddress)
 {
+
 	DMA1_Config(&(FTM3->CONTROLS[5].CnV), &input_pulse, processPulse);
 
 	DMA0_ConfigCounters(1, sizeof(input_pulse), sizeof(input_pulse));
@@ -80,6 +90,7 @@ void processPulse(void)
 	{
 		med1 = input_pulse & FTM_CnV_VAL_MASK; // Primer Flanco
 		medStatus = 1;
+		cnt_ovf = 0;
 	}
 	else if(medStatus == 1)
 	{
@@ -92,8 +103,9 @@ void processPulse(void)
 			med = med1 - med2;
 		}
 
+		//med = med2-med1;
 
-		//med = med + (cnt_ovf*0xFFFF);
+		med = med + (cnt_ovf*0xFFFF);
 		medStatus = 0;					// Set break point here and watch "med" value
 
 		Decoder_parsePulse(med);
@@ -108,13 +120,13 @@ void processPulse(void)
 
 void Decoder_parsePulse(uint32_t pulse_in)
 {
-	if((pulse_in < 400)||(pulse_in > 20000))
+	if(pulse_in < 2000)
 	{
 		// Filtrado de glitches
 	}
 	else
 	{
-		if(pulse_in > 12000)
+		if( (pulse_in > 12000 && pulse_in <30000) || (pulse_in>118000))
 		{
 			decodeDutys(100);
 			decodeDutys(0);
@@ -267,6 +279,8 @@ void decodeDutys(uint8_t input){
         status = NOT_TAKEN_SYMBOLS;
     }
 }
+
+
 
 /*******************************************************************************
  ******************************************************************************/

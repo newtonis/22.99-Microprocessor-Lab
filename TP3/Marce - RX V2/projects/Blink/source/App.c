@@ -37,11 +37,15 @@ void testDecode(void);
  *******************************************************************************
  ******************************************************************************/
 
+void incrementOvfCnt(void){
+	setCntOvf();
+}
+
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
-	ftmInit(testDecode);
+	ftmInit(incrementOvfCnt);
     CMP_init(0);
     Modulador_init(getDutyAddress(), test);
     Decoder_init(getMedAddress());

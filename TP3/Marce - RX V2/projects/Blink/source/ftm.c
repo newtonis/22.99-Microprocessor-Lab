@@ -142,6 +142,7 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 
 
 		FTM_ClearInterruptFlag (module, channel);
+		/*
 		if(state==0)
 		{
 			cnt_ovf = 0;
@@ -163,12 +164,14 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 			state=0;					// Set break point here and watch "med" value
 			//callback();
 		}
+		*/
 	}
 
 	if((module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
 		module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
 		cnt_ovf++;
 		gpioToggle(PIN_GPIO_TEST);
+		callback();
 	}
 
 }
@@ -346,7 +349,7 @@ void setIC(FTM_Type* module,uint8_t channel){
 
 	FTM_SetClock(module);
 
-	module->SC = (module->SC 	 & ~FTM_SC_TOIE_MASK) 	| FTM_SC_TOIE(0);//habilito la interrupcion de overflow
+	//module->SC = (module->SC 	 & ~FTM_SC_TOIE_MASK) 	| FTM_SC_TOIE(0);//habilito la interrupcion de overflow
 	// PTC9 as IC (FTM3-CH5)
 	NVIC_EnableIRQ(FTM3_IRQn);
 
@@ -369,7 +372,7 @@ void FTM3_DmaMode (uint8_t channel, bool dma_mode)
 			                      (FTM_CnSC_DMA(dma_mode));
 }
 
-void ftmInit(void (*funcallback)(void)){
+void ftmInit(void (*funcallback)(void) ){
 	callback = funcallback;
 	// primero hacemos clockgating
 	sim_ptr->SCGC6 |= SIM_SCGC6_FTM0_MASK;
