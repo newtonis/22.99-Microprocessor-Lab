@@ -20,6 +20,10 @@ typedef void (*myCallback)(void);
 
 void FSKdem_init( myCallback funcallback);
 char get_Msg (void);
+void FSKdemodulate(void);
+bool isDataReady(void);
+
+
 
 
 

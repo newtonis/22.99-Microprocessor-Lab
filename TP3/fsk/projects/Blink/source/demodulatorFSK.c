@@ -16,15 +16,16 @@ typedef enum {IDLE, MSG}status_t;
 
 void filterSignal (void);
 void updateData ();
-void FSKdemodulate(void);
 
 
-int16_t rawData [ DELAY + 1] = {0};
+
+int16_t rawData [ DELAY + 1] = {0};//DELAY+1
 float prefilter[FIR_ORDER+1] = {0};
 bool output[10];
 static bool msg[11];
 bool value = true;
 bool firstZero = true;
+static bool dataReady = false;
 
 
 static myCallback funcioncallback = NULL;
@@ -61,7 +62,7 @@ void FSKdem_init(myCallback funcallback)
 {
 
 	funcioncallback = funcallback;
-	ADC_init(ADC_CH, FSKdemodulate);
+	ADC_init(ADC_CH, updateData);
 	ADC_enableModule(ADC_CH);
 
 
@@ -72,8 +73,8 @@ void FSKdem_init(myCallback funcallback)
 
 void FSKdemodulate()
 {
-
-	updateData();
+	dataReady = false;
+	//updateData();
 
 	uint8_t sum = 0;
 
@@ -95,7 +96,7 @@ void FSKdemodulate()
 			{
 				sum+= output[j];
 			}
-			if (sum >= 5)
+			if (sum > 5)
 			{
 				msg[outputCount] = true;
 			}
@@ -169,6 +170,8 @@ void updateData (void)
 		rawData[i-1] = rawData[i];
 	}
 	rawData[DELAY] = newdata - 2048;
+	dataReady = true;
+
 }
 
 void filterSignal (void)
@@ -201,4 +204,9 @@ char get_Msg (void)
 	}
 
 	return retmsg;
+}
+
+bool isDataReady(void)
+{
+	return dataReady;
 }

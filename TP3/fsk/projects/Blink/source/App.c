@@ -21,6 +21,11 @@
 
 uint8_t a = 0;
 tim_id_t timer;
+int demodulado = 1;
+long long contador = 0;
+
+char holaHi[10000];
+int i = 0;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -29,7 +34,26 @@ void test(void);
 void callback (void);
 void demodulador(void);
 
+void testfunc(char c){
+	char str[3];
+	str[0] = c;
+	str[1] = '\0';
 
+	//delayLoop(400000UL);
+
+	sendWord(str);
+
+}
+
+void testfunc2(char c){
+	holaHi[i] = c;
+	i ++;
+
+	Modulador_sendChar(c);
+	demodulado = 0;
+
+	contador = 0;
+}
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -40,9 +64,10 @@ void demodulador(void);
 void App_Init (void)
 {
 	uart_cfg_t config;
-	config.baudrate = 9600;
+	config.baudrate = 1200;
 	uartInit(config);
-	setOnNewCharListener(Modulador_sendChar);
+	setOnNewCharListener(testfunc2);
+	//setOnNewCharListener(testfunc);
 
 	timerInit();
 	timer = timerGetId();
@@ -58,8 +83,21 @@ void App_Init (void)
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	updateWord();
-	delayLoop(4000UL);
+	if (demodulado == 1){
+		//if (contador < 10000){
+		//	contador ++;
+		//}else{
+			updateWord();
+		//}
+	}
+
+
+	if(isDataReady() == true)
+	{
+		FSKdemodulate();
+	}
+
+	//delayLoop(400UL);
 }
 
 
@@ -75,13 +113,6 @@ void test(void)
 }
 
 
-/*
-void callback (void)
-{
-	Modulador_sendChar('k');
-}
-*/
-
 void demodulador(void)
 {
 
@@ -92,6 +123,9 @@ void demodulador(void)
 	str[0] = b;
 	str[1] = '\0';
 	sendWord(str);
+
+	demodulado = 1;
+	contador = 0;
 }
 
 /*******************************************************************************

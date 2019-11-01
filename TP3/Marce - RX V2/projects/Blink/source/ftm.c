@@ -150,7 +150,7 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 			med2=FTM_GetCounter (module, channel);
 			med=med2-med1;
 			state=0;					// Set break point here and watch "med" value
-			//callback();
+			callback();
 		}
 	}
 

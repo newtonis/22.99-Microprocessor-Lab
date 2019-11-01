@@ -79,7 +79,7 @@ void test(void)
 void testDecode(void)
 {
 
-	//Decoder_parsePulse(getPulseMeasure());
+	Decoder_parsePulse(getPulseMeasure());
 
 }
 

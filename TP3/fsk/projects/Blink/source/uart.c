@@ -65,25 +65,20 @@ static uint8_t dummy;
 #define WORD_COUNT 20 // hasta 20 palabras
 
 
-int sendBuffer[BUFFER_SIZE];
-int recvBuffer[BUFFER_SIZE];
+char sendBuffer[BUFFER_SIZE];
+char recvBuffer[BUFFER_SIZE];
 
-int porEnviar = 0;
+long long porEnviar = 0;
 int enviado = 0;
 
-int porRecibir = 0;
-int recibido = 0;
+long long porRecibir = 0;
+long long recibido = 0;
 
 void (*recvListener)(char);
 
-
-/// memoria para las palabras
-char words[WORD_COUNT][WORD_LENGTH]; // asignacion de memoria para las palabras
-int wordsLength[WORD_COUNT];
-
-int wordMemoryToRead = 0; // memoria leida
-int wordMemoryRead = 0; // memoria por leer
-int longitud = 0; // variable auxiliar de longitud
+long long wordMemoryToRead = 0; // memoria leida
+long long wordMemoryRead = 0; // memoria por leer
+long long longitud = 0; // variable auxiliar de longitud
 
 __ISR__ UART0_RX_TX_IRQHandler (void){ // UART INTERRUPT!!
 	uint8_t s1 = UART0->S1;
@@ -123,20 +118,6 @@ void sendWord(const char *word){
 	UART0->C2 |= UART_C2_TIE_MASK;
 }
 
-int getNextWordLength(){
-	if (wordMemoryToRead != wordMemoryRead){
-		return wordsLength[wordMemoryToRead];
-	}else{
-		return -1;
-	}
-}
-
-char * getWord(){ // obtenemos la ultima palabra de la cola
-	if (wordMemoryToRead != wordMemoryRead){
-		return words[wordMemoryRead];
-	}
-	return NULL;
-}
 void popWord(){ // sacamos una palabra de la cola
 	wordMemoryRead = (wordMemoryRead + 1) % BUFFER_SIZE;
 }

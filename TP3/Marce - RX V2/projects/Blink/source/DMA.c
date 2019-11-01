@@ -123,6 +123,8 @@ void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 	/* Enable the eDMA channel 1 and set the FTM CH5 as the DMA request source. */
 	DMAMUX->CHCFG[1] |= DMAMUX_CHCFG_ENBL_MASK | DMAMUX_CHCFG_SOURCE(37);   // FTM3 CH5
 
+	DMAMUX->CHCFG[1] |= DMAMUX_CHCFG_ENBL_MASK | DMAMUX_CHCFG_SOURCE(37);   // FTM3 CH5
+	DMAMUX->CHCFG[1] |= kDmaRequestMux0FTM3Channel5;
 	/* Enable the interrupts for the channel 0. */
 
 	/* Clear all the pending events. */

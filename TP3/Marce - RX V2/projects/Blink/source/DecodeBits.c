@@ -64,7 +64,7 @@ void Decoder_init(uint16_t* medAddress)
 
 	DMA0_ConfigCounters(1, sizeof(input_pulse), sizeof(input_pulse));
 
-	DMA0_EnableRequest(1);
+	DMA0_EnableRequest(1); // habilita el request de channel 1 de DMA0
 }
 
 void processPulse(void)
