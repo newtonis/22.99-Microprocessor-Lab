@@ -78,14 +78,31 @@ void DMA0_ConfigCounters(uint8_t channel, uint32_t source_full_size, uint32_t so
 	//DMA_TCD0_SLAST = -((sizeof(sourceBuffer)/sizeof(sourceBuffer[0])*sizeof(uint16_t)));
 
 	/* Autosize SLAST for Wrap Around. This value is added to SADD at the end of Major Loop */
-	DMA0->TCD[channel].SLAST = -source_full_size;
+	if(channel == 0)
+	{
+		DMA0->TCD[channel].SLAST = -source_full_size;
+	}
+	if(channel == 1)
+	{
+		DMA0->TCD[channel].SLAST = 0;
+	}
+
 }
 
 void DMA0_EnableRequest(uint8_t channel)
 {
 	/* Enable request signal for channel 0. */
-	DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
-	DMA0->ERQ |= DMA_ERQ_ERQ0(1);
+	if(channel == 0)
+	{
+		DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
+		DMA0->ERQ |= DMA_ERQ_ERQ0(1);
+	}
+	if(channel == 1)
+	{
+		DMA0->ERQ &= ~(DMA_ERQ_ERQ1_MASK);
+		DMA0->ERQ |= DMA_ERQ_ERQ1(1);
+	}
+
 	DMAMUX->CHCFG[channel] &= ~(DMAMUX_CHCFG_ENBL_MASK);
 	DMAMUX->CHCFG[channel] |= DMAMUX_CHCFG_ENBL(1);
 }
@@ -93,18 +110,27 @@ void DMA0_EnableRequest(uint8_t channel)
 void DMA0_DisableRequest(uint8_t channel)
 {
 	/* Enable request signal for channel 0. */
-	DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
-	DMA0->ERQ |= DMA_ERQ_ERQ0(0);
+	if(channel == 0)
+	{
+		DMA0->ERQ &= ~(DMA_ERQ_ERQ0_MASK);
+		DMA0->ERQ |= DMA_ERQ_ERQ0(0);
+	}
+	if(channel == 1)
+	{
+		DMA0->ERQ &= ~(DMA_ERQ_ERQ1_MASK);
+		DMA0->ERQ |= DMA_ERQ_ERQ1(0);
+	}
+
 	DMAMUX->CHCFG[channel] &= ~(DMAMUX_CHCFG_ENBL_MASK);
 	DMAMUX->CHCFG[channel] |= DMAMUX_CHCFG_ENBL(0);
 }
 
-void DMA0_ConfigSourceAddress(uint8_t channel, uint16_t *source_add)
+void DMA0_ConfigSourceAddress(uint8_t channel, uint32_t *source_add)
 {
 	DMA0->TCD[channel].SADDR = (uint32_t)(source_add); //List of Duties
 }
 
-void DMA0_ConfigDestAddress(uint8_t channel, uint16_t *dest_add)
+void DMA0_ConfigDestAddress(uint8_t channel, uint32_t *dest_add)
 {
 	DMA0->TCD[channel].DADDR = (uint32_t)(dest_add);  // To change FTM Duty
 }
@@ -116,15 +142,20 @@ void DMA0_IRQHandler()
 	LoopCallback();
 }
 
-void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(void))
+void DMA1_Config(uint32_t *source_add, uint32_t* dest_add, void(*funcallback)(void))
 {
 	InputCapCallback = funcallback;
 
+<<<<<<< HEAD
 	/* Enable the eDMA channel 1 and set the FTM CH5 as the DMA request source. */
 	DMAMUX->CHCFG[1] |= DMAMUX_CHCFG_ENBL_MASK | DMAMUX_CHCFG_SOURCE(37);   // FTM3 CH5
 
 	DMAMUX->CHCFG[1] |= DMAMUX_CHCFG_ENBL_MASK | DMAMUX_CHCFG_SOURCE(37);   // FTM3 CH5
 	DMAMUX->CHCFG[1] |= kDmaRequestMux0FTM3Channel5;
+=======
+	/* Enable the eDMA channel 1 and set the FTM3 CH5 as the DMA request source. */
+	DMAMUX->CHCFG[1] |= DMAMUX_CHCFG_ENBL_MASK | DMAMUX_CHCFG_SOURCE(37);   // FTM3 CH5 es el 37
+>>>>>>> ac0df2891fb74d42aa9678812a66aefd7e3e8f98
 	/* Enable the interrupts for the channel 0. */
 
 	/* Clear all the pending events. */
@@ -132,7 +163,7 @@ void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 	/* Enable the DMA interrupts. */
 	NVIC_EnableIRQ(DMA1_IRQn);
 
-	/// ============= INIT TCD0 ===================//
+	/// ============= INIT TCD1 ===================//
 	DMA0_ConfigSourceAddress(1, source_add);
 
     //DMA_TCD0_DADDR = (uint32_t)(destinationBuffer);
@@ -143,11 +174,11 @@ void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 	DMA0->TCD[1].SOFF = 0x00; // Source address offset of 0 bytes per transaction.
 	DMA0->TCD[1].DOFF = 0x00; // Destination address offset is 0. (Siempre al mismo lugar)
 
-	/* Set source and destination data transfer size to 16 bits (CnV is 2 bytes wide). */
-	DMA0->TCD[1].ATTR = DMA_ATTR_SSIZE(1) | DMA_ATTR_DSIZE(1);
+	/* Set source and destination data transfer size to 32 bits. */
+	DMA0->TCD[1].ATTR = DMA_ATTR_SSIZE(2) | DMA_ATTR_DSIZE(2);
 
 	/*Number of bytes to be transfered in each service request of the channel.*/
-	DMA0->TCD[1].NBYTES_MLNO = 0x02;
+	DMA0->TCD[1].NBYTES_MLNO = 0x04;
 
 
     /* DLASTSGA DLAST Scatter and Gatter */
@@ -161,7 +192,7 @@ void DMA1_Config(uint16_t *source_add, uint16_t* dest_add, void(*funcallback)(vo
 void DMA1_IRQHandler()
 {
 	/* Clear the interrupt flag. */
-	DMA0->CINT |= 0;
+	DMA0->CINT |= 1;
 	InputCapCallback();
 }
 

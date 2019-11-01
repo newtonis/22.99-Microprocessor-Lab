@@ -21,7 +21,7 @@
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-void Decoder_init(uint16_t* medAddress);
+void Decoder_init(uint32_t* medAddress);
 
 
 #endif /* DECODEBITS_H_ */

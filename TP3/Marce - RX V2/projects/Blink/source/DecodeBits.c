@@ -6,7 +6,9 @@
  */
 
 #include "DecodeBits.h"
+#include "hardware.h"
 #include "DMA.h"
+//#include "ftm.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -15,7 +17,12 @@
 enum{NOT_TAKEN_SYMBOLS, FIRST_DC_TAKEN, SECOND_DC_TAKEN};
 
 static uint8_t buffer[11] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
-static uint16_t input_pulse = 0;
+static uint32_t input_pulse = 0;
+static uint32_t entradasleidas[22] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static uint32_t cont = 0;
+
+static uint32_t med, med1, med2;
+static uint32_t medStatus = 0;
 
 static uint8_t index = 0;
 static bool is_buff_full = false;
@@ -58,9 +65,9 @@ void Decoder_parsePulse(uint32_t input);
  *******************************************************************************
  ******************************************************************************/
 
-void Decoder_init(uint16_t* medAddress)
+void Decoder_init(uint32_t* medAddress)
 {
-	DMA1_Config(medAddress, (&input_pulse), processPulse);
+	DMA1_Config(&(FTM3->CONTROLS[5].CnV), &input_pulse, processPulse);
 
 	DMA0_ConfigCounters(1, sizeof(input_pulse), sizeof(input_pulse));
 
@@ -69,7 +76,34 @@ void Decoder_init(uint16_t* medAddress)
 
 void processPulse(void)
 {
-	Decoder_parsePulse(input_pulse);
+	if(medStatus == 0)
+	{
+		med1 = input_pulse & FTM_CnV_VAL_MASK; // Primer Flanco
+		medStatus = 1;
+	}
+	else if(medStatus == 1)
+	{
+		med2 = input_pulse & FTM_CnV_VAL_MASK; // Segundo Flanco
+
+		if(med2 > med1){
+			med = med2 - med1;
+		}
+		else{
+			med = med1 - med2;
+		}
+
+
+		//med = med + (cnt_ovf*0xFFFF);
+		medStatus = 0;					// Set break point here and watch "med" value
+
+		Decoder_parsePulse(med);
+		entradasleidas[cont] = med;
+		cont++;
+		if(cont == 22)
+		{
+			cont = 0;
+		}
+	}
 }
 
 void Decoder_parsePulse(uint32_t pulse_in)

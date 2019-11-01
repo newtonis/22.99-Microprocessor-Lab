@@ -123,7 +123,7 @@ void popWord(){ // sacamos una palabra de la cola
 }
 void updateWord(){
 
-	while (recibido != porRecibir){
+	if (recibido != porRecibir){
 		recvListener(recvBuffer[recibido]);
 		recibido = (recibido + 1) % BUFFER_SIZE;
 

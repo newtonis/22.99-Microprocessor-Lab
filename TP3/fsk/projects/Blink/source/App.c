@@ -84,18 +84,20 @@ void App_Init (void)
 void App_Run (void)
 {
 	if (demodulado == 1){
-		//if (contador < 10000){
-		//	contador ++;
-		//}else{
+		if (contador < 100){
+			contador ++;
+			gpioWrite(PIN_LED_BLUE, (contador % 5000 >= 5000/2) ? HIGH : LOW );
+		}else{
 			updateWord();
-		//}
+			gpioWrite(PIN_LED_BLUE, HIGH);
+		}
+	}else{
+		gpioWrite(PIN_LED_BLUE, LOW);
 	}
-
-
-	if(isDataReady() == true)
-	{
+	if(isDataReady() == true){
 		FSKdemodulate();
 	}
+
 
 	//delayLoop(400UL);
 }
