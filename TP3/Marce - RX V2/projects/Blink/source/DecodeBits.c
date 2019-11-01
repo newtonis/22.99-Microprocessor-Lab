@@ -24,7 +24,6 @@ static uint32_t cnt_ovf = 0;
 
 static uint32_t med, med1, med2;
 static uint32_t medStatus = 0;
-static uint32_t zeroLostCont = 0;
 
 static uint8_t index = 0;
 static bool is_buff_full = false;
@@ -106,7 +105,7 @@ void processPulse(void)
 			med = med2- med1;
 		}
 
-		medStatus = 0;					// Set break point here and watch "med" value
+							// Set break point here and watch "med" value
 
 		Decoder_parsePulse(med);
 		entradasleidas[cont] = med;
@@ -115,6 +114,8 @@ void processPulse(void)
 		{
 			cont = 0;
 		}
+
+		medStatus = 0;
 	}
 }
 
@@ -128,22 +129,12 @@ void Decoder_parsePulse(uint32_t pulse_in)
 	{
 		if(pulse_in > 3000)
 		{
-			if(zeroLostCont % 2)
-			{
-				// Paso algo raro
-				decodeDutys(100);
-			}
-			else
-			{
-				decodeDutys(100);
-				decodeDutys(0);
-			}
-			zeroLostCont = 0;
+			decodeDutys(100);
+			decodeDutys(0);
 		}
 		else
 		{
 			decodeDutys(50);
-			zeroLostCont++;
 		}
 
 		if(is_RX)
@@ -220,7 +211,7 @@ void bufferFlush(void){
 
 void buffer2UART(void){ // esto debería ser un callback
 
-    is_RX = false;
+
 }
 
 void writeBuffer(uint8_t a0, uint8_t a1, uint8_t threshold){
@@ -231,6 +222,7 @@ void writeBuffer(uint8_t a0, uint8_t a1, uint8_t threshold){
     }
     if(index == (sizeof(buffer)-1) ){
         is_buff_full = true;
+        is_RX = false;
     }
     index ++;
     index %= sizeof(buffer);

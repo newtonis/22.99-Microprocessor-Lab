@@ -71,7 +71,7 @@ void test(void)
 	// avisa que termino de enviar la señal modulada por callback
     if(a == 0)
     {
-    	Modulador_sendStream(testStream);
+    	Modulador_sendStream(testStream2);
     }
     if(a == 1)
     {
@@ -79,7 +79,7 @@ void test(void)
     }
     if(a == 2)
     {
-    	Modulador_sendStream(testStream2);
+    	Modulador_sendStream(testStream);
     }
 
     a++;
