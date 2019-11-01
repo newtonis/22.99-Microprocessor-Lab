@@ -6,6 +6,8 @@
  */
 
 #include "DMA.h"
+#include "gpio.h"
+#include "board.h"
 #include "hardware.h"
 
 void (*LoopCallback)(void);
@@ -137,9 +139,11 @@ void DMA0_ConfigDestAddress(uint8_t channel, uint32_t *dest_add)
 
 void DMA0_IRQHandler()
 {
+	gpioToggle(PIN_GPIO_TEST);
 	/* Clear the interrupt flag. */
 	DMA0->CINT |= 0;
 	LoopCallback();
+	gpioToggle(PIN_GPIO_TEST);
 }
 
 void DMA1_Config(uint32_t *source_add, uint32_t* dest_add, void(*funcallback)(void))

@@ -8,7 +8,7 @@
 #include "DecodeBits.h"
 #include "hardware.h"
 #include "DMA.h"
-//#include "ftm.h"
+#include "uart.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -35,7 +35,7 @@ static uint8_t a1;
 static bool is_RX = false; // En IDLE por default
 
 
-void setCntOvf(void);
+void(*callbackToSend)(char c);
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -49,6 +49,8 @@ bool isValidA0(uint8_t input,uint8_t thresh_hold);
 bool isValidA1(uint8_t a0,uint8_t input,uint8_t thresh_hold);
 
 void bufferFlush(void);
+
+void setCntOvf(void);
 
 void buffer2UART(void);
 
@@ -74,8 +76,9 @@ void setCntOvf(void){
 }
 
 
-void Decoder_init(uint32_t* medAddress)
+void Decoder_init(uint32_t* medAddress, void(*rtsFunc)(char c))
 {
+	callbackToSend = rtsFunc;
 
 	DMA1_Config(&(FTM3->CONTROLS[5].CnV), &input_pulse, processPulse);
 
@@ -211,7 +214,14 @@ void bufferFlush(void){
 
 void buffer2UART(void){ // esto debería ser un callback
 
+	char c = 0;
 
+	for(int i = 0; i < 8; i++)
+	{
+		c = c + ((buffer[i+1])<<(7-i));
+	}
+
+	callbackToSend(c);
 }
 
 void writeBuffer(uint8_t a0, uint8_t a1, uint8_t threshold){
@@ -266,6 +276,7 @@ void decodeDutys(uint8_t input){
                 a0 = 50;
                 status = FIRST_DC_TAKEN;
             }else{
+            	/*
                 // si fue totalmente invalido el input predigo qué va a venir
                 if(isNumberN(100,a0,10)){
                     a1= 0;
@@ -273,6 +284,7 @@ void decodeDutys(uint8_t input){
                     a1= 50;
                 }
                 status = SECOND_DC_TAKEN;
+                */
             }
         }
     }

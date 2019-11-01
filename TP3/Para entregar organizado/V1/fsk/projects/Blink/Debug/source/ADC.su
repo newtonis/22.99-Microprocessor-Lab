@@ -1,0 +1,7 @@
+core_cm4.h:1677:22:__NVIC_EnableIRQ	16	static
+ADC.c:24:6:ADC_init	16	static
+ADC.c:90:6:ADC0_IRQHandler	8	static
+ADC.c:96:6:ADC_enableModule	16	static
+ADC.c:102:6:ADC_disableModule	4	static
+ADC.c:108:17:ADC_getDataResult	4	static
+ADC.c:112:6:ADC_startConvertion	4	static

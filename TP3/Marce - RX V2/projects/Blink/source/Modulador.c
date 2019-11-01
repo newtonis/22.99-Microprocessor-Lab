@@ -23,9 +23,12 @@
 #define SIN0		0
 #define SIN1		1
 
+#define TOBITMASK 		10000000
 
 static uint16_t sinValues[SIN_VALUES];
 static uint16_t sinValues1[SIN_VALUES];
+static bool rts = false;
+static bool llegoAlgo = false;
 
 static bool bitStream[STAND_LEN];
 static uint8_t msg_ptr = 0;
@@ -37,6 +40,10 @@ void (*MsgSendedCallback)(void);
  ******************************************************************************/
 
 void procesBitStream(uint8_t command); // El comando puede ser START o NEXT_SYM
+
+void Modulador_sendStream(bool *stream);
+
+bool parity (char num);
 
 void setNextBit(void);
 
@@ -69,7 +76,34 @@ void Modulador_init(uint16_t* dutyAddress, void(*funcallback)(void))
 
 	DMA0_ConfigCounters(0, sizeof(sinValues), sizeof(sinValues[0]));
 
-	DMA0_DisableRequest(0);
+	DMA0_EnableRequest(0);
+}
+
+void Modulador_sendChar(char my_char)
+{
+	char msg_t = my_char;
+
+	bitStream[0] = false; //START
+	bitStream[STAND_LEN - 1] = true; //STOP
+	bitStream[STAND_LEN - 2] = parity(msg_t);
+
+	for(int i = 1; i < 9; i++)
+	{
+		bitStream[i] = (msg_t & TOBITMASK);
+		msg_t = msg_t<<1;
+	}
+
+	llegoAlgo = true;
+
+	while(!rts)
+	{
+
+	}
+
+	llegoAlgo = false;
+	rts = false;
+
+	procesBitStream(START);
 }
 
 
@@ -140,8 +174,22 @@ void setNextBit(void)
 	}
 	else
 	{
+		if(llegoAlgo)
+		{
+			rts = true;
+		}
 		procesBitStream(IDLE);
 	}
+}
+
+bool parity (char num)
+{
+	bool par = 1;
+	for (int i = 0 ; i < 7; i++)
+	{
+		par ^= ((num & (1<<i))>>i);
+	}
+	return par;
 }
 
 /*******************************************************************************

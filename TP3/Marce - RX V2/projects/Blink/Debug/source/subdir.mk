@@ -13,7 +13,8 @@ C_SRCS += \
 ../source/Modulador.c \
 ../source/PIT.c \
 ../source/ftm.c \
-../source/gpio.c 
+../source/gpio.c \
+../source/uart.c 
 
 OBJS += \
 ./source/ADC.o \
@@ -25,7 +26,8 @@ OBJS += \
 ./source/Modulador.o \
 ./source/PIT.o \
 ./source/ftm.o \
-./source/gpio.o 
+./source/gpio.o \
+./source/uart.o 
 
 C_DEPS += \
 ./source/ADC.d \
@@ -37,7 +39,8 @@ C_DEPS += \
 ./source/Modulador.d \
 ./source/PIT.d \
 ./source/ftm.d \
-./source/gpio.d 
+./source/gpio.d \
+./source/uart.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
