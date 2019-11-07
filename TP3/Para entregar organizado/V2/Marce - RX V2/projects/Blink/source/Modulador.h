@@ -25,5 +25,7 @@ void Modulador_init(uint16_t* dutyAddress, void(*funcallback)(void));
 
 void Modulador_sendChar(char my_char);
 
+void Modulador_sendStream(bool *stream);
+
 
 #endif /* MODULADOR_H_ */

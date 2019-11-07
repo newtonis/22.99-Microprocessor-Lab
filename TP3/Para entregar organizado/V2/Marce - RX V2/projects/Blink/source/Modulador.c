@@ -27,6 +27,8 @@
 
 static uint16_t sinValues[SIN_VALUES];
 static uint16_t sinValues1[SIN_VALUES];
+static bool rts = false;
+static bool llegoAlgo = false;
 
 static bool bitStream[STAND_LEN];
 static uint8_t msg_ptr = 0;
@@ -74,7 +76,7 @@ void Modulador_init(uint16_t* dutyAddress, void(*funcallback)(void))
 
 	DMA0_ConfigCounters(0, sizeof(sinValues), sizeof(sinValues[0]));
 
-	DMA0_DisableRequest(0);
+	DMA0_EnableRequest(0);
 }
 
 void Modulador_sendChar(char my_char)
@@ -90,6 +92,16 @@ void Modulador_sendChar(char my_char)
 		bitStream[i] = (msg_t & TOBITMASK);
 		msg_t = msg_t<<1;
 	}
+
+	llegoAlgo = true;
+
+	while(!rts)
+	{
+
+	}
+
+	llegoAlgo = false;
+	rts = false;
 
 	procesBitStream(START);
 }
@@ -162,6 +174,10 @@ void setNextBit(void)
 	}
 	else
 	{
+		if(llegoAlgo)
+		{
+			rts = true;
+		}
 		procesBitStream(IDLE);
 	}
 }

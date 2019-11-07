@@ -170,10 +170,8 @@ void IC_ISR(void) //FTM3 CH5 PTC9 as IC
 	if((module->SC & FTM_SC_TOIE_MASK) == FTM_SC_TOIE_MASK){
 		module->SC &= ~FTM_SC_TOF_MASK; //  clear the TimerOverflowFlag
 		cnt_ovf++;
-		gpioToggle(PIN_GPIO_TEST);
 		callback();
 	}
-
 }
 
 
