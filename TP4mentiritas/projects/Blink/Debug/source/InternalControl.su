@@ -1,0 +1,11 @@
+core_cm4.h:1677:22:__NVIC_EnableIRQ	16	static
+InternalControl.c:37:6:internalControlInit	16	static
+InternalControl.c:59:6:isr_swOK	4	static
+InternalControl.c:63:6:isr_swCANCEL	4	static
+InternalControl.c:67:6:PortGetOK_Status	4	static
+InternalControl.c:70:6:PortClearOK_Status	4	static
+InternalControl.c:74:6:PortGetCANCEL_Status	4	static
+InternalControl.c:78:6:PortClearCANCEL_Status	4	static
+InternalControl.c:82:6:readSwitchInterface	8	static
+InternalControl.c:94:5:internalControlGetEvent	4	static
+InternalControl.c:105:6:RGBIndicator	16	static
