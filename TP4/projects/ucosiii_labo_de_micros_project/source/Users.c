@@ -12,6 +12,9 @@
 static int index_; //last user index
 static user_t users [MAX_USERS];
 
+static uint8_t counter1 = 0;
+static uint8_t counter2 = 0;
+static uint8_t counter3 = 0;
 
 
 bool validatePIN(int * pin, int ind);
@@ -31,9 +34,36 @@ bool unblockUser (int * id)
 
 void initUser(void)
 {
-	user_t admin = { {4, 5, 1, 7, 6, 6, 0, 1}, {1, 1, 1, 1, 1},  true, false, 0};
-	users[0] = admin;
-	index_++;
+	user_t user1 = { {4, 5, 1, 7, 6, 6, 0, 1}, {1, 1, 1, 1, 1}, 1 , true, false, 0};
+	user_t user2 = { {6, 0, 1, 0, 5, 6, 2, 2}, {1, 1, 1, 1, 2}, 1 , false, false, 0};
+	user_t user3 = { {3, 0, 8, 6, 2, 5, 0, 0}, {1, 1, 1, 1, 3}, 2 , false, false, 0};
+	user_t user4 = { {6, 1, 0, 5, 3, 1, 6, 0}, {1, 1, 1, 1, 4}, 2 , false, false, 0};
+	user_t user5 = { {6, 0, 1, 0, 5, 6, 8, 3}, {1, 1, 1, 1, 5}, 3 , false, false, 0};
+	user_t user6 = { {6, 0, 6, 1, 2, 6, 8, 1}, {1, 1, 1, 1, 6}, 3 , false, false, 0};
+
+	users[0] = user1;
+	users[1] = user2;
+	users[2] = user3;
+	users[3] = user4;
+	users[4] = user5;
+	users[5] = user6;
+
+	index_ = 6;
+}
+
+uint8_t getUsers1Floor (void)
+{
+	return counter1;
+}
+
+uint8_t getUsers2Floor (void)
+{
+	return counter2;
+}
+
+uint8_t getUsers3Floor (void)
+{
+	return counter3;
 }
 
 bool addUser(int * id, int * pin)
@@ -104,6 +134,18 @@ bool validateUser(int * id, int * pin)
 	{
 		if(validatePIN(pin, id_idx))// si el pin esta bien
 		{
+			switch(users[id_idx].floor)
+			{
+				case 1:
+					counter1++;
+					break;
+				case 2:
+					counter2++;
+					break;
+				case 3:
+					counter3++;
+					break;
+			}
 			users[id_idx].tries = 0;
 			return true;
 		}

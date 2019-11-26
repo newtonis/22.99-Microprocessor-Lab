@@ -20,6 +20,7 @@
 typedef struct {
     int	id[ID_L];
     int pin[PIN_L];
+    int floor;
     bool admin;
     bool blocked; //true if it is blocked
     uint8_t tries;
@@ -72,6 +73,10 @@ bool unblockUser (int * id);
  * @return HIGH or LOW
  */
 bool changePin(int * id, int * newPin);
+
+uint8_t getUsers1Floor (void);
+uint8_t getUsers2Floor (void);
+uint8_t getUsers3Floor (void);
 
 
 #endif /* USERS_H_ */
