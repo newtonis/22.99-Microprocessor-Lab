@@ -104,7 +104,7 @@ int validateIDint(int * id)
 	{
 
 		bool ans = true;
-		if(users[i].blocked == false) // usuario no bloqueado
+		if(users[i].blocked == false && users[i].inside == false) // usuario no bloqueado
 		{
 			for (int j = 0; j<ID_L; j++)
 			{
@@ -113,6 +113,10 @@ int validateIDint(int * id)
 				}
 			}
 
+		}
+		else
+		{
+			ans = false;
 		}
 		if(ans == false)
 		{

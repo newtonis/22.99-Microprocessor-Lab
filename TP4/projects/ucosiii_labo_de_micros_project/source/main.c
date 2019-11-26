@@ -48,7 +48,10 @@ enum{NOT_IDLE, IDLE}; // IDLE estados
 #define HIDE_PIN_TEST	{P_CHAR, I_CHAR, N_CHAR, GUION, GUION, GUION, GUION, GUION}
 #define CHECKOUT_OK_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, A_CHAR, C_CHAR, C_CHAR, E_CHAR, S_CHAR, O_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
 #define CHECKOUT_ERR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, C_CHAR, O_CHAR, D_CHAR, E_CHAR, ESPACIO, E_CHAR, R_CHAR, R_CHAR, O_CHAR, R_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
-#define ID_ERROR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, N_CHAR, O_CHAR, ESPACIO, S_CHAR, U_CHAR, C_CHAR, H_CHAR, ESPACIO, I_CHAR, D_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
+//#define ID_ERROR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, N_CHAR, O_CHAR, ESPACIO, S_CHAR, U_CHAR, C_CHAR, H_CHAR, ESPACIO, I_CHAR, D_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
+
+#define ID_ERROR_TXT	{ESPACIO, ESPACIO, ESPACIO, ESPACIO, I_CHAR, D_CHAR, ESPACIO, E_CHAR, R_CHAR, R_CHAR, O_CHAR, R_CHAR, ESPACIO, ESPACIO, ESPACIO, ESPACIO, ESPACIO, ESPACIO}
+
 
 static disp_msj_t id_txt = {ID_TEST, ID_LEN, 2, 1};
 
@@ -97,6 +100,8 @@ static char data[] = {0x0,0x0,0x1,0x0,0x2,0x0}; // recibe un uint16 que son dos 
 
 static char rxBuffer[]={1,2,3,4,5,6};
 static int index = 0;
+
+static OS_MUTEX mutex;
 
 
 /*******************************************************************************
@@ -392,12 +397,15 @@ static void Task2(void *p_arg) {
     OS_ERR os_err;
     int i = 0;
     while (1) {
-		OSTimeDlyHMSM(0, 0, 5, 0, OS_OPT_TIME_HMSM_STRICT, &os_err);
+		OSTimeDlyHMSM(0, 0, 3, 0, OS_OPT_TIME_HMSM_STRICT, &os_err);
 		sendKeepAlive();
 		OSSemPend(&KeepAliveSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err); // espero KeepAliveOk
     	if(i==14){
     		if(new_info){
+    			OSMutexPend(&mutex, 0, OS_OPT_PEND_BLOCKING, (CPU_TS*)0, &os_err);
 				senddata2thingspeak();
+				OSMutexPost(&mutex, OS_OPT_PEND_BLOCKING, &os_err);
+
 				OSSemPend(&uartSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err); // espero sendDataOk
 			}
     	}
@@ -430,6 +438,8 @@ static void TaskStart(void *p_arg) {
 	/* Create semaphore */
 	OSSemCreate(&ValidUserSem, "ValidUserSem", 0u, &os_err);
 
+	OSMutexCreate(&mutex, "MutexUsers", &os_err);
+
 
     /* Create Task2 */
     OSTaskCreate(&Task2TCB, 			//tcb
@@ -448,57 +458,19 @@ static void TaskStart(void *p_arg) {
 
     while (1) {
 
-    	OSSemPend(&ValidUserSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err);
+
+    	OSMutexPend(&mutex, 0, OS_OPT_PEND_BLOCKING, (CPU_TS*)0, &os_err);
     	usersNum[0] = getUsers1Floor();
     	usersNum[1] = getUsers2Floor();
     	usersNum[2] = getUsers3Floor();
     	new_info = true;
+    	OSMutexPost(&mutex, OS_OPT_PEND_BLOCKING, &os_err);
+    	OSSemPend(&ValidUserSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err);
 
     }
 }
 
-void internarHandler(void){
-	switch(internalControlGetEvent()){
-	case OK_EVENT:
 
-		if(fsm == ID_STAGE){
-
-			if(validateID((id_txt.array)+TEXT_TAB)){
-				fsm = PIN_STAGE;
-				DispClear();
-			}else{
-				fsm = ID_ERROR_STAGE;
-				t_switch = false;
-				PIT_startTime(3);
-				RGBIndicator(RED_INDICATOR);
-				DispClear();
-			}
-
-		}else if(fsm == PIN_STAGE){
-			if(validateUser((id_txt.array)+TEXT_TAB, (pin_txt.array)+TEXT_TAB)){
-				fsm = CHECKOUT_STAGE;
-				DispClear();
-				t_switch = true;
-				PIT_startTime(3);
-				OSSemPost(&ValidUserSem, OS_OPT_POST_ALL, &os_err);
-				RGBIndicator(GREEN_INDICATOR);
-			}else{
-				fsm = ERROR_STAGE;
-				DispClear();
-				t_switch = false;
-				PIT_startTime(3);
-				RGBIndicator(RED_INDICATOR);
-			}
-		}
-
-		break;
-	case CANCEL_EVENT:
-		fsm = ID_STAGE;
-		clearUserInfo();
-		DispClear();
-		break;
-	}
-}
 
 int main(void) {
     OS_ERR err;
@@ -549,6 +521,8 @@ int main(void) {
  #endif
     OS_CPU_SysTickInit(SystemCoreClock / (uint32_t)OSCfg_TickRate_Hz);
 
+
+
     OSTaskCreate(&TaskStartTCB,
                  "App Task Start",
                   TaskStart,
@@ -588,9 +562,7 @@ void append(char c){
 			OSSemPost(&uartSem, OS_OPT_POST_ALL, &os_err);
 			new_info = true;
 		}else if(isKeepAliveOk()){
-			// aca deberia poner un timeout por si no llega keepaliveok
-			// post al thread de keep alive (prendo led)
-			// timeout le hace post tambien (apago led)
+			// post al thread de keep alive, prendo led
 			OSSemPost(&KeepAliveSem, OS_OPT_POST_ALL, &os_err);
 			LED_G_ON();
 			KeepAliveReceived = true;
@@ -601,7 +573,51 @@ void append(char c){
 }
 
 void keepAliveCntTimeout(){
+	// si no se recibio el KeepAlive en el timeout, apago led
 	if(!KeepAliveReceived){
 		LED_G_OFF();
+	}
+}
+
+void internarHandler(void){
+	switch(internalControlGetEvent()){
+	case OK_EVENT:
+
+		if(fsm == ID_STAGE){
+
+			if(validateID((id_txt.array)+TEXT_TAB)){
+				fsm = PIN_STAGE;
+				DispClear();
+			}else{
+				fsm = ID_ERROR_STAGE;
+				t_switch = false;
+				PIT_startTime(3);
+				//RGBIndicator(RED_INDICATOR);
+				DispClear();
+			}
+
+		}else if(fsm == PIN_STAGE){
+			if(validateUser((id_txt.array)+TEXT_TAB, (pin_txt.array)+TEXT_TAB)){
+				fsm = CHECKOUT_STAGE;
+				DispClear();
+				t_switch = true;
+				PIT_startTime(3);
+				OSSemPost(&ValidUserSem, OS_OPT_POST_ALL, &os_err);
+				//RGBIndicator(GREEN_INDICATOR);
+			}else{
+				fsm = ERROR_STAGE;
+				DispClear();
+				t_switch = false;
+				PIT_startTime(3);
+				//RGBIndicator(RED_INDICATOR);
+			}
+		}
+
+		break;
+	case CANCEL_EVENT:
+		fsm = ID_STAGE;
+		clearUserInfo();
+		DispClear();
+		break;
 	}
 }
