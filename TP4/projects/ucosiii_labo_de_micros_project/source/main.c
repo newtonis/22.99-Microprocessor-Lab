@@ -10,6 +10,7 @@
 #include "InternalControl.h"
 #include "Users.h"
 #include "PIT.h"
+#include "uart.h"
 
 
 
@@ -91,6 +92,21 @@ static uint8_t usersNum [3] = {0};
 static bool t_switch; // si es false es access denied si es true cierra la puerta
 
 OS_ERR os_err;
+
+static char SendData[] = {0xAA,0x55,0xC3,0x3C,0x07,0x01};
+
+static char data[] = {0x0,0x0,0x1,0x0,0x2,0x0}; // recibe un uint16 que son dos bytes
+
+static char data2[] = {0x1,0x0,0x1,0x0,0x3,0x0}; // recibe un uint16 que son dos bytes
+
+static bool toggle_msg = false;
+
+
+
+static char rxBuffer[]={1,2,3,4,5,6};
+static int index = 0;
+
+
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
@@ -120,6 +136,28 @@ void timerSwitch (void);
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
+
+
+void append(char c){
+	rxBuffer[index%sizeof(rxBuffer)] = c; // en rxBuffer recibo sendDataOk/Fail y KeepAliveOk, todos con misma len
+	index++;
+}
+
+
+void charListener(char c){
+	append(c);
+}
+
+void senddata2thingspeak(){
+	sendCharArray(SendData,sizeof(SendData));
+	if(toggle_msg){
+		sendCharArray(data,sizeof(data));
+	}else{
+		sendCharArray(data2,sizeof(data2));
+	}
+	toggle_msg = !toggle_msg;
+
+}
 
 void clearUserInfo(void){
 	int aux[] = ID_TEST;
@@ -324,6 +362,10 @@ static void Task2(void *p_arg) {
 
     while (1) {
 
+
+    	senddata2thingspeak();
+    	OSTimeDlyHMSM(0u, 0u, 16u, 0u, OS_OPT_TIME_HMSM_STRICT, &os_err);
+
     	/*
     	OSSemPend(&uartSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err);
 		// hay que poner 0 en timeout para que espere el POST
@@ -376,19 +418,11 @@ static void TaskStart(void *p_arg) {
 
     while (1) {
 
+    	OSSemPend(&ValidUserSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err);
     	usersNum[0] = getUsers1Floor();
     	usersNum[1] = getUsers2Floor();
     	usersNum[2] = getUsers3Floor();
 
-    	OSSemPend(&ValidUserSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err);
-
-    	/*
-    	OSSemPost(&uartSem, OS_OPT_POST_ALL, &os_err);
-    	OSTimeDlyHMSM(0u, 0u, 0u, 800u, OS_OPT_TIME_HMSM_STRICT, &os_err);
-    	LED_G_TOGGLE(); // esto seria el thread de martu
-    	OSTimeDlyHMSM(0u, 0u, 0u, 800u, OS_OPT_TIME_HMSM_STRICT, &os_err);
-    	LED_G_TOGGLE(); // esto seria el thread de martu
-		*/
     }
 }
 
@@ -448,6 +482,14 @@ int main(void) {
 
 	initUser();
 
+	uart_cfg_t config;
+
+	config.baudrate = 1200;
+
+	uartInit(config);
+
+	setOnNewCharListener(charListener);
+
 	PIT_init();
 
 	internalControlInit(internarHandler);
@@ -494,6 +536,8 @@ int main(void) {
 
 	/* Should Never Get Here */
     while (1) {
+
+    	updateWord();
 
     }
 }
