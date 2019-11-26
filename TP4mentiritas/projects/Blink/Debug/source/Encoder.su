@@ -1,0 +1,9 @@
+Encoder.c:43:6:encoderInit	16	static
+Encoder.c:62:6:encoderCH_Handler	8	static
+Encoder.c:70:6:enconderSwitch_Handler	8	static
+Encoder.c:79:12:encoderMotionGetEvent	4	static
+Encoder.c:94:12:encoderReadMotion	8	static
+Encoder.c:112:6:encoderReadSwitch	8	static
+Encoder.c:120:6:EncSetFlag	16	static
+Encoder.c:124:6:EncClearFlag	4	static
+Encoder.c:128:12:EncGetFlag	4	static

@@ -1,0 +1,11 @@
+DisplayBoard.c:55:6:DispBoard_Init	16	static
+DisplayBoard.c:74:6:Disp7Seg_Select	16	static
+DisplayBoard.c:97:6:LedStatus_Write	16	static
+DisplayBoard.c:119:5:LedStatus_GetState	4	static
+DisplayBoard.c:123:6:DispShowMsj	16	static
+DisplayBoard.c:210:6:DispShiftMsj	4	static
+DisplayBoard.c:227:6:DispClear	16	static
+DisplayBoard.c:236:15:DispGetCursor	4	static
+DisplayBoard.c:240:13:DispModType	4	static
+DisplayBoard.c:244:15:DispChangeBright	16	static
+DisplayBoard.c:265:6:Disp7Seg_Write	16	static
