@@ -12,9 +12,9 @@
 static int index_; //last user index
 static user_t users [MAX_USERS];
 
-static uint8_t counter1 = 0;
-static uint8_t counter2 = 0;
-static uint8_t counter3 = 0;
+static uint16_t counter1 = 0;
+static uint16_t counter2 = 0;
+static uint16_t counter3 = 0;
 
 
 bool validatePIN(int * pin, int ind);
@@ -34,12 +34,12 @@ bool unblockUser (int * id)
 
 void initUser(void)
 {
-	user_t user1 = { {4, 5, 1, 7, 6, 6, 0, 1}, {1, 1, 1, 1, 1}, 1 , true, false, false, 0};
-	user_t user2 = { {6, 0, 1, 0, 5, 6, 2, 2}, {1, 1, 1, 1, 2}, 1 , false, false, false, 0};
-	user_t user3 = { {3, 0, 8, 6, 2, 5, 0, 0}, {1, 1, 1, 1, 3}, 2 , false, false, false, 0};
-	user_t user4 = { {6, 1, 0, 5, 3, 1, 6, 0}, {1, 1, 1, 1, 4}, 2 , false, false, false, 0};
-	user_t user5 = { {6, 0, 1, 0, 5, 6, 8, 3}, {1, 1, 1, 1, 5}, 3 , false, false, false, 0};
-	user_t user6 = { {6, 0, 6, 1, 2, 6, 8, 1}, {1, 1, 1, 1, 6}, 3 , false, false, false, 0};
+	user_t user1 = { {4, 5, 1, 7, 6, 6, 0, 1}, {1, 2, 3, 4, 5}, 1 , true, false, false, 0};
+	user_t user2 = { {6, 0, 1, 0, 5, 6, 2, 2}, {1, 2, 3, 4, 5}, 1 , false, false, false, 0};
+	user_t user3 = { {3, 0, 8, 6, 2, 5, 0, 0}, {1, 2, 3, 4, 5}, 2 , false, false, false, 0};
+	user_t user4 = { {6, 1, 0, 5, 3, 1, 6, 0}, {1, 2, 3, 4, 5}, 2 , false, false, false, 0};
+	user_t user5 = { {6, 0, 1, 0, 5, 6, 8, 3}, {1, 2, 3, 4, 5}, 3 , false, false, false, 0};
+	user_t user6 = { {6, 0, 6, 1, 2, 6, 8, 1}, {1, 2, 3, 4, 5}, 3 , false, false, false, 0};
 
 	users[0] = user1;
 	users[1] = user2;
@@ -102,14 +102,26 @@ int validateIDint(int * id)
 	int i = 0;
 	while (i < index_)
 	{
+
+		bool ans = true;
 		if(users[i].blocked == false) // usuario no bloqueado
 		{
-			if (memcmp(users[i].id, id, ID_L) == 0) // si son iguales
+			for (int j = 0; j<ID_L; j++)
 			{
-				return i;
+				if (users[i].id[j] != id[j]){
+					ans = false;
+				}
 			}
+
 		}
-		i++;
+		if(ans == false)
+		{
+			i++;
+		}
+		else
+		{
+			return i;
+		}
 	}
 
 	return ERROR; // no lo encuentra

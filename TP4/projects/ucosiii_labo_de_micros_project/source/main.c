@@ -20,26 +20,14 @@
  ******************************************************************************/
 
 
-/* LEDs */
-#define LED_R_PORT            PORTB
-#define LED_R_GPIO            GPIOB
+/* GREEN LED */
 #define LED_G_PORT            PORTE
 #define LED_G_GPIO            GPIOE
-#define LED_B_PORT            PORTB
-#define LED_B_GPIO            GPIOB
-#define LED_R_PIN             22
 #define LED_G_PIN             26
-#define LED_B_PIN             21
-#define LED_B_ON()           (LED_B_GPIO->PCOR |= (1 << LED_B_PIN))
-#define LED_B_OFF()          (LED_B_GPIO->PSOR |= (1 << LED_B_PIN))
-#define LED_B_TOGGLE()       (LED_B_GPIO->PTOR |= (1 << LED_B_PIN))
+
 #define LED_G_ON()           (LED_G_GPIO->PCOR |= (1 << LED_G_PIN))
 #define LED_G_OFF()          (LED_G_GPIO->PSOR |= (1 << LED_G_PIN))
 #define LED_G_TOGGLE()       (LED_G_GPIO->PTOR |= (1 << LED_G_PIN))
-#define LED_R_ON()           (LED_R_GPIO->PCOR |= (1 << LED_R_PIN))
-#define LED_R_OFF()          (LED_R_GPIO->PSOR |= (1 << LED_R_PIN))
-#define LED_R_TOGGLE()       (LED_R_GPIO->PTOR |= (1 << LED_R_PIN))
-
 
 enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE, ID_ERROR_STAGE}; // FSM estados
 enum{NOT_IDLE, IDLE}; // IDLE estados
@@ -86,21 +74,25 @@ static int *aux_id;
 static int idle_cnt = 0;
 static int fsm = ID_STAGE;
 
-static uint8_t usersNum [3] = {0};
+static uint32_t keepAliveCnt = 0;
+
+static uint16_t usersNum [3] = {0};
 
 
 static bool t_switch; // si es false es access denied si es true cierra la puerta
 
 OS_ERR os_err;
 
+static bool new_info = false;
+
+/*Comandos y respuestas*/
 static char SendData[] = {0xAA,0x55,0xC3,0x3C,0x07,0x01};
+static char KeepAlive[] = {0xAA,0x55,0xC3,0x3C,0x01,0x02};
+static char SendDataOk[] = {0xAA,0x55,0xC3,0x3C,0x01,0x81};
+static char SendDataFail[] = {0xAA,0x55,0xC3,0x3C,0x01,0xC1};
+static char KeepAliveOk[] = {0xAA,0x55,0xC3,0x3C,0x01,0x82};
 
-static char data[] = {0x0,0x0,0x1,0x0,0x2,0x0}; // recibe un uint16 que son dos bytes
-
-static char data2[] = {0x1,0x0,0x1,0x0,0x3,0x0}; // recibe un uint16 que son dos bytes
-
-static bool toggle_msg = false;
-
+static char data[] = {0x0,0x0,0x1,0x0,0x2,0x0}; // recibe un uint16 que son dos bytes Little Endian
 
 
 static char rxBuffer[]={1,2,3,4,5,6};
@@ -137,11 +129,34 @@ void timerSwitch (void);
  *******************************************************************************
  ******************************************************************************/
 
-
-void append(char c){
-	rxBuffer[index%sizeof(rxBuffer)] = c; // en rxBuffer recibo sendDataOk/Fail y KeepAliveOk, todos con misma len
-	index++;
+bool isSendDataOk(){
+	bool ans = true;
+	for(int i = 0 ; i < sizeof(rxBuffer) ; i ++){
+		if(SendDataOk[i] != rxBuffer[i]){
+			ans = false;
+		}
+	}
+	return ans;
 }
+bool isSendDataFail(){
+	bool ans = true;
+	for(int i = 0 ; i < sizeof(rxBuffer) ; i ++){
+		if(SendDataFail[i] != rxBuffer[i]){
+			ans = false;
+		}
+	}
+	return ans;
+}
+bool isKeepAliveOk(){
+	bool ans = true;
+	for(int i = 0 ; i < sizeof(rxBuffer) ; i ++){
+		if(KeepAliveOk[i] != rxBuffer[i]){
+			ans = false;
+		}
+	}
+	return ans;
+}
+
 
 
 void charListener(char c){
@@ -150,14 +165,22 @@ void charListener(char c){
 
 void senddata2thingspeak(){
 	sendCharArray(SendData,sizeof(SendData));
-	if(toggle_msg){
-		sendCharArray(data,sizeof(data));
-	}else{
-		sendCharArray(data2,sizeof(data2));
-	}
-	toggle_msg = !toggle_msg;
-
+	data[0] = (uint8_t)(usersNum[0]&0x00FF);
+	data[1] = (uint8_t)(usersNum[0]&0xFF00)>>8; // parte mas significativa
+	data[2] = (uint8_t)(usersNum[1]&0x00FF);
+	data[3] = (uint8_t)(usersNum[1]&0xFF00)>>8; // parte mas significativa
+    data[4] = (uint8_t)(usersNum[2]&0x00FF);
+    data[5] = (uint8_t)(usersNum[2]&0xFF00)>>8; // parte mas significativa
+	sendCharArray(data,sizeof(data));
 }
+static bool KeepAliveReceived = false;
+
+void sendKeepAlive(){
+	sendCharArray(KeepAlive,sizeof(KeepAlive));
+	keepAliveCnt = 0;
+	KeepAliveReceived = false;
+}
+
 
 void clearUserInfo(void){
 	int aux[] = ID_TEST;
@@ -265,8 +288,14 @@ void modifyNumberCode(int motion){
 }
 
 
-void displayHandler (void){
 
+
+void displayHandler (void){
+	keepAliveCnt++;
+	if(keepAliveCnt == 800){
+		keepAliveCntTimeout();
+	}
+	updateWord();
 	switch(fsm){
 	case ID_STAGE:
 		DispShowMsj(id_txt);
@@ -323,7 +352,7 @@ void lectorHandler(void){
 
 void closeDoor(void){
 	PIT_stopTime(3);
-	RGBIndicator(BLUE_INDICATOR);
+	//RGBIndicator(BLUE_INDICATOR);
 	fsm = ID_STAGE;
 	DispClear();
 	clearUserInfo();
@@ -331,7 +360,7 @@ void closeDoor(void){
 
 void accessDenied(void){
 	PIT_stopTime(3);
-	RGBIndicator(BLUE_INDICATOR);
+	//RGBIndicator(BLUE_INDICATOR);
 	fsm = ID_STAGE;
 	DispClear();
 	clearUserInfo();
@@ -355,25 +384,26 @@ static CPU_STK Task2Stk[TASK2_STK_SIZE];
 /* Example semaphore */
 static OS_SEM uartSem;
 static OS_SEM ValidUserSem;
+static OS_SEM KeepAliveSem;
+
 
 static void Task2(void *p_arg) {
     (void)p_arg;
     OS_ERR os_err;
-
+    int i = 0;
     while (1) {
+		OSTimeDlyHMSM(0, 0, 5, 0, OS_OPT_TIME_HMSM_STRICT, &os_err);
+		sendKeepAlive();
+		OSSemPend(&KeepAliveSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err); // espero KeepAliveOk
+    	if(i==14){
+    		if(new_info){
+				senddata2thingspeak();
+				OSSemPend(&uartSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err); // espero sendDataOk
+			}
+    	}
 
-
-    	senddata2thingspeak();
-    	OSTimeDlyHMSM(0u, 0u, 16u, 0u, OS_OPT_TIME_HMSM_STRICT, &os_err);
-
-    	/*
-    	OSSemPend(&uartSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err);
-		// hay que poner 0 en timeout para que espere el POST
-		OSTimeDlyHMSM(0u, 0u, 0u, 200u, OS_OPT_TIME_HMSM_STRICT, &os_err);
-		LED_R_TOGGLE();
-		OSTimeDlyHMSM(0u, 0u, 0u, 200u, OS_OPT_TIME_HMSM_STRICT, &os_err);
-		LED_R_TOGGLE();
-		*/
+    	i++;
+    	i%=15;
     }
 }
 
@@ -422,6 +452,7 @@ static void TaskStart(void *p_arg) {
     	usersNum[0] = getUsers1Floor();
     	usersNum[1] = getUsers2Floor();
     	usersNum[2] = getUsers3Floor();
+    	new_info = true;
 
     }
 }
@@ -536,8 +567,41 @@ int main(void) {
 
 	/* Should Never Get Here */
     while (1) {
-
-    	updateWord();
-
     }
+}
+
+
+
+void append(char c){
+	rxBuffer[index] = c; // en rxBuffer recibo sendDataOk/Fail y KeepAliveOk, todos con misma len
+	index++;
+	if(index == (sizeof(rxBuffer))){ // si llego un mensaje entero
+		if(isSendDataOk()){
+			// hago post
+			// clear de flag de data nuevo
+			OSSemPost(&uartSem, OS_OPT_POST_ALL, &os_err);
+			new_info = false;
+
+		}else if(isSendDataFail()){
+			// hago post
+			// no cleareo flag de data nuevo
+			OSSemPost(&uartSem, OS_OPT_POST_ALL, &os_err);
+			new_info = true;
+		}else if(isKeepAliveOk()){
+			// aca deberia poner un timeout por si no llega keepaliveok
+			// post al thread de keep alive (prendo led)
+			// timeout le hace post tambien (apago led)
+			OSSemPost(&KeepAliveSem, OS_OPT_POST_ALL, &os_err);
+			LED_G_ON();
+			KeepAliveReceived = true;
+
+		}
+	}
+	index%=sizeof(rxBuffer);
+}
+
+void keepAliveCntTimeout(){
+	if(!KeepAliveReceived){
+		LED_G_OFF();
+	}
 }
