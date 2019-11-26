@@ -118,6 +118,18 @@ void sendWord(const char *word){
 	UART0->C2 |= UART_C2_TIE_MASK;
 }
 
+void sendCharArray(const char *word, const uint8_t size){
+	int i = 0;
+	//while (word[i] != '\0'){
+	while (i < size){
+		sendBuffer[porEnviar] = word[i];
+		porEnviar = (porEnviar + 1) % BUFFER_SIZE;
+		i ++;
+	}
+	UART0->C2 |= UART_C2_TIE_MASK;
+}
+
+
 void popWord(){ // sacamos una palabra de la cola
 	wordMemoryRead = (wordMemoryRead + 1) % BUFFER_SIZE;
 }
