@@ -11,9 +11,34 @@
 #include "Users.h"
 #include "PIT.h"
 
+
+
+
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
+
+
+/* LEDs */
+#define LED_R_PORT            PORTB
+#define LED_R_GPIO            GPIOB
+#define LED_G_PORT            PORTE
+#define LED_G_GPIO            GPIOE
+#define LED_B_PORT            PORTB
+#define LED_B_GPIO            GPIOB
+#define LED_R_PIN             22
+#define LED_G_PIN             26
+#define LED_B_PIN             21
+#define LED_B_ON()           (LED_B_GPIO->PCOR |= (1 << LED_B_PIN))
+#define LED_B_OFF()          (LED_B_GPIO->PSOR |= (1 << LED_B_PIN))
+#define LED_B_TOGGLE()       (LED_B_GPIO->PTOR |= (1 << LED_B_PIN))
+#define LED_G_ON()           (LED_G_GPIO->PCOR |= (1 << LED_G_PIN))
+#define LED_G_OFF()          (LED_G_GPIO->PSOR |= (1 << LED_G_PIN))
+#define LED_G_TOGGLE()       (LED_G_GPIO->PTOR |= (1 << LED_G_PIN))
+#define LED_R_ON()           (LED_R_GPIO->PCOR |= (1 << LED_R_PIN))
+#define LED_R_OFF()          (LED_R_GPIO->PSOR |= (1 << LED_R_PIN))
+#define LED_R_TOGGLE()       (LED_R_GPIO->PTOR |= (1 << LED_R_PIN))
+
 
 enum{ID_STAGE, BRIGHT_EDIT, PIN_STAGE, CHECKOUT_STAGE, ERROR_STAGE, ID_ERROR_STAGE}; // FSM estados
 enum{NOT_IDLE, IDLE}; // IDLE estados
@@ -59,11 +84,13 @@ static int *aux_id;
 
 static int idle_cnt = 0;
 static int fsm = ID_STAGE;
-static bool idle_fsm = 0;
+
+static uint8_t usersNum [3] = {0};
+
 
 static bool t_switch; // si es false es access denied si es true cierra la puerta
 
-
+OS_ERR os_err;
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
@@ -199,22 +226,6 @@ void modifyNumberCode(int motion){
 
 }
 
-void idleHandler(void){
-	switch(idle_fsm){
-	case IDLE:
-		clearUserInfo();
-		fsm = ID_STAGE;
-		idle_fsm = !idle_fsm;
-		break;
-	case NOT_IDLE:
-		idle_cnt++;
-		if(idle_cnt == 30){
-			idle_fsm = IDLE;
-		}
-		break;
-	}
-
-}
 
 void displayHandler (void){
 
@@ -271,47 +282,6 @@ void lectorHandler(void){
 	}
 }
 
-void internarHandler(void){
-	switch(internalControlGetEvent()){
-	case OK_EVENT:
-
-		if(fsm == ID_STAGE){
-
-			if(validateID((id_txt.array)+TEXT_TAB)){
-				fsm = PIN_STAGE;
-				DispClear();
-			}else{
-				fsm = ID_ERROR_STAGE;
-				t_switch = false;
-				PIT_startTime(3);
-				RGBIndicator(RED_INDICATOR);
-				DispClear();
-			}
-
-		}else if(fsm == PIN_STAGE){
-			if(validateUser((id_txt.array)+TEXT_TAB, (pin_txt.array)+TEXT_TAB)){
-				fsm = CHECKOUT_STAGE;
-				DispClear();
-				t_switch = true;
-				PIT_startTime(3);
-				RGBIndicator(GREEN_INDICATOR);
-			}else{
-				fsm = ERROR_STAGE;
-				DispClear();
-				t_switch = false;
-				PIT_startTime(3);
-				RGBIndicator(RED_INDICATOR);
-			}
-		}
-
-		break;
-	case CANCEL_EVENT:
-		fsm = ID_STAGE;
-		clearUserInfo();
-		DispClear();
-		break;
-	}
-}
 
 void closeDoor(void){
 	PIT_stopTime(3);
@@ -345,16 +315,23 @@ static OS_TCB Task2TCB;
 static CPU_STK Task2Stk[TASK2_STK_SIZE];
 
 /* Example semaphore */
-static OS_SEM semTest;
+static OS_SEM uartSem;
+static OS_SEM ValidUserSem;
 
 static void Task2(void *p_arg) {
     (void)p_arg;
     OS_ERR os_err;
 
     while (1) {
-        OSSemPost(&semTest, OS_OPT_POST_1, &os_err);
-        OSTimeDlyHMSM(0u, 0u, 0u, 200u, OS_OPT_TIME_HMSM_STRICT, &os_err);
-        //LED_R_TOGGLE();
+
+    	/*
+    	OSSemPend(&uartSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err);
+		// hay que poner 0 en timeout para que espere el POST
+		OSTimeDlyHMSM(0u, 0u, 0u, 200u, OS_OPT_TIME_HMSM_STRICT, &os_err);
+		LED_R_TOGGLE();
+		OSTimeDlyHMSM(0u, 0u, 0u, 200u, OS_OPT_TIME_HMSM_STRICT, &os_err);
+		LED_R_TOGGLE();
+		*/
     }
 }
 
@@ -376,7 +353,11 @@ static void TaskStart(void *p_arg) {
 #endif
 
     /* Create semaphore */
-    OSSemCreate(&semTest, "Sem Test", 0u, &os_err);
+    OSSemCreate(&uartSem, "UARTSem", 0u, &os_err);
+
+	/* Create semaphore */
+	OSSemCreate(&ValidUserSem, "ValidUserSem", 0u, &os_err);
+
 
     /* Create Task2 */
     OSTaskCreate(&Task2TCB, 			//tcb
@@ -394,9 +375,64 @@ static void TaskStart(void *p_arg) {
                  &os_err);
 
     while (1) {
-        OSTimeDlyHMSM(0u, 0u, 0u, 100u, OS_OPT_TIME_HMSM_STRICT, &os_err);
-        //LED_G_TOGGLE();
+
+    	usersNum[0] = getUsers1Floor();
+    	usersNum[1] = getUsers2Floor();
+    	usersNum[2] = getUsers3Floor();
+
+    	OSSemPend(&ValidUserSem,0,OS_OPT_PEND_BLOCKING,(CPU_TS*)0,&os_err);
+
+    	/*
+    	OSSemPost(&uartSem, OS_OPT_POST_ALL, &os_err);
+    	OSTimeDlyHMSM(0u, 0u, 0u, 800u, OS_OPT_TIME_HMSM_STRICT, &os_err);
+    	LED_G_TOGGLE(); // esto seria el thread de martu
+    	OSTimeDlyHMSM(0u, 0u, 0u, 800u, OS_OPT_TIME_HMSM_STRICT, &os_err);
+    	LED_G_TOGGLE(); // esto seria el thread de martu
+		*/
     }
+}
+
+void internarHandler(void){
+	switch(internalControlGetEvent()){
+	case OK_EVENT:
+
+		if(fsm == ID_STAGE){
+
+			if(validateID((id_txt.array)+TEXT_TAB)){
+				fsm = PIN_STAGE;
+				DispClear();
+			}else{
+				fsm = ID_ERROR_STAGE;
+				t_switch = false;
+				PIT_startTime(3);
+				RGBIndicator(RED_INDICATOR);
+				DispClear();
+			}
+
+		}else if(fsm == PIN_STAGE){
+			if(validateUser((id_txt.array)+TEXT_TAB, (pin_txt.array)+TEXT_TAB)){
+				fsm = CHECKOUT_STAGE;
+				DispClear();
+				t_switch = true;
+				PIT_startTime(3);
+				OSSemPost(&ValidUserSem, OS_OPT_POST_ALL, &os_err);
+				RGBIndicator(GREEN_INDICATOR);
+			}else{
+				fsm = ERROR_STAGE;
+				DispClear();
+				t_switch = false;
+				PIT_startTime(3);
+				RGBIndicator(RED_INDICATOR);
+			}
+		}
+
+		break;
+	case CANCEL_EVENT:
+		fsm = ID_STAGE;
+		clearUserInfo();
+		DispClear();
+		break;
+	}
 }
 
 int main(void) {
@@ -428,7 +464,7 @@ int main(void) {
 
 	lectorInit(lectorHandler);
 
-	RGBIndicator(BLUE_INDICATOR);
+	//RGBIndicator(BLUE_INDICATOR);
 
 	PIT_startTime(0);
 
