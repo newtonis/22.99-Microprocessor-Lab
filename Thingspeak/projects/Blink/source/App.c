@@ -50,14 +50,12 @@ static bool toggle_msg = false;
 
 tim_id_t timerUpdatePos;
 
-static char rxBuffer[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+static char rxBuffer[]={1,2,3,4,5,6};
 static int index = 0;
+
 void append(char c){
-	rxBuffer[index%sizeof(rxBuffer)] = c;
+	rxBuffer[index%sizeof(rxBuffer)] = c; // en rxBuffer recibo sendDataOk/Fail y KeepAliveOk, todos con misma len
 	index++;
-	if(index == 12){
-		//
-	}
 }
 
 
@@ -66,10 +64,7 @@ void charListener(char c){
 }
 
 void senddata2thingspeak(){
-    //sendWord(SendData); //esto funca
-//    sendWord(complete); //esto funca
 	sendCharArray(SendData,sizeof(SendData));
-
 	if(toggle_msg){
 		sendCharArray(data,sizeof(data));
 	}else{
@@ -96,7 +91,7 @@ void App_Init (void)
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-//    updateWord(); // actualiza la cola de uart, flush de queue
+    updateWord(); // actualiza la cola de uart, flush de queue
 }
 
 

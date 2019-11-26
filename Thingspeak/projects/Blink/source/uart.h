@@ -56,6 +56,7 @@ typedef struct {
 */
 void uartInit(uart_cfg_t config);
 void sendWord(const char *word);
+void sendCharArray(const char *word, const uint8_t size);
 
 void getNextWord(char *data);
 
