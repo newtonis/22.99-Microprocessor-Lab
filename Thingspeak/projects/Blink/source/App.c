@@ -11,6 +11,8 @@
 #include "board.h"
 #include "gpio.h"
 #include "uart.h"
+#include "SysTick.h"
+#include "timer.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -32,27 +34,70 @@ static void delayLoop(uint32_t veces);
 
 /* Función que se llama 1 vez, al comienzo del programa */
 
-void charListener(char c){
 
+
+static char SendData[] = {0xAA,0x55,0xC3,0x3C,0x07,0x01, '\0'};
+
+static char complete[] = {0xAA,0x55,0xC3,0x3C,0x07,0x01, 0x01,0x01, 0x01, 0x01, 0x01, 0x01, '\0'};
+// hay que mejorar la uart en el sentido de que no me deja mandar 0 porque lo considera terminador
+
+
+static char data[] = {0x0,0x0,0x0,0x1,0x0,0x2,'\0'}; // recibe un uint16 que son dos bytes
+
+static char data2[] = {0x0,0x1,0x0,0x1,0x0,0x3,'\0'}; // recibe un uint16 que son dos bytes
+
+static bool toggle_msg = false;
+
+tim_id_t timerUpdatePos;
+
+static char rxBuffer[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+static int index = 0;
+void append(char c){
+	rxBuffer[index%sizeof(rxBuffer)] = c;
+	index++;
+	if(index == 12){
+		//
+	}
+}
+
+
+void charListener(char c){
+	append(c);
+}
+
+void senddata2thingspeak(){
+    //sendWord(SendData); //esto funca
+    sendWord(complete); //esto funca
+
+
+    /*
+	if(toggle_msg){
+		sendWord(data);
+	}else{
+		sendWord(data2);
+	}
+	toggle_msg = !toggle_msg;
+	*/
 }
 
 void App_Init (void)
 {
 	uart_cfg_t config;
-	config.baudrate = 9600;
+	config.baudrate = 1200;
     gpioMode(PIN_LED_BLUE, OUTPUT);
     uartInit(config);
     setOnNewCharListener(charListener);
+	timerInit();
+	timerUpdatePos = timerGetId();
+	timerStart(timerUpdatePos, TIMER_MS2TICKS(10000), TIM_MODE_PERIODIC, senddata2thingspeak);
 }
+
 
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-    //delayLoop(4000000UL);
-    //gpioToggle(PIN_LED_BLUE);
-    //sendWord("hola amigos xd");
-    updateWord(); // actualiza la cola de uart, flush de queue
+//    updateWord(); // actualiza la cola de uart, flush de queue
 }
 
 
