@@ -34,12 +34,12 @@ bool unblockUser (int * id)
 
 void initUser(void)
 {
-	user_t user1 = { {4, 5, 1, 7, 6, 6, 0, 1}, {1, 1, 1, 1, 1}, 1 , true, false, 0};
-	user_t user2 = { {6, 0, 1, 0, 5, 6, 2, 2}, {1, 1, 1, 1, 2}, 1 , false, false, 0};
-	user_t user3 = { {3, 0, 8, 6, 2, 5, 0, 0}, {1, 1, 1, 1, 3}, 2 , false, false, 0};
-	user_t user4 = { {6, 1, 0, 5, 3, 1, 6, 0}, {1, 1, 1, 1, 4}, 2 , false, false, 0};
-	user_t user5 = { {6, 0, 1, 0, 5, 6, 8, 3}, {1, 1, 1, 1, 5}, 3 , false, false, 0};
-	user_t user6 = { {6, 0, 6, 1, 2, 6, 8, 1}, {1, 1, 1, 1, 6}, 3 , false, false, 0};
+	user_t user1 = { {4, 5, 1, 7, 6, 6, 0, 1}, {1, 1, 1, 1, 1}, 1 , true, false, false, 0};
+	user_t user2 = { {6, 0, 1, 0, 5, 6, 2, 2}, {1, 1, 1, 1, 2}, 1 , false, false, false, 0};
+	user_t user3 = { {3, 0, 8, 6, 2, 5, 0, 0}, {1, 1, 1, 1, 3}, 2 , false, false, false, 0};
+	user_t user4 = { {6, 1, 0, 5, 3, 1, 6, 0}, {1, 1, 1, 1, 4}, 2 , false, false, false, 0};
+	user_t user5 = { {6, 0, 1, 0, 5, 6, 8, 3}, {1, 1, 1, 1, 5}, 3 , false, false, false, 0};
+	user_t user6 = { {6, 0, 6, 1, 2, 6, 8, 1}, {1, 1, 1, 1, 6}, 3 , false, false, false, 0};
 
 	users[0] = user1;
 	users[1] = user2;
@@ -134,19 +134,27 @@ bool validateUser(int * id, int * pin)
 	{
 		if(validatePIN(pin, id_idx))// si el pin esta bien
 		{
-			switch(users[id_idx].floor)
+
+			if(users[id_idx].inside == false)
 			{
-				case 1:
-					counter1++;
-					break;
-				case 2:
-					counter2++;
-					break;
-				case 3:
-					counter3++;
-					break;
+				switch(users[id_idx].floor)
+				{
+					case 1:
+						counter1++;
+						break;
+					case 2:
+						counter2++;
+						break;
+					case 3:
+						counter3++;
+						break;
+				}
+
 			}
+
+			users[id_idx].inside = true;
 			users[id_idx].tries = 0;
+
 			return true;
 		}
 		else // si el pin esta mal

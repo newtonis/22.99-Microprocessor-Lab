@@ -23,6 +23,7 @@ typedef struct {
     int floor;
     bool admin;
     bool blocked; //true if it is blocked
+    bool inside;
     uint8_t tries;
 } user_t;
 
