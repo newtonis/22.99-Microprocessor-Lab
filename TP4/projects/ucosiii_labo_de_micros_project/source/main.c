@@ -79,6 +79,8 @@ static int fsm = ID_STAGE;
 
 static uint32_t keepAliveCnt = 0;
 
+static uint32_t sendDataOkCnt = 0;
+
 static uint16_t usersNum [3] = {0};
 
 
@@ -168,6 +170,10 @@ void charListener(char c){
 	append(c);
 }
 
+static bool KeepAliveReceived = false;
+static bool sendDataReceived = false;
+
+
 void senddata2thingspeak(){
 	sendCharArray(SendData,sizeof(SendData));
 	data[0] = (uint8_t)(usersNum[0]&0x00FF);
@@ -177,8 +183,10 @@ void senddata2thingspeak(){
     data[4] = (uint8_t)(usersNum[2]&0x00FF);
     data[5] = (uint8_t)(usersNum[2]&0xFF00)>>8; // parte mas significativa
 	sendCharArray(data,sizeof(data));
+	sendDataOkCnt = 0;
+	sendDataReceived = false;
 }
-static bool KeepAliveReceived = false;
+
 
 void sendKeepAlive(){
 	sendCharArray(KeepAlive,sizeof(KeepAlive));
@@ -299,6 +307,10 @@ void displayHandler (void){
 	keepAliveCnt++;
 	if(keepAliveCnt == 800){
 		keepAliveCntTimeout();
+	}
+	sendDataOkCnt++;
+	if(sendDataOkCnt == 800){
+		sendDataOkCntTimeout();
 	}
 	updateWord();
 	switch(fsm){
@@ -555,12 +567,14 @@ void append(char c){
 			// clear de flag de data nuevo
 			OSSemPost(&uartSem, OS_OPT_POST_ALL, &os_err);
 			new_info = false;
+			sendDataReceived = true;
 
 		}else if(isSendDataFail()){
 			// hago post
 			// no cleareo flag de data nuevo
 			OSSemPost(&uartSem, OS_OPT_POST_ALL, &os_err);
 			new_info = true;
+			sendDataReceived = true;
 		}else if(isKeepAliveOk()){
 			// post al thread de keep alive, prendo led
 			OSSemPost(&KeepAliveSem, OS_OPT_POST_ALL, &os_err);
@@ -572,9 +586,19 @@ void append(char c){
 	index%=sizeof(rxBuffer);
 }
 
+
+void sendDataOkCntTimeout(){
+	// si no se recibio el sendData en el timeout, apago led
+	if(!sendDataReceived){
+		OSSemPost(&uartSem, OS_OPT_POST_ALL, &os_err);
+	}
+}
+
+
 void keepAliveCntTimeout(){
 	// si no se recibio el KeepAlive en el timeout, apago led
 	if(!KeepAliveReceived){
+		OSSemPost(&KeepAliveSem, OS_OPT_POST_ALL, &os_err);
 		LED_G_OFF();
 	}
 }
