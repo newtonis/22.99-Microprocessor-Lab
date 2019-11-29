@@ -131,7 +131,7 @@ int validateIDint(int * id)
 	return ERROR; // no lo encuentra
 }
 
-
+/*
 bool validatePIN(int * pin, int ind)
 {
 	if(memcmp(users[ind].pin , pin, PIN_L) == 0) // SI SON IGUALES
@@ -141,8 +141,8 @@ bool validatePIN(int * pin, int ind)
 
 	return false;
 }
+*/
 
-/*
 bool validatePIN(int * pin, int ind)
 {
 	bool ans = true;
@@ -155,7 +155,7 @@ bool validatePIN(int * pin, int ind)
 
 	return ans;
 }
-*/
+
 
 bool validateUser(int * id, int * pin)
 {
