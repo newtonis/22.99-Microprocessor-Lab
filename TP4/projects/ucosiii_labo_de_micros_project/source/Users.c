@@ -104,7 +104,7 @@ int validateIDint(int * id)
 	{
 
 		bool ans = true;
-		if(users[i].blocked == false && users[i].inside == false) // usuario no bloqueado
+		if(users[i].blocked == false) // usuario no bloqueado
 		{
 			for (int j = 0; j<ID_L; j++)
 			{
@@ -142,6 +142,20 @@ bool validatePIN(int * pin, int ind)
 	return false;
 }
 
+/*
+bool validatePIN(int * pin, int ind)
+{
+	bool ans = true;
+	for (int j = 0; j<PIN_L; j++)
+	{
+		if (users[ind].pin[j] != pin[j]){
+			ans = false;
+		}
+	}
+
+	return ans;
+}
+*/
 
 bool validateUser(int * id, int * pin)
 {
@@ -150,25 +164,50 @@ bool validateUser(int * id, int * pin)
 	{
 		if(validatePIN(pin, id_idx))// si el pin esta bien
 		{
-
-			if(users[id_idx].inside == false)
-			{
 				switch(users[id_idx].floor)
 				{
 					case 1:
-						counter1++;
+						if(users[id_idx].inside == false) //esta entrando
+						{
+							counter1++;
+							users[id_idx].inside = true;
+						}
+						else // esta saliendo
+						{
+							counter1--;
+							users[id_idx].inside = false;
+
+						}
+
 						break;
 					case 2:
-						counter2++;
+						if(users[id_idx].inside == false) //esta entrando
+						{
+							counter2++;
+							users[id_idx].inside = true;
+						}
+						else // esta saliendo
+						{
+							counter2--;
+							users[id_idx].inside = false;
+
+						}
 						break;
 					case 3:
-						counter3++;
+						if(users[id_idx].inside == false) //esta entrando
+						{
+							counter3++;
+							users[id_idx].inside = true;
+						}
+						else // esta saliendo
+						{
+							counter3--;
+							users[id_idx].inside = false;
+
+						}
 						break;
 				}
 
-			}
-
-			users[id_idx].inside = true;
 			users[id_idx].tries = 0;
 
 			return true;
